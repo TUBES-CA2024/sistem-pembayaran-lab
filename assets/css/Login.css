@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url("../img/bg-home2.png") center/cover no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*background-color: #cad6ff; /* Nilai transparansi diatur melalui alpha (0-1) */
+}
+
+.cola .card-body .fikom-Login {
+  width: 100%;
+  height: auto;
+}
+.cola .fikom-icon {
+  width: 90%;
+  height: auto;
+}
+
+.cola .cek-pembayaran {
+  background-color: #51a8b1;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  border-radius: 20px;
+}
+
+.cola .cek-pembayaran .card-body .form-cek-pembayaran {
+  height: 260px;
+  width: 250px;
+  border-radius: 20px;
+}
+
+.card-body .form-cek-pembayaran .btn-cek {
+  background-color: #51a8b1;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+}
+
+/* Media query untuk perangkat mobile */
+@media (max-width: 768px) {
+  .cola {
+    margin-top: 2rem; /* Mengurangi margin atas untuk memberikan ruang pada perangkat mobile */
+  }
+
+  .card-body .form-cek-pembayaran {
+    height: auto; /* Mengubah tinggi agar menyesuaikan kontennya */
+  }
+
+  .cola .fikom-icon {
+    width: 70%; /* Mengurangi lebar icon untuk perangkat mobile */
+  }
+
+  .cola .cek-pembayaran {
+    max-width: none; /* Hapus batasan lebar maksimum untuk perangkat mobile */
+  }
+}
