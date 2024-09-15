@@ -48,7 +48,7 @@ VIEW:
 - Peran Utama: Menyimpan semua elemen visual dan tampilan halaman, termasuk elemen- elemen HTML, CSS, dan interaksi pengguna.
 - Tampilan Terpisah: Dalam arsitektur MVC, VIEW terpisah dari logika bisnis (MODEL dan CONTROLLER), fokus pada presentasi data kepada pengguna.
 
-### LINK UML [Click here](https://drive.google.com/file/d/16Fs4rWuqPuVX3DMz9bBPWSB_-ZVO6LEX/view?usp=sharing)
+### LINK UML [Click here](https://drive.google.com/file/d/1qun9ZJtLtywhMM4QzWdqcGRWtg13Yikx/view?usp=sharing)
 
 ### LINK ERD [Click here](https://drive.google.com/file/d/1EhTbzTVDDOujF91sDIwnerPsufnwQXME/view?usp=sharing)
 
