@@ -50,6 +50,6 @@ VIEW:
 
 ### LINK UML [Click here](https://drive.google.com/file/d/1oZJAlSevl2vS8HRyW5iT2X2f_qsOHhR-/view?usp=sharing)
 
-### LINK ERD [Click here](https://drive.google.com/file/d/1EhTbzTVDDOujF91sDIwnerPsufnwQXME/view?usp=sharing)
+### LINK ERD [Click here](https://drive.google.com/file/d/1TszEDZ2CYDFKmu5Jd7MLFWSd6ZHzXte4/view?usp=sharing)
 
 ### LINK UI/UX [Click here](https://www.figma.com/file/zw47oWnf2mJPOIEQ2ReHJF/SIPEMLA?type=design&t=6oC3R2qf856RMBFp-6)
