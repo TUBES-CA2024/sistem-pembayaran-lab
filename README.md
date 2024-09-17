@@ -1,7 +1,7 @@
 # NAMA APLIAKSI : Sistem Pembayaran Lab
 
 > [!NOTE]
-> As'syahrin Nanda - 13020200318
+> Muhammad Alif Maulana - 13020220223
 
 ### Deskripsi Aplikasi
 
@@ -55,3 +55,5 @@ VIEW:
 ### LINK UI/UX [Click here](https://www.figma.com/file/zw47oWnf2mJPOIEQ2ReHJF/SIPEMLA?type=design&t=6oC3R2qf856RMBFp-6)
 
 ### LINK UI/UX2 [Click here](https://www.figma.com/design/bpMukOhEQFt0PQrX8LggRk/SIMPELA_2?node-id=0-1&t=2xABR426Qqf77VZX-1)
+
+
