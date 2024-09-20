@@ -1,7 +1,7 @@
 # NAMA APLIAKSI : Sistem Pembayaran Lab
 
 > [!NOTE]
-> Muhammad Alif Maulana.R - 13020220223
+> Muhammad Alif Maulana. R - 13020220223
 
 ### Deskripsi Aplikasi
 
