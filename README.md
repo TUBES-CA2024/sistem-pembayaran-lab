@@ -10,6 +10,8 @@
 
 ### Deskripsi Aplikasi
 
+- ini merupakan latihan menggunakan git fetch
+
 - Di Lab FIKOM ini proses pembayaran Lab seringkali melibatkan proses manual yang memakan waktu dan berpotensi menyebabkan kesalahan administrasi
 - Tujuan utama dari pengembangan aplikasi Sistem Pembayaran Lab adalah untuk meningkatkan efisiensi administrasi seperti Mengurangi risiko kesalahan administrasi seperti pencatatan ganda atau kehilangan data dan Memungkinkan Mahasiswa dan Administrator untuk dengan mudah melacak status pembayaran Lab Mahasiswa
 - Teknologi yang digunakan : Jquery Version 3.3.1, Bootstrap Version 5.3, PHP Version 8.1.25, DataTable-JavaScript
