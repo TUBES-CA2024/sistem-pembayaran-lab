@@ -9,7 +9,8 @@ body {
 }
 
 #menu .nav-link {
-  color: white; /* Warna font putih */
+  color: white;
+  /* Warna font putih */
 }
 
 #menu .nav-link:hover {
