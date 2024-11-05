@@ -49,7 +49,6 @@ class Beranda extends Controller
             header("Location:" . BASEURL . "/Berandakp");
             exit();
         }
-    
     }
     public function printPriode2()
     {

@@ -12,7 +12,7 @@ class Login_model
     public function getUser()
     {
         $this->db->query("SELECT * FROM user");
-        
+
         return $this->db->resultSet();
     }
 }

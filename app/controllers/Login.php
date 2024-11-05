@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-class Login extends Controller {
+class Login extends Controller
+{
     public function index()
     {
         if (isset($_SESSION['masuk']) && $_SESSION['masuk'] === true) {
-            if($_SESSION['role'] == 'Admin') {
-                header("Location:" . BASEURL. "/Beranda");
+            if ($_SESSION['role'] == 'Admin') {
+                header("Location:" . BASEURL . "/Beranda");
                 exit();
-            }else{
-                header("Location:" . BASEURL. "/Berandakp");
+            } else {
+                header("Location:" . BASEURL . "/Berandakp");
                 exit();
             }
         }
@@ -19,18 +20,19 @@ class Login extends Controller {
         $this->view('Login/index', $data);
     }
 
-    public function masuk(){
+    public function masuk()
+    {
         $username = $_POST['username'];
         $password = $_POST['password'];
         // $role = $_POST['role'];
         // var_dump($_POST );
 
         $data['login'] = $this->model('Login_model')->getUser();
-        
+
         // var_dump($data);
         $konfirm = "";
         foreach ($data['login'] as $masuk):
-            if ($masuk['username'] == $username && $masuk['password'] == $password ){
+            if ($masuk['username'] == $username && $masuk['password'] == $password) {
                 $_SESSION['username'] = $masuk['username'];
                 $_SESSION['iduser'] = $masuk['iduser'];
                 $_SESSION['role'] = $masuk['role'];
@@ -38,15 +40,15 @@ class Login extends Controller {
                 $konfirm = true;
             }
         endforeach;
-        if ($konfirm == true){
-            if($_SESSION['role']== 'Admin'){
+        if ($konfirm == true) {
+            if ($_SESSION['role'] == 'Admin') {
                 header('Location: ' . BASEURL . '/Beranda');
                 exit;
-            }else{
+            } else {
                 header('Location: ' . BASEURL . '/Berandakp');
                 exit;
             }
-        }else{
+        } else {
             // echo "salako";
             stambukCek::setFlash('Username atau Password', 'Salah', 'danger');
             header('Location: ' . BASEURL . '/Login');
@@ -67,12 +69,13 @@ class Login extends Controller {
         //             header('Location: ' . BASEURL . '/Berandakp');
         //             exit;
         //         }
-                
+
         //     endforeach;
         // }
     }
 
-    public function keluar(){
+    public function keluar()
+    {
         // echo 'And di mau keluar';
         session_destroy();
         header('Location: ' . BASEURL . '/Login');
