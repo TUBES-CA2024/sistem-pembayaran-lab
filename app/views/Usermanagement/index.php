@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Akun User</h5>
-                <h2 class="card-subtitle mb-2"><?=$data['countuser']['jumlahUser']?></h2>
+                <h2 class="card-subtitle mb-2"><?= $data['countuser']['jumlahUser'] ?></h2>
                 <p class="card-text">Jumlah Akun User</p>
             </div>
         </div>
@@ -47,7 +47,7 @@
                             <td><?= $user['role']; ?></td>
                             <td>
                                 <a class="btn-edit edit-user" role="button" href="<?= BASEURL; ?>/Usermanagement/edit/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
-                                <button class="btn-delete" type="button"  data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser'];?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
+                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
                         </tr>
                         <!-- Modal Delete -->
@@ -105,6 +105,7 @@
                             <option selected>Pilih Role</option>
                             <option value="Admin">Admin</option>
                             <option value="Kepala Lab">Kepala Lab</option>
+                            <option value="Mahasiswa">Mahasiswa</option>
                         </select>
                     </div>
             </div>
