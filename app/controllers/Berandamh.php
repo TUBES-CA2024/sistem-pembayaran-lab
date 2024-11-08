@@ -12,7 +12,7 @@ class Berandamh extends Controller
             $data['pembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             $this->view('templates/header', $data);
-            $this->view('templates/sidebarkp');
+            $this->view('templates/sidebarmh');
             $this->view('Berandamh/index', $data);
             $this->view('templates/footersidebar');
             $this->view('templates/footer');

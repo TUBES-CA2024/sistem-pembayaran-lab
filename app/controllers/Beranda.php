@@ -20,8 +20,11 @@ class Beranda extends Controller
                 $this->view('Beranda/index', $data);
                 $this->view('templates/footersidebar');
                 $this->view('templates/footer');
-            } else {
+            } else if ($_SESSION['role'] == 'Kepala Lab') {
                 header("Location:" . BASEURL . "/Berandakp");
+                exit();
+            } else {
+                header("Location:" . BASEURL . "/Berandamh");
                 exit();
             }
         } else {

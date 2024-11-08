@@ -16,8 +16,11 @@ class Home extends Controller
             if ($_SESSION['role'] == 'Admin') {
                 header("Location:" . BASEURL . "/Beranda");
                 exit();
-            } else {
+            } else if ($_SESSION['role'] == 'Kepala Lab') {
                 header("Location:" . BASEURL . "/Berandakp");
+                exit();
+            } else {
+                header("Location:" . BASEURL . "/Berandamh");
                 exit();
             }
         }
@@ -50,8 +53,11 @@ class Home extends Controller
             if ($_SESSION['role'] == 'Admin') {
                 header("Location:" . BASEURL . "/Beranda");
                 exit();
-            } else {
+            } else if ($_SESSION['role'] == 'Kepala Lab') {
                 header("Location:" . BASEURL . "/Berandakp");
+                exit();
+            } else {
+                header("Location:" . BASEURL . "/Berandamh");
                 exit();
             }
         }
@@ -73,8 +79,11 @@ class Home extends Controller
             if ($_SESSION['role'] == 'Admin') {
                 header("Location:" . BASEURL . "/Beranda");
                 exit();
-            } else {
+            } else if ($_SESSION['role'] == 'Kepala Lab') {
                 header("Location:" . BASEURL . "/Berandakp");
+                exit();
+            } else {
+                header("Location:" . BASEURL . "/Berandamh");
                 exit();
             }
         }
@@ -113,8 +122,11 @@ class Home extends Controller
             if ($_SESSION['role'] == 'Admin') {
                 header("Location:" . BASEURL . "/Beranda");
                 exit();
-            } else {
+            } else if ($_SESSION['role'] == 'Kepala Lab') {
                 header("Location:" . BASEURL . "/Berandakp");
+                exit();
+            } else {
+                header("Location: " . BASEURL . "/Berandamh");
                 exit();
             }
         }

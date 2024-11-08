@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.container-btn {
+    text-align: right;
+    /* Tombol login berada di ujung kanan */
+    margin-bottom: 10px;
+    /* Memberikan margin di bawah container-btn */
+}
+
+.container-btn .btn-logout {
+    background-color: #51a8b1;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    padding: 8px;
+}
+
+.container-card {
+    display: flex;
+    justify-content: space-around;
+    /* Memberikan jarak yang beraturan */
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 250px;
+    /* Lebar card */
+    background-color: #ccf3ff;
+    /* Warna latar belakang card */
+    margin-bottom: 15px;
+    /* Memberikan margin di bawah card */
+    border-radius: 10px;
+    /* Mengatur sudut card */
+    overflow: hidden;
+    box-shadow: 7px 7px 10px #888888;
+}
+
+.card img {
+    width: 60%;
+    /* Gambar mengisi lebar card */
+    height: auto;
+    /* Gambar menyesuaikan tinggi dengan lebar */
+}
+
+.card-block {
+    padding: 15px;
+    /* Padding untuk konten di dalam card */
+    text-align: center;
+    /* Teks di tengah */
+}
+
+.card h8 {
+    margin-top: 10px;
+    color: black;
+}
