@@ -1,6 +1,6 @@
 <?php
 
-class Berandakp extends Controller
+class Berandamh extends Controller
 {
     public function index()
     {
@@ -13,7 +13,7 @@ class Berandakp extends Controller
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarkp');
-            $this->view('Berandakp/index', $data);
+            $this->view('Berandamh/index', $data);
             $this->view('templates/footersidebar');
             $this->view('templates/footer');
         } else {
