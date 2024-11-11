@@ -1,43 +1,65 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/Beranda.css">
+
 <div class="row p-3">
-    <div class="col-lg-3 p-2">
-        <div class="card p-3 bg-light bg-gradient shadow-lg text-body-secondary">
-            <div class="row">
-                <div class="col-7 card-body">
-                    <h6 class="card-subtitle mb-2">Mahasiswa</h6>
-                    <h2 class="card-title"><?= $data['mahasiswa']['jumlahMahasiswa'] ?></h2>
-                    <p class="card-text">Jumlah</p>
+    <div class="col-lg-10%">
+        <div class="card p-0 ">
+            <div class="d-flex justify-content-end align-items-center">
+                <div>
+                    <h6 class="text-primary mb-0">FULAN FULAN FULAN</h6>
+                    <small style="padding-left: 48%;">Mahasiswa</small>
                 </div>
-                <div class="col-5 align-self-center">
-                    <img src="<?= BASEURL ?>/assets/img/data-mahasiswa.png" alt="foto-card4" width="80px">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 p-2">
-        <div class="card p-3 bg-light bg-gradient shadow-lg text-body-secondary">
-            <div class="row">
-                <div class="col-7 card-body">
-                    <h6 class="card-subtitle mb-2">Mata Kuliah</h6>
-                    <h2 class="card-title"><?= $data['matkul']['jumlahMatkul'] ?></h2>
-                    <p class="card-text">Jumlah</p>
-                </div>
-                <div class="col-5 align-self-center">
-                    <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="80px">
+                <div class="me-3">
+                    <img src="<?= BASEURL ?>/assets/img/profil-icons.png" alt="foto-wajah" width="70px">
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 p-2">
-        <div class="card p-3 bg-light bg-gradient shadow-lg text-body-secondary">
-            <div class="row">
-                <div class="col-7 card-body">
-                    <h6 class="card-subtitle mb-2">Pembayaran</h6>
-                    <h2 class="card-title"><?= $data['pembayaran']['jumlahPembayaran'] ?></h2>
-                    <p class="card-text">Jumlah</p>
+</div>
+
+
+
+<div class="d-flex justify-content-between p-3">
+
+    <div class="col-lg-3">
+        <div class="card p-4 bg-light shadow-lg text-body-secondary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="col-7">
+                    <h3 class="card-subtitle mb-3">Profil Mahasiswa</h3>
+                    <h3 class="card-title mb-2"><?= $data['mahasiswa']['jumlahMahasiswa'] ?></h3>
+                    <p class="card-text mb-2">Mahasiswa</p>
                 </div>
-                <div class="col-5 align-self-center">
-                    <img src="<?= BASEURL ?>/assets/img/pembayaran.png" alt="foto-card4" width="80px">
+                <div class="me-0">
+                    <img src="<?= BASEURL ?>/assets/img/profil-icons.png" alt="foto-card4" width="120px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="card p-4 bg-light shadow-lg text-body-secondary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="col-7">
+                    <h3 class="card-subtitle mb-3">Mata Kuliah Mahasiswa</h3>
+                    <h3 class="card-title mb-2"><?= $data['matkul']['jumlahMatkul'] ?></h3>
+                    <p class="card-text mb-2">Jumlah</p>
+                </div>
+                <div class="me-0">
+                    <img src="<?= BASEURL ?>/assets/img/matkulmh-icons.png" alt="foto-card4" width="110px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="card p-4 bg-light shadow-lg text-body-secondary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="col-7">
+                    <h3 class="card-subtitle mb-3">Pembayaran Mahasiswa</h3>
+                    <h3 class="card-title mb-2"><?= $data['pembayaran']['jumlahPembayaran'] ?></h3>
+                    <p class="card-text mb-2">Mahasiswa</p>
+                </div>
+                <div class="mb-0">
+                    <img src="<?= BASEURL ?>/assets/img/pembayaranmh-icons.png" alt="foto-card4" width="100px">
                 </div>
             </div>
         </div>

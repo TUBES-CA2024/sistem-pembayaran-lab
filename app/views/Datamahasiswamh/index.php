@@ -6,7 +6,7 @@
                 <img src="<?= BASEURL ?>/assets/img/data-mahasiswa.png" alt="foto-card4" width="85px">
             </div>
             <div class="col-md-11 card-body">
-                <h5 class="card-title">Data Mahasiswa</h5>
+                <h5 class="card-title">Profil</h5>
                 <h2 class="card-subtitle mb-2"><?= $data['countmahasiswa']['jumlahMahasiswa'] ?></h2>
                 <p class="card-text">Jumlah Data Mahasiswa</p>
             </div>

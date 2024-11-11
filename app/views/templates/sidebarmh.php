@@ -18,7 +18,7 @@
                         <li>
                             <a href="<?= BASEURL ?>/Datamahasiswamh" class="nav-link px-2 align-middle">
                                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/mahasiswa-icon.png" alt="logo-sipemla" /></i>
-                                <span class="ms-1 d-none d-sm-inline">Data Mahasiswa</span></a>
+                                <span class="ms-1 d-none d-sm-inline">Profil</span></a>
                         </li>
                         <li>
                             <a href="<?= BASEURL ?>/Matakuliahmh" class="nav-link px-2 align-middle">
