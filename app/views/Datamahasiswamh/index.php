@@ -3,15 +3,15 @@
     <div class="d-flex justify-content-between align-items-start">
 
         <!-- Profile Card -->
-        <div class="card shadow-lg bg-white" style="width: 18rem;">
+        <div class="card shadow-lg bg-white" style="width: 30rem;">
             <div class="card-body text-center">
-                <img src="<?= BASEURL ?>/assets/img/profil-icons.png" alt="foto-card4" width="100px" class="rounded-circle mb-3">
-                <h5 class="card-title">FULAN FULAN FULAN</h5>
-                <p class="card-text">13020220001</p>
+                <img src="<?= BASEURL ?>/assets/img/person-icons.png" alt="foto-card4" width="90px" class="rounded-circle mb-3">
+                <h5 class="card-title">MUHAMMAD ALIF MAULANA. R</h5>
+                <p class="card-text">13020220223</p>
                 <p class="card-text text-muted">Teknik Informatika</p>
                 <hr>
-                <p><img src="email-icon.png" alt="Email Icon" width="20"> Fulan@gmail.com</p>
-                <p><img src="phone-icon.png" alt="Phone Icon" width="20"> +628123456789</p>
+                <p><img src="<?= BASEURL ?>/assets/img/email-icons.png" alt="Email Icon" width="25"> muhalifmaulanar.iclabs@umi.ac.id</p>
+                <p><img src="<?= BASEURL ?>/assets/img/phone-icons.png" alt="Phone Icon" width="25"> +6282268156621</p>
             </div>
         </div>
 
@@ -24,27 +24,27 @@
                 <form>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="program" class="form-label">Tingkat & program Studi *</label>
+                            <label for="program" class="form-label">Tingkat & program Studi <span style="color: red;">*</span></label>
                             <input type="text" id="program" class="form-control">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Nama Lengkap *</label>
+                            <label for="name" class="form-label">Nama Lengkap <span style="color: red;">*</span></label>
                             <input type="text" id="name" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="stambuk" class="form-label">Stambuk *</label>
+                            <label for="stambuk" class="form-label">Stambuk <span style="color: red;">*</span></label>
                             <input type="text" id="stambuk" class="form-control">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="phone" class="form-label">Telepon</label>
+                            <label for="phone" class="form-label">Telepon <span style="color: red;">*</span></label>
                             <input type="text" id="phone" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label">Email <span style="color: red;">*</span></label>
                             <input type="email" id="email" class="form-control">
                         </div>
                         <div class="col-md-6 mb-3">
@@ -83,8 +83,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="text-center py-3">
-    <small>Copyright © <a href="https://iclabs2024.com" target="_blank">iclabs2024</a></small>
 </div>
