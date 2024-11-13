@@ -6,7 +6,7 @@
             <div class="d-flex justify-content-end align-items-center">
                 <div>
                     <h6 class="text-primary mb-0">FULAN FULAN FULAN</h6>
-                    <small style="padding-left: 48%;">Mahasiswa</small>
+                    <small style="padding-left: 48%;">Mahasiswa Mahasiswi</small>
                 </div>
                 <div class="me-3">
                     <img src="<?= BASEURL ?>/assets/img/profil-icons.png" alt="foto-wajah" width="70px">
