@@ -3,15 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2024 at 03:19 PM
+-- Generation Time: Nov 13, 2024 at 11:57 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-USE sipemla;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -174,7 +174,7 @@ CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `role` enum('Admin','Kepala Lab') CHARACTER SET utf8mb4 COLLATE utf8mb4_estonian_ci NOT NULL
+  `role` enum('Admin','Kepala Lab','Mahasiswa') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -185,7 +185,9 @@ INSERT INTO `user` (`iduser`, `username`, `password`, `role`) VALUES
 (1, 'Admin1', 'Admin123', 'Admin'),
 (2, 'KepalaLab1', 'kepalalab1', 'Kepala Lab'),
 (3, 'KepalaLab2', 'kepalalab2', 'Kepala Lab'),
-(11, 'KepalaLab3', 'kepalalab3', 'Kepala Lab');
+(11, 'KepalaLab3', 'kepalalab3', 'Kepala Lab'),
+(12, '13020220223', '123', ''),
+(13, '130', 'mhs', 'Mahasiswa');
 
 --
 -- Indexes for dumped tables
@@ -258,7 +260,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
