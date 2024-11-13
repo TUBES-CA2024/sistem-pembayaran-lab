@@ -13,8 +13,10 @@ class Berandamh extends Controller
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
+            $this->view('templates/profilhead');
             $this->view('Berandamh/index', $data);
             $this->view('templates/footersidebar');
+            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");

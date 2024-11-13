@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/Beranda.css">
 
+<<<<<<< HEAD
 <div class="row p-3">
     <div class="col-lg-10%">
         <div class="card p-0 ">
@@ -18,6 +19,8 @@
 
 
 
+=======
+>>>>>>> master
 <div class="d-flex justify-content-between p-3">
 
     <div class="col-lg-3">
@@ -64,4 +67,5 @@
             </div>
         </div>
     </div>
+
 </div>
