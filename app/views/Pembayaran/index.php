@@ -13,6 +13,7 @@
         </div>
     </div>
 </div>
+
 <div class="container-user col-12 mx-auto">
     <div class="overflow-y-auto p-4" style="max-height: 71vh;">
         <div class="row">
@@ -20,12 +21,28 @@
                 <?php Flasher::flash(); ?>
             </div>
         </div>
+        
+        <!-- Table for Semester Regular and Tahun Akademik -->
         <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 860px;">
-            <div class="text-start mb-3">
-                <button class="btn btn-success opacity-75 add-pembayaran" type="submit" data-bs-toggle="modal" data-bs-target="#formPembayaran"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Tambah</button>
-            </div>
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
+                    <tr>
+                        <th colspan="5">Semester Regular</th>
+                        <th colspan="2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <label for="tahun-akademik">Tahun Akademik</label>
+                                    <select id="tahun-akademik" class="form-select">
+                                        <option>2024/2025</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-outline-danger">Tambah Matakuliah</button>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
                     <tr>
                         <th>No</th>
                         <th>Stambuk</th>
@@ -57,8 +74,12 @@
                             <td>Rp. <?= $pmb['nominal']; ?></td>
                             <td><?= $pmb['status']; ?></td>
                             <td>
-                                <a class="btn-edit edit-pembayaran" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
-                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
+                                <a class="btn-edit edit-pembayaran" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>">
+                                    <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                </a>
+                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>">
+                                    <img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete">
+                                </button>
                             </td>
                         </tr>
                         <!-- Modal Delete -->
@@ -81,11 +102,48 @@
                                 </div>
                             </div>
                         </div>
-
                     <?php endforeach; ?>
-
                 </tbody>
             </table>
+        </div>
+
+        <!-- History Pembayaran Table -->
+        <div class="overflow-x-auto rounded-4 shadow-lg p-4 mt-5" style="min-width: 860px;">
+            <h4>History Pembayaran</h4>
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Tagihan</th>
+                        <th>Virtual Account</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    
+                    $historyData = [
+                        
+                    ];
+
+                    $no = 1;
+                    foreach ($historyData as $history) :
+                        $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $formattedDate; ?></td>
+                            <td><?= $history['tagihan']; ?></td>
+                            <td><?= $history['virtual_account']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Print Button for History Pembayaran -->
+        <div class="text-center mt-3">
+    <button class="btn btn-primary" onclick="window.print()">Cetak Pembayaran</button>
         </div>
     </div>
 </div>
@@ -122,10 +180,10 @@
                             <option value="Belum Lunas">Belum Lunas</option>
                         </select>
                     </div>
-            </div>
-            <div class="modal-footer modal-pembayaran">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
                 </form>
             </div>
         </div>
