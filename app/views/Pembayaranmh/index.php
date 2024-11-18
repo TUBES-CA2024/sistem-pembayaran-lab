@@ -8,7 +8,7 @@
                 <?php Flasher::flash(); ?>
             </div>
         </div>
-        
+
         <!-- Table for Semester Regular and Tahun Akademik -->
         <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 860px;">
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
@@ -21,15 +21,20 @@
                                     <label for="tahun-akademik">Tahun Akademik</label>
                                     <select id="tahun-akademik" class="form-select">
                                         <option>2024/2025</option>
-                                        <!-- Add more options as needed -->
                                     </select>
+
                                 </div>
+
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-outline-danger">Tambah Matakuliah</button>
+                                    <form action="<?= BASEURL; ?>/Pembayaranmh/registrasi" method="POST" class="mt-4">
+                                        <button class="btn btn-success opacity-75" type="submit"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Register Mahasiswa</button>
+                                    </form>
                                 </div>
+
                             </div>
                         </th>
                     </tr>
+
                     <tr>
                         <th>No</th>
                         <th>Stambuk</th>
@@ -108,11 +113,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    // Sample data for demonstration purposes.
-                    // Replace this with your dynamic data fetching logic.
-                    $historyData = [
-                        
-                    ];
+                    $historyData = [];
 
                     $no = 1;
                     foreach ($historyData as $history) :
@@ -129,52 +130,10 @@
             </table>
         </div>
 
-      
+
         <div class="text-center mt-3">
             <button class="btn btn-primary" onclick="window.print()">Cetak Pembayaran</button>
         </div>
 
-    </div>
-</div>
-
-<!-- Modal Edit Tambah-->
-<div class="modal fade" id="formPembayaran" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="judulModalLabel">Tambah Pembayaran</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Pembayaran/tambah" method="post">
-                    <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
-                    <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
-                    <div class="mb-3">
-                        <label for="kode-stambuk" class="form-label">Stambuk</label>
-                        <input type="number" class="form-control input-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk">
-                    </div>
-                    <div class="mb-3">
-                        <label for="waktu pembayaran" class="form-label">Waktu Pembayaran</label>
-                        <input type="date" class="form-control input-waktupembayaran" id="input-waktupembayaran" name="waktupembayaran" placeholder="Masukkan Waktu Pembayaran">
-                    </div>
-                    <div class="mb-3">
-                        <label for="nominal" class="form-label">Nominal</label>
-                        <input type="number" class="form-control input-nominal" id="input-nominal" name="nominal" placeholder="Masukkan nominal">
-                    </div>
-                    <div class="mb-3">
-                        <label for="prodi" class="form-label">Status</label>
-                        <select class="form-select" aria-label="Default select example" name="status" id="input-status">
-                            <option selected>Pilih Status</option>
-                            <option value="Lunas">Lunas</option>
-                            <option value="Belum Lunas">Belum Lunas</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 <body?>
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-0 px-0 bg-info" style="background-color: #00A9FF;">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-0 px-0 bg-info">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="<?= BASEURL ?>/Berandamh" class="d-flex align-items-center pb-3 mb-md-5 me-md-auto text-white text-decoration-none mt-3">
                         <i class="fs-4 me-2"><img style="width: 60px; height: auto" src="<?= BASEURL ?>/assets/img/logo-sipemla.png" alt="logo-sipemla" /></i>
@@ -43,3 +43,23 @@
                 </div>
             </div>
             <div class="col py-3">
+
+                <script>
+                    $(document).ready(function() {
+                        const currentUrl = window.location.href;
+
+                        if (currentUrl.includes("Berandamh")) {
+                            $(".col-auto").addClass("sidebar-active");
+                            $('a[href$="Berandamh"]').addClass("active");
+                        } else if (currentUrl.includes("Datamahasiswamh")) {
+                            $(".col-auto").addClass("sidebar-active");
+                            $('a[href$="Datamahasiswamh"]').addClass("active");
+                        } else if (currentUrl.includes("Matakuliahmh")) {
+                            $(".col-auto").addClass("sidebar-active");
+                            $('a[href$="Matakuliahmh"]').addClass("active");
+                        } else if (currentUrl.includes("Pembayaranmh")) {
+                            $(".col-auto").addClass("sidebar-active");
+                            $('a[href$="Pembayaranmh"]').addClass("active");
+                        }
+                    });
+                </script>
