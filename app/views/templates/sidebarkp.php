@@ -2,7 +2,7 @@
 <body?>
   <div class="container-fluid">
     <div class="row flex-nowrap">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-0 px-0 bg">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-0 px-0 bg-info">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
           <a href="<?= BASEURL ?>/Berandakp" class="d-flex align-items-center pb-3 mb-md-5 me-md-auto text-white text-decoration-none mt-3">
             <i class="fs-4 me-2"><img style="width: 60px; height: auto" src="<?= BASEURL ?>/assets/img/logo-sipemla.png" alt="logo-sipemla" /></i>

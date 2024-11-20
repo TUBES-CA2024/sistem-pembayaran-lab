@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/datamahasiswa.css">
 <div class="row p-2 ms-3 me-3">
-    <div class="col-12 card text-body-secondary shadow-lg bg-light bg-gradient">
+    <div class="col-12 card shadow-lg text-body-secondary bg-gradient">
         <div class="row">
             <div class="col-1 align-self-center">
                 <img src="<?= BASEURL ?>/assets/img/data-mahasiswa.png" alt="foto-card4" width="85px">
@@ -21,7 +21,7 @@
                 <?php General::flash(); ?>
             </div>
         </div>
-        <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 750px;">
+        <div class="overflow-x-auto rounded-4 card shadow-lg p-4" style="min-width: 750px;">
             <div class="text-start mb-3">
                 <button class="btn btn-success opacity-75" type="submit" data-bs-toggle="modal" data-bs-target="#formMahasiswa"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Tambah</button>
             </div>
@@ -50,10 +50,10 @@
                             <td><?= $mhs['stambuk']; ?></td>
                             <td><?= $mhs['nama']; ?></td>
                             <td><?= $mhs['namekelas']; ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?= $mhs['namaagama']; ?></td>
+                            <td><?= $mhs['jeniskelamin']; ?></td>
+                            <td><?= $mhs['email']; ?></td>
+                            <td><?= $mhs['telepon']; ?></td>
                             <td>
                                 <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
                                 <button class="btn-delete ms-1" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
@@ -88,7 +88,7 @@
         </div>
 
 
-        <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 750px;">
+        <div class="overflow-x-auto rounded-4 card shadow-lg p-4" style="min-width: 750px; margin-top: 40px;">
             <div class="text-start mb-3">
                 <button class="btn btn-success opacity-75" type="submit" data-bs-toggle="modal" data-bs-target="#formKelas"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Tambah</button>
             </div>
@@ -103,20 +103,19 @@
                 <tbody>
                     <?php
                     $no = 0;
-                    foreach ($data['mahasiswa'] as $mhs) :
+                    foreach ($data['kelas'] as $kls) :
                         $no++;
                     ?>
                         <tr>
                             <td><?= $no; ?></td>
-                            <td><?= $mhs['namekelas']; ?></td>
+                            <td><?= $kls['namekelas']; ?></td>
                             <td>
-                                <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
-                                <button class="btn-delete ms-1" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
-                                <a class="btn-detail text-decoration-none ms-1" role="button" href="<?= BASEURL; ?>/Datamahasiswa/detail/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/detail.png" alt="icon-detail"></a>
+                                <button class="btn-delete ms-1" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $kls['idkelas']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
                         </tr>
+
                         <!-- Modal Delete -->
-                        <div class="modal fade" id="modalDelete<?= $mhs['stambuk']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalDelete<?= $kls['idkelas']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -130,7 +129,7 @@
                                     </div>
                                     <div class="modal-footer align-self-center border-top-0">
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                                        <a href="<?= BASEURL; ?>/Datamahasiswa/hapus/<?= $mhs['stambuk'] ?>" role="button" class="btn btn-primary">Yes</a>
+                                        <a href="<?= BASEURL; ?>/Datamahasiswa/hapusKelas/<?= $kls['idkelas'] ?>" role="button" class="btn btn-primary">Yes</a>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +143,7 @@
     </div>
 </div>
 
-<!-- Modal Edit Tambah-->
+<!-- Modal Tambah-->
 <div class="modal fade" id="formMahasiswa" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -185,6 +184,38 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="namaagama" class="form-label">Agama</label>
+                        <select class="form-select" aria-label="Default select example" name="namaagama" required>
+                            <option selected>Pilih Agama</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen Protestan">Kristen Protestan</option>
+                            <option value="Kristen Katolik">Kristen Katolik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Buddha">Buddha</option>
+                            <option value="Konghucu">Konghucu</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control input-email" id="input-email" name="email" placeholder="Masukkan Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telepon" class="form-telepon">Telepon</label>
+                        <input type="text" class="form-control input-telepon" id="input-telepon" name="telepon" placeholder="Masukkan Telepon" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jeniskelamin" class="form-jeniskelamin">Jenis Kelamin</label>
+                        <select class="form-select" aria-label="Default select example" name="jeniskelamin" required>
+                            <option selected>Jenis Kelamin</option>
+                            <option value="Laki-Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-alamat">Alamat</label>
+                        <input type="text" class="form-control input-alamat" id="input-alamat" name="alamat" placeholder="Masukkan alamat" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="sks" class="form-label">Mata Kuliah</label>
                         <?php
                         foreach ($data['matkul'] as $matkul) :
@@ -207,7 +238,7 @@
         </div>
     </div>
 </div>
-<!-- Modal Edit Tambah Kelas-->
+<!-- Modal Tambah Kelas-->
 <div class="modal fade" id="formKelas" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -216,13 +247,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Datamahasiswa/tambah" method="post">
-                    <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
-                    <input type="hidden" name="status" value="Belum Lunas">
-                    <input type="hidden" name="waktupembayaran" value="">
+                <form action="<?= BASEURL; ?>/Datamahasiswa/tambahKelas" method="post">
                     <div class="mb-3">
-                        <label for="kelas" class="form-label">Kelas</label>
-                        <input type="text" class="form-control input-kelas" id="input-nama" name="nama" placeholder="Masukkan Kelas Baru" required>
+                        <input type="hidden" id="idkelas" name="idkelas" required>
+
+                        <label for="namekelas" class="form-label">Kelas</label>
+                        <input type="text" class="form-control input-namekelas" id="input-namekelas" name="namekelas" placeholder="Masukkan Kelas Baru" required>
                     </div>
             </div>
             <div class="modal-footer modal-matkul">

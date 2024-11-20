@@ -33,6 +33,16 @@ class Kelas_model
 
         return $this->db->rowCount();
     }
+    public function hapuskls($id)
+    {
+        $query = "DELETE FROM kelas WHERE idkelas = :idkelas";
+        $this->db->query($query);
+        $this->db->bind('idkelas', $id);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 
     public function tampilById($id)
     {
@@ -55,6 +65,18 @@ class Kelas_model
         $this->db->bind('namamatakuliah', $data['namamatakuliah']);
         $this->db->bind('sks', $data['sks']);
         $this->db->bind('old_kodematakuliah', $data['old_kodematakuliah']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+    public function tambahkls($data)
+    {
+        $query = "INSERT INTO kelas VALUES(:idkelas, :namekelas)";
+
+        $this->db->query($query);
+        $this->db->bind('idkelas', $data['idkelas']);
+        $this->db->bind('namekelas', $data['namekelas']);
 
         $this->db->execute();
 

@@ -60,7 +60,18 @@ class Login extends Controller
             header('Location: ' . BASEURL . '/Login');
             exit;
         }
-        // session_start();
+    }
+
+    public function keluar()
+    {
+        // echo 'And di mau keluar';
+        session_destroy();
+        header('Location: ' . BASEURL . '/Login');
+        exit;
+    }
+}
+
+// session_start();
         // if ($data['login'] === NULL){
         //     stambukCek::setFlash('Username atau', 'Password Salah', 'danger');
         //     header('Location: ' . BASEURL . '/404');
@@ -78,13 +89,3 @@ class Login extends Controller
 
         //     endforeach;
         // }
-    }
-
-    public function keluar()
-    {
-        // echo 'And di mau keluar';
-        session_destroy();
-        header('Location: ' . BASEURL . '/Login');
-        exit;
-    }
-}

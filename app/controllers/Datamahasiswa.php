@@ -48,13 +48,13 @@ class Datamahasiswa extends Controller
             Flasher::setFlash('Data Mahasiswa', 'Telah Tersedia', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
-        } else if($this->model('Mahasiswa_model')->tambah($_POST) > 0) {
+        } else if ($this->model('Mahasiswa_model')->tambah($_POST) > 0) {
             $this->model('Select_matkul_model')->tambah($_POST);
             $this->model('Pembayaran_model')->tambah($_POST);
             Flasher::setFlash('Data Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
-        }else{
+        } else {
             Flasher::setFlash('Data Gagal', 'Tambah', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
@@ -96,12 +96,39 @@ class Datamahasiswa extends Controller
     {
         if ($this->model('Mahasiswa_model')->edit($_POST) > 0) {
             $this->model('Select_matkul_model')->hapus($_POST["old_stambuk"]);
-            $this->model('Select_matkul_model')->tambah($_POST);$this->model('Pembayaran_model')->edit($_POST);
+            $this->model('Select_matkul_model')->tambah($_POST);
+            $this->model('Pembayaran_model')->edit($_POST);
             General::setFlash('Data Berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         } else {
             General::setFlash('Tolong Ubah', 'Stambuk, Nama, Kelas atau Prodi', 'danger');
+            header('Location: ' . BASEURL . '/Datamahasiswa');
+            exit;
+        }
+    }
+    public function tambahKelas()
+    {
+        if ($this->model('Kelas_model')->tambahkls($_POST) > 0) {
+            Flasher::setFlash('Kelas berhasil', 'ditambahkan', 'success');
+            header('Location: ' . BASEURL . '/Datamahasiswa');
+            exit;
+        } else {
+            Flasher::setFlash('Gagal menambahkan', 'kelas', 'danger');
+            header('Location: ' . BASEURL . '/Datamahasiswa');
+            exit;
+        }
+    }
+    public function hapusKelas($id)
+    {
+        $this->model('Pembayaran_model')->hapusByStambuk($id);
+        $this->model('Select_matkul_model')->hapus($id);
+        if ($this->model('Kelas_model')->hapuskls($id) > 0) {
+            General::setFlash('Data Berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/Datamahasiswa');
+            exit;
+        } else {
+            General::setFlash('Data Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         }
