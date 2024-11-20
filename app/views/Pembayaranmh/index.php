@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/pembayaran.css">
 
-
 <div class="container-user col-12 mx-auto">
     <div class="overflow-y-auto p-4" style="max-height: 71vh;">
         <div class="row">
@@ -66,7 +65,7 @@
                             <td>Rp. <?= $pmb['nominal']; ?></td>
                             <td><?= $pmb['status']; ?></td>
                             <td>
-                                <a class="btn-edit edit-pembayaran" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>">
+                                <a class="btn-edit edit-pembayaran me-3" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
                                 </a>
                                 <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>">
