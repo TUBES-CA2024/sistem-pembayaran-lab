@@ -5,13 +5,11 @@ body {
 }
 
 .bg {
-  background-color: #050C9C;
   background-color: #51a8b1;
 }
 
 #menu .nav-link {
   color: white;
-  /* Warna font putih */
 }
 
 #menu .nav-link:hover {

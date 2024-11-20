@@ -15,9 +15,9 @@ session_start();
 </head>
 
 <body>
-    <div class="mt-4 me-5 text-end">
+    <!-- <div class="mt-4 me-5 text-end">
         <a href="<?= BASEURL; ?>/Home" role="button" class="btn btn-info opacity-75 text-white"><i class="fa-solid fa-arrow-left" style="color: #f1f2f3;"></i> Back</a>
-    </div>
+    </div> -->
     <div class="container text-center">
         <div class="container-home">
             <div class="row d-flex justify-content-center align-items-center">
