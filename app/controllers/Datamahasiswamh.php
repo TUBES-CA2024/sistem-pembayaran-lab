@@ -4,12 +4,15 @@ class Datamahasiswamh extends Controller
 {
     public function index()
     {
-        if ($_SESSION['role'] == 'Mahasiswa') {
+        if ($_SESSION['role'] === 'Mahasiswa') {
+            $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Data Mahasiswa';
-            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
+            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
+            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
             $data['matkul'] = $this->model('Matkul_model')->tampil();
             $data['kelas'] = $this->model('Kelas_model')->tampil();
             $data['countmahasiswa'] = $this->model('Mahasiswa_model')->countMahasiswa();
+            $data['isCompleted'] = $data['mahasiswa']['isCompleted'];
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -24,21 +27,27 @@ class Datamahasiswamh extends Controller
         }
     }
 
-    public function detailkp($id)
+    public function simpan()
     {
-        if ($_SESSION['role'] == 'Mahasiswa') {
-            $data['title'] = 'Detail Data Mahasiswa';
-            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
-            $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
+        if ($_SESSION['role'] === 'Mahasiswa') {
+            $stambuk = $_SESSION['stambuk'];
+            $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
 
-            $this->view('templates/header', $data);
-            $this->view('templates/sidebarmh');
-            $this->view('Datamahasiswamh/detailkp', $data);
-            $this->view('templates/footersidebar');
-            $this->view('templates/footer');
-        } else {
-            header("Location:" . BASEURL . "/Beranda");
-            exit();
+            if ($mahasiswa['isCompleted'] == 1) {
+                Flasher::setFlash('Anda sudah mengisi data', '', 'danger');
+                header('Location: ' . BASEURL . '/Datamahasiswamh');
+                exit();
+            }
+
+            if ($this->model('Mahasiswa_model')->tambah($_POST) > 0) {
+                Flasher::setFlash('Data berhasil', 'disimpan', 'success');
+                header('Location: ' . BASEURL . '/Datamahasiswamh');
+                exit();
+            } else {
+                Flasher::setFlash('Gagal', 'menyimpan data', 'danger');
+                header('Location: ' . BASEURL . '/Datamahasiswamh');
+                exit();
+            }
         }
     }
 }

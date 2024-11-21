@@ -11,11 +11,13 @@ class User_model
 
     public function tambah($data)
     {
-        $query = "INSERT INTO user VALUES('', :username, :password, :role)";
+        $query = "INSERT INTO user VALUES('', :username, :password, :role, :stambuk)";
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
         $this->db->bind('role', $data['role']);
+
+        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
 
         $this->db->execute();
 
@@ -55,12 +57,16 @@ class User_model
         $this->db->bind('role', $data['role']);
         $this->db->bind('iduser', $data['iduser']);
 
+        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
+
+
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function countUser(){
+    public function countUser()
+    {
         $this->db->query("SELECT COUNT(iduser) AS jumlahUser FROM user;");
         return $this->db->single();
     }

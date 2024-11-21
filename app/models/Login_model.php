@@ -15,4 +15,11 @@ class Login_model
 
         return $this->db->resultSet();
     }
+
+    public function getUserByUsername($username)
+    {
+        $this->db->query("SELECT * FROM user WHERE username = :username");
+        $this->db->bind('username', $username);
+        return $this->db->single();
+    }
 }

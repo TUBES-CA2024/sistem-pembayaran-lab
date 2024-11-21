@@ -31,15 +31,19 @@ class Login extends Controller
         // var_dump($_POST );
 
         $data['login'] = $this->model('Login_model')->getUser();
-
+        $user = $this->model('Login_model')->getUserByUsername($username);
         // var_dump($data);
         $konfirm = "";
         foreach ($data['login'] as $masuk):
             if ($masuk['username'] == $username && $masuk['password'] == $password) {
-                $_SESSION['username'] = $masuk['username'];
                 $_SESSION['iduser'] = $masuk['iduser'];
+                $_SESSION['username'] = $masuk['username'];
                 $_SESSION['role'] = $masuk['role'];
                 $_SESSION['masuk'] = true;
+
+                if ($user['role'] === 'Mahasiswa') {
+                    $_SESSION['stambuk'] = $user['stambuk'];
+                }
                 $konfirm = true;
             }
         endforeach;
