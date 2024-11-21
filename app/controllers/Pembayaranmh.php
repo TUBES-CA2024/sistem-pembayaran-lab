@@ -5,13 +5,16 @@ class Pembayaranmh extends Controller
     public function index()
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
+            $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Pembayaran';
+            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
+            $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
-            $this->view('templates/profilhead');
+            $this->view('templates/profilhead', $data);
             $this->view('Pembayaranmh/index', $data);
             $this->view('templates/footersidebar');
             $this->view('templates/copyright');

@@ -6,12 +6,12 @@
         <div class="card shadow-lg bg-white" style="width: 30rem;">
             <div class="card-body text-center">
                 <img src="<?= BASEURL ?>/assets/img/person-icons.png" alt="foto-card4" width="90px" class="rounded-circle mb-3">
-                <h5 class="card-title">MUHAMMAD ALIF MAULANA. R</h5>
-                <p class="card-text">13020220223</p>
-                <p class="card-text text-muted">Teknik Informatika</p>
+                <h5 class="card-title"><?= isset($data['nama']) && !empty($data['nama']) ? $data['nama'] : 'Nama belum diisi'; ?></h5>
+                <p class="card-text"><?= $_SESSION['stambuk']; ?></p>
+                <p class="card-text text-muted"><?= isset($data['mahasiswa']['prodi']) && !empty($data['mahasiswa']['prodi']) ? $data['mahasiswa']['prodi'] : 'Prodi belum diisi'; ?></p>
                 <hr>
-                <p><img src="<?= BASEURL ?>/assets/img/email-icons.png" alt="Email Icon" width="25"> muhalifmaulanar.iclabs@umi.ac.id</p>
-                <p><img src="<?= BASEURL ?>/assets/img/phone-icons.png" alt="Phone Icon" width="25"> +6282268156621</p>
+                <p><img src="<?= BASEURL ?>/assets/img/email-icons.png" alt="Email Icon" width="25"> <?= isset($data['mahasiswa']['email']) && !empty($data['mahasiswa']['email']) ? $data['mahasiswa']['email'] : 'Email belum diisi'; ?></p>
+                <p><img src="<?= BASEURL ?>/assets/img/phone-icons.png" alt="Phone Icon" width="25"> <?= isset($data['mahasiswa']['telepon']) && !empty($data['mahasiswa']['telepon']) ? $data['mahasiswa']['telepon'] : 'Telepon belum diisi'; ?></p>
             </div>
         </div>
 
@@ -44,9 +44,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="stambuk" class="form-label">Stambuk <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control input-stambuk" id="input-stambuk" name="stambuk"
-                                value="<?= $data['mahasiswa']['stambuk'] ?>" readonly>
+                            <!-- Input untuk menampilkan Stambuk -->
+                            <input type="text" class="form-control input-stambuk" id="input-stambuk" value="<?= $_SESSION['stambuk']; ?>" readonly>
+                            <!-- Input hidden untuk mengirimkan stambuk ke server -->
+                            <input type="hidden" name="stambuk" value="<?= $_SESSION['stambuk']; ?>">
                         </div>
+
                         <div class=" col-md-6 mb-3">
                             <label for="phone" class="form-label">Telepon <span style="color: red;">*</span></label>
                             <input type="text" class="form-control input-telepon" id="input-telepon" name="telepon"

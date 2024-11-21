@@ -8,7 +8,7 @@ class Datamahasiswamh extends Controller
             $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Data Mahasiswa';
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
-            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
+            $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['matkul'] = $this->model('Matkul_model')->tampil();
             $data['kelas'] = $this->model('Kelas_model')->tampil();
             $data['countmahasiswa'] = $this->model('Mahasiswa_model')->countMahasiswa();
@@ -16,7 +16,7 @@ class Datamahasiswamh extends Controller
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
-            $this->view('templates/profilhead');
+            $this->view('templates/profilhead', $data);
             $this->view('Datamahasiswamh/index', $data);
             $this->view('templates/footersidebar');
             $this->view('templates/copyright');
@@ -31,6 +31,8 @@ class Datamahasiswamh extends Controller
     {
         if ($_SESSION['role'] === 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
+
+            $_POST['stambuk'] = $stambuk;
             $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
 
             if ($mahasiswa['isCompleted'] == 1) {

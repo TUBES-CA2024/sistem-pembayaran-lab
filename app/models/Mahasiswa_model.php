@@ -15,7 +15,7 @@ class Mahasiswa_model
             return 0; // Gagal menambah data karena input tidak lengkap
         }
 
-        $query = "INSERT INTO mahasiswa VALUES(:stambuk, :nama, :prodi, :idkelas, :namaagama, :email, :telepon, :jeniskelamin, :alamat, :foto, 0)";
+        $query = "INSERT INTO mahasiswa VALUES(:stambuk, :nama, :prodi, :idkelas, :namaagama, :email, :telepon, :jeniskelamin, :alamat, :foto, 1)";
 
         $this->db->query($query);
         $this->db->bind('stambuk', $data['stambuk']);
@@ -59,10 +59,10 @@ class Mahasiswa_model
         $this->db->bind('stambuk', $id);
         return $this->db->single();
     }
-    public function tampilByNim($nim)
+    public function tampilByNim($stambuk)
     {
         $this->db->query("SELECT * FROM mahasiswa WHERE stambuk = :stambuk");
-        $this->db->bind('stambuk', $nim);
+        $this->db->bind('stambuk', $stambuk);
         $result = $this->db->single();
 
         // Jika data tidak ditemukan, kembalikan array default
@@ -121,6 +121,16 @@ class Mahasiswa_model
 
         return $this->db->rowCount() > 0; // Return true jika NIM sudah ada
     }
+    public function getNamaByStambuk($stambuk)
+    {
+        $this->db->query("SELECT nama FROM mahasiswa WHERE stambuk = :stambuk");
+        $this->db->bind('stambuk', $stambuk);
+        $result = $this->db->single();
+
+        // Jika data tidak ditemukan, kembalikan nilai default
+        return $result ? $result['nama'] : "Nama belum diisi";
+    }
+
 
     // if (!empty($_FILES['foto']['name'])) {
     //     $targetDir = "uploads/";
