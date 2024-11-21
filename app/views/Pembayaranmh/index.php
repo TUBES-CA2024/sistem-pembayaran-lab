@@ -21,7 +21,6 @@
                                     <select id="tahun-akademik" class="form-select">
                                         <option>2024/2025</option>
                                     </select>
-
                                 </div>
 
                                 <div class="col-auto">
@@ -41,59 +40,46 @@
                         <th>Waktu Pembayaran</th>
                         <th>Nominal</th>
                         <th>Status</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $no = 0;
-                    foreach ($data['pembayaran'] as $pmb) :
-                        $no++;
-                        $waktuPembayaran = $pmb['waktupembayaran'];
+                    if (!empty($data['pembayaran'])) {
+                        $no = 1;
+                        foreach ($data['pembayaran'] as $pmb) :
+                            // Hanya tampilkan data pembayaran mahasiswa login
+                            if ($pmb['stambuk'] == $_SESSION['stambuk']) {
+                                $waktuPembayaran = $pmb['waktupembayaran'];
 
-                        if ($waktuPembayaran != '0000-00-00' && $waktuPembayaran != '') {
-                            $formattedDate = date('d-m-Y', strtotime($waktuPembayaran));
-                        } else {
-                            $formattedDate = '-';
-                        }
+                                // Format tanggal pembayaran
+                                $formattedDate = ($waktuPembayaran != '0000-00-00' && $waktuPembayaran != '')
+                                    ? date('d-m-Y', strtotime($waktuPembayaran))
+                                    : '-';
+
+                                // Format nominal
+                                $formattedNominal = number_format($pmb['nominal'], 0, ',', '.');
                     ?>
-                        <tr>
-                            <td><?= $no; ?></td>
-                            <td><?= $pmb['stambuk']; ?></td>
-                            <td><?= $pmb['nama']; ?></td>
-                            <td><?= $formattedDate; ?></td>
-                            <td>Rp. <?= $pmb['nominal']; ?></td>
-                            <td><?= $pmb['status']; ?></td>
-                            <td>
-                                <a class="btn-edit edit-pembayaran me-3" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>">
-                                    <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
-                                </a>
-                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>">
-                                    <img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete">
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Modal Delete -->
-                        <div class="modal fade" id="modalDelete<?= $pmb['idpembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="w-100">
-                                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Hapus Data</h1>
-                                        </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h6 class="text-center">Anda Yakin Ingin Hapus Data ini?</h6>
-                                    </div>
-                                    <div class="modal-footer align-self-center border-top-0">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                                        <a href="<?= BASEURL; ?>/Pembayaran/hapus/<?= $pmb['idpembayaran'] ?>" role="button" class="btn btn-primary">Yes</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= $pmb['stambuk']; ?></td>
+                                    <td><?= $pmb['nama']; ?></td>
+                                    <td><?= $formattedDate; ?></td>
+                                    <td>Rp. <?= $formattedNominal; ?></td>
+                                    <td>
+                                        <span class="<?= $pmb['status'] == 'Lunas' ? 'badge bg-success' : 'badge bg-danger'; ?>">
+                                            <?= $pmb['status']; ?>
+                                        </span>
+                                    </td>
+
+                                </tr>
+                    <?php
+                            }
+                        endforeach;
+                    } else {
+                        // Jika tidak ada data pembayaran
+                        echo '<tr><td colspan="6" class="text-center">Data tidak ditemukan</td></tr>';
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -107,30 +93,39 @@
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Tagihan</th>
-                        <th>Virtual Account</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $historyData = [];
-
-                    $no = 1;
-                    foreach ($historyData as $history) :
-                        $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
-                    ?>
+                    <?php if (!empty($data['history'])): ?>
+                        <?php
+                        $no = 1;
+                        foreach ($data['history'] as $history):
+                            $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
+                            $formattedTagihan = number_format($history['tagihan'], 0, ',', '.');
+                        ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $formattedDate; ?></td>
+                                <td>Rp. <?= $formattedTagihan; ?></td>
+                                <td>
+                                    <span class="<?= $history['status'] == 'Lunas' ? 'badge bg-success' : 'badge bg-danger'; ?>">
+                                        <?= $history['status']; ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $formattedDate; ?></td>
-                            <td><?= $history['tagihan']; ?></td>
-                            <td><?= $history['virtual_account']; ?></td>
+                            <td colspan="4" class="text-center">Belum ada history pembayaran</td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
+        </div>
 
-            <div class="text-center mt-3">
-                <button class="btn btn-primary" onclick="window.print()">Cetak Pembayaran</button>
-            </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" onclick="window.print()">Cetak Pembayaran</button>
         </div>
     </div>
 </div>

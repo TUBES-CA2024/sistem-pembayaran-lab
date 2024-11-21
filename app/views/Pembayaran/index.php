@@ -57,9 +57,10 @@
                             <td>Rp. <?= $pmb['nominal']; ?></td>
                             <td><?= $pmb['status']; ?></td>
                             <td>
-                                <a class="btn-edit edit-pembayaran" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
+                                <a class="btn-edit edit-pembayaran" role="button" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
                                 <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
+
                         </tr>
                         <!-- Modal Delete -->
                         <div class="modal fade" id="modalDelete<?= $pmb['idpembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,41 +92,56 @@
 </div>
 
 <!-- Modal Edit Tambah-->
-<div class="modal fade" id="formPembayaran" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="formPembayaran" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="judulModalLabel">Tambah Pembayaran</h1>
+                <h5 class="modal-title" id="judulModalLabel">Tambah Pembayaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Pembayaran/tambah" method="post">
+                <form action="<?= BASEURL; ?>/Pembayaran/editPembayaran" method="post">
                     <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
+
                     <div class="mb-3">
-                        <label for="kode-stambuk" class="form-label">Stambuk</label>
-                        <input type="number" class="form-control input-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk">
+                        <label for="stambuk" class="form-label">Stambuk</label>
+                        <select class="form-select" id="stambuk" name="stambuk" required>
+                            <option selected disabled>Pilih Mahasiswa</option>
+                            <?php foreach ($data['mahasiswa'] as $mhs) : ?>
+                                <option value="<?= $mhs['stambuk'] ?>"><?= $mhs['stambuk'] ?> - <?= $mhs['nama'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
+
                     <div class="mb-3">
-                        <label for="waktu pembayaran" class="form-label">Waktu Pembayaran</label>
-                        <input type="date" class="form-control input-waktupembayaran" id="input-waktupembayaran" name="waktupembayaran" placeholder="Masukkan Waktu Pembayaran">
+                        <label for="waktupembayaran" class="form-label">Waktu Pembayaran</label>
+                        <input type="date" class="form-control" id="waktupembayaran" name="waktupembayaran" required>
                     </div>
+
                     <div class="mb-3">
-                        <label for="nominal" class="form-label">Nominal</label>
-                        <input type="number" class="form-control input-nominal" id="input-nominal" name="nominal" placeholder="Masukkan nominal">
+                        <label for="kodematakuliah" class="form-label">Mata Kuliah</label>
+                        <?php foreach ($data['matkul'] as $matkul) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="kodematakuliah[]" value="<?= $matkul['kodematakuliah'] ?>" id="matkul-<?= $matkul['kodematakuliah'] ?>">
+                                <label class="form-check-label" for="matkul-<?= $matkul['kodematakuliah'] ?>">
+                                    <?= $matkul['namamatakuliah'] ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
+
                     <div class="mb-3">
-                        <label for="prodi" class="form-label">Status</label>
-                        <select class="form-select" aria-label="Default select example" name="status" id="input-status">
-                            <option selected>Pilih Status</option>
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" name="status" required>
                             <option value="Lunas">Lunas</option>
                             <option value="Belum Lunas">Belum Lunas</option>
                         </select>
                     </div>
-            </div>
-            <div class="modal-footer modal-pembayaran">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
                 </form>
             </div>
         </div>

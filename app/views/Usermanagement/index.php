@@ -112,15 +112,15 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="input-password" name="password" placeholder="Masukkan Password">
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Add User</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add User</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     // Tampilkan atau sembunyikan field Stambuk berdasarkan Role

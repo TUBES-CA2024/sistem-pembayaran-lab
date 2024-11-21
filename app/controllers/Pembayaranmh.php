@@ -7,10 +7,12 @@ class Pembayaranmh extends Controller
         if ($_SESSION['role'] == 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Pembayaran';
-            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+            $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($stambuk);
+            $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk_pmb($stambuk);
+            $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk); // Data pembayaran lunas
+            $data['countpembayaran'] = count($data['pembayaran']);
+            // $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -28,20 +30,59 @@ class Pembayaranmh extends Controller
     public function registrasi()
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
+            $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Registrasi Pembayaran';
+            $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
             $data['matkul'] = $this->model('Matkul_model')->tampil();
             $data['kelas'] = $this->model('Kelas_model')->tampil();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
-            $this->view('templates/profilhead');
+            $this->view('templates/profilhead', $data);
             $this->view('Pembayaranmh/registrasi', $data);
             $this->view('templates/footersidebar');
             $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Pembayaranmh");
+            exit();
+        }
+    }
+    public function tambah()
+    {
+        if ($_SESSION['role'] == 'Mahasiswa') {
+            $stambuk = $_SESSION['stambuk'];
+            $_POST['stambuk'] = $stambuk;
+
+            // Validasi: Minimal satu mata kuliah harus dipilih
+            if (empty($_POST['kodematakuliah'])) {
+                Flasher::setFlash('Pilih minimal satu mata kuliah', '', 'danger');
+                header('Location: ' . BASEURL . '/Pembayaranmh/registrasi');
+                exit;
+            }
+
+            // Hitung total nominal
+            $totalNominal = count($_POST['kodematakuliah']) * 55000;
+
+            $data = [
+                'stambuk' => $stambuk,
+                'nominal' => $totalNominal,
+                'status' => $_POST['status'],
+                'waktupembayaran' => $_POST['waktupembayaran'],
+            ];
+
+            if ($this->model('Pembayaran_model')->tambah($data) > 0) {
+                Flasher::setFlash('Pembayaran berhasil', 'ditambahkan', 'success');
+                header('Location: ' . BASEURL . '/Pembayaranmh');
+                exit;
+            } else {
+                Flasher::setFlash('Gagal menambahkan', 'pembayaran', 'danger');
+                header('Location: ' . BASEURL . '/Pembayaranmh');
+                exit;
+            }
+        } else {
+            header("Location:" . BASEURL . "/Beranda");
             exit();
         }
     }

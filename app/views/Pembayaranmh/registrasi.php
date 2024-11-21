@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/pembayaran.css">
 
 <div class="container-fluid">
-    <div class=" row mt-5 mb-1 mx-auto ps-3">
+    <div class="row mt-5 mb-1 mx-auto ps-3">
         <div class="col-md-10">
-            <h5>Registrasi Pembayaran Mahasiswaaa</h5>
+            <h5>Registrasi Pembayaran Mahasiswa</h5>
         </div>
     </div>
 
@@ -15,35 +15,37 @@
                         <?php General::flash(); ?>
                     </div>
                 </div>
-                <input type="hidden" name="iduser" value="1">
-                <input type="hidden" name="status" value="Belum Lunas">
-                <input type="hidden" name="waktupembayaran" value="">
-                <div class="mb-3">
-                    <label for="kode-stambuk" class="form-label">Stambuk</label>
-                    <input type="text" class="form-control input-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk">
-                </div>
-                <div class="mb-3">
-                    <label for="sks" class="form-label">Mata Kuliah</label>
-                    <?php
-                    foreach ($data['matkul'] as $matkul) :
-                    ?>
-                        <div class="form-check">
-                            <input class="form-check-input" name="kodematakuliah[]" type="checkbox" value="<?= $matkul['kodematakuliah']; ?>" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                <?= $matkul['namamatakuliah']; ?>
-                            </label>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <input type="hidden" id="nominalInput" name="nominal" value="">
+                <!-- Form dimulai di sini -->
+                <form action="<?= BASEURL; ?>/Pembayaranmh/tambah" method="post">
+                    <input type="hidden" name="iduser" value="<?= $_SESSION['iduser']; ?>">
+                    <input type="hidden" name="status" value="Belum Lunas">
+                    <input type="hidden" name="waktupembayaran" value="<?= date('Y-m-d H:i:s'); ?>">
+                    <div class="mb-3">
+                        <label for="kode-stambuk" class="form-label">Stambuk</label>
+                        <input type="text" class="form-control input-stambuk" id="input-stambuk" name="stambuk" value="<?= $_SESSION['stambuk']; ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sks" class="form-label">Mata Kuliah</label>
+                        <?php foreach ($data['matkul'] as $matkul) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" name="kodematakuliah[]" type="checkbox" value="<?= $matkul['kodematakuliah']; ?>" id="flexCheckDefault<?= $matkul['kodematakuliah']; ?>">
+                                <label class="form-check-label" for="flexCheckDefault<?= $matkul['kodematakuliah']; ?>">
+                                    <?= $matkul['namamatakuliah']; ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nominal" class="form-label">Nominal</label>
+                        <input type="text" id="nominalInput" class="form-control" name="nominal" value="" readonly>
+                    </div>
+
+                    <div class="container-fluid d-flex justify-content-center align-items-center">
+                        <a href="<?= BASEURL; ?>/Pembayaranmh" class="btn btn-danger me-3 mt-2">Back</a>
+                        <button type="submit" class="btn btn-primary mt-2">Daftar</button>
+                    </div>
                 </form>
-
-                <div class="container-fluid d-flex justify-content-center align-items-center">
-                    <form action="<?= BASEURL; ?>/Pembayaranmh/index" method="post">
-                        <a href="<?= BASEURL; ?>/Pembayaranmh" role="button" class="btn btn-danger me-3 mt-2" role="button"> Back</a>
-                        <button type="submit" class="btn btn-primary mt-2" role="button">Daftar</button>
-                </div>
-
+                <!-- Form selesai di sini -->
             </div>
         </div>
     </div>
@@ -71,9 +73,9 @@
                 }
             });
 
-            // Mengupdate nilai pada input hidden
+            // Mengupdate nilai pada input
             var nominalInput = document.getElementById('nominalInput');
-            nominalInput.value = checkedBoxCount * 55000;
+            nominalInput.value = checkedBoxCount * 55000; // Nominal untuk satu mata kuliah
         }
     });
 </script>

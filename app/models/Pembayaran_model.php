@@ -14,7 +14,7 @@ class Pembayaran_model
         $query = "INSERT INTO pembayaran VALUES('', :iduser, :stambuk, :waktupembayaran, :nominal, :status)";
 
         $this->db->query($query);
-        $this->db->bind('iduser', $data['iduser']);
+        $this->db->bind('iduser', $_SESSION['iduser']);
         $this->db->bind('stambuk', $data['stambuk']);
         $this->db->bind('waktupembayaran', $data['waktupembayaran']);
         $this->db->bind('nominal', $data['nominal']);
@@ -28,9 +28,11 @@ class Pembayaran_model
     public function tampil()
     {
         // $this->db->query("SELECT * FROM pembayaran ORDER BY idpembayaran ASC");
-        $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.iduser, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk;");
+        $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.iduser, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk ORDER BY pembayaran.idpembayaran DESC");
+
         return $this->db->resultSet();
     }
+
 
     public function hapus($id)
     {
@@ -60,6 +62,12 @@ class Pembayaran_model
         $this->db->bind('idpembayaran', $id);
         return $this->db->single();
     }
+    public function gettampilByPembayaran($id)
+    {
+        $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");
+        $this->db->bind('idpembayaran', $id);
+        return $this->db->resultSet();
+    }
 
     public function tampilByStambuk($stambuk)
     {
@@ -70,10 +78,12 @@ class Pembayaran_model
 
     public function tampilByStambuk_pmb($stambuk)
     {
-        $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk");
+        $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk WHERE pembayaran.stambuk = :stambuk ORDER BY pembayaran.idpembayaran DESC");
+
         $this->db->bind('stambuk', $stambuk);
         return $this->db->resultSet();
     }
+
 
     public function edit($data)
     {
@@ -103,5 +113,11 @@ class Pembayaran_model
         $this->db->bind('stambuk', $stambuk);
 
         return $this->db->single();
+    }
+    public function tampilHistory($stambuk)
+    {
+        $this->db->query("SELECT pembayaran.waktupembayaran AS tanggal, pembayaran.nominal AS tagihan, pembayaran.status AS status FROM pembayaran WHERE stambuk = :stambuk AND status = 'Lunas' ORDER BY pembayaran.idpembayaran DESC");
+        $this->db->bind('stambuk', $stambuk);
+        return $this->db->resultSet();
     }
 }
