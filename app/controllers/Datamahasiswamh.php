@@ -22,7 +22,7 @@ class Datamahasiswamh extends Controller
             $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
-            header("Location:" . BASEURL . "/Beranda");
+            header("Location:" . BASEURL . "/Berandamh");
             exit();
         }
     }
@@ -40,8 +40,7 @@ class Datamahasiswamh extends Controller
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();
             }
-
-            if ($this->model('Mahasiswa_model')->tambah($_POST) > 0) {
+            if ($this->model('Mahasiswa_model')->tambah($_POST, $_FILES) > 0) {
                 Flasher::setFlash('Data berhasil', 'disimpan', 'success');
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();

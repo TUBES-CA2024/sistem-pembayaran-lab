@@ -4,9 +4,19 @@
 
         <!-- Profile Card -->
         <div class="card shadow-lg bg-white" style="width: 30rem;">
-            <div class="card-body text-center">
-                <img src="<?= BASEURL ?>/assets/img/person-icons.png" alt="foto-card4" width="90px" class="rounded-circle mb-3">
-                <h5 class="card-title"><?= isset($data['nama']) && !empty($data['nama']) ? $data['nama'] : 'Nama belum diisi'; ?></h5>
+            <div class="profile-container text-center">
+
+                <div class="profile-image-wrapper position-relative py-3">
+                    <img id="profile-image-preview" src="<?= $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" width="140px" class="rounded-circle border" style="width:150px; height:150px; border-radius:50%;">
+                    <form action="<?= BASEURL; ?>/Datamahasiswamh/simpan" method="POST" enctype="multipart/form-data" class="position-absolute" style="bottom: 10px; right: 120px;">
+                        <label for="upload-foto" class="upload-photo-icon">
+                            <img src="<?= BASEURL ?>/assets/img/upload-icons.png" alt="Upload Icon" class="edit-icon bg-light rounded-circle border p-1 shadow" width="30px">
+                        </label>
+                        <input type="file" id="upload-foto" name="foto" accept="image/*" onchange="previewAndSubmit(this)" hidden>
+                    </form>
+                </div>
+
+                <h5 class="card-title py-0"><?= isset($data['nama']) && !empty($data['nama']) ? $data['nama'] : 'Nama belum diisi'; ?></h5>
                 <p class="card-text"><?= $_SESSION['stambuk']; ?></p>
                 <p class="card-text text-muted"><?= isset($data['mahasiswa']['prodi']) && !empty($data['mahasiswa']['prodi']) ? $data['mahasiswa']['prodi'] : 'Prodi belum diisi'; ?></p>
                 <hr>
@@ -115,3 +125,36 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewAndSubmit(inputFile) {
+        const file = inputFile.files[0];
+        const preview = document.getElementById('profile-image-preview');
+
+        if (file) {
+            // Membuat objek URL untuk gambar yang diunggah
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                // Mengubah src dari gambar pratinjau
+                preview.src = e.target.result;
+            };
+
+            // Membaca file sebagai DataURL
+            reader.readAsDataURL(file);
+        }
+
+        // Submit formulir secara otomatis
+        inputFile.form.submit();
+    }
+
+    function previewAndSubmit(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profile-image-preview').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

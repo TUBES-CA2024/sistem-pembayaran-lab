@@ -36,6 +36,7 @@
                         <th>JenisKelamin</th>
                         <th>Email</th>
                         <th>Telepon</th>
+                        <th>Foto</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -54,6 +55,11 @@
                             <td><?= $mhs['jeniskelamin']; ?></td>
                             <td><?= $mhs['email']; ?></td>
                             <td><?= $mhs['telepon']; ?></td>
+                            <td><img id="profile-image-preview"
+                                    src="<?= $mhs['foto']; ?>"
+                                    alt="Foto Wajah Profil"
+                                    class="rounded-circle border"
+                                    style="width:150px; height:150px; border-radius:50%;"></td>
                             <td>
                                 <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
                                 <button class="btn-delete ms-1" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
@@ -152,7 +158,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Datamahasiswa/tambah" method="post">
+                <form action="<?= BASEURL; ?>/Datamahasiswa/tambah" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
                     <input type="hidden" name="status" value="Belum Lunas">
                     <input type="hidden" name="waktupembayaran" value="">
@@ -216,19 +222,11 @@
                         <input type="text" class="form-control input-alamat" id="input-alamat" name="alamat" placeholder="Masukkan alamat" required>
                     </div>
                     <div class="mb-3">
-                        <label for="sks" class="form-label">Mata Kuliah</label>
-                        <?php
-                        foreach ($data['matkul'] as $matkul) :
-                        ?>
-                            <div class="form-check">
-                                <input class="form-check-input" name="kodematakuliah[]" type="checkbox" value="<?= $matkul['kodematakuliah']; ?>" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    <?= $matkul['namamatakuliah']; ?>
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
-                        <input type="hidden" id="nominalInput" name="nominal" value="">
+                        <label for="input-foto" class="form-foto">Foto Profil</label>
+                        <input type="file" class="form-control input-foto" id="input-foto" name="foto" accept="image/*" aria-describedby="fotoHelp">
+                        <div id="fotoHelp" class="form-text">Unggah file gambar dengan format JPG, JPEG, atau PNG.</div>
                     </div>
+
             </div>
             <div class="modal-footer modal-matkul">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
@@ -238,6 +236,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal Tambah Kelas-->
 <div class="modal fade" id="formKelas" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">

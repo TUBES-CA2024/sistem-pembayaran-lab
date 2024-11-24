@@ -6,6 +6,7 @@ class Matakuliahmh extends Controller
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
+            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['title'] = 'Mata Kuliah';
             $data['matkul'] = $this->model('Matkul_model')->tampil();
@@ -19,7 +20,7 @@ class Matakuliahmh extends Controller
             $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
-            header("Location:" . BASEURL . "/Beranda");
+            header("Location:" . BASEURL . "/Berandamh");
             exit();
         }
     }

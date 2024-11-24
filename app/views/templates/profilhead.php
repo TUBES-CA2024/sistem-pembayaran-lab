@@ -10,7 +10,7 @@
                 </div>
                 <div class="me-3">
                     <a href="<?= BASEURL ?>/Datamahasiswamh" class="nav-link">
-                        <img src="<?= BASEURL ?>/assets/img/profil-icons.png" alt="foto-wajah" width="70px">
+                        <img src="<?= $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" width="140px" class="rounded-circle border" style="width:60px; height:60px; border-radius:50%;">
                     </a>
                 </div>
             </div>

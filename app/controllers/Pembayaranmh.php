@@ -8,11 +8,12 @@ class Pembayaranmh extends Controller
             $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Pembayaran';
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
+            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($stambuk);
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk_pmb($stambuk);
             $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk); // Data pembayaran lunas
             $data['countpembayaran'] = count($data['pembayaran']);
-            // $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');

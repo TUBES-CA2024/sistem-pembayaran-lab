@@ -80,7 +80,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Tambah -->
 <div class="modal fade" id="formUser" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -120,7 +120,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     // Tampilkan atau sembunyikan field Stambuk berdasarkan Role

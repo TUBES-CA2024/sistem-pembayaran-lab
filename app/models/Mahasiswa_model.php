@@ -9,13 +9,35 @@ class Mahasiswa_model
         $this->db = new Database;
     }
 
-    public function tambah($data)
+    public function tambah($data, $file)
     {
-        if (empty($data['stambuk']) || empty($data['nama']) || empty($data['prodi']) || empty($data['idkelas'])) {
-            return 0; // Gagal menambah data karena input tidak lengkap
+        if (empty($data['stambuk']) || empty($data['nama']) || empty($data['idkelas'])) {
+            return 0; // Data tidak lengkap
         }
 
-        $query = "INSERT INTO mahasiswa VALUES(:stambuk, :nama, :prodi, :idkelas, :namaagama, :email, :telepon, :jeniskelamin, :alamat, :foto, 1)";
+        // Proses upload file
+        $filePath = null; // Default jika tidak ada file
+        if (isset($file['foto']) && $file['foto']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $file['foto']['tmp_name'];
+            $fileExtension = pathinfo($file['foto']['name'], PATHINFO_EXTENSION);
+            $allowedExtensions = ['jpg', 'jpeg', 'png']; // Ekstensi yang diperbolehkan
+
+            if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
+                return 0; // Ekstensi file tidak valid
+            }
+
+            $fileName = uniqid('') . '.' . $fileExtension;
+            // $uploadDir = 'assets/img/profil/';
+            $filePath = $fileName;
+
+            if (!move_uploaded_file($fileTmpPath, $filePath)) {
+                return 0; // Gagal upload
+            }
+        }
+
+
+        // Query untuk menyimpan data mahasiswa
+        $query = "INSERT INTO mahasiswa VALUES (:stambuk, :nama, :prodi, :idkelas, :namaagama, :email, :telepon, :jeniskelamin, :alamat, :foto, 1)";
 
         $this->db->query($query);
         $this->db->bind('stambuk', $data['stambuk']);
@@ -27,7 +49,18 @@ class Mahasiswa_model
         $this->db->bind('telepon', $data['telepon']);
         $this->db->bind('jeniskelamin', $data['jeniskelamin']);
         $this->db->bind('alamat', $data['alamat']);
-        $this->db->bind('foto', $data['foto']);
+        $this->db->bind('foto', $filePath);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updateFoto($iduser, $fileName)
+    {
+        $query = "UPDATE user SET foto = :foto WHERE iduser = :iduser";
+        $this->db->query($query);
+        $this->db->bind('foto', $fileName);
+        $this->db->bind('iduser', $iduser);
 
         $this->db->execute();
 
@@ -130,30 +163,4 @@ class Mahasiswa_model
         // Jika data tidak ditemukan, kembalikan nilai default
         return $result ? $result['nama'] : "Nama belum diisi";
     }
-
-
-    // if (!empty($_FILES['foto']['name'])) {
-    //     $targetDir = "uploads/";
-    //     $fileName = basename($_FILES['foto']['name']);
-    //     $targetFilePath = $targetDir . $fileName;
-
-    //     // Validasi format file
-    //     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-    //     $allowedTypes = ['jpg', 'jpeg', 'png'];
-    //     if (!in_array(strtolower($fileType), $allowedTypes)) {
-    //         Flasher::setFlash('Format file tidak didukung', '', 'danger');
-    //         header('Location: ' . BASEURL . '/Datamahasiswa');
-    //         exit();
-    //     }
-
-    //     // Pindahkan file
-    //     if (move_uploaded_file($_FILES['foto']['tmp_name'], $targetFilePath)) {
-    //         $_POST['foto'] = $fileName; // Kirim nama file ke model
-    //     } else {
-    //         Flasher::setFlash('Gagal mengunggah foto', '', 'danger');
-    //         header('Location: ' . BASEURL . '/Datamahasiswa');
-    //         exit();
-    //     }
-    // }
-
 }
