@@ -47,9 +47,9 @@
                             <td><?= $user['username']; ?></td>
                             <td><?= $user['role']; ?></td>
                             <td>
-                                <a class="btn-edit edit-user me-3" role="button" href="<?= BASEURL; ?>/Usermanagement/edit/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
-                                    <img src="<?= BASEURL ?>/assets/img/edit.png" alt="Edit Icon">
-                                </a>
+                                <button class="btn-edit me-3 edit-user" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
+                                    <img src="<?= BASEURL ?>/assets/img/edit.png" alt=" ">
+                                </button>
                                 <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/delete.png" alt="Delete Icon">
                                 </button>
@@ -89,11 +89,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Usermanagement/tambah" method="post">
+                <form method="post">
                     <input type="hidden" name="iduser" id="id">
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
-                        <select class="form-select" id="role" name="role" onchange="toggleStambukField()">
+                        <select class="form-select" id="option-role" name="role" onchange="toggleStambukField()">
                             <option selected>Pilih Role</option>
                             <option value="Admin">Admin</option>
                             <option value="Kepala Lab">Kepala Lab</option>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add User</button>
+                        <button type="submit" id="judulModalbutton" class="btn btn-primary">Tambah User</button>
                 </form>
             </div>
         </div>

@@ -2,7 +2,7 @@ $(function () {
   // Tambah User
   $(".add-user").on("click", function () {
     $("#judulModalLabel").html("Tambah User");
-    $(".modal-user button[type=submit]").html("Add User");
+    $("#judulModalbutton").html("Tambah User");
     $(".modal-body form").attr(
       "action",
       "http://localhost/SIPEMLA/Usermanagement/tambah"
@@ -20,7 +20,7 @@ $(function () {
   // Edit User
   $(".edit-user").on("click", function () {
     $("#judulModalLabel").html("Edit User");
-    $(".modal-user button[type=submit]").html("Edit User");
+    $("#judulModalbutton").html("Edit User");
     $(".modal-body form").attr(
       "action",
       "http://localhost/SIPEMLA/Usermanagement/editUser"
@@ -35,6 +35,7 @@ $(function () {
       method: "POST",
       dataType: "json",
       success: function (data) {
+        console.log(data)
         $("#input-username").val(data.username);
         $("#input-password").val(data.password);
         $("#option-role").val(data.role);

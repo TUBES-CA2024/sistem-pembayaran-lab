@@ -98,7 +98,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Pembayaran/editPembayaran" method="post">
+                <form method="post">
                     <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
 

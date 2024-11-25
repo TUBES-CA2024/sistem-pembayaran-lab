@@ -3,7 +3,10 @@ $(document).ready(function () {
   $(".add-pembayaran").click(function () {
     $("#judulModalLabel").text("Tambah Pembayaran");
     $(".modal-footer button[type=submit]").text("Tambah");
-    $("#formPembayaran form").attr("action", "<?= BASEURL; ?>/Pembayaran/tambah");
+    $("#formPembayaran form").attr(
+      "action",
+      "http://localhost/SIPEMLA/Pembayaran/tambah"
+    );
 
     // Kosongkan form
     $("#hidden-idpembayaran").val("");
@@ -17,12 +20,15 @@ $(document).ready(function () {
   $(".edit-pembayaran").click(function () {
     $("#judulModalLabel").text("Edit Pembayaran");
     $(".modal-footer button[type=submit]").text("Simpan Perubahan");
-    $("#formPembayaran form").attr("action", "<?= BASEURL; ?>/Pembayaran/editPembayaran");
+    $("#formPembayaran form").attr(
+      "action",
+      "http://localhost/SIPEMLA/Pembayaran/editPembayaran"
+    );
 
     const id = $(this).data("id");
 
     $.ajax({
-      url: "<?= BASEURL; ?>/Pembayaran/editTampil",
+      url: "http://localhost/SIPEMLA/Pembayaran/editTampil",
       method: "POST",
       data: { id: id },
       dataType: "json",

@@ -8,7 +8,7 @@
 
                 <div class="profile-image-wrapper position-relative py-3">
                     <img id="profile-image-preview" src="<?= $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" width="140px" class="rounded-circle border" style="width:150px; height:150px; border-radius:50%;">
-                    <form action="<?= BASEURL; ?>/Datamahasiswamh/simpan" method="POST" enctype="multipart/form-data" class="position-absolute" style="bottom: 10px; right: 120px;">
+                    <form action="<?= BASEURL; ?>/Datamahasiswamh/updateFotoMahasiswa" method="POST" enctype="multipart/form-data" class="position-absolute" style="bottom: 10px; right: 120px;">
                         <label for="upload-foto" class="upload-photo-icon">
                             <img src="<?= BASEURL ?>/assets/img/upload-icons.png" alt="Upload Icon" class="edit-icon bg-light rounded-circle border p-1 shadow" width="30px">
                         </label>
@@ -155,6 +155,9 @@
                 document.getElementById('profile-image-preview').src = e.target.result;
             };
             reader.readAsDataURL(input.files[0]);
+
+            // Submit form secara otomatis
+            input.closest('form').submit();
         }
     }
 </script>

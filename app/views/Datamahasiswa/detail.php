@@ -11,7 +11,7 @@
         <div class="container p-4">
             <div class="row rounded-4 shadow-lg">
 
-                <div class="col-12 col-md-8 mt-3 mx-auto" >
+                <div class="col-12 col-md-8 mt-3 mx-auto">
                     <fieldset disabled>
                         <div class="mb-3 d-flex">
                             <label for="disabledTextInput" class="form-label col-4">Stambuk Mahasiswa</label>
@@ -30,26 +30,28 @@
                             <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['prodi']; ?>">
                         </div>
                         <div class="mb-3 d-flex">
-                            <label for="disabledTextInput" class="form-label col-4">Mata Kuliah</label>
-                            <div class="col-6">
-
-                                <?php
-                                $sks = 0;
-                                foreach ($data['matkul_select'] as $matkul) :
-                                    $sks++;
-                                ?>
-
-                                    <input type="text" id="disabledTextInput" class="form-control mb-3" value="• <?= $matkul['namamatakuliah']; ?>">
-
-                                <?php endforeach; ?>
-
-                            </div>
+                            <label for="disabledTextInput" class="form-label col-4">Agama Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['namaagama']; ?>">
                         </div>
                         <div class="mb-3 d-flex">
-                            <label for="disabledTextInput" class="form-label col-4">Jumlah SKS Praktikum</label>
-                            <div class="col-2">
-                                <input type="text" id="disabledTextInput" class="form-control" value="<?= $sks; ?>">
-                            </div>
+                            <label for="disabledTextInput" class="form-label col-4">Email Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['email']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Telepon Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['telepon']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">JenisKelamin Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['jeniskelamin']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Alamat Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['alamat']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Foto Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['foto']; ?>">
                         </div>
 
                     </fieldset>

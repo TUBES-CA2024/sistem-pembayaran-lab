@@ -161,7 +161,7 @@
                 <form action="<?= BASEURL; ?>/Datamahasiswa/tambah" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
                     <input type="hidden" name="status" value="Belum Lunas">
-                    <input type="hidden" name="waktupembayaran" value="">
+                    <!-- <input type="hidden" name="waktupembayaran" value=""> -->
                     <div class="mb-3">
                         <label for="kode-stambuk" class="form-label">Stambuk</label>
                         <input type="text" class="form-control input-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk" required>

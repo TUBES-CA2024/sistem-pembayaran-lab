@@ -93,19 +93,21 @@ class Datamahasiswa extends Controller
 
     public function editMahasiswa()
     {
-        if ($this->model('Mahasiswa_model')->edit($_POST) > 0) {
-            $this->model('Select_matkul_model')->hapus($_POST["old_stambuk"]);
-            $this->model('Select_matkul_model')->tambah($_POST);
-            $this->model('Pembayaran_model')->edit($_POST);
-            General::setFlash('Data Berhasil', 'diubah', 'success');
+        if (!isset($_POST['isCompleted'])) {
+            $_POST['isCompleted'] = 0;
+        }
+
+        if ($this->model('Mahasiswa_model')->edit($_POST, $_FILES) > 0) {
+            Flasher::setFlash('Data Berhasil', 'diperbarui', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         } else {
-            General::setFlash('Tolong Ubah', 'Stambuk, Nama, Kelas atau Prodi', 'danger');
+            Flasher::setFlash('Data Gagal', 'diperbarui', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         }
     }
+
     public function tambahKelas()
     {
         if ($this->model('Kelas_model')->tambahkls($_POST) > 0) {

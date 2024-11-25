@@ -51,4 +51,22 @@ class Datamahasiswamh extends Controller
             }
         }
     }
+
+    public function updateFotoMahasiswa()
+    {
+        if ($_SESSION['role'] === 'Mahasiswa') {
+            $stambuk = $_SESSION['stambuk'];
+
+            if ($this->model('Mahasiswa_model')->updateFotoMahasiswa($stambuk, $_FILES) > 0) {
+                Flasher::setFlash('Foto berhasil diperbarui', '', 'success');
+            } else {
+                Flasher::setFlash('Gagal memperbarui foto', '', 'danger');
+            }
+            header('Location: ' . BASEURL . '/Datamahasiswamh');
+            exit();
+        } else {
+            header('Location: ' . BASEURL . '/Berandamh');
+            exit();
+        }
+    }
 }

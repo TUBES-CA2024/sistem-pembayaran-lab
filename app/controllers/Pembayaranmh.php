@@ -9,11 +9,11 @@ class Pembayaranmh extends Controller
             $data['title'] = 'Pembayaran';
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($stambuk);
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk_pmb($stambuk);
-            $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk); // Data pembayaran lunas
-            $data['countpembayaran'] = count($data['pembayaran']);
-            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+            $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk);
+            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($stambuk);
+            // $data['countpembayaran'] = count($data['pembayaran']);
+            // $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -31,16 +31,11 @@ class Pembayaranmh extends Controller
     public function registrasi()
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
-            $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Registrasi Pembayaran';
-            $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
-            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
             $data['matkul'] = $this->model('Matkul_model')->tampil();
-            $data['kelas'] = $this->model('Kelas_model')->tampil();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
-            $this->view('templates/profilhead', $data);
             $this->view('Pembayaranmh/registrasi', $data);
             $this->view('templates/footersidebar');
             $this->view('templates/copyright');

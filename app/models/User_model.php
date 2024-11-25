@@ -52,14 +52,10 @@ class User_model
     {
         $query = "UPDATE user SET username= :username, password= :password, role= :role WHERE iduser= :iduser";
         $this->db->query($query);
+        $this->db->bind('iduser', $data['iduser']);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
         $this->db->bind('role', $data['role']);
-        $this->db->bind('iduser', $data['iduser']);
-
-        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
-
-
         $this->db->execute();
 
         return $this->db->rowCount();

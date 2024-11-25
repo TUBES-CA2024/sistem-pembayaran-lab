@@ -31,11 +31,11 @@ class Pembayaran extends Controller
         $nominal = count($_POST['kodematakuliah']) * 55000;
         $_POST['nominal'] = $nominal;
         // Validasi input sebelum menyimpan
-        // if (empty($_POST['stambuk']) || empty($_POST['nominal']) || empty($_POST['virtualakun']) || empty($_POST['status'])) {
-        //     Flasher::setFlash('Semua kolom wajib', 'diisi', 'danger');
-        //     header('Location: ' . BASEURL . '/Pembayaran');
-        //     exit;
-        // }
+        if (empty($_POST['stambuk']) || empty($_POST['nominal']) || empty($_POST['status'])) {
+            Flasher::setFlash('Semua kolom wajib', 'diisi', 'danger');
+            header('Location: ' . BASEURL . '/Pembayaran');
+            exit;
+        }
 
         if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
             Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
