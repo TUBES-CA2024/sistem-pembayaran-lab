@@ -7,13 +7,12 @@ $(document).ready(function () {
       "action",
       "http://localhost/SIPEMLA/Pembayaran/tambah"
     );
-
-    // Kosongkan form
-    $("#hidden-idpembayaran").val("");
-    $("#stambuk").val("");
-    $("#waktupembayaran").val(new Date().toISOString().split("T")[0]); // Default tanggal hari ini
-    $(".form-check-input").prop("checked", false);
-    $("#status").val("Belum Lunas");
+    const data = "";
+    $("#input-stambuk").val("Pilih Mahasiswa");
+    $("#input-waktupembayaran").val(data);
+    $("#nominalInput").val(data);
+    $("#input-matkul").val(data);
+    $("#input-status").val("Pilih Status");
   });
 
   // Untuk Edit Pembayaran
@@ -26,47 +25,34 @@ $(document).ready(function () {
     );
 
     const id = $(this).data("id");
+    console.log(id);
 
     $.ajax({
       url: "http://localhost/SIPEMLA/Pembayaran/editTampil",
-      method: "POST",
       data: { id: id },
+      method: "POST",
       dataType: "json",
       success: function (data) {
-        console.log("Data diterima:", data);
-        if (data.error) {
-          alert(data.error); // Tampilkan pesan error jika data tidak ditemukan
-          return;
-        }
-
-        // Isi form dengan data dari server
+        console.log(data);
+        $("#input-stambuk").val(data.stambuk);
+        $("#input-waktupembayaran").val(data.waktupembayaran);
+        $("#nominalInput").val(data.nominal);
+        $("#input-status").val(data.status);
         $("#hidden-idpembayaran").val(data.idpembayaran);
-        $("#stambuk").val(data.stambuk);
-        $("#waktupembayaran").val(data.waktupembayaran);
+        // $("#kodematakuliah-").val(data.namamatakuliah);
         $(".form-check-input").each(function () {
-          $(this).prop("checked", data.kodematakuliah.includes($(this).val()));
+          const value = $(this).val(); // Nilai checkbox
+          if (data.kodematakuliah.includes(value)) {
+            $(this).prop("checked", true);
+          } else {
+            $(this).prop("checked", false); // Pastikan yang lain tidak dicentang
+          }
         });
-        $("#status").val(data.status);
-      },
-      error: function () {
-        alert("Gagal mengambil data pembayaran. Silakan coba lagi.");
+        // }
       },
     });
   });
-
-  // Reset modal ketika ditutup
-  $("#formPembayaran").on("hidden.bs.modal", function () {
-    $("#judulModalLabel").text("");
-    $(".modal-footer button[type=submit]").text("");
-    $("#formPembayaran form").attr("action", "");
-    $("#hidden-idpembayaran").val("");
-    $("#stambuk").val("");
-    $("#waktupembayaran").val("");
-    $(".form-check-input").prop("checked", false);
-    $("#status").val("");
-  });
 });
-
 
 // $(function () {
 //   $(".add-pembayaran").on("click", function () {

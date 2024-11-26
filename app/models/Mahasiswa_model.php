@@ -12,14 +12,13 @@ class Mahasiswa_model
     public function tambah($data, $file)
     {
         if (empty($data['stambuk']) || empty($data['nama']) || empty($data['idkelas'])) {
-            return 0; // Data tidak lengkap
+            return 0;
         }
-        // Proses upload file
-        $filePath = null; // Default jika tidak ada file
+        $filePath = null;
         if (isset($file['foto']) && $file['foto']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $file['foto']['tmp_name'];
             $fileExtension = pathinfo($file['foto']['name'], PATHINFO_EXTENSION);
-            $allowedExtensions = ['jpg', 'jpeg', 'png']; // Ekstensi yang diperbolehkan
+            $allowedExtensions = ['jpg', 'jpeg', 'png'];
             if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
                 return 0; // Ekstensi file tidak valid
             }
@@ -28,9 +27,10 @@ class Mahasiswa_model
             $filePath = $uploadDir . $fileName;
 
             if (!move_uploaded_file($fileTmpPath, $filePath)) {
-                return 0; // Gagal upload
+                return 0;
             }
         }
+
         // Query untuk menyimpan data mahasiswa
         $query = "INSERT INTO mahasiswa VALUES (:stambuk, :nama, :prodi, :idkelas, :namaagama, :email, :telepon, :jeniskelamin, :alamat, :foto, 1)";
 
@@ -65,7 +65,6 @@ class Mahasiswa_model
     public function tampil()
     {
         $this->db->query("SELECT mahasiswa.stambuk, mahasiswa.nama, mahasiswa.prodi, kelas.namekelas, mahasiswa.namaagama, mahasiswa.email, mahasiswa.telepon, mahasiswa.jeniskelamin, mahasiswa.alamat, mahasiswa.foto, mahasiswa.isCompleted FROM mahasiswa JOIN kelas ON mahasiswa.idkelas = kelas.idkelas");
-
         return $this->db->resultSet();
     }
 
@@ -74,7 +73,6 @@ class Mahasiswa_model
         $query = "DELETE FROM mahasiswa WHERE stambuk = :stambuk";
         $this->db->query($query);
         $this->db->bind('stambuk', $id);
-
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -114,11 +112,13 @@ class Mahasiswa_model
 
     public function edit($data, $file)
     {
+        // Validasi input
         if (empty($data['stambuk']) || empty($data['nama']) || empty($data['idkelas'])) {
             return 0; // Data tidak lengkap
         }
-        // Proses upload file
-        $filePath = null; // Default jika tidak ada file
+
+        // Menangani upload file foto
+        $filePath = null;
         if (isset($file['foto']) && $file['foto']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $file['foto']['tmp_name'];
             $fileExtension = pathinfo($file['foto']['name'], PATHINFO_EXTENSION);
@@ -126,17 +126,26 @@ class Mahasiswa_model
             if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
                 return 0; // Ekstensi file tidak valid
             }
-            $fileName = uniqid('') . '.' . $fileExtension;
-            $uploadDir = 'assets/img/profil/';
+
+            // Tentukan nama file yang unik
+            $fileName = uniqid() . '.' . $fileExtension;
+            $uploadDir = 'assets/img/profil/'; // Direktori upload
             $filePath = $uploadDir . $fileName;
 
+            // Pindahkan file ke folder upload
             if (!move_uploaded_file($fileTmpPath, $filePath)) {
                 return 0; // Gagal upload
             }
+        } else {
+            // Jika tidak ada file yang di-upload, gunakan foto lama
+            // Pastikan $_POST['foto_lama'] ada dan berisi foto lama
+            $filePath = isset($data['foto_lama']) ? $data['foto_lama'] : null;
         }
 
+        // Query untuk update data mahasiswa
         $query = "UPDATE mahasiswa SET stambuk = :stambuk, nama = :nama, prodi = :prodi, idkelas = :idkelas, namaagama = :namaagama, email = :email, telepon = :telepon, jeniskelamin = :jeniskelamin, alamat = :alamat, foto = :foto WHERE stambuk = :old_stambuk";
 
+        // Eksekusi query
         $this->db->query($query);
         $this->db->bind('stambuk', $data['stambuk']);
         $this->db->bind('nama', $data['nama']);
@@ -147,11 +156,11 @@ class Mahasiswa_model
         $this->db->bind('telepon', $data['telepon']);
         $this->db->bind('jeniskelamin', $data['jeniskelamin']);
         $this->db->bind('alamat', $data['alamat']);
-        $this->db->bind('foto', $filePath);
-        $this->db->bind('old_stambuk', $data['old_stambuk']);
+        $this->db->bind('foto', $filePath); // Foto baru atau lama
+        $this->db->bind('old_stambuk', $data['old_stambuk']); // Stambuk lama untuk pencocokan
         $this->db->execute();
 
-        return $this->db->rowCount();
+        return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh (1 jika berhasil)
     }
 
     public function countMahasiswa()

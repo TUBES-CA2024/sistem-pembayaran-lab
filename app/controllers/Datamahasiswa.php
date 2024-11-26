@@ -78,11 +78,10 @@ class Datamahasiswa extends Controller
     public function editTampil($id)
     {
         $data['title'] = 'Edit Data Mahasiswa';
-        $data['matkul'] = $this->model('Matkul_model')->tampil();
         $data['kelas'] = $this->model('Kelas_model')->tampil();
         $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
-        $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
         $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($id);
+        $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
 
         $this->view('templates/header', $data);
         $this->view('templates/sidebar');
@@ -134,29 +133,4 @@ class Datamahasiswa extends Controller
             exit;
         }
     }
-    // public function tambahMahasiswa()
-    // {
-    //     $data = [
-    //         'stambuk' => $_POST['stambuk'],
-    //         'nama' => $_POST['nama'],
-    //         'prodi' => $_POST['prodi'],
-    //         'idkelas' => $_POST['idkelas'],
-    //         'namaagama' => $_POST['namaagama'],
-    //         'email' => $_POST['email'],
-    //         'telepon' => $_POST['telepon'],
-    //         'jeniskelamin' => $_POST['jeniskelamin'],
-    //         'alamat' => $_POST['alamat']
-    //     ];
-
-    //     // Panggil model dengan data dan file
-    //     if ($this->model('DatamahasiswaModel')->tambah($data, $_FILES)) {
-    //         Flasher::setFlash('Data berhasil ditambahkan', '', 'success');
-    //         header('Location: ' . BASEURL . '/Datamahasiswamh');
-    //         exit;
-    //     } else {
-    //         Flasher::setFlash('Gagal menambahkan data', '', 'danger');
-    //         header('Location: ' . BASEURL . '/Datamahasiswamh');
-    //         exit;
-    //     }
-    // }
 }

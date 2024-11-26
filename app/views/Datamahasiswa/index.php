@@ -58,8 +58,7 @@
                             <td><img id="profile-image-preview"
                                     src="<?= $mhs['foto']; ?>"
                                     alt="Foto Wajah Profil"
-                                    class="rounded-circle border"
-                                    style="width:150px; height:150px; border-radius:50%;"></td>
+                                    style="width:150px; height:150px; border-radius: 5%"></td>
                             <td>
                                 <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
                                 <button class="btn-delete ms-1" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>

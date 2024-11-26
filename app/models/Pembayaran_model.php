@@ -76,6 +76,7 @@ class Pembayaran_model
         return $this->db->single();
     }
 
+
     public function tampilByStambuk_pmb($stambuk)
     {
         $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk WHERE pembayaran.stambuk = :stambuk ORDER BY pembayaran.idpembayaran DESC");

@@ -50,14 +50,17 @@ class Usermanagement extends Controller
 
     public function editUser()
     {
-        if ($this->model('User_model')->edit($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'diubah', 'success');
-            header('Location: ' . BASEURL . '/Usermanagement');
-            exit;
-        } else {
-            Flasher::setFlash('Gagal', 'diubah', 'danger');
-            header('Location: ' . BASEURL . '/Usermanagement');
-            exit;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            if ($this->model('User_model')->edit($_POST) > 0) {
+                Flasher::setFlash('Berhasil', 'diubah', 'success');
+                header('Location: ' . BASEURL . '/Usermanagement');
+                exit;
+            } else {
+                Flasher::setFlash('Gagal', 'diubah', 'danger');
+                header('Location: ' . BASEURL . '/Usermanagement');
+                exit;
+            }
         }
     }
 }

@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-3 d-flex">
                             <label for="disabledTextInput" class="form-label col-4">Foto Mahasiswa</label>
-                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['foto']; ?>">
+                            <img id="profile-image-preview" src="<?= BASEURL . '/' . $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" style="width:150px; height:150px; border-radius: 5%;">
                         </div>
 
                     </fieldset>

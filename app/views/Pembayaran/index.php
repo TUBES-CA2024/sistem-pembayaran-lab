@@ -98,13 +98,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post">
+                <form action="<?= BASEURL; ?>/Pembayaran/editPembayaran" method="post">
                     <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
 
                     <div class="mb-3">
-                        <label for="stambuk" class="form-label">Stambuk</label>
-                        <select class="form-select" id="stambuk" name="stambuk" required>
+                        <label for="input-stambuk" class="form-label">Stambuk</label>
+                        <select class="form-select" id="input-stambuk" name="stambuk" required>
                             <option selected disabled>Pilih Mahasiswa</option>
                             <?php foreach ($data['mahasiswa'] as $mhs) : ?>
                                 <option value="<?= $mhs['stambuk'] ?>"><?= $mhs['stambuk'] ?> - <?= $mhs['nama'] ?></option>
@@ -113,25 +113,30 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="waktupembayaran" class="form-label">Waktu Pembayaran</label>
-                        <input type="date" class="form-control" id="waktupembayaran" name="waktupembayaran" required>
+                        <label for="input-waktupembayaran" class="form-label">Waktu Pembayaran</label>
+                        <input type="date" class="form-control" id="input-waktupembayaran" name="waktupembayaran" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="kodematakuliah" class="form-label">Mata Kuliah</label>
+                        <label for="matkul" class="form-label">Mata Kuliah</label>
                         <?php foreach ($data['matkul'] as $matkul) : ?>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="kodematakuliah[]" value="<?= $matkul['kodematakuliah'] ?>" id="matkul-<?= $matkul['kodematakuliah'] ?>">
-                                <label class="form-check-label" for="matkul-<?= $matkul['kodematakuliah'] ?>">
+                                <input class="form-check-input" type="checkbox" name="kodematakuliah[]" value="<?= $matkul['kodematakuliah'] ?>" id="kodematakuliah-<?= $matkul['kodematakuliah'] ?>">
+                                <label class="form-check-label" for="kodematakuliah-<?= $matkul['kodematakuliah'] ?>">
                                     <?= $matkul['namamatakuliah'] ?>
                                 </label>
                             </div>
                         <?php endforeach; ?>
                     </div>
+                    <div class="mb-3">
+                        <label for="nominal" class="form-label">Nominal</label>
+                        <input type="text" id="nominalInput" class="form-control" name="nominal" value="" readonly>
+                    </div>
 
                     <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-select" id="status" name="status" required>
+                        <label for="input-status" class="form-label">Status</label>
+                        <select class="form-select" id="input-status" name="status" required>
+                            <option selected disabled="Pilih Status">Pilih Status</option>
                             <option value="Lunas">Lunas</option>
                             <option value="Belum Lunas">Belum Lunas</option>
                         </select>
@@ -145,3 +150,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mengambil semua elemen checkbox
+        var checkboxes = document.querySelectorAll('.form-check-input');
+
+        // Mendengarkan perubahan pada setiap checkbox
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                updateNominal();
+            });
+        });
+
+        // Fungsi untuk mengupdate nilai nominal
+        function updateNominal() {
+            var checkedBoxCount = 0;
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checkedBoxCount++;
+                }
+            });
+
+            // Mengupdate nilai pada input
+            var nominalInput = document.getElementById('nominalInput');
+            nominalInput.value = checkedBoxCount * 55000; // Nominal untuk satu mata kuliah
+        }
+    });
+</script>

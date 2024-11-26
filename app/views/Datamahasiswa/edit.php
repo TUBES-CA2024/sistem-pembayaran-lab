@@ -19,8 +19,6 @@
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
                     <input type="hidden" name="idpembayaran" value="<?= $data['pembayaran']['idpembayaran'] ?>">
                     <input type="hidden" name="isCompleted" value="<?= $data['mahasiswa']['isCompleted']; ?>">
-                    <!-- <input type="hidden" name="status" value="Belum Lunas"> -->
-                    <!-- <input type="hidden" name="waktupembayaran" value=""> -->
                     <input type="hidden" name="foto_lama" value="<?= $data['mahasiswa']['foto']; ?>">
                     <input type="hidden" name="old_stambuk" value="<?= $data['mahasiswa']['stambuk']; ?>">
                     <div class="mb-3 d-flex">
@@ -92,9 +90,10 @@
                         <label for="foto" class="form-label col-4">Foto</label>
                         <input type="file" class="form-control input-foto" id="input-foto" name="foto">
                     </div>
-                    <!-- value="<?= $data['mahasiswa']['foto']; ?>" -->
-                    <div id="fotoHelp" class="mb-3 form-text">Unggah file gambar dengan format JPG, JPEG, atau PNG.</div>
-
+                    <div id="fotoHelp" class="mb-3 form-text" style="margin-left: 33%;">
+                        <img id="profile-image-preview" src="<?= BASEURL . '/' . $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" style="width:150px; height:150px; border-radius: 5%;">
+                        Unggah file gambar dengan format JPG, JPEG, atau PNG.
+                    </div>
                     </form>
                 </div>
 
@@ -102,7 +101,7 @@
         </div>
     </div>
 </div>
-
+<!-- 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Mengambil semua elemen checkbox
@@ -130,33 +129,4 @@
             nominalInput.value = checkedBoxCount * 55000;
         }
     });
-</script>
-
-<!-- <div class="mb-3 d-flex">
-                        <label for="sks" class="form-label col-4">Mata Kuliah</label>
-                        <div>
-                        <?php foreach ($data['matkul'] as $matkul) : ?>
-                                <?php $isChecked = false; ?>
-                                <?php foreach ($data['matkul_select'] as $select) : ?>
-                                    <?php if ($matkul["kodematakuliah"] == $select["kodematakuliah"]) : ?>
-                                        <?php $isChecked = true; ?>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="kodematakuliah[]" type="checkbox" value="<?= $matkul['kodematakuliah']; ?>" id="flexCheckDefault" checked>
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                <?= $matkul['namamatakuliah']; ?>
-                                            </label>
-                                        </div>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                                <?php if (!$isChecked) : ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="kodematakuliah[]" type="checkbox" value="<?= $matkul['kodematakuliah']; ?>" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            <?= $matkul['namamatakuliah']; ?>
-                                        </label>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            <input type="hidden" id="nominalInput" name="nominal" value="">
-                        </div>
-                    </div> -->
+</script> -->
