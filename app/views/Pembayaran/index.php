@@ -57,7 +57,7 @@
                             <td>Rp. <?= $pmb['nominal']; ?></td>
                             <td><?= $pmb['status']; ?></td>
                             <td>
-                                <a class="btn-edit edit-pembayaran" role="button" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
+                                <button class="btn-edit edit-pembayaran" role="button" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></button>
                                 <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
 
@@ -121,7 +121,7 @@
                         <label for="matkul" class="form-label">Mata Kuliah</label>
                         <?php foreach ($data['matkul'] as $matkul) : ?>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="kodematakuliah[]" value="<?= $matkul['kodematakuliah'] ?>" id="kodematakuliah-<?= $matkul['kodematakuliah'] ?>">
+                                <input class="form-check-input" type="checkbox" name="kodematakuliah[]" value="<?= $matkul['kodematakuliah'] ?>">
                                 <label class="form-check-label" for="kodematakuliah-<?= $matkul['kodematakuliah'] ?>">
                                     <?= $matkul['namamatakuliah'] ?>
                                 </label>

@@ -42,13 +42,12 @@ $(document).ready(function () {
         // $("#kodematakuliah-").val(data.namamatakuliah);
         $(".form-check-input").each(function () {
           const value = $(this).val(); // Nilai checkbox
-          if (data.kodematakuliah.includes(value)) {
+          if (data.kodematakuliah && data.includes(value)) {
             $(this).prop("checked", true);
           } else {
             $(this).prop("checked", false); // Pastikan yang lain tidak dicentang
           }
         });
-        // }
       },
     });
   });

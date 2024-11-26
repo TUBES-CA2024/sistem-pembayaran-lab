@@ -48,12 +48,6 @@ class Pembayaran extends Controller
 
     public function hapus($id)
     {
-        // Validasi apakah data pembayaran ada
-        // if (!$this->model('Pembayaran_model')->tampilById($id)) {
-        //     Flasher::setFlash('Pembayaran tidak ditemukan', '', 'danger');
-        //     header('Location: ' . BASEURL . '/Pembayaran');
-        //     exit;
-        // }
         if ($this->model('Pembayaran_model')->hapus($id) > 0) {
             Flasher::setFlash('Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
