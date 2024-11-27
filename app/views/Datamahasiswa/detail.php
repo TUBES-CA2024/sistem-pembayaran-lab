@@ -30,6 +30,28 @@
                             <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['prodi']; ?>">
                         </div>
                         <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Mata Kuliah</label>
+                            <div class="col-6">
+
+                                <?php
+                                $sks = 0;
+                                foreach ($data['matkul_select'] as $matkul) :
+                                    $sks++;
+                                ?>
+
+                                    <input type="text" id="disabledTextInput" class="form-control mb-3" value="• <?= $matkul['namamatakuliah']; ?>">
+
+                                <?php endforeach; ?>
+
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Jumlah SKS Praktikum</label>
+                            <div class="col-2">
+                                <input type="text" id="disabledTextInput" class="form-control" value="<?= $sks; ?>">
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex">
                             <label for="disabledTextInput" class="form-label col-4">Agama Mahasiswa</label>
                             <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['namaagama']; ?>">
                         </div>
@@ -53,6 +75,7 @@
                             <label for="disabledTextInput" class="form-label col-4">Foto Mahasiswa</label>
                             <img id="profile-image-preview" src="<?= BASEURL . '/' . $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" style="width:150px; height:150px; border-radius: 5%;">
                         </div>
+
 
                     </fieldset>
                 </div>

@@ -25,6 +25,7 @@ class Pembayaran extends Controller
     public function tambah()
     {
         if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
+            $this->model('Select_matkul_model')->tambah($_POST);
             Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
@@ -37,6 +38,8 @@ class Pembayaran extends Controller
 
     public function hapus($id)
     {
+        $this->model('Mahasiswa_model')->hapus($id);
+        $this->model('Select_matkul_model')->hapus($id);
         if ($this->model('Pembayaran_model')->hapus($id) > 0) {
             Flasher::setFlash('Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
@@ -56,6 +59,8 @@ class Pembayaran extends Controller
     public function editPembayaran()
     {
         if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
+            $this->model('Select_matkul_model')->hapus($_POST["old_stambuk"]);
+            $this->model('Select_matkul_model')->tambah($_POST);
             Flasher::setFlash('Berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;

@@ -188,6 +188,7 @@
                             <option value="Sistem Informasi">Sistem Informasi</option>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="namaagama" class="form-label">Agama</label>
                         <select class="form-select" aria-label="Default select example" name="namaagama" required>
