@@ -27,7 +27,7 @@ class Pembayaran_model
 
     public function tampil()
     {
-        // $this->db->query("SELECT * FROM pembayaran ORDER BY idpembayaran ASC");
+        $this->db->query("SELECT * FROM pembayaran ORDER BY idpembayaran ASC");
         $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.iduser, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk ORDER BY pembayaran.idpembayaran DESC");
 
         return $this->db->resultSet();
@@ -120,5 +120,17 @@ class Pembayaran_model
         $this->db->query("SELECT pembayaran.waktupembayaran AS tanggal, pembayaran.nominal AS tagihan, pembayaran.status AS status FROM pembayaran WHERE stambuk = :stambuk AND status = 'Lunas' ORDER BY pembayaran.idpembayaran DESC");
         $this->db->bind('stambuk', $stambuk);
         return $this->db->resultSet();
+    }
+    public function getMatkulByStambuk($stambuk)
+    {
+        $this->db->query("
+        SELECT ms.stambuk, GROUP_CONCAT(m.namamatakuliah SEPARATOR ', ') AS matkul
+        FROM matkul_select ms
+        JOIN matakuliah m ON ms.kodematakuliah = m.kodematakuliah
+        WHERE ms.stambuk = :stambuk
+        GROUP BY ms.stambuk
+    ");
+        $this->db->bind('stambuk', $stambuk);
+        return $this->db->single();
     }
 }

@@ -8,12 +8,8 @@ class Pembayaran extends Controller
             $data['title'] = 'Pembayaran';
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-            $data['title'] = 'Pembayaran';
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil(); // Tambahkan data mahasiswa
             $data['matkul'] = $this->model('Matkul_model')->tampil(); // Tambahkan data matkul
-
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
@@ -28,13 +24,6 @@ class Pembayaran extends Controller
 
     public function tambah()
     {
-        // Validasi input sebelum menyimpan
-        if (empty($_POST['stambuk']) || empty($_POST['nominal']) || empty($_POST['status'])) {
-            Flasher::setFlash('Semua kolom wajib', 'diisi', 'danger');
-            header('Location: ' . BASEURL . '/Pembayaran');
-            exit;
-        }
-
         if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
             Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');

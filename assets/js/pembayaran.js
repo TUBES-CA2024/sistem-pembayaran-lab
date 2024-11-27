@@ -7,11 +7,11 @@ $(document).ready(function () {
       "action",
       "http://localhost/SIPEMLA/Pembayaran/tambah"
     );
-    const data = "";
+    // const data = "";
     $("#input-stambuk").val("Pilih Mahasiswa");
-    $("#input-waktupembayaran").val(data);
-    $("#nominalInput").val(data);
-    $("#input-matkul").val(data);
+    $("#input-waktupembayaran").val('');
+    $("#nominalInput").val('');
+    $("#input-matkul").val([]);
     $("#input-status").val("Pilih Status");
   });
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
     );
 
     const id = $(this).data("id");
-    console.log(id);
+    // console.log(id);
 
     $.ajax({
       url: "http://localhost/SIPEMLA/Pembayaran/editTampil",
@@ -39,10 +39,10 @@ $(document).ready(function () {
         $("#nominalInput").val(data.nominal);
         $("#input-status").val(data.status);
         $("#hidden-idpembayaran").val(data.idpembayaran);
-        // $("#kodematakuliah-").val(data.namamatakuliah);
+
         $(".form-check-input").each(function () {
           const value = $(this).val(); // Nilai checkbox
-          if (data.kodematakuliah && data.includes(value)) {
+          if (data.kodematakuliah && data.kodematakuliah.includes(value)) {
             $(this).prop("checked", true);
           } else {
             $(this).prop("checked", false); // Pastikan yang lain tidak dicentang
