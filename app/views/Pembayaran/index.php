@@ -31,6 +31,7 @@
                         <th>Stambuk</th>
                         <th>Nama</th>
                         <th>Waktu Pembayaran</th>
+                        <th>Matakuliah</th>
                         <th>Nominal</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -54,6 +55,7 @@
                             <td><?= $pmb['stambuk']; ?></td>
                             <td><?= $pmb['nama']; ?></td>
                             <td><?= $formattedDate; ?></td>
+                            <td><?= $pmb['matkul']; ?></td>
                             <td>Rp. <?= $pmb['nominal']; ?></td>
                             <td><?= $pmb['status']; ?></td>
                             <td>

@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Priode</h5>
-                <h2 class="card-subtitle mb-2">1</h2>
+                <h2 class="card-subtitle mb-2">2</h2>
                 <p class="card-text">Print Laporan Pembayaran</p>
             </div>
         </div>
@@ -89,10 +89,10 @@
                                     $asd = 'Rp. 55.000';
                                     break;
                                 case '005':
-                                    $bd1= 'Rp. 55.000';
+                                    $bd1 = 'Rp. 55.000';
                                     break;
                                 case '008':
-                                    $pbo= 'Rp. 55.000';
+                                    $pbo = 'Rp. 55.000';
                                     break;
                                 case '009':
                                     $web = 'Rp. 55.000';
@@ -122,8 +122,8 @@
                             <td><?= $algo2 ?></td>
                             <td><?= $eldas ?></td>
                             <td><?= $asd ?></td>
-                            <td><?= $bd1?></td>
-                            <td><?= $pbo?></td>
+                            <td><?= $bd1 ?></td>
+                            <td><?= $pbo ?></td>
                             <td><?= $web ?></td>
                             <td><?= $jarkom ?></td>
                             <td><?= $mobile ?></td>

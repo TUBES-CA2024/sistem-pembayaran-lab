@@ -17,7 +17,7 @@ class Pembayaran extends Controller
             $this->view('templates/footersidebar');
             $this->view('templates/footer');
         } else {
-            header("Location:" . BASEURL . "/Berandakp");
+            header("Location:" . BASEURL . "/Beranda");
             exit();
         }
     }
@@ -74,10 +74,10 @@ class Pembayaran extends Controller
         echo json_encode($this->model('Pembayaran_model')->tampilById($_POST['id']));
     }
 
-    public function editPembayaran($id)
+    public function editPembayaran()
     {
         if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
-            $this->model('Select_matkul_model')->hapus($id);
+            $this->model('Select_matkul_model')->hapus($_POST["old_stambuk"]);
             $this->model('Select_matkul_model')->tambah($_POST);
             Flasher::setFlash('Berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');

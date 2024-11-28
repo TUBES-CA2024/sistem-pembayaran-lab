@@ -28,9 +28,24 @@ class Pembayaran_model
     public function tampil()
     {
         $this->db->query("SELECT * FROM pembayaran ORDER BY idpembayaran ASC");
-        $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.iduser, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk ORDER BY pembayaran.idpembayaran DESC");
-
+        $this->db->query("
+        SELECT 
+        pembayaran.idpembayaran, 
+        pembayaran.stambuk, 
+        pembayaran.waktupembayaran, 
+        pembayaran.nominal, 
+        pembayaran.status, 
+        mahasiswa.nama,
+        GROUP_CONCAT(matakuliah.namamatakuliah SEPARATOR ', ') AS matkul
+        FROM pembayaran
+        JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk
+        LEFT JOIN matkul_select ON pembayaran.stambuk = matkul_select.stambuk
+        LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah
+        GROUP BY pembayaran.idpembayaran
+        ORDER BY pembayaran.idpembayaran DESC
+        ");
         return $this->db->resultSet();
+        // $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.iduser, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk ORDER BY pembayaran.idpembayaran DESC");
     }
 
 
