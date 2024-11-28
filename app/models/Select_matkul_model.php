@@ -11,13 +11,16 @@ class Select_matkul_model
 
     public function tambah($data)
     {
-        foreach ($data['kodematakuliah'] as $km) {
-            $query = "INSERT INTO matkul_select VALUES('', :stambuk, :kodematakuliah)";
-            $this->db->query($query);
-            $this->db->bind('stambuk', $data['stambuk']);
-            $this->db->bind('kodematakuliah', $km);
+        if (isset($data['kodematakuliah']) && is_array($data['kodematakuliah'])) {
+            foreach ($data['kodematakuliah'] as $km) {
+                $query = "INSERT INTO matkul_select VALUES('', :stambuk, :kodematakuliah, :idpembayaran)";
+                $this->db->query($query);
+                $this->db->bind('stambuk', $data['stambuk']);
+                $this->db->bind('kodematakuliah', $km);
+                $this->db->bind('idpembayaran', $data['idpembayaran']);
 
-            $this->db->execute();
+                $this->db->execute();
+            }
         }
 
         return $this->db->rowCount();
@@ -25,9 +28,9 @@ class Select_matkul_model
 
     public function hapus($id)
     {
-        $query = "DELETE FROM matkul_select WHERE stambuk = :stambuk";
+        $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
         $this->db->query($query);
-        $this->db->bind('stambuk', $id);
+        $this->db->bind('idpembayaran', $id);
 
         $this->db->execute();
 
@@ -56,13 +59,11 @@ class Select_matkul_model
 
     public function edit($data)
     {
-        $query = "UPDATE matakuliah SET kodematakuliah= :kodematakuliah, namamatakuliah= :namamatakuliah, sks= :sks WHERE kodematakuliah= :old_kodematakuliah";
+        $query = "UPDATE matkul_select SET idpembayaran = :idpembayaran WHERE stambuk = :stambuk AND kodematakuliah = :kodematakuliah";
         $this->db->query($query);
+        $this->db->bind('idpembayaran', $data['idpembayaran']);
+        $this->db->bind('stambuk', $data['stambuk']);
         $this->db->bind('kodematakuliah', $data['kodematakuliah']);
-        $this->db->bind('namamatakuliah', $data['namamatakuliah']);
-        $this->db->bind('sks', $data['sks']);
-        $this->db->bind('old_kodematakuliah', $data['old_kodematakuliah']);
-
         $this->db->execute();
 
         return $this->db->rowCount();

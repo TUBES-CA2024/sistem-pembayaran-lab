@@ -58,28 +58,25 @@ class Pembayaranmh extends Controller
                 exit;
             }
 
-            // Hitung total nominal
-            $totalNominal = count($_POST['kodematakuliah']) * 55000;
 
-            $data = [
-                'stambuk' => $stambuk,
-                'nominal' => $totalNominal,
-                'status' => $_POST['status'],
-                'waktupembayaran' => $_POST['waktupembayaran'],
-            ];
+            // Menambahkan data ke tabel pembayaran
+            $idpembayaran = $this->model('Pembayaran_model')->tambah($_POST);
 
-            if ($this->model('Pembayaran_model')->tambah($data) > 0) {
-                Flasher::setFlash('Pembayaran berhasil', 'ditambahkan', 'success');
+            if ($idpembayaran > 0) {
+                // Jika pembayaran berhasil ditambahkan, ambil idpembayaran
+                $_POST['idpembayaran'] = $idpembayaran;
+
+                // Menambahkan data ke tabel matkul_select
+                $this->model('Select_matkul_model')->tambah($_POST);
+
+                Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
                 header('Location: ' . BASEURL . '/Pembayaranmh');
                 exit;
             } else {
-                Flasher::setFlash('Gagal menambahkan', 'pembayaran', 'danger');
+                Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
                 header('Location: ' . BASEURL . '/Pembayaranmh');
                 exit;
             }
-        } else {
-            header("Location:" . BASEURL . "/Beranda");
-            exit();
         }
     }
 }

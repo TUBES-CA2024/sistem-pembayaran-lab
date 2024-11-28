@@ -21,8 +21,8 @@ class Pembayaran_model
         $this->db->bind('status', $data['status']);
 
         $this->db->execute();
-
-        return $this->db->rowCount();
+        return $this->db->lastInsertId();
+        // return $this->db->rowCount();
     }
 
     public function tampil()

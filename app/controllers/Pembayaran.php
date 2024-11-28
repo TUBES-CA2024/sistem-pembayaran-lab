@@ -24,8 +24,16 @@ class Pembayaran extends Controller
 
     public function tambah()
     {
-        if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
+        // Menambahkan data ke tabel pembayaran
+        $idpembayaran = $this->model('Pembayaran_model')->tambah($_POST);
+
+        if ($idpembayaran > 0) {
+            // Jika pembayaran berhasil ditambahkan, ambil idpembayaran
+            $_POST['idpembayaran'] = $idpembayaran;
+
+            // Menambahkan data ke tabel matkul_select
             $this->model('Select_matkul_model')->tambah($_POST);
+
             Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
@@ -34,12 +42,22 @@ class Pembayaran extends Controller
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         }
+        // if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
+        //     $this->model('Select_matkul_model')->tambah($_POST);
+        //     Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+        //     header('Location: ' . BASEURL . '/Pembayaran');
+        //     exit;
+        // } else {
+        //     Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+        //     header('Location: ' . BASEURL . '/Pembayaran');
+        //     exit;
+        // }
     }
 
     public function hapus($id)
     {
-        $this->model('Mahasiswa_model')->hapus($id);
         $this->model('Select_matkul_model')->hapus($id);
+        $this->model('Mahasiswa_model')->hapus($id);
         if ($this->model('Pembayaran_model')->hapus($id) > 0) {
             Flasher::setFlash('Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
@@ -56,10 +74,10 @@ class Pembayaran extends Controller
         echo json_encode($this->model('Pembayaran_model')->tampilById($_POST['id']));
     }
 
-    public function editPembayaran()
+    public function editPembayaran($id)
     {
         if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
-            $this->model('Select_matkul_model')->hapus($_POST["old_stambuk"]);
+            $this->model('Select_matkul_model')->hapus($id);
             $this->model('Select_matkul_model')->tambah($_POST);
             Flasher::setFlash('Berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
