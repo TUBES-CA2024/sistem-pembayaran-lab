@@ -103,6 +103,7 @@
                         foreach ($data['history'] as $history):
                             $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
                             $formattedTagihan = number_format($history['tagihan'], 0, ',', '.');
+                            $matkul = $history['matkul'] ?? 'Tidak diketahui'; // Pastikan ada data matkul
                         ?>
                             <tr>
                                 <td><?= $no++; ?></td>
@@ -123,9 +124,117 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="text-center mt-3">
-            <button class="btn btn-primary" onclick="window.print()">Cetak Pembayaran</button>
-        </div>
     </div>
 </div>
+<div class="text-center mt-3">
+    <button class="btn btn-primary" onclick="printPembayaran()">Cetak Pembayaran</button>
+</div>
+<div id="print-area" style="display: none;">
+    <h2 class="text-center">Data Pembayaran Laboratorium Tahun Akademik 2024/2025</h2>
+    <p><strong>Stambuk</strong>: <?= $data['pembayaran'][0]['stambuk'] ?? ''; ?></p>
+    <p><strong>Nama</strong>: <?= $data['pembayaran'][0]['nama'] ?? ''; ?></p>
+    <p><strong>Program Studi</strong>: <?= $data['mahasiswa']['prodi'] ?? ''; ?></p>
+
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Matakuliah</th>
+                <th>Tanggal Pembayaran</th>
+                <th>Nominal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $totalNominal = 0;
+            $no = 1;
+            foreach ($data['pembayaran'] as $pmb) :
+                // Hanya menampilkan pembayaran dengan status "Lunas"
+                if ($pmb['status'] === 'Lunas') {
+                    $totalNominal += $pmb['nominal'];
+                    $formattedDate = ($pmb['waktupembayaran'] !== '0000-00-00' && $pmb['waktupembayaran'] !== '')
+                        ? date('d-m-Y', strtotime($pmb['waktupembayaran']))
+                        : '-';
+            ?>
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $pmb['matkul'] ?? ''; ?></td>
+                        <td><?= $formattedDate; ?></td>
+                        <td>Rp. <?= number_format($pmb['nominal'], 2, ',', '.'); ?></td>
+                    </tr>
+            <?php
+                }
+            endforeach;
+            ?>
+            <tr>
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>Rp. <?= number_format($totalNominal, 2, ',', '.'); ?></strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="print-area" style="display: none;">
+    <h2 class="text-center">Data Pembayaran Laboratorium Tahun Akademik 2024/2025</h2>
+    <p><strong>Stambuk</strong>: <?= $data['pembayaran'][0]['stambuk'] ?? ''; ?></p>
+    <p><strong>Nama</strong>: <?= $data['pembayaran'][0]['nama'] ?? ''; ?></p>
+    <p><strong>Program Studi</strong>: <?= $data['prodi'] ?? ''; ?></p>
+
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Matakuliah</th>
+                <th>Tanggal Pembayaran</th>
+                <th>Nominal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $totalNominal = 0;
+            $no = 1;
+            foreach ($data['pembayaran'] as $pmb) :
+                // Menampilkan hanya data dengan status "Lunas"
+                if ($pmb['status'] === 'Lunas') {
+                    $totalNominal += $pmb['nominal'];
+                    $formattedDate = ($pmb['waktupembayaran'] !== '0000-00-00' && $pmb['waktupembayaran'] !== '')
+                        ? date('d-m-Y', strtotime($pmb['waktupembayaran']))
+                        : '-';
+            ?>
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $pmb['matkul'] ?? ''; ?></td>
+                        <td><?= $formattedDate; ?></td>
+                        <td>Rp. <?= number_format($pmb['nominal'], 2, ',', '.'); ?></td>
+                    </tr>
+            <?php
+                }
+            endforeach;
+            ?>
+            <tr>
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>Rp. <?= number_format($totalNominal, 2, ',', '.'); ?></strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    function printPembayaran() {
+        const printArea = document.getElementById('print-area');
+        const originalContent = document.body.innerHTML;
+
+        // Menampilkan area print (menyembunyikan elemen lain)
+        printArea.style.display = 'block';
+        document.body.innerHTML = printArea.outerHTML; // Mengganti seluruh konten body dengan area print
+
+        // Mencetak halaman
+        window.print();
+
+        // Mengembalikan konten asli setelah print selesai
+        document.body.innerHTML = originalContent;
+
+        // Memuat ulang halaman untuk memperbaiki tampilan
+        location.reload();
+    }
+</script>

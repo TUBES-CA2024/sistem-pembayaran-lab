@@ -6,14 +6,15 @@ class Pembayaranmh extends Controller
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
+            $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['title'] = 'Pembayaran';
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk_pmb($stambuk);
+            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk);
-            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($stambuk);
-            // $data['countpembayaran'] = count($data['pembayaran']);
-            // $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+            $data['matkul'] = $this->model('Matkul_model')->tampil();
+            $data['prodi'] = $mahasiswa['prodi'];
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -57,7 +58,6 @@ class Pembayaranmh extends Controller
                 header('Location: ' . BASEURL . '/Pembayaranmh/registrasi');
                 exit;
             }
-
 
             // Menambahkan data ke tabel pembayaran
             $idpembayaran = $this->model('Pembayaran_model')->tambah($_POST);
