@@ -59,8 +59,25 @@
                             <td>Rp. <?= $pmb['nominal']; ?></td>
                             <td><?= $pmb['status']; ?></td>
                             <td>
-                                <button class="btn-edit edit-pembayaran" role="button" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></button>
-                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
+                                <a
+                                    class="btn-edit"
+                                    href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['stambuk'] ?>"
+                                    role="button"
+                                    method="POST">
+                                    <img
+                                        src="<?= BASEURL ?>/assets/img/edit.png"
+                                        alt="icon-edit">
+                                </a>
+                                <!-- data-id="<?= $pmb['idpembayaran']; ?>" -->
+                                <button
+                                    class="btn-delete"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>">
+                                    <img
+                                        src="<?= BASEURL ?>/assets/img/delete.png"
+                                        alt="icon-delete">
+                                </button>
                             </td>
 
                         </tr>
@@ -91,7 +108,7 @@
     </div>
 </div>
 
-<!-- Modal Edit Tambah-->
+<!-- Modal Tambah-->
 <div class="modal fade" id="formPembayaran" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -100,7 +117,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Pembayaran/editPembayaran" method="post">
+                <form action="<?= BASEURL; ?>/Pembayaran/tambah" method="post">
                     <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
 
@@ -155,17 +172,13 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mengambil semua elemen checkbox
         var checkboxes = document.querySelectorAll('.form-check-input');
-
-        // Mendengarkan perubahan pada setiap checkbox
         checkboxes.forEach(function(checkbox) {
             checkbox.addEventListener('change', function() {
                 updateNominal();
             });
         });
 
-        // Fungsi untuk mengupdate nilai nominal
         function updateNominal() {
             var checkedBoxCount = 0;
 
@@ -174,10 +187,8 @@
                     checkedBoxCount++;
                 }
             });
-
-            // Mengupdate nilai pada input
             var nominalInput = document.getElementById('nominalInput');
-            nominalInput.value = checkedBoxCount * 55000; // Nominal untuk satu mata kuliah
+            nominalInput.value = checkedBoxCount * 55000;
         }
     });
 </script>

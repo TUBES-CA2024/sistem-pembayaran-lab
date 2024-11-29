@@ -37,11 +37,17 @@ class Select_matkul_model
         return $this->db->rowCount();
     }
 
+    // public function tampilById($id)
+    // {
+    //     $this->db->query("SELECT matkul_select.id, matkul_select.stambuk, matkul_select.kodematakuliah, matakuliah.namamatakuliah, matakuliah.sks FROM matkul_select LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah WHERE matkul_select.stambuk = :stambuk;");
+    //     $this->db->bind('stambuk', $id);
+    //     return $this->db->resultSet();
+    // }
     public function tampilById($id)
     {
-        $this->db->query("SELECT matkul_select.id, matkul_select.stambuk, matkul_select.kodematakuliah, matakuliah.namamatakuliah, matakuliah.sks FROM matkul_select LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah WHERE matkul_select.stambuk = :stambuk;");
+        $this->db->query("SELECT * FROM matkul_select WHERE stambuk = :stambuk");
         $this->db->bind('stambuk', $id);
-        return $this->db->resultSet();
+        return $this->db->resultSet();  // Mengembalikan semua mata kuliah yang dipilih oleh mahasiswa
     }
 
     public function printMatkul($id)

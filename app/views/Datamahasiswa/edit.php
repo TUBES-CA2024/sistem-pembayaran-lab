@@ -96,37 +96,7 @@
                     </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-<!-- 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Mengambil semua elemen checkbox
-        var checkboxes = document.querySelectorAll('.form-check-input');
-
-        // Mendengarkan perubahan pada setiap checkbox
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                updateNominal();
-            });
-        });
-
-        // Fungsi untuk mengupdate nilai nominal
-        function updateNominal() {
-            var checkedBoxCount = 0;
-
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    checkedBoxCount++;
-                }
-            });
-
-            // Mengupdate nilai pada input hidden
-            var nominalInput = document.getElementById('nominalInput');
-            nominalInput.value = checkedBoxCount * 55000;
-        }
-    });
-</script> -->

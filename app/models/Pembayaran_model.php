@@ -84,10 +84,10 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    public function tampilByStambuk($stambuk)
+    public function tampilByStambuk($id)
     {
         $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk ORDER BY idpembayaran DESC");
-        $this->db->bind('stambuk', $stambuk);
+        $this->db->bind('stambuk', $id);
         return $this->db->single();
     }
 
@@ -147,5 +147,20 @@ class Pembayaran_model
     ");
         $this->db->bind('stambuk', $stambuk);
         return $this->db->single();
+    }
+    public function updateMatkul($idpembayaran, $kodematakuliah)
+    {
+        // Hapus mata kuliah yang lama
+        $this->db->query("DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran");
+        $this->db->bind('idpembayaran', $idpembayaran);
+        $this->db->execute();
+
+        // Masukkan mata kuliah yang baru
+        foreach ($kodematakuliah as $kodematakuliah_id) {
+            $this->db->query("INSERT INTO matkul_select (idpembayaran, kodematakuliah) VALUES (:idpembayaran, :kodematakuliah)");
+            $this->db->bind('idpembayaran', $idpembayaran);
+            $this->db->bind('kodematakuliah', $kodematakuliah_id);
+            $this->db->execute();
+        }
     }
 }

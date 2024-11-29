@@ -21,17 +21,28 @@ class Pembayaran extends Controller
             exit();
         }
     }
+    public function editTampil($id)
+    {
+        $data['title'] = 'Edit Pembayaran Mahasiswa';
+        $data['pembayaran'] = $this->model('Pembayaran_model')->tampilById($id);
+        $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
+        $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
+        $data['matkul'] = $this->model('Matkul_model')->tampil();
+
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar');
+        $this->view('Pembayaran/edit', $data);
+        $this->view('templates/footersidebar');
+        $this->view('templates/footer');
+    }
 
     public function tambah()
     {
-        // Menambahkan data ke tabel pembayaran
         $idpembayaran = $this->model('Pembayaran_model')->tambah($_POST);
 
         if ($idpembayaran > 0) {
-            // Jika pembayaran berhasil ditambahkan, ambil idpembayaran
             $_POST['idpembayaran'] = $idpembayaran;
 
-            // Menambahkan data ke tabel matkul_select
             $this->model('Select_matkul_model')->tambah($_POST);
 
             Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
@@ -42,16 +53,6 @@ class Pembayaran extends Controller
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         }
-        // if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
-        //     $this->model('Select_matkul_model')->tambah($_POST);
-        //     Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
-        //     header('Location: ' . BASEURL . '/Pembayaran');
-        //     exit;
-        // } else {
-        //     Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
-        //     header('Location: ' . BASEURL . '/Pembayaran');
-        //     exit;
-        // }
     }
 
     public function hapus($id)
@@ -69,23 +70,50 @@ class Pembayaran extends Controller
         }
     }
 
-    public function editTampil()
-    {
-        echo json_encode($this->model('Pembayaran_model')->tampilById($_POST['id']));
-    }
+    // public function editTampil()
+    // {
+    //     echo json_encode($this->model('Pembayaran_model')->tampilById($_POST['id']));
+    // }
 
     public function editPembayaran()
     {
-        if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
-            $this->model('Select_matkul_model')->hapus($_POST["old_stambuk"]);
-            $this->model('Select_matkul_model')->tambah($_POST);
-            Flasher::setFlash('Berhasil', 'diubah', 'success');
-            header('Location: ' . BASEURL . '/Pembayaran');
-            exit;
-        } else {
-            Flasher::setFlash('Gagal', 'diubah', 'danger');
-            header('Location: ' . BASEURL . '/Pembayaran');
-            exit;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'idpembayaran' => $_POST['idpembayaran'],
+                'stambuk' => $_POST['stambuk'],
+                'waktupembayaran' => $_POST['waktupembayaran'],
+                'status' => $_POST['status'],
+                'kodematakuliah' => isset($_POST['kodematakuliah']) ? $_POST['kodematakuliah'] : [],
+            ];
+
+            // Hitung nominal berdasarkan jumlah mata kuliah yang dipilih
+            $nominal = count($data['kodematakuliah']) * 55000;
+            $data['nominal'] = $nominal;
+
+            // Update data pembayaran
+            if ($this->model('Pembayaran_model')->edit($data) > 0) {
+                // Update mata kuliah yang dipilih
+                $this->model('Pembayaran_model')->updateMatkul($data['idpembayaran'], $data['kodematakuliah']);
+
+                Flasher::setFlash('Pembayaran', 'berhasil diperbarui', 'success');
+                header('Location: ' . BASEURL . '/Pembayaran');
+                exit;
+            } else {
+                Flasher::setFlash('Pembayaran', 'gagal diperbarui', 'danger');
+                header('Location: ' . BASEURL . '/Pembayaran');
+                exit;
+            }
         }
     }
 }
+
+  // if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
+        //     $this->model('Select_matkul_model')->tambah($_POST);
+        //     Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+        //     header('Location: ' . BASEURL . '/Pembayaran');
+        //     exit;
+        // } else {
+        //     Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+        //     header('Location: ' . BASEURL . '/Pembayaran');
+        //     exit;
+        // }
