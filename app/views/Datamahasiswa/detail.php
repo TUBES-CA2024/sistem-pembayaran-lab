@@ -38,9 +38,7 @@
                                 foreach ($data['matkul_select'] as $matkul) :
                                     $sks++;
                                 ?>
-
-                                    <input type="text" id="disabledTextInput" class="form-control mb-3" value="• <?= $matkul['namamatakuliah']; ?>">
-
+                                    <input type="text" id="disabledTextInput" class="form-control mb-3" value=" <?= $matkul['namamatakuliah']; ?>">
                                 <?php endforeach; ?>
 
                             </div>

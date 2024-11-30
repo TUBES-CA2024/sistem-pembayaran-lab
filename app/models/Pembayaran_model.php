@@ -73,10 +73,11 @@ class Pembayaran_model
 
     public function tampilById($id)
     {
-        $this->db->query("SELECT * FROM pembayaran WHERE idpembayaran= :idpembayaran");
-        $this->db->bind('idpembayaran', $id);
+        $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk");
+        $this->db->bind('stambuk', $id);
         return $this->db->single();
     }
+
     public function gettampilByPembayaran($id)
     {
         $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");

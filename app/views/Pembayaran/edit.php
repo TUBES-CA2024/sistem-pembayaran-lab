@@ -3,8 +3,10 @@
     <div class=" row mt-5 ms-3 mb-2 ">
         <div class="col-12 d-flex justify-content-between">
             <h5>Edit Pembayaran Mahasiswa</h5>
+
         </div>
     </div>
+
 
     <div class="overflow-y-auto" style="max-height: 72vh;">
         <form action="<?= BASEURL; ?>/Pembayaran/editPembayaran" method="POST">
@@ -27,7 +29,7 @@
                         <div class="mb-3">
                             <label for="input-waktupembayaran" class="form-label">Waktu Pembayaran</label>
                             <input type="date" class="form-control " id="input-waktupembayaran" name="waktupembayaran"
-                                value="<? $data['pembayaran']['waktupembayaran']; ?>" required>
+                                value="<?= $data['pembayaran']['waktupembayaran'] = date('Y-m-d', strtotime($data['pembayaran']['waktupembayaran'])); ?>" required>
                         </div>
                         <!-- Mata Kuliah -->
                         <div class="mb-3">
@@ -46,7 +48,7 @@
                         <div class="mb-3">
                             <label for="nominal" class="form-label">Nominal</label>
                             <input type="text" id="nominalInput" class="form-control" name="nominal"
-                                value="<?= $data['pembayaran']['nominal']; ?>" readonly>
+                                value="Rp. <?= number_format($data['pembayaran']['nominal'], 0, ',', '.') ?>" readonly>
                         </div>
                         <!-- Status Pembayaran -->
                         <div class="mb-3">
