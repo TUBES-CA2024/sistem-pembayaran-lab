@@ -36,6 +36,16 @@ class Select_matkul_model
 
         return $this->db->rowCount();
     }
+    public function hapusByIdPembayaran($idpembayaran)
+    {
+
+        $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
+        $this->db->query($query);
+        $this->db->bind('idpembayaran', $idpembayaran);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 
     public function tampilMatkul($id)
     {

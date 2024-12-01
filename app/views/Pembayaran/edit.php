@@ -36,7 +36,11 @@
                             <label for="matkul" class="form-label">Mata Kuliah</label>
                             <?php foreach ($data['matkul'] as $matkul) : ?>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="kodematakuliah[]" value="<?= $matkul['kodematakuliah']; ?>"
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="kodematakuliah[]"
+                                        value="<?= $matkul['kodematakuliah']; ?>"
                                         <?= in_array($matkul['kodematakuliah'], array_column($data['matkul_select'], 'kodematakuliah')) ? 'checked' : ''; ?>>
                                     <label class="form-check-label" for="kodematakuliah-<?= $matkul['kodematakuliah']; ?>">
                                         <?= $matkul['namamatakuliah']; ?>
