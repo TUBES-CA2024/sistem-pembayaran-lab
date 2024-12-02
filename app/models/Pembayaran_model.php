@@ -114,8 +114,8 @@ class Pembayaran_model
 
         $this->db->execute();
 
-        // return $this->db->rowCount();
-        return $this->db->lastInsertId();
+        return $this->db->rowCount();
+        // return $this->db->lastInsertId();
     }
 
     public function countPembayaran()

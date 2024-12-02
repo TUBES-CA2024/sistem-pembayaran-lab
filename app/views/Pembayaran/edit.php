@@ -52,7 +52,7 @@
                         <div class="mb-3">
                             <label for="nominal" class="form-label">Nominal</label>
                             <input type="text" id="nominalInput" class="form-control" name="nominal"
-                                value="Rp. <?= number_format($data['pembayaran']['nominal'], 0, ',', '.') ?>" readonly>
+                                value="<?= number_format($data['pembayaran']['nominal'], 0, ',', '.') ?>" readonly>
                         </div>
                         <!-- Status Pembayaran -->
                         <div class="mb-3">
@@ -73,3 +73,26 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var checkboxes = document.querySelectorAll('.form-check-input');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                updateNominal();
+            });
+        });
+
+        function updateNominal() {
+            var checkedBoxCount = 0;
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checkedBoxCount++;
+                }
+            });
+            var nominalInput = document.getElementById('nominalInput');
+            nominalInput.value = checkedBoxCount * 55000;
+        }
+    });
+</script>
