@@ -44,6 +44,7 @@ class Pembayaran_model
         GROUP BY pembayaran.idpembayaran
         ORDER BY pembayaran.idpembayaran DESC
         ");
+        // $this->db->bind('stambuk', $stambuk);
         return $this->db->resultSet();
         // $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.iduser, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk ORDER BY pembayaran.idpembayaran DESC");
     }
@@ -114,8 +115,8 @@ class Pembayaran_model
 
         $this->db->execute();
 
-        return $this->db->rowCount();
-        // return $this->db->lastInsertId();
+        // return $this->db->rowCount();
+        return $this->db->lastInsertId();
     }
 
     public function countPembayaran()
@@ -164,5 +165,25 @@ class Pembayaran_model
             $this->db->bind('kodematakuliah', $kodematakuliah_id);
             $this->db->execute();
         }
+    }
+    public function getPembayaranByStambuk($stambuk)
+    {
+        $this->db->query("
+        SELECT 
+            pembayaran.idpembayaran, 
+            pembayaran.stambuk, 
+            pembayaran.waktupembayaran, 
+            pembayaran.nominal, 
+            pembayaran.status, 
+            GROUP_CONCAT(matakuliah.namamatakuliah SEPARATOR ', ') AS matkul
+        FROM pembayaran
+        LEFT JOIN matkul_select ON pembayaran.stambuk = matkul_select.stambuk
+        LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah
+        WHERE pembayaran.stambuk = :stambuk AND pembayaran.status = 'Lunas'
+        GROUP BY pembayaran.idpembayaran
+        ORDER BY pembayaran.waktupembayaran DESC
+    ");
+        $this->db->bind('stambuk', $stambuk);
+        return $this->db->resultSet();
     }
 }
