@@ -7,14 +7,14 @@
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Mata Kuliah</h5>
-                <h2 class="card-subtitle mb-2"><?=$data['countmatkul']['jumlahMatkul']?></h2>
+                <h2 class="card-subtitle mb-2"><?= $data['countmatkul']['jumlahMatkul'] ?></h2>
                 <p class="card-text">Jumlah Mata Kuliah</p>
             </div>
         </div>
     </div>
 </div>
 <div class="container-user col-12 mx-auto">
-    <div class="overflow-y-auto p-4" style="max-height: 71vh;">
+    <div class="overflow-y-auto p-4" style="max-height: 81vh;">
         <div class="row">
             <div class="col-lg-6 mb-2">
                 <?php General::flash(); ?>
@@ -52,8 +52,8 @@
                                 <button class="col btn-delete delete-matkul" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $matkul['kodematakuliah']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
                         </tr>
-                         <!-- Modal Delete -->
-                         <div class="modal fade" id="modalDelete<?= $matkul['kodematakuliah']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- Modal Delete -->
+                        <div class="modal fade" id="modalDelete<?= $matkul['kodematakuliah']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">

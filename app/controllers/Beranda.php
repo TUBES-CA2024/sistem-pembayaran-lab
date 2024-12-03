@@ -11,6 +11,7 @@ class Beranda extends Controller
                 $data['mahasiswa'] = $this->model('Mahasiswa_model')->countMahasiswa();
                 $data['user'] = $this->model('User_model')->countUser();
                 $data['matkul'] = $this->model('Matkul_model')->countMatkul();
+                $data['kelas'] = $this->model('Kelas_model')->countKelas();
                 $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
                 $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
 

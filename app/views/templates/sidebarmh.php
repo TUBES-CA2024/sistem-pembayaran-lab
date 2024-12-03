@@ -2,17 +2,17 @@
 <body?>
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-0 px-0 bg-info">
+            <div class="col-auto col-md-4 col-xl-2  bg-info">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="<?= BASEURL ?>/Berandamh" class="d-flex align-items-center pb-3 mb-md-5 me-md-auto text-white text-decoration-none mt-3">
                         <i class="fs-4 me-2"><img style="width: 60px; height: auto" src="<?= BASEURL ?>/assets/img/logo-sipemla.png" alt="logo-sipemla" /></i>
                         <span class="fs-5 d-none d-sm-inline">SIPEMLA</span>
                     </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
                             <a href="<?= BASEURL ?>/Berandamh" class="nav-link align-middle px-2">
                                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/Beranda-icon.png" alt="logo-sipemla" /></i>
-                                <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                                <span>Dashboard</span>
                             </a>
                         </li>
                         <li>

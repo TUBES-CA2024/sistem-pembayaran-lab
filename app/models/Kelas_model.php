@@ -82,4 +82,9 @@ class Kelas_model
 
         return $this->db->rowCount();
     }
+    public function countKelas()
+    {
+        $this->db->query("SELECT COUNT(idkelas) AS jumlahKelas FROM kelas");
+        return $this->db->single();
+    }
 }

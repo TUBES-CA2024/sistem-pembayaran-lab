@@ -18,7 +18,7 @@
           <div class="container1 collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-              <a class="nav-link" href="http://localhost/SIPEMLA/Beranda">Beranda</a>
+                <a class="nav-link" href="http://localhost/SIPEMLA/Beranda">Beranda</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="http://localhost/SIPEMLA/Datamahasiswa">Data Mahasiswa</a>
@@ -34,4 +34,4 @@
         </div>
       </nav>
 
-    <script src="<?=BASEURL?>assets/js/navbar.js"></script>
+      <script src="<?= BASEURL ?>assets/js/navbar.js"></script>

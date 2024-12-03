@@ -7,7 +7,6 @@ class Coba
         echo 'coba';
         require_once 'app/views/' . $view . '.php';
     }
-
     public function model($model)
     {
         require_once 'app/models/' . $model . '.php';
@@ -17,7 +16,6 @@ class Coba
 
 class Flasher
 {
-
     public static function setFlash($pesan, $aksi, $tipe)
     {
         $_SESSION['flash'] = [

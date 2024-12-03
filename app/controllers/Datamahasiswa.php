@@ -106,31 +106,4 @@ class Datamahasiswa extends Controller
             exit;
         }
     }
-
-    public function tambahKelas()
-    {
-        if ($this->model('Kelas_model')->tambahkls($_POST) > 0) {
-            Flasher::setFlash('Kelas berhasil', 'ditambahkan', 'success');
-            header('Location: ' . BASEURL . '/Datamahasiswa');
-            exit;
-        } else {
-            Flasher::setFlash('Gagal menambahkan', 'kelas', 'danger');
-            header('Location: ' . BASEURL . '/Datamahasiswa');
-            exit;
-        }
-    }
-    public function hapusKelas($id)
-    {
-        $this->model('Pembayaran_model')->hapusByStambuk($id);
-        $this->model('Select_matkul_model')->hapus($id);
-        if ($this->model('Kelas_model')->hapuskls($id) > 0) {
-            General::setFlash('Data Berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/Datamahasiswa');
-            exit;
-        } else {
-            General::setFlash('Data Gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/Datamahasiswa');
-            exit;
-        }
-    }
 }

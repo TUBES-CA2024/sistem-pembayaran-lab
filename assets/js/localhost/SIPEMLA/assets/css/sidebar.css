@@ -22,11 +22,13 @@ body {
 
 .sidebar-logo h5 {
   padding: 10px;
-  margin: 0; /* Remove default margin for h5 */
+  margin: 0;
+  /* Remove default margin for h5 */
 }
 
 .sidebar-logo img {
-  width: 50px; /* Ubah sesuai kebutuhan */
+  width: 50px;
+  /* Ubah sesuai kebutuhan */
   height: auto;
 }
 

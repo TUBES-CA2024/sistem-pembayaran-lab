@@ -6,7 +6,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed; */
-  background-color: #cad6ff; /* Nilai transparansi diatur melalui alpha (0-1) */
+  background-color: #cad6ff;
+  /* Nilai transparansi diatur melalui alpha (0-1) */
+
 }
 
 input::-webkit-outer-spin-button,

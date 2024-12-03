@@ -50,6 +50,22 @@
             </a>
         </div>
         <div class="col-lg-3 p-2">
+            <a href="<?= BASEURL ?>/Kelas" class="nav-link">
+                <div class="card p-3 bg-light shadow-lg text-body-secondary">
+                    <div class="row">
+                        <div class="col-7 card-body">
+                            <h6 class="card-subtitle mb-2">Kelas</h6>
+                            <h2 class="card-title"><?= $data['kelas']['jumlahKelas'] ?></h2>
+                            <p class="card-text">Jumlah</p>
+                        </div>
+                        <div class="col-5 align-self-center">
+                            <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="80px">
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 p-2">
             <a href="<?= BASEURL ?>/Pembayaran" class="nav-link">
                 <div class="card p-3 bg-light shadow-lg text-body-secondary">
                     <div class="row">

@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/datamahasiswamh.css">
 <div class="container py-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <?php General::flash(); ?>
+        </div>
+    </div>
     <div class="d-flex justify-content-between align-items-start">
 
         <!-- Profile Card -->
@@ -39,7 +44,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="program" class="form-label">Tingkat & program Studi <span style="color: red;">*</span></label>
                             <select class="form-select" aria-label="Default select example" name="prodi" <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'disabled' : '' ?> required>
-                                <option value="" <?= !isset($data['mahasiswa']['prodi']) ? 'selected' : '' ?>>Pilih Prodi</option>
+                                <option value="" <?= !isset($data['mahasiswa']['prodi']) ? 'selected disabled' : '' ?>>Pilih Prodi</option>
                                 <option value="Teknik Informatika" <?= isset($data['mahasiswa']['prodi']) && $data['mahasiswa']['prodi'] == 'Teknik Informatika' ? 'selected' : '' ?>>Teknik Informatika</option>
                                 <option value="Sistem Informasi" <?= isset($data['mahasiswa']['prodi']) && $data['mahasiswa']['prodi'] == 'Sistem Informasi' ? 'selected' : '' ?>>Sistem Informasi</option>
                             </select>
@@ -54,9 +59,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="stambuk" class="form-label">Stambuk <span style="color: red;">*</span></label>
-                            <!-- Input untuk menampilkan Stambuk -->
                             <input type="text" class="form-control input-stambuk" id="input-stambuk" value="<?= $_SESSION['stambuk']; ?>" readonly>
-                            <!-- Input hidden untuk mengirimkan stambuk ke server -->
                             <input type="hidden" name="stambuk" value="<?= $_SESSION['stambuk']; ?>">
                         </div>
 
@@ -78,7 +81,7 @@
                             <label for="class" class="form-label">Kelas</label>
                             <select class="form-select" aria-label="Default select example" name="idkelas"
                                 <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'disabled' : '' ?> required>
-                                <option value="" <?= !isset($data['mahasiswa']['idkelas']) ? 'selected' : '' ?>>Pilih Kelas</option>
+                                <option value="" <?= !isset($data['mahasiswa']['idkelas']) ? 'selected disabled' : '' ?>>Pilih Kelas</option>
                                 <?php foreach ($data['kelas'] as $kls) : ?>
                                     <option value="<?= $kls['idkelas']; ?>" <?= isset($data['mahasiswa']['idkelas']) && $data['mahasiswa']['idkelas'] == $kls['idkelas'] ? 'selected' : '' ?>><?= $kls['namekelas']; ?></option>
                                 <?php endforeach; ?>
@@ -91,7 +94,7 @@
                             <label for="jeniskelamin" class="form-label">Jenis Kelamin</label>
                             <select class="form-select" aria-label="Default select example" name="jeniskelamin"
                                 <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'disabled' : '' ?> required>
-                                <option value="" <?= !isset($data['mahasiswa']['jeniskelamin']) ? 'selected' : '' ?>>Jenis Kelamin</option>
+                                <option value="" <?= !isset($data['mahasiswa']['jeniskelamin']) ? 'selected disabled' : '' ?>>Jenis Kelamin</option>
                                 <option value="Laki-Laki" <?= isset($data['mahasiswa']['jeniskelamin']) && $data['mahasiswa']['jeniskelamin'] == 'Laki-Laki' ? 'selected' : '' ?>>Laki-Laki</option>
                                 <option value="Perempuan" <?= isset($data['mahasiswa']['jeniskelamin']) && $data['mahasiswa']['jeniskelamin'] == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
                             </select>
@@ -100,7 +103,7 @@
                             <label for="religion" class="form-label">Agama</label>
                             <select class="form-select" aria-label="Default select example" name="namaagama"
                                 <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'disabled' : '' ?> required>
-                                <option value="" <?= !isset($data['mahasiswa']['namaagama']) ? 'selected' : '' ?>>Pilih Agama</option>
+                                <option value="" <?= !isset($data['mahasiswa']['namaagama']) ? 'selected disabled' : '' ?>>Pilih Agama</option>
                                 <option value="Islam" <?= isset($data['mahasiswa']['namaagama']) && $data['mahasiswa']['namaagama'] == 'Islam' ? 'selected' : '' ?>>Islam</option>
                                 <option value="Kristen Protestan" <?= isset($data['mahasiswa']['namaagama']) && $data['mahasiswa']['namaagama'] == 'Kristen Protestan' ? 'selected' : '' ?>>Kristen Protestan</option>
                                 <option value="Kristen Katolik" <?= isset($data['mahasiswa']['namaagama']) && $data['mahasiswa']['namaagama'] == 'Kristen Katolik' ? 'selected' : '' ?>>Kristen Katolik</option>
