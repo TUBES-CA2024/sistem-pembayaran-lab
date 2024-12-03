@@ -51,7 +51,7 @@
                         <div class="mb-3">
                             <label for="nominal" class="form-label">Nominal</label>
                             <input type="text" id="nominalInput" class="form-control" name="nominal"
-                                value="<?= number_format($data['pembayaran']['nominal'], 0, ',', '.') ?>" readonly>
+                                value="<?= ($data['pembayaran']['nominal']) ?>" readonly>
                         </div>
                         <!-- Status Pembayaran -->
                         <div class="mb-3">
