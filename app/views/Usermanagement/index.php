@@ -15,7 +15,7 @@
 </div>
 
 <div class="container-user rounded col-12 mx-auto">
-    <div class="overflow-y-auto p-4" style="max-height: 81vh;">
+    <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
             <div class="col-lg-6 mb-2">
                 <?php Flasher::flash(); ?>
@@ -47,7 +47,7 @@
                             <td><?= $user['username']; ?></td>
                             <td><?= $user['role']; ?></td>
                             <td>
-                                <button class="btn-edit me-3 edit-user" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
+                                <button class="btn-edit edit-user me-1" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt=" ">
                                 </button>
                                 <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser']; ?>">

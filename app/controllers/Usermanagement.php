@@ -13,6 +13,7 @@ class Usermanagement extends Controller
             $this->view('templates/sidebar');
             $this->view('Usermanagement/index', $data);
             $this->view('templates/footersidebar');
+            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Berandakp");

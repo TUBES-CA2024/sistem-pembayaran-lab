@@ -4,17 +4,18 @@ class Matakuliah extends Controller
 {
     public function index()
     {
-        if($_SESSION['role'] == 'Admin'){
+        if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Mata Kuliah';
             $data['matkul'] = $this->model('Matkul_model')->tampil();
             $data['countmatkul'] = $this->model('Matkul_model')->countMatkul();
-    
+
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
             $this->view('Matakuliah/index', $data);
             $this->view('templates/footersidebar');
+            $this->view('templates/copyright');
             $this->view('templates/footer');
-        }else{
+        } else {
             header("Location:" . BASEURL . "/Berandakp");
             exit();
         }
@@ -49,7 +50,8 @@ class Matakuliah extends Controller
     {
         echo json_encode($this->model('Matkul_model')->tampilById($_POST['id']));
     }
-    public function editMatkul(){
+    public function editMatkul()
+    {
         if ($this->model('Matkul_model')->edit($_POST) > 0) {
             Flasher::setFlash('Berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Matakuliah');

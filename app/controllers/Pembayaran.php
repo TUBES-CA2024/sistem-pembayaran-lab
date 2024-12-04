@@ -15,6 +15,7 @@ class Pembayaran extends Controller
             $this->view('templates/sidebar');
             $this->view('Pembayaran/index', $data);
             $this->view('templates/footersidebar');
+            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");
@@ -34,6 +35,7 @@ class Pembayaran extends Controller
         $this->view('templates/sidebar');
         $this->view('Pembayaran/edit', $data);
         $this->view('templates/footersidebar');
+        $this->view('templates/copyright');
         $this->view('templates/footer');
     }
 

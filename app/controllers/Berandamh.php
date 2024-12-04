@@ -9,7 +9,6 @@ class Berandamh extends Controller
             $data['title'] = 'Beranda';
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
-            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->countMahasiswa();
             $data['user'] = $this->model('User_model')->countUser();
             $data['matkul'] = $this->model('Matkul_model')->countMatkul();
             $data['pembayaran'] = $this->model('Pembayaran_model')->countPembayaran();

@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="container-user col-12 mx-auto">
-    <div class="overflow-y-auto p-4" style="max-height: 81vh;">
+    <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
             <div class="col-lg-6">
                 <?php Flasher::flash(); ?>
@@ -58,7 +58,7 @@
                             <td><?= $pmb['status']; ?></td>
                             <td>
                                 <a
-                                    class="btn-edit"
+                                    class="btn-edit me-2"
                                     href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['stambuk'] ?>"
                                     role="button"
                                     method="POST">

@@ -15,9 +15,9 @@
 </div>
 
 <div class="container-fluid container-user rounded col-12 mx-auto">
-    <div class="overflow-y-auto p-3" style="max-height: 81vh;">
+    <div class="overflow-y-auto p-2" style="max-height: 75vh;">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <?php General::flash(); ?>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="text-start mb-3">
                 <button class="btn btn-success opacity-75" type="submit" data-bs-toggle="modal" data-bs-target="#formMahasiswa"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Tambah</button>
             </div>
-            <table id="myTable" class="table table-bordered table-striped " style="width:100%">
+            <table id="myTable" class="table table-striped table-bordered " style="width:100%">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -60,9 +60,17 @@
                                     alt="Foto Wajah Profil"
                                     style="width:150px; height:150px; border-radius: 5%"></td>
                             <td>
-                                <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit"></a>
-                                <button class="btn-delete ms-1" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
-                                <a class="btn-detail text-decoration-none ms-1" role="button" href="<?= BASEURL; ?>/Datamahasiswa/detail/<?= $mhs['stambuk'] ?>"><img src="<?= BASEURL ?>/assets/img/detail.png" alt="icon-detail"></a>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
+                                        <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                    </a>
+                                    <a class="btn-delete" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>">
+                                        <img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete">
+                                    </a>
+                                    <a class="btn-detail" role="button" href="<?= BASEURL; ?>/Datamahasiswa/detail/<?= $mhs['stambuk'] ?>">
+                                        <img src="<?= BASEURL ?>/assets/img/detail.png" alt="icon-detail">
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         <!-- Modal Delete -->
@@ -91,7 +99,6 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 

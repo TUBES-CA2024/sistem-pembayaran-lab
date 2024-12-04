@@ -3,7 +3,7 @@
     <div class="col-12 card shadow-lg text-body-secondary bg-gradient">
         <div class="row">
             <div class="col-1 align-self-center">
-                <img src="<?= BASEURL ?>/assets/img/data-mahasiswa.png" alt="foto-card4" width="85px">
+                <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="85px">
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Kelas Mahasiswa</h5>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="container-user col-12 mx-auto">
-    <div class="overflow-y-auto p-3" style="max-height: 81vh;">
+    <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
             <div class="col-lg-6 mb-2">
                 <?php General::flash(); ?>

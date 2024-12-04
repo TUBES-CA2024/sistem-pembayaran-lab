@@ -84,7 +84,7 @@
     </div>
 
     <div class="row p-2">
-        <div class="overflow-y-auto p-3" style="max-height: 64vh;">
+        <div class="overflow-y-auto p-3" style="max-height: 75vh;">
 
             <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 860px;">
                 <div class="row">

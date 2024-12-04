@@ -15,6 +15,7 @@ class Berandakp extends Controller
             $this->view('templates/sidebarkp');
             $this->view('Berandakp/index', $data);
             $this->view('templates/footersidebar');
+            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");

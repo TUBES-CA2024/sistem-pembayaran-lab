@@ -68,8 +68,35 @@ class Mahasiswa_model
         return $this->db->resultSet();
     }
 
+    // public function hapus($id)
+    // {
+    //     $query = "DELETE FROM mahasiswa WHERE stambuk = :stambuk";
+    //     $this->db->query($query);
+    //     $this->db->bind('stambuk', $id);
+    //     $this->db->execute();
+
+    //     return $this->db->rowCount();
+    // }
     public function hapus($id)
     {
+        // Ambil data mahasiswa untuk mendapatkan nama file foto
+        $queryGetFoto = "SELECT foto FROM mahasiswa WHERE stambuk = :stambuk";
+        $this->db->query($queryGetFoto);
+        $this->db->bind('stambuk', $id);
+        $foto = $this->db->single()['foto']; // Ambil nama file foto
+
+        // Hapus file foto jika ada
+        if (!empty($foto)) {
+            // Gunakan path absolut yang benar
+            $pathFoto = __DIR__ . "/../../assets/img/profil/" . $foto; // Sesuaikan lokasi folder
+
+            // Cek apakah file benar-benar ada
+            if (file_exists($pathFoto)) {
+                unlink($pathFoto); // Hapus file
+            }
+        }
+
+        // Hapus data mahasiswa dari database
         $query = "DELETE FROM mahasiswa WHERE stambuk = :stambuk";
         $this->db->query($query);
         $this->db->bind('stambuk', $id);
@@ -77,6 +104,7 @@ class Mahasiswa_model
 
         return $this->db->rowCount();
     }
+
 
     public function tampilById($id)
     {
