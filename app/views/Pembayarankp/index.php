@@ -7,14 +7,14 @@
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Pembayaran</h5>
-                <h2 class="card-subtitle mb-2"><?=$data['countpembayaran']['jumlahPembayaran']?></h2>
+                <h2 class="card-subtitle mb-2"><?= $data['countpembayaran']['jumlahPembayaran'] ?></h2>
                 <p class="card-text">Jumlah Pembayaran</p>
             </div>
         </div>
     </div>
 </div>
 <div class="container-user col-12 mx-auto">
-    <div class="overflow-y-auto p-4" style="max-height: 71vh;">
+    <div class="overflow-y-auto p-4" style="max-height: 81vh;">
         <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 750px;">
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>

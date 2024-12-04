@@ -7,11 +7,11 @@
         </div>
     </div>
 
-    <div class="overflow-y-auto" style="max-height: 73vh;">
+    <div class="overflow-y-auto" style="max-height: 81vh;">
         <div class="container p-4">
             <div class="row rounded-4 shadow-lg">
 
-                <div class="col-12 col-md-8 mt-3 mx-auto p-2" >
+                <div class="col-12 col-md-8 mt-3 mx-auto p-2">
                     <fieldset disabled>
                         <div class="mb-3 d-flex">
                             <label for="disabledTextInput" class="form-label col-4">Stambuk Mahasiswa</label>
