@@ -11,14 +11,19 @@
                             <p class="card-text">Jumlah</p>
                         </div>
                         <div class="col-5 align-self-center">
-                            <img src="<?= BASEURL ?>/assets/img/user-management.png" alt="foto-card4" width="80px">
+                            <img
+                                src="<?= BASEURL ?>/assets/img/user-management.png"
+                                alt="foto-card4"
+                                width="80px">
                         </div>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 p-2">
-            <a href="<?= BASEURL ?>/Datamahasiswa" class="nav-link">
+            <a
+                href="<?= BASEURL ?>/Datamahasiswa"
+                class="nav-link">
                 <div class="card p-3 bg-light shadow-lg text-body-secondary">
                     <div class="row">
                         <div class="col-7 card-body">
@@ -27,14 +32,19 @@
                             <p class="card-text">Jumlah</p>
                         </div>
                         <div class="col-5 align-self-center">
-                            <img src="<?= BASEURL ?>/assets/img/data-mahasiswa.png" alt="foto-card4" width="80px">
+                            <img
+                                src="<?= BASEURL ?>/assets/img/data-mahasiswa.png"
+                                alt="foto-card4"
+                                width="80px">
                         </div>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 p-2">
-            <a href="<?= BASEURL ?>/Matakuliah" class="nav-link">
+            <a
+                href="<?= BASEURL ?>/Matakuliah"
+                class="nav-link">
                 <div class="card p-3 bg-light shadow-lg text-body-secondary">
                     <div class="row">
                         <div class="col-7 card-body">
@@ -43,14 +53,19 @@
                             <p class="card-text">Jumlah</p>
                         </div>
                         <div class="col-5 align-self-center">
-                            <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="80px">
+                            <img
+                                src="<?= BASEURL ?>/assets/img/matakuliah.png"
+                                alt="foto-card4"
+                                width="80px">
                         </div>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 p-2">
-            <a href="<?= BASEURL ?>/Kelas" class="nav-link">
+            <a
+                href="<?= BASEURL ?>/Kelas"
+                class="nav-link">
                 <div class="card p-3 bg-light shadow-lg text-body-secondary">
                     <div class="row">
                         <div class="col-7 card-body">
@@ -59,14 +74,19 @@
                             <p class="card-text">Jumlah</p>
                         </div>
                         <div class="col-5 align-self-center">
-                            <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="80px">
+                            <img
+                                src="<?= BASEURL ?>/assets/img/matakuliah.png"
+                                alt="foto-card4"
+                                width="80px">
                         </div>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 p-2">
-            <a href="<?= BASEURL ?>/Pembayaran" class="nav-link">
+            <a
+                href="<?= BASEURL ?>/Pembayaran"
+                class="nav-link">
                 <div class="card p-3 bg-light shadow-lg text-body-secondary">
                     <div class="row">
                         <div class="col-7 card-body">
@@ -75,7 +95,10 @@
                             <p class="card-text">Jumlah</p>
                         </div>
                         <div class="col-5 align-self-center">
-                            <img src="<?= BASEURL ?>/assets/img/pembayaran.png" alt="foto-card4" width="80px">
+                            <img
+                                src="<?= BASEURL ?>/assets/img/pembayaran.png"
+                                alt="foto-card4"
+                                width="80px">
                         </div>
                     </div>
                 </div>
@@ -85,13 +108,18 @@
 
     <div class="row p-2">
         <div class="overflow-y-auto p-3" style="max-height: 75vh;">
-
             <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 860px;">
                 <div class="row">
                     <div class="col-4">
                         <form action="" method="post">
-                            <button type="submit" class="btn btn-info me-2 text-white priode1" id="priode1"><i class="fa-solid fa-print" style="color: #f5f5f5;"></i> Priode 1</button>
-                            <button type="submit" class="btn btn-info text-white priode2" id="priode2"><i class="fa-solid fa-print" style="color: #f5f5f5;"></i> Priode 2</button>
+                            <button
+                                type="submit"
+                                class="btn btn-info me-2 text-white priode1"
+                                id="priode1"><i class="fa-solid fa-print" style="color: #f5f5f5;"></i>Priode 1</button>
+                            <button
+                                type="submit"
+                                class="btn btn-info text-white priode2"
+                                id="priode2"><i class="fa-solid fa-print" style="color: #f5f5f5;"></i>Priode 2</button>
                     </div>
                     <div class="col-4">
                         <select class="form-select w-50" id="sortSelect">
@@ -102,7 +130,14 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end">
                         <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" placeholder="Cari Mahasiswa..." name="cariMahasiswa" id="cariMahasiswa" autocomplete="off" onkeydown="return event.key !== 'Enter';">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Cari Mahasiswa..."
+                                name="cariMahasiswa"
+                                id="cariMahasiswa"
+                                autocomplete="off"
+                                onkeydown="return event.key !== 'Enter';">
                         </div>
                     </div>
                 </div>
@@ -116,7 +151,11 @@
                             <th class="text-center">Nominal</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">
-                                <input class="form-check-input" type="checkbox" value="" id="checkedAll" onkeydown="return event.key !== 'Enter';">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="checkedAll"
+                                    onkeydown="return event.key !== 'Enter';">
                             </th>
                         </tr>
                     </thead>
@@ -140,7 +179,14 @@
                                 <td class="text-center"><?= $formattedDate; ?></td>
                                 <td class="text-center">Rp. <?= $pmb['nominal']; ?></td>
                                 <td class="text-center"><?= $pmb['status']; ?></td>
-                                <td class="text-center"><input class="form-check-input" type="checkbox" value="<?= $pmb['stambuk']; ?>" id="checkedOne" onkeydown="return event.key !== 'Enter';" name="stambuk[]"></td>
+                                <td class="text-center">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="<?= $pmb['stambuk']; ?>"
+                                        id="checkedOne" onkeydown="return event.key !== 'Enter';"
+                                        name="stambuk[]">
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </form>

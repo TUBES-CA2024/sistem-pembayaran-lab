@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="container-user rounded col-12 mx-auto">
+<div class="container-user rounde col-12 mx-auto">
     <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
             <div class="col-lg-6 mb-2">
@@ -30,10 +30,10 @@
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Username</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,7 +122,6 @@
 </div>
 
 <script>
-    // Tampilkan atau sembunyikan field Stambuk berdasarkan Role
     function toggleStambukField() {
         const role = document.getElementById('role').value;
         const stambukField = document.getElementById('stambuk-field');

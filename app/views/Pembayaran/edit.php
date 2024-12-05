@@ -23,14 +23,11 @@
                             <label for="nama" class="form-label col-4">Nama</label>
                             <input type="text" class="form-control input-nama" id="input-nama" name="nama" placeholder="Masukkan Nama" value="<?= $data['mahasiswa']['nama']; ?>">
                         </div>
-
-                        <!-- Waktu Pembayaran -->
                         <div class="mb-3">
                             <label for="input-waktupembayaran" class="form-label">Waktu Pembayaran</label>
                             <input type="date" class="form-control " id="input-waktupembayaran" name="waktupembayaran"
                                 value="<?= $data['pembayaran']['waktupembayaran'] = date('Y-m-d', strtotime($data['pembayaran']['waktupembayaran'])); ?>" required>
                         </div>
-                        <!-- Mata Kuliah -->
                         <div class="mb-3">
                             <label for="matkul" class="form-label">Mata Kuliah</label>
                             <?php foreach ($data['matkul'] as $matkul) : ?>
@@ -47,13 +44,11 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <!-- Nominal Pembayaran -->
                         <div class="mb-3">
                             <label for="nominal" class="form-label">Nominal</label>
                             <input type="text" id="nominalInput" class="form-control" name="nominal"
                                 value="<?= ($data['pembayaran']['nominal']) ?>" readonly>
                         </div>
-                        <!-- Status Pembayaran -->
                         <div class="mb-3">
                             <label for="input-status" class="form-label">Status</label>
                             <select class="form-select" id="input-status" name="status" required>

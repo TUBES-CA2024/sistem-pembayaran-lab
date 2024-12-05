@@ -10,7 +10,10 @@
                         <p class="card-text mb-2">Mahasiswa</p>
                     </div>
                     <div class="me-0">
-                        <img src="<?= BASEURL ?>/assets/img/profil-icons.png" alt="foto-card4" width="110px">
+                        <img
+                            src="<?= BASEURL ?>/assets/img/profil-icons.png"
+                            alt="foto-card4"
+                            width="110px">
                     </div>
                 </div>
             </div>
@@ -26,7 +29,10 @@
                         <p class="card-text mb-2">Jumlah</p>
                     </div>
                     <div class="me-0">
-                        <img src="<?= BASEURL ?>/assets/img/matkulmh-icons.png" alt="foto-card4" width="110px">
+                        <img
+                            src="<?= BASEURL ?>/assets/img/matkulmh-icons.png"
+                            alt="foto-card4"
+                            width="110px">
                     </div>
                 </div>
             </div>
@@ -42,7 +48,10 @@
                         <p class="card-text mb-2">Mahasiswa</p>
                     </div>
                     <div class="mb-0">
-                        <img src="<?= BASEURL ?>/assets/img/pembayaranmh-icons.png" alt="foto-card4" width="110px">
+                        <img
+                            src="<?= BASEURL ?>/assets/img/pembayaranmh-icons.png"
+                            alt="foto-card4"
+                            width="110px">
                     </div>
                 </div>
             </div>

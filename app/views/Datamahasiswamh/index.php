@@ -21,7 +21,11 @@
                         style="width:150px; height:150px; border-radius:50%;">
                     <form action="<?= BASEURL; ?>/Datamahasiswamh/updateFotoMahasiswa" method="POST" enctype="multipart/form-data" class="position-absolute" style="bottom: 10px; right: 120px;">
                         <label for="upload-foto" class="upload-photo-icon">
-                            <img src="<?= BASEURL ?>/assets/img/upload-icons.png" alt="Upload Icon" class="edit-icon bg-light rounded-circle border p-1 shadow" width="30px">
+                            <img
+                                src="<?= BASEURL ?>/assets/img/upload-icons.png"
+                                alt="Upload Icon"
+                                class="edit-icon bg-light rounded-circle border p-1 shadow"
+                                width="30px">
                         </label>
                         <input type="file" id="upload-foto" name="foto" accept="image/*" onchange="previewAndSubmit(this)" hidden>
                     </form>
@@ -31,8 +35,14 @@
                 <p class="card-text"><?= $_SESSION['stambuk']; ?></p>
                 <p class="card-text text-muted"><?= isset($data['mahasiswa']['prodi']) && !empty($data['mahasiswa']['prodi']) ? $data['mahasiswa']['prodi'] : 'Prodi belum diisi'; ?></p>
                 <hr>
-                <p><img src="<?= BASEURL ?>/assets/img/email-icons.png" alt="Email Icon" width="25"> <?= isset($data['mahasiswa']['email']) && !empty($data['mahasiswa']['email']) ? $data['mahasiswa']['email'] : 'Email belum diisi'; ?></p>
-                <p><img src="<?= BASEURL ?>/assets/img/phone-icons.png" alt="Phone Icon" width="25"> <?= isset($data['mahasiswa']['telepon']) && !empty($data['mahasiswa']['telepon']) ? $data['mahasiswa']['telepon'] : 'Telepon belum diisi'; ?></p>
+                <p><img
+                        src="<?= BASEURL ?>/assets/img/email-icons.png"
+                        alt="Email Icon"
+                        width="25"> <?= isset($data['mahasiswa']['email']) && !empty($data['mahasiswa']['email']) ? $data['mahasiswa']['email'] : 'Email belum diisi'; ?></p>
+                <p><img
+                        src="<?= BASEURL ?>/assets/img/phone-icons.png"
+                        alt="Phone Icon"
+                        width="25"> <?= isset($data['mahasiswa']['telepon']) && !empty($data['mahasiswa']['telepon']) ? $data['mahasiswa']['telepon'] : 'Telepon belum diisi'; ?></p>
             </div>
         </div>
 

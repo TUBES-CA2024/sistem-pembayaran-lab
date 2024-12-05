@@ -14,30 +14,30 @@
     </div>
 </div>
 
-<div class="container-fluid container-user rounded col-12 mx-auto">
-    <div class="overflow-y-auto p-2" style="max-height: 75vh;">
+<div class="container-user rounded col-12 mx-auto">
+    <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-6 mb-2">
                 <?php General::flash(); ?>
             </div>
         </div>
-        <div class="overflow-x-auto rounded-4 card shadow-lg p-4" style="min-width: 750px;">
+        <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 750px;">
             <div class="text-start mb-3">
-                <button class="btn btn-success opacity-75" type="submit" data-bs-toggle="modal" data-bs-target="#formMahasiswa"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Tambah</button>
+                <button class="btn btn-success opacity-75" type="button" data-bs-toggle="modal" data-bs-target="#formMahasiswa"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Tambah</button>
             </div>
             <table id="myTable" class="table table-striped table-bordered " style="width:100%">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Stambuk</th>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>Agama</th>
-                        <th>JenisKelamin</th>
-                        <th>Email</th>
-                        <th>Telepon</th>
-                        <th>Foto</th>
-                        <th>Action</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Stambuk</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Kelas</th>
+                        <th class="text-center">Agama</th>
+                        <th class="text-center">JenisKelamin</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Telepon</th>
+                        <th class="text-center">Foto</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,15 +60,21 @@
                                     alt="Foto Wajah Profil"
                                     style="width:150px; height:150px; border-radius: 5%"></td>
                             <td>
-                                <div class="d-flex justify-content-center gap-2">
+                                <div class="d-flex gap-2">
                                     <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
-                                        <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                        <img
+                                            src="<?= BASEURL ?>/assets/img/edit.png"
+                                            alt="icon-edit">
                                     </a>
                                     <a class="btn-delete" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>">
-                                        <img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete">
+                                        <img
+                                            src="<?= BASEURL ?>/assets/img/delete.png"
+                                            alt="icon-delete">
                                     </a>
                                     <a class="btn-detail" role="button" href="<?= BASEURL; ?>/Datamahasiswa/detail/<?= $mhs['stambuk'] ?>">
-                                        <img src="<?= BASEURL ?>/assets/img/detail.png" alt="icon-detail">
+                                        <img
+                                            src="<?= BASEURL ?>/assets/img/detail.png"
+                                            alt="icon-detail">
                                     </a>
                                 </div>
                             </td>
@@ -114,7 +120,6 @@
                 <form action="<?= BASEURL; ?>/Datamahasiswa/tambah" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
                     <input type="hidden" name="status" value="Belum Lunas">
-                    <!-- <input type="hidden" name="waktupembayaran" value=""> -->
                     <div class="mb-3">
                         <label for="kode-stambuk" class="form-label">Stambuk</label>
                         <input type="text" class="form-control input-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk" required>
@@ -180,11 +185,9 @@
                         <input type="file" class="form-control input-foto" id="input-foto" name="foto" accept="image/*" aria-describedby="fotoHelp">
                         <div id="fotoHelp" class="form-text">Unggah file gambar dengan format JPG, JPEG, atau PNG.</div>
                     </div>
-
-            </div>
-            <div class="modal-footer modal-matkul">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Add Data</button>
+                    <div class="modal-footer modal-matkul">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Data</button>
                 </form>
             </div>
         </div>

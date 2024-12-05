@@ -3,7 +3,10 @@
     <div class="col-12 card shadow-lg text-body-secondary bg-gradient">
         <div class="row">
             <div class="col-1 align-self-center">
-                <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="85px">
+                <img
+                    src="<?= BASEURL ?>/assets/img/matakuliah.png"
+                    alt="foto-card4"
+                    width="85px">
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Kelas Mahasiswa</h5>
@@ -86,7 +89,6 @@
                         <form action="<?= BASEURL; ?>/Kelas/tambahKelas" method="post">
                             <div class="mb-3">
                                 <input type="hidden" id="idkelas" name="idkelas" required>
-
                                 <label for="namekelas" class="form-label">Kelas</label>
                                 <input type="text" class="form-control input-namekelas" id="input-namekelas" name="namekelas" placeholder="Masukkan Kelas Baru" required>
                             </div>

@@ -41,7 +41,11 @@
         <button class="btn btn-primary" onclick="printPembayaran()">Cetak Riwayat Pembayaran</button>
     </div>
     <div>
-        <a href="<?= BASEURL; ?>/Pembayaranmh" type="button" class="btn btn-danger me-3 mt-5" role="button">Back</a>
+        <a
+            href="<?= BASEURL; ?>/Pembayaranmh"
+            type="button"
+            class="btn btn-danger me-3 mt-5"
+            role="button">Back</a>
     </div>
 </div>
 
@@ -49,17 +53,9 @@
     function printPembayaran() {
         const printArea = document.getElementById('print-area');
         const originalContent = document.body.innerHTML;
-
-        // Menampilkan area print (menyembunyikan elemen lain)
         document.body.innerHTML = printArea.outerHTML;
-
-        // Mencetak halaman
         window.print();
-
-        // Mengembalikan konten asli setelah print selesai
         document.body.innerHTML = originalContent;
-
-        // Memuat ulang halaman untuk memperbaiki tampilan
         location.reload();
     }
 </script>

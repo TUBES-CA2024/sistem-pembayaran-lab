@@ -15,7 +15,6 @@
                         <?php General::flash(); ?>
                     </div>
                 </div>
-                <!-- Form dimulai di sini -->
                 <form action="<?= BASEURL; ?>/Pembayaranmh/tambah" method="post">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser']; ?>">
                     <input type="hidden" name="status" value="Belum Lunas">
@@ -45,7 +44,6 @@
                         <button type="submit" class="btn btn-primary mt-2">Daftar</button>
                     </div>
                 </form>
-                <!-- Form selesai di sini -->
             </div>
         </div>
     </div>
@@ -53,17 +51,13 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mengambil semua elemen checkbox
         var checkboxes = document.querySelectorAll('.form-check-input');
-
-        // Mendengarkan perubahan pada setiap checkbox
         checkboxes.forEach(function(checkbox) {
             checkbox.addEventListener('change', function() {
                 updateNominal();
             });
         });
 
-        // Fungsi untuk mengupdate nilai nominal
         function updateNominal() {
             var checkedBoxCount = 0;
 
@@ -72,10 +66,8 @@
                     checkedBoxCount++;
                 }
             });
-
-            // Mengupdate nilai pada input
             var nominalInput = document.getElementById('nominalInput');
-            nominalInput.value = checkedBoxCount * 55000; // Nominal untuk satu mata kuliah
+            nominalInput.value = checkedBoxCount * 55000;
         }
     });
 </script>

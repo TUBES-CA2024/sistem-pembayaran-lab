@@ -91,7 +91,11 @@
                         <input type="file" class="form-control input-foto" id="input-foto" name="foto">
                     </div>
                     <div id="fotoHelp" class="mb-3 form-text" style="margin-left: 33%;">
-                        <img id="profile-image-preview" src="<?= BASEURL . '/' . $data['mahasiswa']['foto']; ?>" alt="Foto Wajah Profil" style="width:150px; height:150px; border-radius: 5%;">
+                        <img
+                            id="profile-image-preview"
+                            src="<?= BASEURL . '/' . $data['mahasiswa']['foto']; ?>"
+                            alt="Foto Wajah Profil"
+                            style="width:150px; height:150px; border-radius: 5%;">
                         Unggah file gambar dengan format JPG, JPEG, atau PNG.
                     </div>
                     </form>

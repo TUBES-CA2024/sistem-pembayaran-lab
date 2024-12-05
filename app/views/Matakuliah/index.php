@@ -3,7 +3,10 @@
     <div class="col-12 card text-body-secondary shadow-lg bg-light bg-gradient">
         <div class="row">
             <div class="col-1 align-self-center">
-                <img src="<?= BASEURL ?>/assets/img/matakuliah.png" alt="foto-card4" width="85px">
+                <img
+                    src="<?= BASEURL ?>/assets/img/matakuliah.png"
+                    alt="foto-card4"
+                    width="85px">
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Mata Kuliah</h5>

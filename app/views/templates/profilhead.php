@@ -2,7 +2,7 @@
     <div class="col-lg-10%">
         <div class="card p-1">
             <div class="d-flex justify-content-end align-items-center">
-                <!-- Bagian Teks -->
+
                 <div class="text-end me-3">
                     <h6 class="text-primary mb-0">
                         <?= isset($data['nama']) && !empty($data['nama']) ? $data['nama'] : 'Nama belum diisi'; ?>
@@ -10,7 +10,6 @@
                     <small><?= $_SESSION['stambuk']; ?></small>
                 </div>
 
-                <!-- Bagian Foto -->
                 <div>
                     <a href="<?= BASEURL ?>/Datamahasiswamh" class="nav-link">
                         <img

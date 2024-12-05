@@ -14,11 +14,8 @@ session_start();
     <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/Login.css" />
 </head>
 
-<body>
-    <!-- <div class="mt-4 me-5 text-end">
-        <a href="<?= BASEURL; ?>/Home" role="button" class="btn btn-info opacity-75 text-white"><i class="fa-solid fa-arrow-left" style="color: #f1f2f3;"></i> Back</a>
-    </div> -->
-    <div class="container text-center">
+<body style="overflow: hidden;">
+    <div class="container text-center" style="padding-top: 9%;">
         <div class="container-home">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="cola col-md-6 d-flex justify-content-center">
@@ -34,6 +31,7 @@ session_start();
                                 <?php stambukCek::flash(); ?>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="card form-cek-pembayaran d-flex justify-content-center align-items-center">
                                 <form action="<?= BASEURL; ?>/Login/masuk" method="POST">
@@ -46,13 +44,6 @@ session_start();
                                     <div class="mb-3">
                                         <input type="password" class="form-control" id="exampleFormControlInput1" name="password" placeholder="password">
                                     </div>
-                                    <!-- <div class="mb-3">
-                                        <select class="form-select" aria-label="Default select example" name="role">
-                                            <option selected>Role</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Kepala Lab">Kepala Lab</option>
-                                        </select>
-                                    </div> -->
                                     <button type="submit" class="btn-cek">Login</button>
                                 </form>
                             </div>
