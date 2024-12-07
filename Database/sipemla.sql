@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2024 at 11:57 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Dec 03, 2024 at 02:38 PM
+-- Server version: 10.4.28-MariaDB-log
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `sipemla`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history_pembayaran`
+--
+
+CREATE TABLE `history_pembayaran` (
+  `idhistory` int(11) NOT NULL,
+  `tanggal_pembayaran` date DEFAULT NULL,
+  `nominal` decimal(10,2) DEFAULT NULL,
+  `status` enum('Lunas','Belum Lunas') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `history_pembayaran`
+--
+
+INSERT INTO `history_pembayaran` (`idhistory`, `tanggal_pembayaran`, `nominal`, `status`) VALUES
+(1, '2024-02-13', 200000.00, 'Lunas'),
+(2, '2024-11-30', 110000.00, 'Lunas'),
+(4, '2024-12-01', 200000.00, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -75,6 +97,7 @@ INSERT INTO `mahasiswa` (`stambuk`, `nama`, `prodi`, `idkelas`) VALUES
 ('13020200318', 'syahrin', 'Teknik Informatika', 6),
 ('13020210134', 'Nasrullah', 'Teknik Informatika', 1),
 ('13020210202', 'Naufal', 'Teknik Informatika', 3),
+('13020220301', 'Julisa', 'Teknik Informatika', 13),
 ('13120210004', 'arya', 'Sistem Informasi', 1),
 ('13120210005', 'furqon', 'Sistem Informasi', 1);
 
@@ -138,7 +161,8 @@ INSERT INTO `matkul_select` (`id`, `stambuk`, `kodematakuliah`) VALUES
 (66, '13120210005', '010'),
 (67, '13020210202', '008'),
 (68, '13020210202', '009'),
-(69, '13020210202', '010');
+(69, '13020210202', '010'),
+(70, '13020220301', '008');
 
 -- --------------------------------------------------------
 
@@ -149,6 +173,7 @@ INSERT INTO `matkul_select` (`id`, `stambuk`, `kodematakuliah`) VALUES
 CREATE TABLE `pembayaran` (
   `idpembayaran` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
+  `kodematakuliah` varchar(25) NOT NULL,
   `stambuk` varchar(15) NOT NULL,
   `waktupembayaran` date NOT NULL,
   `nominal` bigint(20) NOT NULL,
@@ -159,10 +184,23 @@ CREATE TABLE `pembayaran` (
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`idpembayaran`, `iduser`, `stambuk`, `waktupembayaran`, `nominal`, `status`) VALUES
-(4, 1, '13120210004', '0000-00-00', 165000, 'Belum Lunas'),
-(5, 1, '13020200318', '2024-02-13', 220000, 'Lunas'),
-(6, 1, '13020200318', '0000-00-00', 110000, 'Belum Lunas');
+INSERT INTO `pembayaran` (`idpembayaran`, `iduser`, `kodematakuliah`, `stambuk`, `waktupembayaran`, `nominal`, `status`) VALUES
+(5, 1, '001', '13020200318', '2024-02-13', 200000, 'Lunas'),
+(8, 13, '002', '13020200318', '2024-11-30', 110000, 'Lunas'),
+(14, 1, '004', '13020200318', '2024-12-01', 200000, 'Lunas');
+
+--
+-- Triggers `pembayaran`
+--
+DELIMITER $$
+CREATE TRIGGER `after_update_pembayaran` AFTER INSERT ON `pembayaran` FOR EACH ROW BEGIN
+    IF NEW.status = 'Lunas' THEN
+        INSERT INTO history_pembayaran (tanggal_pembayaran, nominal, status)
+        VALUES (NEW.waktupembayaran, NEW.nominal, NEW.status);
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -192,6 +230,12 @@ INSERT INTO `user` (`iduser`, `username`, `password`, `role`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `history_pembayaran`
+--
+ALTER TABLE `history_pembayaran`
+  ADD PRIMARY KEY (`idhistory`);
 
 --
 -- Indexes for table `kelas`
@@ -226,7 +270,8 @@ ALTER TABLE `matkul_select`
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`idpembayaran`),
   ADD KEY `iduser` (`iduser`),
-  ADD KEY `stambuk` (`stambuk`);
+  ADD KEY `stambuk` (`stambuk`),
+  ADD KEY `fk_kodematakuliah` (`kodematakuliah`);
 
 --
 -- Indexes for table `user`
@@ -239,6 +284,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `history_pembayaran`
+--
+ALTER TABLE `history_pembayaran`
+  MODIFY `idhistory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
@@ -248,13 +299,13 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `matkul_select`
 --
 ALTER TABLE `matkul_select`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -283,6 +334,7 @@ ALTER TABLE `matkul_select`
 -- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `fk_kodematakuliah` FOREIGN KEY (`kodematakuliah`) REFERENCES `matakuliah` (`kodematakuliah`),
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`iduser`),
   ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
 COMMIT;

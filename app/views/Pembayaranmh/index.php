@@ -36,10 +36,10 @@
                         <th>No</th>
                         <th>Stambuk</th>
                         <th>Nama</th>
+                        <th>Kode Matakuliah</th>
                         <th>Waktu Pembayaran</th>
                         <th>Nominal</th>
                         <th>Status</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,16 +59,15 @@
                             <td><?= $no; ?></td>
                             <td><?= $pmb['stambuk']; ?></td>
                             <td><?= $pmb['nama']; ?></td>
+                            <td><?= $pmb['kodematakuliah']; ?></td>
                             <td><?= $formattedDate; ?></td>
-                            <td>Rp. <?= $pmb['nominal']; ?></td>
-                            <td><?= $pmb['status']; ?></td>
+                            <td>Rp. <?= number_format($pmb['nominal'], 2, ',', '.'); ?></td>
                             <td>
-                                <a class="btn-edit edit-pembayaran" role="button" href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>" data-bs-toggle="modal" data-bs-target="#formPembayaran" data-id="<?= $pmb['idpembayaran']; ?>">
-                                    <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
-                                </a>
-                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $pmb['idpembayaran']; ?>">
-                                    <img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete">
-                                </button>
+                                <?php if ($pmb['status'] === 'Lunas') : ?>
+                                    <button class="btn btn-success">Lunas</button>
+                                <?php else : ?>
+                                    <button class="btn btn-danger">Belum Lunas</button>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -83,75 +82,81 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Tagihan</th>
-                        <th>Virtual Account</th>
+                        <th>Tanggal Pembayaran</th>
+                        <th>Nominal</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $historyData = [];
-
+                    // Ambil data dari tabel history_pembayaran
+                    $historyData = $this->model('Pembayaran_model')->getHistoryPembayaran(); // Pastikan model ini ada
                     $no = 1;
+
                     foreach ($historyData as $history) :
-                        $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
+                        $formattedDate = date('d-m-Y', strtotime($history['tanggal_pembayaran']));
                     ?>
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $formattedDate; ?></td>
-                            <td><?= $history['tagihan']; ?></td>
-                            <td><?= $history['virtual_account']; ?></td>
+                            <td>Rp. <?= number_format($history['nominal'], 2, ',', '.'); ?></td>
+                            <td>
+                                <?php if ($history['status'] === 'Lunas') : ?>
+                                    <button class="btn btn-success">Lunas</button>
+                                <?php else : ?>
+                                    <button class="btn btn-danger">Belum Lunas</button>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+        </div>
 
-            <div class="text-center mt-3">
-                <button class="btn btn-primary" onclick="printPembayaran()">Cetak Pembayaran</button>
-            </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" onclick="printPembayaran()">Cetak Pembayaran</button>
+        </div>
+        <div id="print-area" style="display: none;">
+            <h2 class="text-center">Data Pembayaran Laboratorium Tahun Akademik 2024/2025</h2>
+            <p><strong>Stambuk</strong>: <?= $data['pembayaran'][0]['stambuk'] ?? ''; ?></p>
+            <p><strong>Nama</strong>: <?= $data['pembayaran'][0]['nama'] ?? ''; ?></p>
+            <p><strong>Program Studi</strong>: <?= $data['pembayaran'][0]['program_studi'] ?? 'Program Studi Tidak Tersedia'; ?></p>
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Matakuliah</th>
+                        <th>Tanggal Pembayaran</th>
+                        <th>Nominal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $totalNominal = 0;
+                    $no = 1;
+                    foreach ($data['pembayaran'] as $pmb) :
+                        $totalNominal += $pmb['nominal'];
+                        $formattedDate = ($pmb['waktupembayaran'] !== '0000-00-00' && $pmb['waktupembayaran'] !== '')
+                            ? date('d-m-Y', strtotime($pmb['waktupembayaran']))
+                            : '-';
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $pmb['matakuliah'] ?? 'Tidak Tersedia'; ?></td>
+                            <td><?= $formattedDate; ?></td>
+                            <td>Rp. <?= number_format($pmb['nominal'], 2, ',', '.'); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td colspan="3"><strong>Total</strong></td>
+                        <td><strong>Rp. <?= number_format($totalNominal, 2, ',', '.'); ?></strong></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<div id="print-area" style="display: none;">
-    <h2 class="text-center">Data Pembayaran Laboratorium Tahun Akademik 2024/2025</h2>
-    <p><strong>Stambuk</strong>: <?= $data['pembayaran'][0]['stambuk'] ?? ''; ?></p>
-    <p><strong>Nama</strong>: <?= $data['pembayaran'][0]['nama'] ?? ''; ?></p>
-    <p><strong>Program Studi</strong>: <?= $data['pembayaran'][0]['program_studi'] ?? 'Program Studi Tidak Tersedia'; ?></p>
-
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Matakuliah</th>
-                <th>Tanggal Pembayaran</th>
-                <th>Nominal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $totalNominal = 0;
-            $no = 1;
-            foreach ($data['pembayaran'] as $pmb) :
-                $totalNominal += $pmb['nominal'];
-                $formattedDate = ($pmb['waktupembayaran'] !== '0000-00-00' && $pmb['waktupembayaran'] !== '') 
-                    ? date('d-m-Y', strtotime($pmb['waktupembayaran'])) 
-                    : '-';
-            ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $pmb['matakuliah'] ?? 'Tidak Tersedia'; ?></td>
-                    <td><?= $formattedDate; ?></td>
-                    <td>Rp. <?= number_format($pmb['nominal'], 2, ',', '.'); ?></td>
-                </tr>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="3"><strong>Total</strong></td>
-                <td><strong>Rp. <?= number_format($totalNominal, 2, ',', '.'); ?></strong></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
 
 <script>
     function printPembayaran() {
