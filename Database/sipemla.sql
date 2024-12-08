@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2024 at 11:57 AM
+-- Generation Time: Dec 08, 2024 at 04:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,7 +52,8 @@ INSERT INTO `kelas` (`idkelas`, `namekelas`) VALUES
 (13, 'C1'),
 (14, 'C2'),
 (15, 'C3'),
-(16, 'C4');
+(16, 'C4'),
+(24, 'A10');
 
 -- --------------------------------------------------------
 
@@ -64,19 +65,24 @@ CREATE TABLE `mahasiswa` (
   `stambuk` varchar(15) NOT NULL,
   `nama` varchar(80) NOT NULL,
   `prodi` enum('Teknik Informatika','Sistem Informasi') NOT NULL,
-  `idkelas` int(11) NOT NULL
+  `idkelas` int(11) NOT NULL,
+  `namaagama` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `telepon` varchar(15) DEFAULT NULL,
+  `jeniskelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `isCompleted` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`stambuk`, `nama`, `prodi`, `idkelas`) VALUES
-('13020200318', 'syahrin', 'Teknik Informatika', 6),
-('13020210134', 'Nasrullah', 'Teknik Informatika', 1),
-('13020210202', 'Naufal', 'Teknik Informatika', 3),
-('13120210004', 'arya', 'Sistem Informasi', 1),
-('13120210005', 'furqon', 'Sistem Informasi', 1);
+INSERT INTO `mahasiswa` (`stambuk`, `nama`, `prodi`, `idkelas`, `namaagama`, `email`, `telepon`, `jeniskelamin`, `alamat`, `foto`, `isCompleted`) VALUES
+('13020220221', 'Muhammad Akbar', 'Teknik Informatika', 3, 'Islam', 'alif@gmail.com', '082268156621', 'Laki-Laki', 'Sudiang', 'assets/img/profil/67505522c4f12.png', 1),
+('13020220222', 'Indah Purnawan', 'Sistem Informasi', 10, 'Islam', 'indah@gmail.com', '082268165521', 'Perempuan', 'Kolaka', 'assets/img/profil/675058f046fd0.jpg', 1),
+('13020220223', 'Muhammad Alif Maulana', 'Teknik Informatika', 6, 'Islam', 'alif@gmail.com', '082268156621', 'Laki-Laki', 'sudiang', 'assets/img/profil/67505490d8788.png', 1);
 
 -- --------------------------------------------------------
 
@@ -95,20 +101,21 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`kodematakuliah`, `namamatakuliah`, `sks`) VALUES
-('001', 'Algoritma Dan Pemrograman 1', 1),
-('002', 'Algoritma Dan Pemrograman 2', 1),
-('003', 'Struktur Data', 1),
-('004', 'Pengantar Teknologi Informasi', 1),
-('005', 'Basis Data 1', 1),
-('006', 'Elektronika Dasar', 1),
-('007', 'Basis Data 2', 1),
-('008', 'Pemrograman Berorientasi Objek', 1),
-('009', 'Pemrograman Web', 1),
-('010', 'Jaringan Komputer', 1),
+('001', 'Algoritma Dan Pemrograman 1', 3),
+('002', 'Algoritma Dan Pemrograman 2', 3),
+('003', 'Struktur Data', 3),
+('004', 'Pengantar Teknologi Informasi', 3),
+('005', 'Basis Data 1', 3),
+('006', 'Elektronika Dasar', 3),
+('007', 'Basis Data 2', 3),
+('008', 'Pemrograman Berorientasi Objek', 3),
+('009', 'Pemrograman Web', 3),
+('010', 'Jaringan Komputer', 3),
 ('011', 'Pemrograman Mobile', 1),
 ('012', 'Sistem Operasi', 1),
 ('013', 'Akuntansi', 1),
-('014', 'Design Grafis', 1);
+('014', 'Design Grafis', 1),
+('015', 'Sastra Mesin', 3);
 
 -- --------------------------------------------------------
 
@@ -119,26 +126,20 @@ INSERT INTO `matakuliah` (`kodematakuliah`, `namamatakuliah`, `sks`) VALUES
 CREATE TABLE `matkul_select` (
   `id` int(11) NOT NULL,
   `stambuk` varchar(15) NOT NULL,
-  `kodematakuliah` varchar(25) NOT NULL
+  `kodematakuliah` varchar(25) NOT NULL,
+  `idpembayaran` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `matkul_select`
 --
 
-INSERT INTO `matkul_select` (`id`, `stambuk`, `kodematakuliah`) VALUES
-(2, '13020200318', '004'),
-(3, '13020200318', '001'),
-(4, '13020200318', '002'),
-(5, '13020200318', '009'),
-(60, '13120210004', '010'),
-(61, '13120210004', '013'),
-(62, '13120210004', '014'),
-(65, '13120210005', '009'),
-(66, '13120210005', '010'),
-(67, '13020210202', '008'),
-(68, '13020210202', '009'),
-(69, '13020210202', '010');
+INSERT INTO `matkul_select` (`id`, `stambuk`, `kodematakuliah`, `idpembayaran`) VALUES
+(473, '13020220222', '012', 183),
+(474, '13020220223', '014', 184),
+(475, '13020220223', '015', 184),
+(476, '13020220221', '003', 185),
+(477, '13020220221', '004', 185);
 
 -- --------------------------------------------------------
 
@@ -160,9 +161,9 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`idpembayaran`, `iduser`, `stambuk`, `waktupembayaran`, `nominal`, `status`) VALUES
-(4, 1, '13120210004', '0000-00-00', 165000, 'Belum Lunas'),
-(5, 1, '13020200318', '2024-02-13', 220000, 'Lunas'),
-(6, 1, '13020200318', '0000-00-00', 110000, 'Belum Lunas');
+(183, 1, '13020220222', '2024-12-05', 55000, 'Belum Lunas'),
+(184, 1, '13020220223', '2024-12-05', 110000, 'Lunas'),
+(185, 1, '13020220221', '2024-12-31', 110000, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -174,20 +175,21 @@ CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `role` enum('Admin','Kepala Lab','Mahasiswa') DEFAULT NULL
+  `role` enum('Admin','Kepala Lab','Mahasiswa') DEFAULT NULL,
+  `stambuk` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`iduser`, `username`, `password`, `role`) VALUES
-(1, 'Admin1', 'Admin123', 'Admin'),
-(2, 'KepalaLab1', 'kepalalab1', 'Kepala Lab'),
-(3, 'KepalaLab2', 'kepalalab2', 'Kepala Lab'),
-(11, 'KepalaLab3', 'kepalalab3', 'Kepala Lab'),
-(12, '13020220223', '123', ''),
-(13, '130', 'mhs', 'Mahasiswa');
+INSERT INTO `user` (`iduser`, `username`, `password`, `role`, `stambuk`) VALUES
+(1, 'Admin', 'Admin', 'Admin', 'Admin123'),
+(2, 'KepalaLab1', 'kepalalab1', 'Kepala Lab', NULL),
+(22, '13020220301', 'mhs#2024', 'Mahasiswa', '13020220301'),
+(51, '13020220223', 'mhs#2024', 'Mahasiswa', '13020220223'),
+(54, '13020220221', 'mhs#2024', 'Mahasiswa', '13020220221'),
+(55, '13020220222', 'mhs#2024', 'Mahasiswa', '13020220222');
 
 --
 -- Indexes for dumped tables
@@ -218,7 +220,8 @@ ALTER TABLE `matakuliah`
 ALTER TABLE `matkul_select`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kodematakuliah` (`kodematakuliah`),
-  ADD KEY `stambuk` (`stambuk`);
+  ADD KEY `stambuk` (`stambuk`),
+  ADD KEY `idpembayaran` (`idpembayaran`);
 
 --
 -- Indexes for table `pembayaran`
@@ -242,25 +245,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `idkelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idkelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `matkul_select`
 --
 ALTER TABLE `matkul_select`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=478;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- Constraints for dumped tables
@@ -276,6 +279,7 @@ ALTER TABLE `mahasiswa`
 -- Constraints for table `matkul_select`
 --
 ALTER TABLE `matkul_select`
+  ADD CONSTRAINT `idpembayaran` FOREIGN KEY (`idpembayaran`) REFERENCES `pembayaran` (`idpembayaran`),
   ADD CONSTRAINT `matkul_select_ibfk_1` FOREIGN KEY (`kodematakuliah`) REFERENCES `matakuliah` (`kodematakuliah`),
   ADD CONSTRAINT `matkul_select_ibfk_2` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
 
