@@ -20,7 +20,7 @@ class Mahasiswa_model
             $fileExtension = pathinfo($file['foto']['name'], PATHINFO_EXTENSION);
             $allowedExtensions = ['jpg', 'jpeg', 'png'];
             if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
-                return 0; // Ekstensi file tidak valid
+                return 0;
             }
             $fileName = uniqid('') . '.' . $fileExtension;
             $uploadDir = 'assets/img/profil/';
