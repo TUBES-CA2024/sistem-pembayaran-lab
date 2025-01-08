@@ -64,8 +64,8 @@ class Datamahasiswa extends Controller
 
     public function hapus($id)
     {
-        $this->model('Pembayaran_model')->hapusByStambuk($id);
-        $this->model('Select_matkul_model')->hapus($id);
+        // $this->model('Pembayaran_model')->hapus($id);
+        // $this->model('Select_matkul_model')->hapus($id);
         if ($this->model('Mahasiswa_model')->hapus($id) > 0) {
             General::setFlash('Data Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
