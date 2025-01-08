@@ -193,6 +193,11 @@ class Mahasiswa_model
             if (!move_uploaded_file($fileTmpPath, $filePath)) {
                 return 0; // Gagal upload
             }
+            // Validasi ukuran file (contoh: maksimum 2MB)
+            $maxFileSize = 2 * 1024 * 1024; // 2MB
+            if ($file['foto']['size'] > $maxFileSize) {
+                return 0;
+            }
 
             // Hapus file foto lama jika ada
             if (!empty($fotoLama)) {
@@ -224,7 +229,6 @@ class Mahasiswa_model
         return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh (1 jika berhasil)
     }
 
-
     public function countMahasiswa()
     {
         $this->db->query("SELECT COUNT(stambuk) AS jumlahMahasiswa FROM mahasiswa");
@@ -239,6 +243,7 @@ class Mahasiswa_model
 
         return $this->db->rowCount() > 0; // Return true jika NIM sudah ada
     }
+
     public function getNamaByStambuk($stambuk)
     {
         $this->db->query("SELECT nama FROM mahasiswa WHERE stambuk = :stambuk");
@@ -279,6 +284,11 @@ class Mahasiswa_model
             // Pindahkan file ke folder upload
             if (!move_uploaded_file($fileTmpPath, $filePath)) {
                 return 0; // Gagal upload
+            }
+            // Validasi ukuran file (contoh: maksimum 2MB)
+            $maxFileSize = 2 * 1024 * 1024; // 2MB
+            if ($file['foto']['size'] > $maxFileSize) {
+                return 0;
             }
 
             // Hapus foto lama jika ada
