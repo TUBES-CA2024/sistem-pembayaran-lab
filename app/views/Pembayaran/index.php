@@ -62,7 +62,7 @@
                             <td>
                                 <a
                                     class="btn-edit me-2"
-                                    href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['stambuk'] ?>"
+                                    href="<?= BASEURL; ?>/Pembayaran/editTampil/<?= $pmb['idpembayaran'] ?>"
                                     role="button"
                                     method="POST">
                                     <img

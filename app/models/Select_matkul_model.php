@@ -22,7 +22,6 @@ class Select_matkul_model
                 $this->db->execute();
             }
         }
-
         return $this->db->rowCount();
     }
 
@@ -31,7 +30,6 @@ class Select_matkul_model
         $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
         $this->db->query($query);
         $this->db->bind('idpembayaran', $id);
-
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -39,7 +37,6 @@ class Select_matkul_model
 
     public function hapusByIdPembayaran($idpembayaran)
     {
-
         $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
         $this->db->query($query);
         $this->db->bind('idpembayaran', $idpembayaran);
@@ -55,10 +52,10 @@ class Select_matkul_model
         return $this->db->resultSet();
     }
 
-    public function tampilById($id)
+    public function tampilById($idpembayaran)
     {
-        $this->db->query("SELECT * FROM matkul_select WHERE stambuk = :stambuk");
-        $this->db->bind('stambuk', $id);
+        $this->db->query("SELECT * FROM matkul_select WHERE idpembayaran = :idpembayaran");
+        $this->db->bind('idpembayaran', $idpembayaran);
         return $this->db->resultSet();  // Mengembalikan semua mata kuliah yang dipilih oleh mahasiswa
     }
 
@@ -68,6 +65,7 @@ class Select_matkul_model
         $this->db->bind('stambuk', $id);
         return $this->db->resultSet();
     }
+}
 
     // public function tampil()
     // {
@@ -86,4 +84,3 @@ class Select_matkul_model
 
     //     return $this->db->rowCount();
     // }
-}

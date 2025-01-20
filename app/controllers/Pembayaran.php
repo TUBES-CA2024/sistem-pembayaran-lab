@@ -22,14 +22,15 @@ class Pembayaran extends Controller
             exit();
         }
     }
+
     public function editTampil($id)
     {
         $data['title'] = 'Edit Pembayaran Mahasiswa';
         $data['pembayaran'] = $this->model('Pembayaran_model')->tampilById($id);
-        $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-        $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
+        $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($data['pembayaran']['stambuk']);
         $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
         $data['matkul'] = $this->model('Matkul_model')->tampil();
+
 
         $this->view('templates/header', $data);
         $this->view('templates/sidebar');
@@ -76,13 +77,20 @@ class Pembayaran extends Controller
     public function editPembayaran()
     {
         $idpembayaran = $_POST['idpembayaran'];
+
+        // Hapus data mata kuliah lama terkait pembayaran ini
         $this->model('Select_matkul_model')->hapusByIdPembayaran($idpembayaran);
+
+        // Tambahkan mata kuliah baru
         $this->model('Select_matkul_model')->tambah($_POST);
+
+        // Edit data pembayaran
         if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
             Flasher::setFlash('Berhasil', 'diubah', 'success');
         } else {
             Flasher::setFlash('Gagal', 'diubah', 'danger');
         }
+
         header('Location: ' . BASEURL . '/Pembayaran');
         exit;
     }

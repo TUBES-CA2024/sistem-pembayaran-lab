@@ -117,12 +117,13 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+
+
+        </div>
+        <div class="text-center mt-3">
+            <form action="<?= BASEURL; ?>/Pembayaranmh/history" method="POST">
+                <button class="btn btn-info me-2 text-white" type="submit"><i class="fa-solid fa-print"></i> Cetak Pembayaran</button>
+            </form>
         </div>
     </div>
-</div>
-
-<div class="text-center mt-3">
-    <form action="<?= BASEURL; ?>/Pembayaranmh/history" method="POST">
-        <button class="btn btn-info me-2 text-white" type="submit"><i class="fa-solid fa-print"></i> Cetak Pembayaran</button>
-    </form>
 </div>

@@ -17,11 +17,11 @@
                         <input type="hidden" name="old_stambuk" value="<?= $data['mahasiswa']['stambuk']; ?>">
                         <div class="mb-3 d-flex">
                             <label for="kode-stambuk" class="form-label col-4">Stambuk</label>
-                            <input type="text" class="form-control kode-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk" value="<?= $data['mahasiswa']['stambuk']; ?>">
+                            <input type="text" class="form-control kode-stambuk" id="input-stambuk" name="stambuk" placeholder="Masukkan Stambuk" value="<?= $data['mahasiswa']['stambuk']; ?>" readonly>
                         </div>
                         <div class="mb-3 d-flex">
                             <label for="nama" class="form-label col-4">Nama</label>
-                            <input type="text" class="form-control input-nama" id="input-nama" name="nama" placeholder="Masukkan Nama" value="<?= $data['mahasiswa']['nama']; ?>">
+                            <input type="text" class="form-control input-nama" id="input-nama" name="nama" placeholder="Masukkan Nama" value="<?= $data['mahasiswa']['nama']; ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="input-waktupembayaran" class="form-label">Waktu Pembayaran</label>

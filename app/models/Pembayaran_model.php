@@ -73,19 +73,11 @@ class Pembayaran_model
     //USE
     public function tampilById($id)
     {
-        $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk");
-        $this->db->bind('stambuk', $id);
+        $this->db->query("SELECT * FROM pembayaran WHERE idpembayaran= :idpembayaran");
+        $this->db->bind('idpembayaran', $id);
         return $this->db->single();
     }
 
-    // public function gettampilByPembayaran($id)
-    // {
-    //     $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");
-    //     $this->db->bind('idpembayaran', $id);
-    //     return $this->db->resultSet();
-    // }
-
-    //USE
     public function tampilByStambuk($id)
     {
         $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk ORDER BY idpembayaran DESC");
@@ -93,16 +85,6 @@ class Pembayaran_model
         return $this->db->single();
     }
 
-
-    // public function tampilByStambuk_pmb($stambuk)
-    // {
-    //     $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk WHERE pembayaran.stambuk = :stambuk ORDER BY pembayaran.idpembayaran DESC");
-
-    //     $this->db->bind('stambuk', $stambuk);
-    //     return $this->db->resultSet();
-    // }
-
-    //USE
     public function edit($data)
     {
         $query = "UPDATE pembayaran SET stambuk= :stambuk, waktupembayaran= :waktupembayaran, nominal= :nominal, status= :status WHERE idpembayaran= :idpembayaran";
@@ -142,6 +124,25 @@ class Pembayaran_model
         $this->db->bind('stambuk', $stambuk);
         return $this->db->resultSet();
     }
+
+    // public function gettampilByPembayaran($id)
+    // {
+    //     $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");
+    //     $this->db->bind('idpembayaran', $id);
+    //     return $this->db->resultSet();
+    // }
+
+    //USE
+
+    // public function tampilByStambuk_pmb($stambuk)
+    // {
+    //     $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk WHERE pembayaran.stambuk = :stambuk ORDER BY pembayaran.idpembayaran DESC");
+
+    //     $this->db->bind('stambuk', $stambuk);
+    //     return $this->db->resultSet();
+    // }
+
+    //USE
 
 
     // public function getMatkulByStambuk($stambuk)
