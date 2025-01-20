@@ -36,6 +36,7 @@ class Select_matkul_model
 
         return $this->db->rowCount();
     }
+
     public function hapusByIdPembayaran($idpembayaran)
     {
 
@@ -68,21 +69,21 @@ class Select_matkul_model
         return $this->db->resultSet();
     }
 
-    public function tampil()
-    {
-        $this->db->query("SELECT matkul_select.id, matkul_select.stambuk, matakuliah.namamatakuliah, matakuliah.sks FROM matkul_select JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah;");
-        return $this->db->resultSet();
-    }
+    // public function tampil()
+    // {
+    //     $this->db->query("SELECT matkul_select.id, matkul_select.stambuk, matakuliah.namamatakuliah, matakuliah.sks FROM matkul_select JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah;");
+    //     return $this->db->resultSet();
+    // }
 
-    public function edit($data)
-    {
-        $query = "UPDATE matkul_select SET idpembayaran = :idpembayaran WHERE stambuk = :stambuk AND kodematakuliah = :kodematakuliah";
-        $this->db->query($query);
-        $this->db->bind('idpembayaran', $data['idpembayaran']);
-        $this->db->bind('stambuk', $data['stambuk']);
-        $this->db->bind('kodematakuliah', $data['kodematakuliah']);
-        $this->db->execute();
+    // public function edit($data)
+    // {
+    //     $query = "UPDATE matkul_select SET idpembayaran = :idpembayaran WHERE stambuk = :stambuk AND kodematakuliah = :kodematakuliah";
+    //     $this->db->query($query);
+    //     $this->db->bind('idpembayaran', $data['idpembayaran']);
+    //     $this->db->bind('stambuk', $data['stambuk']);
+    //     $this->db->bind('kodematakuliah', $data['kodematakuliah']);
+    //     $this->db->execute();
 
-        return $this->db->rowCount();
-    }
+    //     return $this->db->rowCount();
+    // }
 }

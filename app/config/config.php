@@ -6,7 +6,6 @@ $url = explode("/", $url);
 $baseurl = 'http://' . $url[2] . '/SIPEMLA';
 
 define('BASEURL', $baseurl);
-
 // DB
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');

@@ -37,7 +37,6 @@ class Mahasiswa_model
             $uploadDir = __DIR__ . '/../../assets/img/profil/'; // Path absolut
             $filePath = $uploadDir . $fileName;
 
-
             if (!move_uploaded_file($fileTmpPath, $filePath)) {
                 return 0;
             }
@@ -235,14 +234,14 @@ class Mahasiswa_model
         return $this->db->single();
     }
 
-    public function cekNimExists($nim)
-    {
-        $this->db->query("SELECT stambuk FROM mahasiswa WHERE stambuk = :stambuk");
-        $this->db->bind('stambuk', $nim);
-        $this->db->execute();
+    // public function cekNimExists($nim)
+    // {
+    //     $this->db->query("SELECT stambuk FROM mahasiswa WHERE stambuk = :stambuk");
+    //     $this->db->bind('stambuk', $nim);
+    //     $this->db->execute();
 
-        return $this->db->rowCount() > 0; // Return true jika NIM sudah ada
-    }
+    //     return $this->db->rowCount() > 0; // Return true jika NIM sudah ada
+    // }
 
     public function getNamaByStambuk($stambuk)
     {
