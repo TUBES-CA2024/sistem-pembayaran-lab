@@ -27,7 +27,7 @@ class Datamahasiswakp extends Controller
         if ($_SESSION['role'] == 'Kepala Lab') {
             $data['title'] = 'Detail Data Mahasiswa';
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
-            $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
+            $data['matkul_select'] = $this->model('Select_matkul_model')->tampilMatkul($id);
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarkp');

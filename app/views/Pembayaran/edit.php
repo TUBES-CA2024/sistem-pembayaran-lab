@@ -23,8 +23,8 @@
                             <label for="nama" class="form-label col-4">Nama</label>
                             <input type="text" class="form-control input-nama" id="input-nama" name="nama" placeholder="Masukkan Nama" value="<?= $data['mahasiswa']['nama']; ?>" readonly>
                         </div>
-                        <div class="mb-3">
-                            <label for="input-waktupembayaran" class="form-label">Waktu Pembayaran</label>
+                        <div class="mb-3 d-flex">
+                            <label for="input-waktupembayaran" class="form-label col-4">Waktu Pembayaran</label>
                             <input type="date" class="form-control " id="input-waktupembayaran" name="waktupembayaran"
                                 value="<?= $data['pembayaran']['waktupembayaran'] = date('Y-m-d', strtotime($data['pembayaran']['waktupembayaran'])); ?>" required>
                         </div>
