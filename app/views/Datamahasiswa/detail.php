@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="mb-3 d-flex">
-                            <label for="disabledTextInput" class="form-label col-4">Jumlah SKS Praktikum</label>
+                            <label for="disabledTextInput" class="form-label col-4">Jumlah Praktikum</label>
                             <div class="col-2">
                                 <input type="text" id="disabledTextInput" class="form-control" value="<?= $sks; ?>">
                             </div>
