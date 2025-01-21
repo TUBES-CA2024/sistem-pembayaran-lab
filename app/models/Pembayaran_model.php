@@ -59,16 +59,16 @@ class Pembayaran_model
         return $this->db->rowCount();
     }
 
-    // public function hapusByStambuk($id)
-    // {
-    //     $query = "DELETE FROM pembayaran WHERE stambuk = :stambuk";
-    //     $this->db->query($query);
-    //     $this->db->bind('stambuk', $id);
+    public function hapusByStambuk($id)
+    {
+        $query = "DELETE FROM pembayaran WHERE stambuk = :stambuk";
+        $this->db->query($query);
+        $this->db->bind('stambuk', $id);
 
-    //     $this->db->execute();
+        $this->db->execute();
 
-    //     return $this->db->rowCount();
-    // }
+        return $this->db->rowCount();
+    }
 
     //USE
     public function tampilById($id)

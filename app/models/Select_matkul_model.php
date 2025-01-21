@@ -35,6 +35,16 @@ class Select_matkul_model
         return $this->db->rowCount();
     }
 
+    public function hapusByStambuk($id)
+    {
+        $query = "DELETE FROM matkul_select WHERE stambuk = :stambuk";
+        $this->db->query($query);
+        $this->db->bind('stambuk', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function hapusByIdPembayaran($idpembayaran)
     {
         $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
