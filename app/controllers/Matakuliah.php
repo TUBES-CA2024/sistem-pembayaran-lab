@@ -50,6 +50,7 @@ class Matakuliah extends Controller
     {
         echo json_encode($this->model('Matkul_model')->tampilById($_POST['id']));
     }
+
     public function editMatkul()
     {
         if ($this->model('Matkul_model')->edit($_POST) > 0) {

@@ -18,7 +18,7 @@ $(function () {
   });
 
   // Edit User
-  $(".edit-user").on("click", function () {
+  $(document).on("click", function () {
     $("#judulModalLabel").html("Edit User");
     $("#judulModalbutton").html("Edit User");
     $(".modal-body form").attr(

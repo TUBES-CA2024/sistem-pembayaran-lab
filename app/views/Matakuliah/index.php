@@ -51,14 +51,13 @@
                             <td><?= $matkul['namamatakuliah']; ?></td>
                             <td><?= $matkul['sks']; ?></td>
                             <td>
-                                <a class="col btn-edit edit-matkul"
+                                <a class="col btn-edit edit-matkul me-2"
                                     role="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#formUser"
                                     data-id="<?= $matkul['kodematakuliah']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
                                 </a>
-
                                 <button class="col btn-delete delete-matkul" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $matkul['kodematakuliah']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
                         </tr>
@@ -91,7 +90,7 @@
     </div>
 </div>
 
-<!-- Modal-->
+<!-- Modal tambah-->
 <div class="modal fade" id="formUser" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
