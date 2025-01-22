@@ -50,12 +50,15 @@ class User_model
 
     public function edit($data)
     {
-        $query = "UPDATE user SET username= :username, password= :password, role= :role WHERE iduser= :iduser";
+        $query = "UPDATE user SET username= :username, password= :password, role= :role, stambuk= :stambuk WHERE iduser= :iduser";
         $this->db->query($query);
         $this->db->bind('iduser', $data['iduser']);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
         $this->db->bind('role', $data['role']);
+        // Jika role adalah Mahasiswa, gunakan nilai stambuk, jika bukan, gunakan NULL
+        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
+
         $this->db->execute();
 
         return $this->db->rowCount();

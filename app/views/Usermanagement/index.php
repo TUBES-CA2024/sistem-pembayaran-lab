@@ -112,7 +112,7 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="input-password" name="password" placeholder="Masukkan Password">
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer modal-user">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" id="judulModalbutton" class="btn btn-primary">Tambah User</button>
                 </form>

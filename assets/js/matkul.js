@@ -54,7 +54,7 @@ $(function () {
                 }
             },
             error: function (xhr, status, error) {
-                console.log("Error fetching data:", error);
+                console.error("Error fetching data:", error);
                 alert("Terjadi kesalahan saat mengambil data.");
             }
         });
