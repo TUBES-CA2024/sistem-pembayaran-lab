@@ -5,10 +5,10 @@
             <table id="myTable" class="table table-bordered table-striped " style="width:100%;">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Kode Mata Kuliah</th>
-                        <th>Nama Mata Kuliah</th>
-                        <th>SKS</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Kode Mata Kuliah</th>
+                        <th class="text-center">Nama Mata Kuliah</th>
+                        <th class="text-center">SKS</th>
                     </tr>
                 </thead>
                 <tbody>

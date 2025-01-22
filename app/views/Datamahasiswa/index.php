@@ -18,7 +18,7 @@
     <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
             <div class="col-lg-6 mb-2">
-                <?php General::flash(); ?>
+                <?php PesanFlash::flash(); ?>
             </div>
         </div>
         <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 750px;">
@@ -32,11 +32,8 @@
                         <th class="text-center">Stambuk</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Kelas</th>
-                        <th class="text-center">Agama</th>
-                        <th class="text-center">JenisKelamin</th>
                         <th class="text-center">Email</th>
                         <th class="text-center">Telepon</th>
-                        <th class="text-center">Foto</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -51,16 +48,10 @@
                             <td><?= $mhs['stambuk']; ?></td>
                             <td><?= $mhs['nama']; ?></td>
                             <td><?= $mhs['namekelas']; ?></td>
-                            <td><?= $mhs['namaagama']; ?></td>
-                            <td><?= $mhs['jeniskelamin']; ?></td>
                             <td><?= $mhs['email']; ?></td>
                             <td><?= $mhs['telepon']; ?></td>
-                            <td><img id="profile-image-preview"
-                                    src="<?= $mhs['foto']; ?>"
-                                    alt="Foto Wajah Profil"
-                                    style="width:150px; height:150px; border-radius: 5%"></td>
                             <td>
-                                <div class="d-flex gap-2">
+                                <div class="d-flex justify-content-center align-items-center gap-2">
                                     <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
                                         <img
                                             src="<?= BASEURL ?>/assets/img/edit.png"

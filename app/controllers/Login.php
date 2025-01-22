@@ -60,7 +60,7 @@ class Login extends Controller
             }
         } else {
             // echo "salako";
-            stambukCek::setFlash('Username atau Password', 'Salah', 'danger');
+            PesanFlash::setFlash('Username atau Password', 'Salah', 'danger');
             header('Location: ' . BASEURL . '/Login');
             exit;
         }

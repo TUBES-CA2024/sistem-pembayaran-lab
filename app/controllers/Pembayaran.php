@@ -49,11 +49,11 @@ class Pembayaran extends Controller
 
             $this->model('Select_matkul_model')->tambah($_POST);
 
-            Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+            PesanFlash::setFlash('Pembayaran Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+            PesanFlash::setFlash('Pembayaran Gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         }
@@ -64,11 +64,11 @@ class Pembayaran extends Controller
         $this->model('Select_matkul_model')->hapus($id);
         $this->model('Mahasiswa_model')->hapus($id);
         if ($this->model('Pembayaran_model')->hapus($id) > 0) {
-            Flasher::setFlash('Berhasil', 'dihapus', 'success');
+            PesanFlash::setFlash('Pembayaran Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'dihapus', 'danger');
+            PesanFlash::setFlash('Pembayaran Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         }
@@ -86,9 +86,9 @@ class Pembayaran extends Controller
 
         // Edit data pembayaran
         if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'diubah', 'success');
+            PesanFlash::setFlash('Pembayaran Berhasil', 'diubah', 'success');
         } else {
-            Flasher::setFlash('Gagal', 'diubah', 'danger');
+            PesanFlash::setFlash('Pembayaran Gagal', 'diubah', 'danger');
         }
 
         header('Location: ' . BASEURL . '/Pembayaran');

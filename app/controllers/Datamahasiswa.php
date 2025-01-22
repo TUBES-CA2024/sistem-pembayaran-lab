@@ -46,17 +46,17 @@ class Datamahasiswa extends Controller
     public function tambah()
     {
         if ($this->model('Mahasiswa_model')->tampilByid($_POST["stambuk"]) > 0) {
-            Flasher::setFlash('Data Mahasiswa', 'Telah Tersedia', 'danger');
+            PesanFlash::setFlash('Data Mahasiswa', 'Telah Tersedia', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         }
 
         if ($this->model('Mahasiswa_model')->tambah($_POST, $_FILES) > 0) {
-            Flasher::setFlash('Data Berhasil', 'ditambahkan', 'success');
+            PesanFlash::setFlash('Data Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         } else {
-            Flasher::setFlash('Data Gagal', 'Tambah', 'danger');
+            PesanFlash::setFlash('Data Gagal', 'Tambah', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         }
@@ -67,11 +67,11 @@ class Datamahasiswa extends Controller
         $this->model('Select_matkul_model')->hapusByStambuk($id);
         $this->model('Pembayaran_model')->hapusByStambuk($id);
         if ($this->model('Mahasiswa_model')->hapus($id) > 0) {
-            General::setFlash('Data Berhasil', 'dihapus', 'success');
+            PesanFlash::setFlash('Data Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         } else {
-            General::setFlash('Data Gagal', 'dihapus', 'danger');
+            PesanFlash::setFlash('Data Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         }
@@ -99,11 +99,11 @@ class Datamahasiswa extends Controller
         }
 
         if ($this->model('Mahasiswa_model')->edit($_POST, $_FILES) > 0) {
-            Flasher::setFlash('Data Berhasil', 'diperbarui', 'success');
+            PesanFlash::setFlash('Data Berhasil', 'diperbarui', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         } else {
-            Flasher::setFlash('Data Gagal', 'diperbarui', 'danger');
+            PesanFlash::setFlash('Data Gagal', 'diperbarui', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         }

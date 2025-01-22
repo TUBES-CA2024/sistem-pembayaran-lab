@@ -20,7 +20,7 @@
     <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
             <div class="col-lg-6 mb-2">
-                <?php General::flash(); ?>
+                <?php PesanFlash::flash(); ?>
             </div>
         </div>
         <div class="rounded-4 shadow-lg p-4" style="min-width: 750px;">
@@ -30,11 +30,11 @@
             <table id="myTable" class="table table-bordered table-striped " style="width:100%;">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Kode Mata Kuliah</th>
-                        <th>Nama Mata Kuliah</th>
-                        <th>SKS</th>
-                        <th>Action</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Kode Mata Kuliah</th>
+                        <th class="text-center">Nama Mata Kuliah</th>
+                        <th class="text-center">SKS</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>

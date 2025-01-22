@@ -23,11 +23,11 @@ class Kelas extends Controller
     public function tambahKelas()
     {
         if ($this->model('Kelas_model')->tambahkls($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+            PesanFlash::setFlash('Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Kelas');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+            PesanFlash::setFlash('Gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/Kelas');
             exit;
         }
@@ -35,11 +35,11 @@ class Kelas extends Controller
     public function hapusKelas($id)
     {
         if ($this->model('Kelas_model')->hapuskls($id) > 0) {
-            Flasher::setFlash('Berhasil', 'dihapus', 'success');
+            PesanFlash::setFlash('Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Kelas');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'dihapus', 'danger');
+            PesanFlash::setFlash('Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Kelas');
             exit;
         }

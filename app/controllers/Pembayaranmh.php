@@ -75,7 +75,7 @@ class Pembayaranmh extends Controller
             $_POST['stambuk'] = $stambuk;
 
             if (empty($_POST['kodematakuliah'])) {
-                Flasher::setFlash('Pilih minimal satu mata kuliah', '', 'danger');
+                PesanFlash::setFlash('Pilih minimal satu mata kuliah', '', 'danger');
                 header('Location: ' . BASEURL . '/Pembayaranmh/registrasi');
                 exit;
             }
@@ -83,11 +83,11 @@ class Pembayaranmh extends Controller
             if ($idpembayaran > 0) {
                 $_POST['idpembayaran'] = $idpembayaran;
                 $this->model('Select_matkul_model')->tambah($_POST);
-                Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+                PesanFlash::setFlash('Pembayaran Berhasil', 'ditambahkan', 'success');
                 header('Location: ' . BASEURL . '/Pembayaranmh');
                 exit;
             } else {
-                Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+                PesanFlash::setFlash('Pembayaran Gagal', 'ditambahkan', 'danger');
                 header('Location: ' . BASEURL . '/Pembayaranmh');
                 exit;
             }

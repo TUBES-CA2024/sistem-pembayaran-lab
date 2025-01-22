@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="overflow-y-auto" style="max-height: 81vh;">
+    <div class="overflow-y-auto" style="max-height: 76vh;">
         <div class="container p-4">
             <div class="row rounded-4 shadow-lg">
                 <div class="col-12 col-md-8 mt-3 mx-auto">

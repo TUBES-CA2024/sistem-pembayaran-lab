@@ -15,7 +15,7 @@
             <div class="row rounded-4 shadow-lg pt-5 pb-3 mb-3 px-4 w-75 mx-auto">
                 <div class="row">
                     <div class="col-lg-6">
-                        <?php General::flash(); ?>
+                        <?php PesanFlash::flash(); ?>
                     </div>
                 </div>
                 <input type="hidden" name="iduser" value="1">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control input-nama" id="input-nama" name="nama" placeholder="Masukkan Nama"  required>
+                    <input type="text" class="form-control input-nama" id="input-nama" name="nama" placeholder="Masukkan Nama" required>
                 </div>
                 <div class="mb-3">
                     <label for="sks" class="form-label">Kelas</label>

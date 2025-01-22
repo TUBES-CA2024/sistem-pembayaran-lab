@@ -2,7 +2,7 @@
 <div class="container py-4">
     <div class="row">
         <div class="col-lg-6">
-            <?php General::flash(); ?>
+            <?php PesanFlash::flash(); ?>
         </div>
     </div>
     <div class="d-flex justify-content-between align-items-start">

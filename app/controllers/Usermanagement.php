@@ -23,11 +23,11 @@ class Usermanagement extends Controller
     public function tambah()
     {
         if ($this->model('User_model')->tambah($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+            PesanFlash::setFlash('User Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Usermanagement');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+            PesanFlash::setFlash('User Gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/Usermanagement');
             exit;
         }
@@ -35,11 +35,11 @@ class Usermanagement extends Controller
     public function hapus($id)
     {
         if ($this->model('User_model')->hapus($id) > 0) {
-            Flasher::setFlash('Berhasil', 'dihapus', 'success');
+            PesanFlash::setFlash('User Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Usermanagement');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'dihapus', 'danger');
+            PesanFlash::setFlash('User Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Usermanagement');
             exit;
         }
@@ -54,11 +54,11 @@ class Usermanagement extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
             if ($this->model('User_model')->edit($_POST) > 0) {
-                Flasher::setFlash('Berhasil', 'diubah', 'success');
+                PesanFlash::setFlash('User Berhasil', 'diubah', 'success');
                 header('Location: ' . BASEURL . '/Usermanagement');
                 exit;
             } else {
-                Flasher::setFlash('Gagal', 'diubah', 'danger');
+                PesanFlash::setFlash('User Gagal', 'diubah', 'danger');
                 header('Location: ' . BASEURL . '/Usermanagement');
                 exit;
             }

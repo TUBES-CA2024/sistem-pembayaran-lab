@@ -20,14 +20,15 @@ class Matakuliah extends Controller
             exit();
         }
     }
+
     public function tambah()
     {
         if ($this->model('Matkul_model')->tambah($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'ditambahkan', 'success');
+            PesanFlash::setFlash('Matakuliah Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Matakuliah');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'ditambahkan', 'danger');
+            PesanFlash::setFlash('Matakuliah Gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/Matakuliah');
             exit;
         }
@@ -36,11 +37,11 @@ class Matakuliah extends Controller
     public function hapus($id)
     {
         if ($this->model('Matkul_model')->hapus($id) > 0) {
-            Flasher::setFlash('Berhasil', 'dihapus', 'success');
+            PesanFlash::setFlash('Matakuliah Berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/Matakuliah');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'dihapus', 'danger');
+            PesanFlash::setFlash('Matakuliah Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Matakuliah');
             exit;
         }
@@ -54,11 +55,11 @@ class Matakuliah extends Controller
     public function editMatkul()
     {
         if ($this->model('Matkul_model')->edit($_POST) > 0) {
-            Flasher::setFlash('Berhasil', 'diubah', 'success');
+            PesanFlash::setFlash('Matakuliah Berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/Matakuliah');
             exit;
         } else {
-            Flasher::setFlash('Gagal', 'diubah', 'danger');
+            PesanFlash::setFlash('Matakuliah Gagal', 'diubah', 'danger');
             header('Location: ' . BASEURL . '/Matakuliah');
             exit;
         }

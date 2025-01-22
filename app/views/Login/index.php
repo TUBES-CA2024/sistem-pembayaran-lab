@@ -28,7 +28,7 @@ session_start();
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <?php stambukCek::flash(); ?>
+                                <?php PesanFlash::flash(); ?>
                             </div>
                         </div>
 

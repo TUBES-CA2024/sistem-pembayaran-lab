@@ -36,16 +36,16 @@ class Datamahasiswamh extends Controller
             $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
 
             if ($mahasiswa['isCompleted'] == 1) {
-                Flasher::setFlash('Anda sudah mengisi data', '', 'danger');
+                PesanFlash::setFlash('Anda sudah mengisi data', '', 'danger');
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();
             }
             if ($this->model('Mahasiswa_model')->tambah($_POST, $_FILES) > 0) {
-                Flasher::setFlash('Data berhasil', 'disimpan', 'success');
+                PesanFlash::setFlash('Data berhasil', 'disimpan', 'success');
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();
             } else {
-                Flasher::setFlash('Gagal', 'menyimpan data', 'danger');
+                PesanFlash::setFlash('Data Gagal', 'disimpan', 'danger');
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();
             }
@@ -58,9 +58,9 @@ class Datamahasiswamh extends Controller
             $stambuk = $_SESSION['stambuk'];
 
             if ($this->model('Mahasiswa_model')->updateFotoMahasiswa($stambuk, $_FILES) > 0) {
-                Flasher::setFlash('Foto berhasil diperbarui', '', 'success');
+                PesanFlash::setFlash('Foto Berhasil', 'diperbarui', 'success');
             } else {
-                Flasher::setFlash('Gagal memperbarui foto', '', 'danger');
+                PesanFlash::setFlash('Foto Gagal', 'diperbarui', 'danger');
             }
             header('Location: ' . BASEURL . '/Datamahasiswamh');
             exit();

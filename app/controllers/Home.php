@@ -45,7 +45,7 @@ class Home extends Controller
                 $this->view('Home/check', $data);
                 $this->view('templates/footer');
             } else {
-                stambukCek::setFlash('Stambuk', 'Tidak Ditemukan', 'danger');
+                PesanFlash::setFlash('Stambuk', 'Tidak Ditemukan', 'danger');
                 header('Location: ' . BASEURL . '/Home');
                 exit;
             }
@@ -96,11 +96,11 @@ class Home extends Controller
             $this->model('Select_matkul_model')->tambah($_POST);
             $this->model('Pembayaran_model')->tambah($_POST);
 
-            General::setFlash('Registrasi Pembayaran', 'Berhasil', 'success');
+            PesanFlash::setFlash('Registrasi Pembayaran', 'Berhasil', 'success');
             header('Location: ' . BASEURL . '/Home');
             exit;
         } else {
-            General::setFlash('Mahasiswa', 'Belum Terdaftar', 'danger');
+            PesanFlash::setFlash('Mahasiswa', 'Belum Terdaftar', 'danger');
             header('Location: ' . BASEURL . '/Home/daftarSudah');
             exit;
         }
@@ -135,7 +135,7 @@ class Home extends Controller
     public function belumAda()
     {
         if ($this->model('Mahasiswa_model')->tampilByid($_POST["stambuk"]) > 0) {
-            General::setFlash('Mahasiswa', 'Sudah Terdaftar', 'danger');
+            PesanFlash::setFlash('Mahasiswa', 'Sudah Terdaftar', 'danger');
             header('Location: ' . BASEURL . '/Home/daftarBelum');
             exit;
         } else {
@@ -144,7 +144,7 @@ class Home extends Controller
             $this->model('Select_matkul_model')->tambah($_POST);
             $this->model('Pembayaran_model')->tambah($_POST);
 
-            General::setFlash('Registrasi Pembayaran', 'Berhasil', 'success');
+            PesanFlash::setFlash('Registrasi Pembayaran', 'Berhasil', 'success');
             header('Location: ' . BASEURL . '/Home');
             exit;
         }

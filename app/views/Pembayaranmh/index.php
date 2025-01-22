@@ -4,7 +4,7 @@
     <div class="overflow-y-auto p-4" style="max-height: 81vh;">
         <div class="row">
             <div class="col-lg-6">
-                <?php Flasher::flash(); ?>
+                <?php PesanFlash::flash(); ?>
             </div>
         </div>
 
@@ -33,12 +33,12 @@
                     </tr>
 
                     <tr>
-                        <th>No</th>
-                        <th>Stambuk</th>
-                        <th>Nama</th>
-                        <th>Waktu Pembayaran</th>
-                        <th>Nominal</th>
-                        <th>Status</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Stambuk</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Waktu Pembayaran</th>
+                        <th class="text-center">Nominal</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,10 +84,10 @@
             <table class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Tagihan</th>
-                        <th>Status</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Tagihan</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>

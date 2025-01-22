@@ -4,7 +4,7 @@
         <div class="row d-flex justify-content-center align-items-center">
             <div class="row mt-3">
                 <div class="col-lg-4 mx-auto position-relative">
-                    <?php General::flash(); ?>
+                    <?php PesanFlash::flash(); ?>
                 </div>
             </div>
             <!-- <div class="col p-3 m-4">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <?php stambukCek::flash(); ?>
+                            <?php PesanFlash::flash(); ?>
                         </div>
                     </div>
                     <div class="card-body">
