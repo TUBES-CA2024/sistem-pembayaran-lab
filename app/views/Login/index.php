@@ -15,7 +15,7 @@ session_start();
 </head>
 
 <body style="overflow: hidden;">
-    <div class="container text-center" style="padding-top: 9%;">
+    <div class="container text-center" style="padding-top: 5%;">
         <div class="container-home">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="cola col-md-6 d-flex justify-content-center">
@@ -36,7 +36,7 @@ session_start();
                             <div class="card form-cek-pembayaran d-flex justify-content-center align-items-center">
                                 <form action="<?= BASEURL; ?>/Login/masuk" method="POST">
                                     <div class="card-body">
-                                        <h5>Login</h5>
+                                        <h4>Login</h4>
                                     </div>
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="exampleFormControlInput1" name="username" placeholder="username">
