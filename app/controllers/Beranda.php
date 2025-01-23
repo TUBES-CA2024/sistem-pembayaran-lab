@@ -34,6 +34,34 @@ class Beranda extends Controller
             exit();
         }
     }
+    // public function printPriode1()
+    // {
+    //     if ($_SESSION['role'] == 'Admin') {
+    //         $data['title'] = 'Print Priode 1';
+    //         $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+
+    //         if (!isset($_POST['stambuk']) || empty($_POST['stambuk'])) {
+    //             PesanFlash::setFlash('Tidak ada', 'stambuk yang dipilih', 'danger');
+    //             header("Location:" . BASEURL . "/Berandakp");
+    //             exit();
+    //         }
+
+    //         foreach ($_POST['stambuk'] as $print) :
+    //             $data['print'][] = $this->model('Pembayaran_model')->printLaporan($print);
+    //             $data['matkul'][] = $this->model('Select_matkul_model')->printMatkul($print);
+    //         endforeach;
+    //         // Set pesan flash untuk berhasil
+    //         PesanFlash::setFlash('Laporan berhasil', 'dicetak', 'success');
+
+    //         $this->view('templates/header', $data);
+    //         $this->view('Beranda/priode1', $data);
+    //         $this->view('templates/footer');
+    //     } else {
+    //         PesanFlash::setFlash('Akses', 'ditolak', 'danger');
+    //         header("Location:" . BASEURL . "/Berandakp");
+    //         exit();
+    //     }
+    // }
 
     public function printPriode1()
     {
@@ -48,6 +76,7 @@ class Beranda extends Controller
             $this->view('templates/header', $data);
             // $this->view('templates/sidebar');
             $this->view('Beranda/priode1', $data);
+
             // $this->view('templates/footersidebar');
             $this->view('templates/footer');
         } else {
@@ -55,6 +84,7 @@ class Beranda extends Controller
             exit();
         }
     }
+
     public function printPriode2()
     {
         if ($_SESSION['role'] == 'Admin') {

@@ -112,6 +112,13 @@
     <div class="container-user rounde col-12 mx-auto">
         <div class="shadow-lg p-3">
             <div class="row">
+                <div class="row">
+                    <div class="col-lg-6 mb-2">
+                        <?php if (isset($_SESSION['flash'])) : ?>
+                            <?= PesanFlash::flash(); ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
                 <div class="col-4">
                     <form action="" method="post">
                         <button
