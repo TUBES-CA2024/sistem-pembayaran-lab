@@ -175,10 +175,12 @@ class Mahasiswa_model
 
         // Menangani upload file foto baru
         $filePath = $fotoLama; // Default ke foto lama
+
         if (isset($file['foto']) && $file['foto']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $file['foto']['tmp_name'];
             $fileExtension = pathinfo($file['foto']['name'], PATHINFO_EXTENSION);
             $allowedExtensions = ['jpg', 'jpeg', 'png']; // Ekstensi yang diperbolehkan
+
             if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
                 return 0; // Ekstensi file tidak valid
             }
@@ -234,20 +236,11 @@ class Mahasiswa_model
         return $this->db->single();
     }
 
-    // public function cekNimExists($nim)
-    // {
-    //     $this->db->query("SELECT stambuk FROM mahasiswa WHERE stambuk = :stambuk");
-    //     $this->db->bind('stambuk', $nim);
-    //     $this->db->execute();
-
-    //     return $this->db->rowCount() > 0; // Return true jika NIM sudah ada
-    // }
-
     public function getNamaByStambuk($stambuk)
     {
         $this->db->query("SELECT nama FROM mahasiswa WHERE stambuk = :stambuk");
         $this->db->bind('stambuk', $stambuk);
-        $result = $this->db->single();
+        $result = $this->db->single(); // Ambil data nama
 
         // Jika data tidak ditemukan, kembalikan nilai default
         return $result ? $result['nama'] : "Nama belum diisi";
@@ -280,16 +273,16 @@ class Mahasiswa_model
             $uploadDir = 'assets/img/profil/'; // Direktori upload
             $filePath = $uploadDir . $fileName;
 
-            // Pindahkan file ke folder upload
-            if (!move_uploaded_file($fileTmpPath, $filePath)) {
-                return 0; // Gagal upload
-            }
             // Validasi ukuran file (contoh: maksimum 2MB)
             $maxFileSize = 2 * 1024 * 1024; // 2MB
             if ($file['foto']['size'] > $maxFileSize) {
                 return 0;
             }
 
+            // Pindahkan file ke folder upload
+            if (!move_uploaded_file($fileTmpPath, $filePath)) {
+                return 0; // Gagal upload
+            }
             // Hapus foto lama jika ada
             if (!empty($fotoLama)) {
                 $oldFilePath = __DIR__ . '/../../' . $fotoLama; // Path absolut file lama
@@ -306,6 +299,6 @@ class Mahasiswa_model
         $this->db->bind('stambuk', $stambuk);
         $this->db->execute();
 
-        return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh
+        return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh (1 jika berhasil)
     }
 }

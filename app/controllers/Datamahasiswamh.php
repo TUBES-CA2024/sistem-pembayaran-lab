@@ -41,11 +41,11 @@ class Datamahasiswamh extends Controller
                 exit();
             }
             if ($this->model('Mahasiswa_model')->tambah($_POST, $_FILES) > 0) {
-                PesanFlash::setFlash('Data berhasil', 'disimpan', 'success');
+                PesanFlash::setFlash('Mahasiswa berhasil', 'disimpan', 'success');
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();
             } else {
-                PesanFlash::setFlash('Data Gagal', 'disimpan', 'danger');
+                PesanFlash::setFlash('Mahasiswa Gagal', 'disimpan', 'danger');
                 header('Location: ' . BASEURL . '/Datamahasiswamh');
                 exit();
             }
@@ -56,17 +56,15 @@ class Datamahasiswamh extends Controller
     {
         if ($_SESSION['role'] === 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
-
-            if ($this->model('Mahasiswa_model')->updateFotoMahasiswa($stambuk, $_FILES) > 0) {
-                PesanFlash::setFlash('Foto Berhasil', 'diperbarui', 'success');
-            } else {
-                PesanFlash::setFlash('Foto Gagal', 'diperbarui', 'danger');
-            }
+        }
+        if ($this->model('Mahasiswa_model')->updateFotoMahasiswa($stambuk, $_FILES) > 0) {
+            PesanFlash::setFlash('Foto Berhasil', 'diperbarui', 'success');
             header('Location: ' . BASEURL . '/Datamahasiswamh');
-            exit();
+            exit;
         } else {
-            header('Location: ' . BASEURL . '/Berandamh');
-            exit();
+            PesanFlash::setFlash('Foto Gagal', 'diperbarui', 'danger');
+            header('Location: ' . BASEURL . '/Datamahasiswamh');
+            exit;
         }
     }
 }
