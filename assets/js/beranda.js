@@ -3,7 +3,7 @@ $(function () {
     // Cek apakah ada checkbox yang dipilih
     if ($('input[type="checkbox"]:checked').length === 0) {
       e.preventDefault(); // Hentikan aksi klik
-      alert("Silakan pilih minimal satu checkbox sebelum mencetak!");
+      // alert("Silakan pilih minimal satu checkbox sebelum mencetak!");
       return false;
     }
 
@@ -18,7 +18,7 @@ $(function () {
     // Cek apakah ada checkbox yang dipilih
     if ($('input[type="checkbox"]:checked').length === 0) {
       e.preventDefault(); // Hentikan aksi klik
-      alert("Silakan pilih minimal satu checkbox sebelum mencetak!");
+      // alert("Silakan pilih minimal satu checkbox sebelum mencetak!");
       return false;
     }
 

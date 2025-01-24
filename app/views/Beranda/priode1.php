@@ -1,5 +1,5 @@
 <div class="row p-2 ms-3 me-3">
-    <div class="col-12 card text-body-secondary shadow-lg bg-light bg-gradient">
+    <div class="col-12 card text-body-secondary shadow-lg bg-light">
         <div class="row">
             <div class="col-1 align-self-center">
                 <img src="<?= BASEURL ?>/assets/img/pembayaran.png" alt="foto-card4" width="85px">

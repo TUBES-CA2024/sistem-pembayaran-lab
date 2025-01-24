@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/Beranda.css">
-<div class="row ms-3 me-3">
-    <div class="col-12  text-body-secondary  bg-gradient">
+<div class="row p-2 ms-3 me-3">
+    <div class="col-12 card text-body-secondary shadow-lg bg-light">
         <div class="row">
-            <div class="col-lg-3 p-2">
+
+            <div class="col-lg-3 p-3">
                 <a href="<?= BASEURL ?>/Usermanagement" class="nav-link">
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
@@ -22,7 +23,7 @@
                 </a>
             </div>
 
-            <div class="col-lg-3 p-2">
+            <div class="col-lg-3 p-3">
                 <a
                     href="<?= BASEURL ?>/Datamahasiswa"
                     class="nav-link">
@@ -43,7 +44,8 @@
                     </div>
                 </a>
             </div>
-            <div class="col-lg-3 p-2">
+
+            <div class="col-lg-3 p-3">
                 <a
                     href="<?= BASEURL ?>/Matakuliah"
                     class="nav-link">
@@ -64,7 +66,8 @@
                     </div>
                 </a>
             </div>
-            <div class="col-lg-3 p-2">
+
+            <div class="col-lg-3 p-3">
                 <a
                     href="<?= BASEURL ?>/Kelas"
                     class="nav-link">
@@ -85,7 +88,8 @@
                     </div>
                 </a>
             </div>
-            <div class="col-lg-3 p-2">
+
+            <div class="col-lg-3 p-3">
                 <a
                     href="<?= BASEURL ?>/Pembayaran"
                     class="nav-link">
@@ -108,17 +112,13 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container-user rounde col-12 mx-auto">
-        <div class="shadow-lg p-3">
+<div class="container-user col-12 mx-auto">
+    <div class="overflow-y-auto p-4" style="max-height: 81vh;">
+        <div class="overflow-x-auto rounded-4 shadow-lg p-4">
             <div class="row">
-                <div class="row">
-                    <div class="col-lg-6 mb-2">
-                        <?php if (isset($_SESSION['flash'])) : ?>
-                            <?= PesanFlash::flash(); ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
+
                 <div class="col-4">
                     <form action="" method="post">
                         <button
@@ -150,60 +150,57 @@
                     </div>
                 </div>
             </div>
-            <!-- Tambahkan pembungkus scroll -->
-            <div class="table-wrapper" style="max-height: 39vh; overflow-y: auto;">
-                <table id="tablePraPrint" class="table table-bordered table-striped">
-                    <thead>
-                        <tr class="bg-info bg-gradient">
-                            <th class="text-center">No</th>
-                            <th class="text-center">Stambuk</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">Waktu Pembayaran</th>
-                            <th class="text-center">Nominal</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">
+
+            <table id="tablePraPrint" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr class="bg-info bg-gradient">
+                        <th class="text-center">No</th>
+                        <th class="text-center">Stambuk</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Waktu Pembayaran</th>
+                        <th class="text-center">Nominal</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="checkedAll"
+                                onkeydown="return event.key !== 'Enter';">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <?php
+                    $no = 0;
+                    foreach ($data['pembayaran'] as $pmb) :
+                        $no++;
+                        $waktuPembayaran = $pmb['waktupembayaran'];
+
+                        if ($waktuPembayaran != '0000-00-00' && $waktuPembayaran != '') {
+                            $formattedDate = date('d-m-Y', strtotime($waktuPembayaran));
+                        } else {
+                            $formattedDate = '-';
+                        }
+                    ?>
+                        <tr>
+                            <td class="text-center"><?= $no; ?></td>
+                            <td class="text-center"><?= $pmb['stambuk']; ?></td>
+                            <td class="text-center"><?= $pmb['nama']; ?></td>
+                            <td class="text-center"><?= $formattedDate; ?></td>
+                            <td class="text-center">Rp. <?= $pmb['nominal']; ?></td>
+                            <td class="text-center"><?= $pmb['status']; ?></td>
+                            <td class="text-center">
                                 <input
                                     class="form-check-input"
                                     type="checkbox"
-                                    id="checkedAll"
-                                    onkeydown="return event.key !== 'Enter';">
-                            </th>
+                                    value="<?= $pmb['stambuk']; ?>"
+                                    id="checkedOne" onkeydown="return event.key !== 'Enter';"
+                                    name="stambuk[]">
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <?php
-                        $no = 0;
-                        foreach ($data['pembayaran'] as $pmb) :
-                            $no++;
-                            $waktuPembayaran = $pmb['waktupembayaran'];
-
-                            if ($waktuPembayaran != '0000-00-00' && $waktuPembayaran != '') {
-                                $formattedDate = date('d-m-Y', strtotime($waktuPembayaran));
-                            } else {
-                                $formattedDate = '-';
-                            }
-                        ?>
-                            <tr>
-                                <td class="text-center"><?= $no; ?></td>
-                                <td class="text-center"><?= $pmb['stambuk']; ?></td>
-                                <td class="text-center"><?= $pmb['nama']; ?></td>
-                                <td class="text-center"><?= $formattedDate; ?></td>
-                                <td class="text-center">Rp. <?= $pmb['nominal']; ?></td>
-                                <td class="text-center"><?= $pmb['status']; ?></td>
-                                <td class="text-center">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value="<?= $pmb['stambuk']; ?>"
-                                        id="checkedOne" onkeydown="return event.key !== 'Enter';"
-                                        name="stambuk[]">
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </form>
-                    </tbody>
-                </table>
-            </div>
+                    <?php endforeach; ?>
+                    </form>
+                </tbody>
+            </table>
         </div>
     </div>
-</div>

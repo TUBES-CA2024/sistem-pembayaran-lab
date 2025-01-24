@@ -12,7 +12,7 @@
                         <li class="nav-item">
                             <a href="<?= BASEURL ?>/Berandamh" class="nav-link align-middle px-2">
                                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/Beranda-icon.png" alt="logo-sipemla" /></i>
-                                <span>Dashboard</span>
+                                <span class="ms-1 d-none d-sm-inline">Dashboard</span>
                             </a>
                         </li>
                         <li>
@@ -43,23 +43,3 @@
                 </div>
             </div>
             <div class="col py-3">
-
-                <script>
-                    $(document).ready(function() {
-                        const currentUrl = window.location.href;
-
-                        if (currentUrl.includes("Berandamh")) {
-                            $(".col-auto").addClass("sidebar-active");
-                            $('a[href$="Berandamh"]').addClass("active");
-                        } else if (currentUrl.includes("Datamahasiswamh")) {
-                            $(".col-auto").addClass("sidebar-active");
-                            $('a[href$="Datamahasiswamh"]').addClass("active");
-                        } else if (currentUrl.includes("Matakuliahmh")) {
-                            $(".col-auto").addClass("sidebar-active");
-                            $('a[href$="Matakuliahmh"]').addClass("active");
-                        } else if (currentUrl.includes("Pembayaranmh")) {
-                            $(".col-auto").addClass("sidebar-active");
-                            $('a[href$="Pembayaranmh"]').addClass("active");
-                        }
-                    });
-                </script>

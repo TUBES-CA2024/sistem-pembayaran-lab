@@ -2,7 +2,7 @@
 
 body {
   font-family: "poppins", sans-serif;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .bg {
