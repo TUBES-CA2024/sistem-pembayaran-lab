@@ -14,7 +14,6 @@ class Pembayaranmh extends Controller
             $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk);
             $data['matkul'] = $this->model('Matkul_model')->tampil();
             $data['prodi'] = $mahasiswa['prodi'];
-            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk_pmb($stambuk);
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -28,6 +27,7 @@ class Pembayaranmh extends Controller
             exit();
         }
     }
+
     public function history()
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
@@ -35,7 +35,7 @@ class Pembayaranmh extends Controller
             $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
             $data['title'] = 'Riwayat Pembayaran';
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
-            $data['prodi'] = $mahasiswa['prodi'];
+            $data['prodi'] = $mahasiswa['prodi'];   // Ambil prodi dari data mahasiswa
             $data['pembayaran'] = $this->model('Pembayaran_model')->getPembayaranByStambuk($stambuk);
 
             $this->view('templates/header', $data);
@@ -49,7 +49,6 @@ class Pembayaranmh extends Controller
             exit();
         }
     }
-
 
     public function registrasi()
     {
@@ -68,6 +67,7 @@ class Pembayaranmh extends Controller
             exit();
         }
     }
+
     public function tambah()
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
