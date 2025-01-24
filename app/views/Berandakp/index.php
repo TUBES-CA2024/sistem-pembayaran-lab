@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/Beranda.css">
-<div class="row p-3">
-    <div class="col-lg-3 p-2">
+<div class="p-2 ms-3 me-3 d-flex justify-content-between align-items-center">
+
+    <div class="col-lg-3 p-3">
         <div class="card p-3 bg-light bg-gradient shadow-lg text-body-secondary">
             <div class="row">
                 <div class="col-7 card-body">
@@ -17,7 +18,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 p-2">
+
+    <div class="col-lg-3 p-3">
         <div class="card p-3 bg-light bg-gradient shadow-lg text-body-secondary">
             <div class="row">
                 <div class="col-7 card-body">
@@ -34,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 p-2">
+    <div class="col-lg-3 p-3">
         <div class="card p-3 bg-light bg-gradient shadow-lg text-body-secondary">
             <div class="row">
                 <div class="col-7 card-body">

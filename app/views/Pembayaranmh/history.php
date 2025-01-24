@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="overflow-y-auto p-4" style="max-height: 99vh;">
+    <div class="overflow-y-auto p-1" style="max-height: 99vh;">
 
 
         <div id="print-area">

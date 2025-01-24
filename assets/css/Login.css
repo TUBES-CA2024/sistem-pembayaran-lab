@@ -2,7 +2,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background: url("../img/bg-home2.png") center/cover no-repeat;
+  background: url("../img/bg-home.png") center/cover no-repeat;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -13,6 +13,7 @@ body {
   width: 100%;
   height: auto;
 }
+
 .cola .fikom-icon {
   width: 90%;
   height: auto;
@@ -43,18 +44,22 @@ body {
 /* Media query untuk perangkat mobile */
 @media (max-width: 768px) {
   .cola {
-    margin-top: 2rem; /* Mengurangi margin atas untuk memberikan ruang pada perangkat mobile */
+    margin-top: 2rem;
+    /* Mengurangi margin atas untuk memberikan ruang pada perangkat mobile */
   }
 
   .card-body .form-cek-pembayaran {
-    height: auto; /* Mengubah tinggi agar menyesuaikan kontennya */
+    height: auto;
+    /* Mengubah tinggi agar menyesuaikan kontennya */
   }
 
   .cola .fikom-icon {
-    width: 70%; /* Mengurangi lebar icon untuk perangkat mobile */
+    width: 70%;
+    /* Mengurangi lebar icon untuk perangkat mobile */
   }
 
   .cola .cek-pembayaran {
-    max-width: none; /* Hapus batasan lebar maksimum untuk perangkat mobile */
+    max-width: none;
+    /* Hapus batasan lebar maksimum untuk perangkat mobile */
   }
 }

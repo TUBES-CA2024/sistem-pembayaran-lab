@@ -125,7 +125,29 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    // public function gettampilByPembayaran($id)
+    //USE
+    public function getPembayaranByStambuk($stambuk)
+    {
+        $this->db->query("
+        SELECT 
+            pembayaran.idpembayaran, 
+            pembayaran.stambuk, 
+            pembayaran.waktupembayaran, 
+            pembayaran.nominal, 
+            pembayaran.status, 
+            GROUP_CONCAT(matakuliah.namamatakuliah SEPARATOR ', ') AS matkul
+        FROM pembayaran
+        LEFT JOIN matkul_select ON pembayaran.stambuk = matkul_select.stambuk
+        LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah
+        WHERE pembayaran.stambuk = :stambuk AND pembayaran.status = 'Lunas'
+        GROUP BY pembayaran.idpembayaran
+        ORDER BY pembayaran.waktupembayaran DESC
+    ");
+        $this->db->bind('stambuk', $stambuk);
+        return $this->db->resultSet();
+    }
+}
+ // public function gettampilByPembayaran($id)
     // {
     //     $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");
     //     $this->db->bind('idpembayaran', $id);
@@ -174,26 +196,3 @@ class Pembayaran_model
     //         $this->db->execute();
     //     }
     // }
-
-    //USE
-    public function getPembayaranByStambuk($stambuk)
-    {
-        $this->db->query("
-        SELECT 
-            pembayaran.idpembayaran, 
-            pembayaran.stambuk, 
-            pembayaran.waktupembayaran, 
-            pembayaran.nominal, 
-            pembayaran.status, 
-            GROUP_CONCAT(matakuliah.namamatakuliah SEPARATOR ', ') AS matkul
-        FROM pembayaran
-        LEFT JOIN matkul_select ON pembayaran.stambuk = matkul_select.stambuk
-        LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah
-        WHERE pembayaran.stambuk = :stambuk AND pembayaran.status = 'Lunas'
-        GROUP BY pembayaran.idpembayaran
-        ORDER BY pembayaran.waktupembayaran DESC
-    ");
-        $this->db->bind('stambuk', $stambuk);
-        return $this->db->resultSet();
-    }
-}

@@ -46,16 +46,42 @@
                             </div>
                         </div>
                         <div class="mb-3 d-flex">
-                            <label for="disabledTextInput" class="form-label col-4">Jumlah SKS Praktikum</label>
+                            <label for="disabledTextInput" class="form-label col-4">Jumlah Praktikum</label>
                             <div class="col-2">
                                 <input type="text" id="disabledTextInput" class="form-control" value="<?= $sks; ?>">
                             </div>
                         </div>
-
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Agama Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['namaagama']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Email Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['email']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Telepon Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['telepon']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">JenisKelamin Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['jeniskelamin']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Alamat Mahasiswa</label>
+                            <input type="text" id="disabledTextInput" class="form-control" value="<?= $data['mahasiswa']['alamat']; ?>">
+                        </div>
+                        <div class="mb-3 d-flex">
+                            <label for="disabledTextInput" class="form-label col-4">Foto Mahasiswa</label>
+                            <img
+                                id="profile-image-preview"
+                                src="<?= BASEURL . '/' . $data['mahasiswa']['foto']; ?>"
+                                alt="Foto Wajah Profil"
+                                style="width:150px; height:150px; border-radius: 5%;">
+                        </div>
                     </fieldset>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

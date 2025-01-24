@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/Beranda.css">
 <div class="row p-2 ms-3 me-3">
-    <div class="col-12 card text-body-secondary shadow-lg bg-light">
+    <div class="col-12 text-body-secondary">
         <div class="row">
 
             <div class="col-lg-3 p-3">
