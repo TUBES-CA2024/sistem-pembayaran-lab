@@ -19,7 +19,6 @@ class Datamahasiswamh extends Controller
             $this->view('templates/profilhead', $data);
             $this->view('Datamahasiswamh/index', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Berandamh");

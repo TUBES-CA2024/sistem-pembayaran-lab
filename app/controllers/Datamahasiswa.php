@@ -15,7 +15,6 @@ class Datamahasiswa extends Controller
             $this->view('templates/sidebar');
             $this->view('Datamahasiswa/index', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Berandakp");
@@ -35,7 +34,6 @@ class Datamahasiswa extends Controller
             $this->view('templates/sidebar');
             $this->view('Datamahasiswa/detail', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Berandakp");
@@ -88,7 +86,6 @@ class Datamahasiswa extends Controller
         $this->view('templates/sidebar');
         $this->view('Datamahasiswa/edit', $data);
         $this->view('templates/footersidebar');
-        $this->view('templates/copyright');
         $this->view('templates/footer');
     }
 

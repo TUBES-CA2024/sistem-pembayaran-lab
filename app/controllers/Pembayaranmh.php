@@ -20,7 +20,6 @@ class Pembayaranmh extends Controller
             $this->view('templates/profilhead', $data);
             $this->view('Pembayaranmh/index', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");
@@ -42,7 +41,6 @@ class Pembayaranmh extends Controller
             $this->view('templates/sidebarmh');
             $this->view('Pembayaranmh/history', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Login");
@@ -60,7 +58,6 @@ class Pembayaranmh extends Controller
             $this->view('templates/sidebarmh');
             $this->view('Pembayaranmh/registrasi', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Pembayaranmh");

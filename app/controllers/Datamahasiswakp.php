@@ -33,7 +33,6 @@ class Datamahasiswakp extends Controller
             $this->view('templates/sidebarkp');
             $this->view('Datamahasiswakp/detailkp', $data);
             $this->view('templates/footersidebar');
-            $this->view('templates/copyright');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");
