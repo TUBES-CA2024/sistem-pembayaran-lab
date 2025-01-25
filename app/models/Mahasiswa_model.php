@@ -8,7 +8,7 @@ class Mahasiswa_model
     {
         $this->db = new Database;
     }
-
+    //Digunakan pada Datamahasiswa & Datamahasiswamh.php
     public function tambah($data, $file)
     {
         if (empty($data['stambuk']) || empty($data['nama']) || empty($data['idkelas'])) {
@@ -61,24 +61,25 @@ class Mahasiswa_model
         return $this->db->rowCount();
     }
 
-    public function updateFoto($iduser, $fileName)
-    {
-        $query = "UPDATE user SET foto = :foto WHERE iduser = :iduser";
-        $this->db->query($query);
-        $this->db->bind('foto', $fileName);
-        $this->db->bind('iduser', $iduser);
+    // public function updateFoto($iduser, $fileName)
+    // {
+    //     $query = "UPDATE user SET foto = :foto WHERE iduser = :iduser";
+    //     $this->db->query($query);
+    //     $this->db->bind('foto', $fileName);
+    //     $this->db->bind('iduser', $iduser);
 
-        $this->db->execute();
+    //     $this->db->execute();
 
-        return $this->db->rowCount();
-    }
+    //     return $this->db->rowCount();
+    // }
 
+    //Digunakan pada Datamahasiswa.php
     public function tampil()
     {
         $this->db->query("SELECT mahasiswa.stambuk, mahasiswa.nama, mahasiswa.prodi, kelas.namekelas, mahasiswa.namaagama, mahasiswa.email, mahasiswa.telepon, mahasiswa.jeniskelamin, mahasiswa.alamat, mahasiswa.foto, mahasiswa.isCompleted FROM mahasiswa JOIN kelas ON mahasiswa.idkelas = kelas.idkelas");
         return $this->db->resultSet();
     }
-
+    //Digunakan pada Datamahasiswa.php
     public function hapus($id)
     {
         // Ambil data mahasiswa untuk mendapatkan nama file foto dari database
@@ -115,9 +116,7 @@ class Mahasiswa_model
         // Return jumlah baris yang terpengaruh
         return $this->db->rowCount();
     }
-
-
-
+    //Digunakan pada Datamahasiswa.php
     public function tampilById($id)
     {
         $this->db->query("SELECT mahasiswa.stambuk, mahasiswa.nama, mahasiswa.prodi, kelas.idkelas, kelas.namekelas, mahasiswa.namaagama, mahasiswa.email, mahasiswa.telepon, mahasiswa.jeniskelamin, mahasiswa.alamat, mahasiswa.foto, mahasiswa.isCompleted FROM mahasiswa JOIN kelas ON mahasiswa.idkelas = kelas.idkelas WHERE mahasiswa.stambuk = :stambuk;");
@@ -125,6 +124,8 @@ class Mahasiswa_model
         $this->db->bind('stambuk', $id);
         return $this->db->single();
     }
+
+    // Digunakan pada Pembyaranmh.php
     public function tampilByNim($stambuk)
     {
         $this->db->query("SELECT * FROM mahasiswa WHERE stambuk = :stambuk");
@@ -149,7 +150,7 @@ class Mahasiswa_model
         }
         return $result;
     }
-
+    //Digunakan pada Datamahasiswamh.php
     public function edit($data, $file)
     {
         // Validasi input
@@ -219,13 +220,14 @@ class Mahasiswa_model
 
         return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh (1 jika berhasil)
     }
-
+    //Digunakan pada Beranda.php
     public function countMahasiswa()
     {
         $this->db->query("SELECT COUNT(stambuk) AS jumlahMahasiswa FROM mahasiswa");
         return $this->db->single();
     }
 
+    // Digunakan pada Datamahasiswamh.php
     public function getNamaByStambuk($stambuk)
     {
         $this->db->query("SELECT nama FROM mahasiswa WHERE stambuk = :stambuk");
@@ -236,7 +238,7 @@ class Mahasiswa_model
         return $result ? $result['nama'] : "Nama belum diisi";
     }
 
-
+    //Digunakan pada Datamahasiswamh.php
     public function updateFotoMahasiswa($stambuk, $file)
     {
         // Ambil foto lama dari database

@@ -8,7 +8,7 @@ class User_model
     {
         $this->db = new Database;
     }
-
+    //Digunakan untuk menambahkan data user di User
     public function tambah($data)
     {
         $query = "INSERT INTO user VALUES('', :username, :password, :role, :stambuk)";
@@ -23,7 +23,7 @@ class User_model
 
         return $this->db->rowCount();
     }
-
+    //Digunakan untuk menghapus data user di User
     public function hapus($id)
     {
         $query = "DELETE FROM user WHERE iduser = :iduser";
@@ -34,20 +34,20 @@ class User_model
 
         return $this->db->rowCount();
     }
-
+    //Digunakan untuk menampilkan data user di User
     public function tampil()
     {
         $this->db->query("SELECT * FROM user ORDER BY iduser ASC;");
         return $this->db->resultSet();
     }
-
+    //Digunakan untuk menampilkan data user berdasarkan id di User
     public function tampilById($id)
     {
         $this->db->query("SELECT * FROM user WHERE iduser= :iduser");
         $this->db->bind('iduser', $id);
         return $this->db->single();
     }
-
+    //Digunakan untuk mengedit data user di User
     public function edit($data)
     {
         $query = "UPDATE user SET username= :username, password= :password, role= :role, stambuk= :stambuk WHERE iduser= :iduser";
@@ -63,7 +63,7 @@ class User_model
 
         return $this->db->rowCount();
     }
-
+    //Digunakan Di Beranda
     public function countUser()
     {
         $this->db->query("SELECT COUNT(iduser) AS jumlahUser FROM user;");

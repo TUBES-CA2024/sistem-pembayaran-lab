@@ -24,7 +24,7 @@ class Select_matkul_model
         }
         return $this->db->rowCount();
     }
-
+    //Digunakan untuk menghapus data matkul_select di Pembayaran
     public function hapus($id)
     {
         $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
@@ -34,7 +34,7 @@ class Select_matkul_model
 
         return $this->db->rowCount();
     }
-
+    //Digunakan untuk menghapus data matkul_select di Datamahasiswa
     public function hapusByStambuk($id)
     {
         $query = "DELETE FROM matkul_select WHERE stambuk = :stambuk";
@@ -44,7 +44,7 @@ class Select_matkul_model
 
         return $this->db->rowCount();
     }
-
+    //Digunakan untuk menghapus data matkul_select di Pembayaran
     public function hapusByIdPembayaran($idpembayaran)
     {
         $query = "DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran";
@@ -54,21 +54,21 @@ class Select_matkul_model
 
         return $this->db->rowCount();
     }
-
+    //Diguakan untuk menampilkan data matkul_select di Datamahasiswa
     public function tampilMatkul($id)
     {
         $this->db->query("SELECT matkul_select.id, matkul_select.stambuk, matkul_select.kodematakuliah, matakuliah.namamatakuliah, matakuliah.sks FROM matkul_select LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah WHERE matkul_select.stambuk = :stambuk;");
         $this->db->bind('stambuk', $id);
         return $this->db->resultSet();
     }
-
+    //Digunakan untuk menampilkan data matkul_select di Pembayaran
     public function tampilById($idpembayaran)
     {
         $this->db->query("SELECT * FROM matkul_select WHERE idpembayaran = :idpembayaran");
         $this->db->bind('idpembayaran', $idpembayaran);
         return $this->db->resultSet();  // Mengembalikan semua mata kuliah yang dipilih oleh mahasiswa
     }
-
+    //Digunakan Digunakan untuk menampilkan data matkul_select di Beranda
     public function printMatkul($id)
     {
         $this->db->query("SELECT matkul_select.kodematakuliah FROM matkul_select LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah WHERE matkul_select.stambuk = :stambuk;");

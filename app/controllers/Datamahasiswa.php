@@ -80,7 +80,7 @@ class Datamahasiswa extends Controller
         $data['title'] = 'Edit Data Mahasiswa';
         $data['kelas'] = $this->model('Kelas_model')->tampil();
         $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
-        $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($id);
+        // $data['pembayaran'] = $this->model('Pembayaran_model')->tampilByStambuk($id);
 
         $this->view('templates/header', $data);
         $this->view('templates/sidebar');

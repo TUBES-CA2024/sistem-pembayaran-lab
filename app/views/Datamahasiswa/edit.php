@@ -17,7 +17,7 @@
 
                 <div class="col-12 col-md-8 mt-3 mx-auto">
                     <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
-                    <input type="hidden" name="idpembayaran" value="<?= $data['pembayaran']['idpembayaran'] ?>">
+                    <!-- <input type="hidden" name="idpembayaran" value="<?= $data['pembayaran']['idpembayaran'] ?>"> -->
                     <input type="hidden" name="isCompleted" value="<?= $data['mahasiswa']['isCompleted']; ?>">
                     <input type="hidden" name="foto_lama" value="<?= $data['mahasiswa']['foto']; ?>">
                     <input type="hidden" name="old_stambuk" value="<?= $data['mahasiswa']['stambuk']; ?>">

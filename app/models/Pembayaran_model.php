@@ -47,7 +47,7 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    //USE
+    //Digunakan untuk menghapus data pembayaran di Pembayaran
     public function hapus($id)
     {
         $query = "DELETE FROM pembayaran WHERE idpembayaran = :idpembayaran";
@@ -58,7 +58,7 @@ class Pembayaran_model
 
         return $this->db->rowCount();
     }
-
+    //Digunakan untuk menghapus data pembayaran berdasarkan stambuk di Datamahasiswa
     public function hapusByStambuk($id)
     {
         $query = "DELETE FROM pembayaran WHERE stambuk = :stambuk";
@@ -70,7 +70,7 @@ class Pembayaran_model
         return $this->db->rowCount();
     }
 
-    //USE
+    //Digunakan untuk menampilkan data pembayaran berdasarkan idpembayaran di Pembayaran
     public function tampilById($id)
     {
         $this->db->query("SELECT * FROM pembayaran WHERE idpembayaran= :idpembayaran");
@@ -78,13 +78,7 @@ class Pembayaran_model
         return $this->db->single();
     }
 
-    public function tampilByStambuk($id)
-    {
-        $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk ORDER BY idpembayaran DESC");
-        $this->db->bind('stambuk', $id);
-        return $this->db->single();
-    }
-
+    //Digunakan untuk mengedit data pembayaran di Pemabayaran
     public function edit($data)
     {
         $query = "UPDATE pembayaran SET stambuk= :stambuk, waktupembayaran= :waktupembayaran, nominal= :nominal, status= :status WHERE idpembayaran= :idpembayaran";
@@ -100,14 +94,14 @@ class Pembayaran_model
         return $this->db->rowCount();
     }
 
-    //USE
+    //Digunakan Di Beranda
     public function countPembayaran()
     {
         $this->db->query("SELECT COUNT(idpembayaran) AS jumlahPembayaran FROM pembayaran");
         return $this->db->single();
     }
 
-    //USE
+    //Digunakan Di Beranda
     public function printLaporan($stambuk)
     {
         $this->db->query("SELECT pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk WHERE pembayaran.stambuk = :stambuk ORDER BY pembayaran.idpembayaran DESC");
@@ -117,7 +111,7 @@ class Pembayaran_model
         return $this->db->single();
     }
 
-    //USE
+    //Digunakan Di Pembayaranmh
     public function tampilHistory($stambuk)
     {
         $this->db->query("SELECT pembayaran.waktupembayaran AS tanggal, pembayaran.nominal AS tagihan, pembayaran.status AS status FROM pembayaran WHERE stambuk = :stambuk AND status = 'Lunas' ORDER BY pembayaran.idpembayaran DESC");
@@ -125,7 +119,7 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    //USE
+    //Digunakan Di Pembayaranmh
     public function getPembayaranByStambuk($stambuk)
     {
         $this->db->query("
@@ -147,6 +141,14 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 }
+
+ // public function tampilByStambuk($id)
+    // {
+    //     $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk ORDER BY idpembayaran DESC");
+    //     $this->db->bind('stambuk', $id);
+    //     return $this->db->single();
+    // }
+
  // public function gettampilByPembayaran($id)
     // {
     //     $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");
