@@ -44,8 +44,8 @@
                             : '-';
                     ?>
                         <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $formattedDate; ?></td>
+                            <td class="text-center"><?= $no++; ?></td>
+                            <td class="text-center"><?= $formattedDate; ?></td>
                             <td>Rp. <?= number_format($pmb['nominal'], 2, ',', '.'); ?></td>
                         </tr>
                     <?php endforeach; ?>
