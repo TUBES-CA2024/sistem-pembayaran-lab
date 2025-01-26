@@ -31,7 +31,9 @@ KEPALA LAB
 
 MAHASISWA
 
-- Check Pembayaran (No Login)
+- Data Mahasiswa (Create)
+- Data Matakuliah (Read)
+- Pembayaran (Create & Read)
 
 ### Penjelasan Mengenai Arsitektur MVC
 
