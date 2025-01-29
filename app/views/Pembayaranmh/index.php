@@ -22,11 +22,11 @@
                                     </select>
                                 </div>
 
-                                <div class="col-auto">
+                                <!-- <div class="col-auto">
                                     <form action="<?= BASEURL; ?>/Pembayaranmh/registrasi" method="POST" class="mt-4">
                                         <button class="btn btn-success opacity-75" type="submit"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Register Mahasiswa</button>
                                     </form>
-                                </div>
+                                </div> -->
 
                             </div>
                         </th>
