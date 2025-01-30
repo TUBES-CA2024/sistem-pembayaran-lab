@@ -11,10 +11,10 @@ class Pembayaran_model
     //USE
     public function tambah($data)
     {
-        $query = "INSERT INTO pembayaran VALUES('', :iduser, :stambuk, :waktupembayaran, :nominal, :status)";
+        $query = "INSERT INTO pembayaran VALUES('', :stambuk, :waktupembayaran, :nominal, :status)";
 
         $this->db->query($query);
-        $this->db->bind('iduser', $_SESSION['iduser']);
+        // $this->db->bind('iduser', $_SESSION['iduser']);
         $this->db->bind('stambuk', $data['stambuk']);
         $this->db->bind('waktupembayaran', $data['waktupembayaran']);
         $this->db->bind('nominal', $data['nominal']);
@@ -141,60 +141,3 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 }
-
- // public function tampilByStambuk($id)
-    // {
-    //     $this->db->query("SELECT * FROM pembayaran WHERE stambuk= :stambuk ORDER BY idpembayaran DESC");
-    //     $this->db->bind('stambuk', $id);
-    //     return $this->db->single();
-    // }
-
- // public function gettampilByPembayaran($id)
-    // {
-    //     $this->db->query("SELECT kodematakuliah FROM pembayaran_matkul WHERE idpembayaran = :idpembayaran");
-    //     $this->db->bind('idpembayaran', $id);
-    //     return $this->db->resultSet();
-    // }
-
-    //USE
-
-    // public function tampilByStambuk_pmb($stambuk)
-    // {
-    //     $this->db->query("SELECT pembayaran.idpembayaran, pembayaran.stambuk, pembayaran.waktupembayaran, pembayaran.nominal, pembayaran.status, mahasiswa.nama FROM pembayaran JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk WHERE pembayaran.stambuk = :stambuk ORDER BY pembayaran.idpembayaran DESC");
-
-    //     $this->db->bind('stambuk', $stambuk);
-    //     return $this->db->resultSet();
-    // }
-
-    //USE
-
-
-    // public function getMatkulByStambuk($stambuk)
-    // {
-    //     $this->db->query("
-    //     SELECT ms.stambuk, GROUP_CONCAT(m.namamatakuliah SEPARATOR ', ') AS matkul
-    //     FROM matkul_select ms
-    //     JOIN matakuliah m ON ms.kodematakuliah = m.kodematakuliah
-    //     WHERE ms.stambuk = :stambuk
-    //     GROUP BY ms.stambuk
-    // ");
-    //     $this->db->bind('stambuk', $stambuk);
-    //     return $this->db->single();
-    // }
-
-
-    // public function updateMatkul($idpembayaran, $kodematakuliah)
-    // {
-    //     // Hapus mata kuliah yang lama
-    //     $this->db->query("DELETE FROM matkul_select WHERE idpembayaran = :idpembayaran");
-    //     $this->db->bind('idpembayaran', $idpembayaran);
-    //     $this->db->execute();
-
-    //     // Masukkan mata kuliah yang baru
-    //     foreach ($kodematakuliah as $kodematakuliah_id) {
-    //         $this->db->query("INSERT INTO matkul_select (idpembayaran, kodematakuliah) VALUES (:idpembayaran, :kodematakuliah)");
-    //         $this->db->bind('idpembayaran', $idpembayaran);
-    //         $this->db->bind('kodematakuliah', $kodematakuliah_id);
-    //         $this->db->execute();
-    //     }
-    // }
