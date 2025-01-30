@@ -24,6 +24,7 @@ class Pembayaran_model
         return $this->db->lastInsertId();
         // return $this->db->rowCount();
     }
+
     //USE
     public function tampil()
     {
