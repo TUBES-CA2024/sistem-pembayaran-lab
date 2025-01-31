@@ -61,18 +61,6 @@ class Mahasiswa_model
         return $this->db->rowCount();
     }
 
-    // public function updateFoto($iduser, $fileName)
-    // {
-    //     $query = "UPDATE user SET foto = :foto WHERE iduser = :iduser";
-    //     $this->db->query($query);
-    //     $this->db->bind('foto', $fileName);
-    //     $this->db->bind('iduser', $iduser);
-
-    //     $this->db->execute();
-
-    //     return $this->db->rowCount();
-    // }
-
     //Digunakan pada Datamahasiswa.php
     public function tampil()
     {

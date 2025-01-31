@@ -38,12 +38,17 @@
                 <span class="ms-1 d-none d-sm-inline">Kelas</span>
               </a>
             </li>
-            <li>
-              <a href="<?= BASEURL ?>/Pembayaran" class="nav-link px-2 align-middle">
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link px-2 align-middle dropdown-toggle" id="registrasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/pembayaran-icon.png" alt="logo-sipemla" /></i>
-                <span class="ms-1 d-none d-sm-inline">Pembayaran</span>
+                <span class="ms-1 d-none d-sm-inline">Registrasi</span>
               </a>
+              <ul class="dropdown-menu" aria-labelledby="registrasiDropdown">
+                <li><a class="dropdown-item" href="<?= BASEURL ?>/Tagihan">Tagihan</a></li>
+                <li><a class="dropdown-item" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
+              </ul>
             </li>
+
           </ul>
           <hr />
           <div class="pb-4" id="menu">

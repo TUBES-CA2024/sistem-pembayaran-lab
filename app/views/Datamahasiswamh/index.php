@@ -75,8 +75,8 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="stambuk" class="form-label">Stambuk <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control input-stambuk" id="input-stambuk" value="<?= $_SESSION['stambuk']; ?>" readonly>
-                            <input type="hidden" name="stambuk" value="<?= $_SESSION['stambuk']; ?>">
+                            <input type="text" class="form-control input-stambuk" id="input-stambuk" value="<?= $_SESSION['stambuk']; ?>" placeholder="Masukkan Stambuk" required>
+                            <!-- <input type="text" name="stambuk" value="<?= $_SESSION['stambuk']; ?>"> -->
                         </div>
 
                         <div class=" col-md-6 mb-3">

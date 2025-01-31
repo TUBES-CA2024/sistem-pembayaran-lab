@@ -6,7 +6,7 @@ class Pembayaran extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Pembayaran';
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil(); // Tambahkan data mahasiswa
             $data['matkul'] = $this->model('Matkul_model')->tampil(); // Tambahkan data matkul
