@@ -38,6 +38,7 @@
                         <th class="text-center">Semester</th>
                         <th class="text-center">Matkul</th>
                         <th class="text-center">Tanggal Bayar</th>
+                        <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
