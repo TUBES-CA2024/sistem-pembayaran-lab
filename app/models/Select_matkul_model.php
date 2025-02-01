@@ -13,16 +13,29 @@ class Select_matkul_model
     {
         if (isset($data['kodematakuliah']) && is_array($data['kodematakuliah'])) {
             foreach ($data['kodematakuliah'] as $km) {
-                $query = "INSERT INTO matkul_select VALUES('', :stambuk, :kodematakuliah, :idpembayaran)";
+                $query = "INSERT INTO matkul_select VALUES('', :stambuk, :kodematakuliah, :idtagihan)";
                 $this->db->query($query);
                 $this->db->bind('stambuk', $data['stambuk']);
                 $this->db->bind('kodematakuliah', $km);
-                $this->db->bind('idpembayaran', $data['idpembayaran']);
+                $this->db->bind('idtagihan', $data['idtagihan']);
 
                 $this->db->execute();
             }
         }
         return $this->db->rowCount();
+    }
+
+    public function insertMatkulSelect($stambuk, $kode_matakuliah, $idtagihan)
+    {
+        $query = "INSERT INTO matkul_select (stambuk, kodematakuliah, idtagihan)
+                  VALUES (:stambuk, :kodematakuliah, :idtagihan)";
+
+        $this->db->query($query);
+        $this->db->bind('stambuk', $stambuk);
+        $this->db->bind('kodematakuliah', $kode_matakuliah);
+        $this->db->bind('idtagihan', $idtagihan);
+
+        $this->db->execute();
     }
     //Digunakan untuk menghapus data matkul_select di Pembayaran
     public function hapus($id)

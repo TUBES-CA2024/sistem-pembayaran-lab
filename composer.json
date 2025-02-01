@@ -1,0 +1,18 @@
+{
+    "name": "muham/sipemla",
+    "description": "sistem pembayaran lab",
+    "autoload": {
+        "psr-4": {
+            "Muham\\Sipemla\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MuhammadAlifMaulanaR",
+            "email": "muhalif.maulana17@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^3.9"
+    }
+}
