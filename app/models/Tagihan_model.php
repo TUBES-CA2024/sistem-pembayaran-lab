@@ -74,53 +74,18 @@ class Tagihan_model
             return false;
         }
     }
-
-    // public function tambah($data, $file)
-    // {
-    //     // Jika ada file yang diupload, proses file Excel
-    //     if ($file && isset($file['excel_file']) && $file['excel_file']['error'] == 0) {
-    //         // Menggunakan library PhpSpreadsheet
-    //         require_once 'vendor/autoload.php';
-
-    //         try {
-    //             // Membaca file Excel
-    //             $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file['excel_file']['tmp_name']);
-    //             $sheet = $spreadsheet->getActiveSheet();
-
-    //             // Loop setiap baris di sheet
-    //             foreach ($sheet->getRowIterator() as $row) {
-    //                 $cellIterator = $row->getCellIterator();
-    //                 $cellIterator->setIterateOnlyExistingCells(false);
-    //                 $excelData = [];
-
-    //                 // Menyusun data dari setiap sel
-    //                 foreach ($cellIterator as $cell) {
-    //                     $excelData[] = $cell->getValue();
-    //                 }
-
-    //                 // Menyimpan data dari file Excel ke dalam tabel tagihan
-    //                 // $this->insert_data($excelData);  // Memasukkan data langsung dari file Excel
-    //             }
-    //         } catch (Exception $e) {
-    //             // Menangani error jika ada
-    //             error_log($e->getMessage());
-    //             return false;
-    //         }
-    //     } else {
-    //         // Proses data manual jika tidak ada file Excel
-    //         $query = "INSERT INTO tagihan (stambuk, jumlah_tagihan, angkatan, tahun_akademik, semester) 
-    //               VALUES (:stambuk, :jumlah_tagihan, :angkatan, :tahun_akademik, :semester)";
-
-    //         // Query untuk menyimpan data manual
-    //         $this->db->query($query);
-    //         $this->db->bind('stambuk', $data['stambuk']);
-    //         $this->db->bind('jumlah_tagihan', $data['jumlah_tagihan']);
-    //         $this->db->bind('angkatan', $data['angkatan']);
-    //         $this->db->bind('tahun_akademik', $data['tahun_akademik']);
-    //         $this->db->bind('semester', $data['semester']);
-    //         $this->db->execute();
-    //     }
-
-    //     return $this->db->rowCount();
-    // }
+    public function tampil()
+    {
+        $query = "SELECT * FROM tagihan"; // Query untuk mengambil semua data tagihan
+        $this->db->query($query);
+        return $this->db->resultSet(); // Mengembalikan data dalam bentuk array
+    }
+    public function hapus($id)
+    {
+        $query = "DELETE FROM tagihan WHERE idtagihan = :idtagihan"; // Query untuk menghapus tagihan berdasarkan id
+        $this->db->query($query);
+        $this->db->bind('idtagihan', $id);
+        $this->db->execute(); // Mengembalikan hasil eksekusi query
+        return $this->db->rowCount();
+    }
 }

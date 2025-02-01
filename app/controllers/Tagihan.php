@@ -5,10 +5,8 @@ class Tagihan extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Tagihan';
-            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil(); // Tambahkan data mahasiswa
-            $data['matkul'] = $this->model('Matkul_model')->tampil(); // Tambahkan data matkul
+            $data['tagihan'] = $this->model('Tagihan_model')->tampil();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
@@ -49,6 +47,18 @@ class Tagihan extends Controller
                     exit;
                 }
             }
+        }
+    }
+    public function hapus($id)
+    {
+        if ($this->model('Tagihan_model')->hapus($id) > 0) {
+            PesanFlash::setFlash('Tagihan berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/Tagihan');
+            exit;
+        } else {
+            PesanFlash::setFlash('Tagihan gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/Tagihan');
+            exit;
         }
     }
 }
