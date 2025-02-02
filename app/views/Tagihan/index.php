@@ -33,7 +33,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
-                        <th class="text-center">Jumlah Bayar</th>
+                        <th class="text-center">Jumlah Tagihan</th>
                         <th class="text-center">Angkatan</th>
                         <th class="text-center">Tahun Akademik</th>
                         <th class="text-center">Semester</th>
@@ -114,7 +114,7 @@
                 <form action="<?= BASEURL; ?>/Tagihan/tambah" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
                         <label for="formFileSm" class="mb-3">Upload file Excel:</label>
-                        <input type="file" id="formFileSm" class="form-control form-control-sm" required>
+                        <input type="file" name="excel_file" id="formFileSm" class="form-control form-control-sm" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

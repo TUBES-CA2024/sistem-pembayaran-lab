@@ -13,9 +13,9 @@ class Pembayaran_model
     {
         $query = "INSERT INTO pembayaran VALUES('', :idtagihan, :tanggal_pembayaran, :jumlah_pembayaran, :status)";
         $this->db->query($query);
-        $this->db->bind('idtagihan', $data['stambuk']);
-        $this->db->bind('waktupembayaran', $data['waktupembayaran']);
-        $this->db->bind('nominal', $data['nominal']);
+        $this->db->bind('idtagihan', $data['idtagihan']);
+        $this->db->bind('tanggal_pembayaran', $data['tanggal_pembayaran']);
+        $this->db->bind('jumlah_pembayaran', $data['jumlah_pembayaran']);
         $this->db->bind('status', $data['status']);
 
         $this->db->execute();
@@ -26,23 +26,8 @@ class Pembayaran_model
     //USE
     public function tampil()
     {
-        $this->db->query("SELECT * FROM pembayaran ORDER BY idpembayaran ASC");
-        $this->db->query("
-        SELECT 
-        pembayaran.idpembayaran, 
-        pembayaran.stambuk, 
-        pembayaran.waktupembayaran, 
-        pembayaran.nominal, 
-        pembayaran.status, 
-        mahasiswa.nama,
-        GROUP_CONCAT(matakuliah.namamatakuliah SEPARATOR ', ') AS matkul
-        FROM pembayaran
-        JOIN mahasiswa ON pembayaran.stambuk = mahasiswa.stambuk
-        LEFT JOIN matkul_select ON pembayaran.stambuk = matkul_select.stambuk
-        LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah
-        GROUP BY pembayaran.idpembayaran
-        ORDER BY pembayaran.idpembayaran DESC
-        ");
+        $query = "SELECT * FROM pembayaran";
+        $this->db->query($query);
         return $this->db->resultSet();
     }
 
