@@ -113,8 +113,8 @@
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/Tagihan/tambah" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
-                        <label for="excel_file" class="mb-3">Upload file Excel:</label>
-                        <input type="file" name="excel_file" id="excel_file" class="from-control" required>
+                        <label for="formFileSm" class="mb-3">Upload file Excel:</label>
+                        <input type="file" id="formFileSm" class="form-control form-control-sm" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
