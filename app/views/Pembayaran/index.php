@@ -42,7 +42,22 @@
                 </thead>
                 <tbody>
                     <?php foreach ($data['tagihan'] as $index => $pmb): ?>
-                        <?php foreach ($data['pembayaran'] as $pembayaran): ?>
+                        <?php
+                        // Cari pembayaran yang sesuai dengan idtagihan saat ini
+                        $pembayaran_terkait = array_filter($data['pembayaran'], function ($pembayaran) use ($pmb) {
+                            return $pembayaran['idtagihan'] == $pmb['idtagihan'];
+                        });
+
+                        // Jika tidak ada pembayaran terkait, buat array kosong
+                        if (empty($pembayaran_terkait)) {
+                            $pembayaran_terkait = [[
+                                'tanggal_pembayaran' => '-',
+                                'jumlah_pembayaran' => '-',
+                                'status' => 'Belum Bayar'
+                            ]];
+                        }
+                        ?>
+                        <?php foreach ($pembayaran_terkait as $pembayaran): ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td class="text-center"><?= $pmb['stambuk'] ?></td>
@@ -58,9 +73,10 @@
                                     <div class="d-flex justify-content-center">
                                         <button
                                             class="btn btn-success opacity-75 add-pembayaran me-2"
-                                            type="submit"
+                                            type="button"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#formPembayaran">
+                                            data-bs-target="#formPembayaran"
+                                            data-idtagihan="<?= $pmb['idtagihan'] ?>">
                                             <img
                                                 src="<?= BASEURL ?>/assets/img/add.png"
                                                 alt="icon-edit">
@@ -78,6 +94,8 @@
                                 </td>
 
                             </tr>
+                            <pre><?php var_dump($pmb); ?></pre>
+
 
                         <?php endforeach; ?>
                     <?php endforeach; ?>
@@ -99,7 +117,7 @@
                 <form action="<?= BASEURL; ?>/Pembayaran/tambah" method="post">
                     <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
                     <input type="hidden" id="hidden-idtagihan" name="idtagihan">
-                    <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>">
+                    <!-- <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>"> -->
 
                     <div class="mb-3">
                         <label for="idtagihan" class="form-label">idtagihan</label>
@@ -133,6 +151,41 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const buttons = document.querySelectorAll(".add-pembayaran");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                const idtagihan = this.getAttribute("data-idtagihan");
+
+                console.log("ID Tagihan yang diklik:", idtagihan); // Debugging di Console
+
+                if (idtagihan) {
+                    document.getElementById("hidden-idtagihan").value = idtagihan;
+                    document.getElementById("idtagihan").value = idtagihan;
+                } else {
+                    console.error("data-idtagihan tidak ditemukan!");
+                }
+            });
+        });
+    });
+</script>
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const buttons = document.querySelectorAll(".add-pembayaran");
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                const idtagihan = this.getAttribute("data-idtagihan");
+                console.log("ID Tagihan yang diklik:", idtagihan); // Debugging
+                document.getElementById("hidden-idtagihan").value = idtagihan;
+                document.getElementById("idtagihan").value = idtagihan;
+            });
+        });
+    });
+</script> -->
 
 <!-- Modal Delete -->
 <!-- <div class="modal fade" id="modalDelete<?= $pmb['idpembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

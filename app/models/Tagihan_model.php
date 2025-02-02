@@ -74,6 +74,7 @@ class Tagihan_model
             return false;
         }
     }
+
     public function tampil()
     {
         $query = "SELECT * FROM tagihan"; // Query untuk mengambil semua data tagihan

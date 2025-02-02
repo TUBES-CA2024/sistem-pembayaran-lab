@@ -8,7 +8,6 @@ class Pembayaran extends Controller
             $data['title'] = 'Pembayaran';
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil(); // Tambahkan data mahasiswa
             $data['tagihan'] = $this->model('Tagihan_model')->tampil();
 
             $this->view('templates/header', $data);
@@ -45,8 +44,6 @@ class Pembayaran extends Controller
 
         if ($idpembayaran > 0) {
             $_POST['idpembayaran'] = $idpembayaran;
-
-            // $this->model('Select_matkul_model')->tambah($_POST);
 
             PesanFlash::setFlash('Pembayaran Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
