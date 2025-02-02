@@ -13,7 +13,7 @@ $(function () {
     $("#input-username").val("");
     $("#input-password").val("");
     $("#option-role").val("Pilih Role");
-    $("#stambuk").val("").parent().hide(); // Reset dan sembunyikan stambuk
+    // $("#stambuk").val("").parent().hide(); // Reset dan sembunyikan stambuk
     $("#id").val("");
   });
 

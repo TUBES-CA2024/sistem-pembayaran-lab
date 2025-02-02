@@ -11,18 +11,16 @@ class Pembayaran_model
     //USE
     public function tambah($data)
     {
-        $query = "INSERT INTO pembayaran VALUES('', :stambuk, :waktupembayaran, :nominal, :status)";
-
+        $query = "INSERT INTO pembayaran VALUES('', :idtagihan, :tanggal_pembayaran, :jumlah_pembayaran, :status)";
         $this->db->query($query);
-        // $this->db->bind('iduser', $_SESSION['iduser']);
-        $this->db->bind('stambuk', $data['stambuk']);
+        $this->db->bind('idtagihan', $data['stambuk']);
         $this->db->bind('waktupembayaran', $data['waktupembayaran']);
         $this->db->bind('nominal', $data['nominal']);
         $this->db->bind('status', $data['status']);
 
         $this->db->execute();
-        return $this->db->lastInsertId();
-        // return $this->db->rowCount();
+
+        return $this->db->rowCount();
     }
 
     //USE

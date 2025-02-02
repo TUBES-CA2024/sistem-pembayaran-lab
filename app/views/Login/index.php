@@ -39,7 +39,7 @@ session_start();
                                         <h4>Login</h4>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" name="username" placeholder="username">
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" name="username" placeholder="email">
                                     </div>
                                     <div class="mb-3">
                                         <input type="password" class="form-control" id="exampleFormControlInput1" name="password" placeholder="password">

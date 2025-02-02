@@ -17,7 +17,7 @@ class User_model
         $this->db->bind('password', $data['password']);
         $this->db->bind('role', $data['role']);
 
-        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
+        // $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
 
         $this->db->execute();
 

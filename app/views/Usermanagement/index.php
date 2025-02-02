@@ -106,7 +106,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="input-username" name="username" placeholder="Masukkan Username">
+                        <input type="email" class="form-control" id="input-username" name="username" placeholder="Masukkan Username">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>

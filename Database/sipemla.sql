@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2024 at 04:53 AM
+-- Generation Time: Feb 02, 2025 at 08:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,7 +53,8 @@ INSERT INTO `kelas` (`idkelas`, `namekelas`) VALUES
 (14, 'C2'),
 (15, 'C3'),
 (16, 'C4'),
-(24, 'A10');
+(17, 'A10'),
+(20, 'A123');
 
 -- --------------------------------------------------------
 
@@ -80,9 +81,8 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`stambuk`, `nama`, `prodi`, `idkelas`, `namaagama`, `email`, `telepon`, `jeniskelamin`, `alamat`, `foto`, `isCompleted`) VALUES
-('13020220221', 'Muhammad Akbar', 'Teknik Informatika', 3, 'Islam', 'alif@gmail.com', '082268156621', 'Laki-Laki', 'Sudiang', 'assets/img/profil/67505522c4f12.png', 1),
-('13020220222', 'Indah Purnawan', 'Sistem Informasi', 10, 'Islam', 'indah@gmail.com', '082268165521', 'Perempuan', 'Kolaka', 'assets/img/profil/675058f046fd0.jpg', 1),
-('13020220223', 'Muhammad Alif Maulana', 'Teknik Informatika', 6, 'Islam', 'alif@gmail.com', '082268156621', 'Laki-Laki', 'sudiang', 'assets/img/profil/67505490d8788.png', 1);
+('1302021', 'alif', 'Teknik Informatika', 1, 'Islam', 'alif@gmail.com', '132', 'Laki-Laki', 'afe', 'assets/img/profil/679de3e1e5596.jpg', 1),
+('1302022', 'daf', 'Teknik Informatika', 1, 'Islam', 'dawd@gmail.com', 'efsf', 'Laki-Laki', 'daw', 'assets/img/profil/679d1ae4bbbd1.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -111,11 +111,11 @@ INSERT INTO `matakuliah` (`kodematakuliah`, `namamatakuliah`, `sks`) VALUES
 ('008', 'Pemrograman Berorientasi Objek', 3),
 ('009', 'Pemrograman Web', 3),
 ('010', 'Jaringan Komputer', 3),
-('011', 'Pemrograman Mobile', 1),
-('012', 'Sistem Operasi', 1),
-('013', 'Akuntansi', 1),
-('014', 'Design Grafis', 1),
-('015', 'Sastra Mesin', 3);
+('011', 'Pemrograman Mobile', 3),
+('012', 'Sistem Operasi', 3),
+('013', 'Akuntansi', 3),
+('014', 'Design Grafis', 3),
+('123', 'eqe2', 2);
 
 -- --------------------------------------------------------
 
@@ -127,19 +127,8 @@ CREATE TABLE `matkul_select` (
   `id` int(11) NOT NULL,
   `stambuk` varchar(15) NOT NULL,
   `kodematakuliah` varchar(25) NOT NULL,
-  `idpembayaran` int(11) DEFAULT NULL
+  `idtagihan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `matkul_select`
---
-
-INSERT INTO `matkul_select` (`id`, `stambuk`, `kodematakuliah`, `idpembayaran`) VALUES
-(473, '13020220222', '012', 183),
-(474, '13020220223', '014', 184),
-(475, '13020220223', '015', 184),
-(476, '13020220221', '003', 185),
-(477, '13020220221', '004', 185);
 
 -- --------------------------------------------------------
 
@@ -149,21 +138,41 @@ INSERT INTO `matkul_select` (`id`, `stambuk`, `kodematakuliah`, `idpembayaran`) 
 
 CREATE TABLE `pembayaran` (
   `idpembayaran` int(11) NOT NULL,
-  `iduser` int(11) NOT NULL,
-  `stambuk` varchar(15) NOT NULL,
-  `waktupembayaran` date NOT NULL,
-  `nominal` bigint(20) NOT NULL,
-  `status` enum('Lunas','Belum Lunas','','') NOT NULL
+  `idtagihan` int(11) DEFAULT NULL,
+  `tanggal_pembayaran` date DEFAULT NULL,
+  `jumlah_pembayaran` bigint(20) DEFAULT NULL,
+  `status` enum('Lunas','Belum Lunas') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tagihan`
+--
+
+CREATE TABLE `tagihan` (
+  `idtagihan` int(11) NOT NULL,
+  `stambuk` varchar(15) DEFAULT NULL,
+  `jumlah_tagihan` bigint(20) DEFAULT NULL,
+  `angkatan` year(4) DEFAULT NULL,
+  `tahun_akademik` varchar(9) DEFAULT NULL,
+  `semester` enum('Genap','Ganjil') DEFAULT NULL,
+  `matakuliah` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `pembayaran`
+-- Dumping data for table `tagihan`
 --
 
-INSERT INTO `pembayaran` (`idpembayaran`, `iduser`, `stambuk`, `waktupembayaran`, `nominal`, `status`) VALUES
-(183, 1, '13020220222', '2024-12-05', 55000, 'Belum Lunas'),
-(184, 1, '13020220223', '2024-12-05', 110000, 'Lunas'),
-(185, 1, '13020220221', '2024-12-31', 110000, 'Lunas');
+INSERT INTO `tagihan` (`idtagihan`, `stambuk`, `jumlah_tagihan`, `angkatan`, `tahun_akademik`, `semester`, `matakuliah`) VALUES
+(35, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
+(36, '1302022', 110000, '2022', '2024/2025', 'Genap', 'Algoritma, Jaringan'),
+(37, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
+(38, '1302021', 50000, '2022', '2024/2025', 'Genap', 'Struktur Data'),
+(47, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
+(48, '1302022', 110000, '2022', '2024/2025', 'Genap', 'Algoritma, Jaringan'),
+(49, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
+(50, '1302021', 50000, '2022', '2024/2025', 'Genap', 'Struktur Data');
 
 -- --------------------------------------------------------
 
@@ -175,21 +184,19 @@ CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `role` enum('Admin','Kepala Lab','Mahasiswa') DEFAULT NULL,
-  `stambuk` varchar(50) DEFAULT NULL
+  `role` enum('Admin','Kepala Lab','Mahasiswa') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`iduser`, `username`, `password`, `role`, `stambuk`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'Admin123'),
-(2, 'KepalaLab1', 'kepalalab1', 'Kepala Lab', NULL),
-(22, '13020220301', 'mhs#2024', 'Mahasiswa', '13020220301'),
-(51, '13020220223', 'mhs#2024', 'Mahasiswa', '13020220223'),
-(54, '13020220221', 'mhs#2024', 'Mahasiswa', '13020220221'),
-(55, '13020220222', 'mhs#2024', 'Mahasiswa', '13020220222');
+INSERT INTO `user` (`iduser`, `username`, `password`, `role`) VALUES
+(1, 'Admin', 'Admin', 'Admin'),
+(2, 'KepalaLab1', 'kepalalab1', 'Kepala Lab'),
+(62, '1302022', '123', 'Mahasiswa'),
+(63, '130', '123', 'Mahasiswa'),
+(64, 'admin@gmail.com', '123', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -221,14 +228,20 @@ ALTER TABLE `matkul_select`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kodematakuliah` (`kodematakuliah`),
   ADD KEY `stambuk` (`stambuk`),
-  ADD KEY `idpembayaran` (`idpembayaran`);
+  ADD KEY `idtagihan` (`idtagihan`);
 
 --
 -- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`idpembayaran`),
-  ADD KEY `iduser` (`iduser`),
+  ADD KEY `idtagihan` (`idtagihan`);
+
+--
+-- Indexes for table `tagihan`
+--
+ALTER TABLE `tagihan`
+  ADD PRIMARY KEY (`idtagihan`),
   ADD KEY `stambuk` (`stambuk`);
 
 --
@@ -245,25 +258,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `idkelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idkelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `matkul_select`
 --
 ALTER TABLE `matkul_select`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=478;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=354;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tagihan`
+--
+ALTER TABLE `tagihan`
+  MODIFY `idtagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- Constraints for dumped tables
@@ -279,7 +298,7 @@ ALTER TABLE `mahasiswa`
 -- Constraints for table `matkul_select`
 --
 ALTER TABLE `matkul_select`
-  ADD CONSTRAINT `idpembayaran` FOREIGN KEY (`idpembayaran`) REFERENCES `pembayaran` (`idpembayaran`),
+  ADD CONSTRAINT `idtagihan` FOREIGN KEY (`idtagihan`) REFERENCES `tagihan` (`idtagihan`),
   ADD CONSTRAINT `matkul_select_ibfk_1` FOREIGN KEY (`kodematakuliah`) REFERENCES `matakuliah` (`kodematakuliah`),
   ADD CONSTRAINT `matkul_select_ibfk_2` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
 
@@ -287,8 +306,13 @@ ALTER TABLE `matkul_select`
 -- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`iduser`),
-  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`idtagihan`) REFERENCES `tagihan` (`idtagihan`);
+
+--
+-- Constraints for table `tagihan`
+--
+ALTER TABLE `tagihan`
+  ADD CONSTRAINT `stambuk` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
