@@ -76,7 +76,8 @@
                                             type="button"
                                             data-bs-toggle="modal"
                                             data-bs-target="#formPembayaran"
-                                            data-idtagihan="<?= $pmb['idtagihan'] ?>">
+                                            data-idtagihan="<?= $pmb['idtagihan'] ?>"
+                                            data-stambuk="<?= $pmb['stambuk'] ?>">
                                             <img
                                                 src="<?= BASEURL ?>/assets/img/add.png"
                                                 alt="icon-edit">
@@ -116,7 +117,7 @@
                     <input type="hidden" id="idtagihan" name="idtagihan">
                     <div class="mb-3">
                         <label for="stambuk" class="form-label">Stambuk</label>
-                        <input type="text" class="form-control" id="stambuk" name="stambuk" value="<?= $pmb['stambuk']  ?>" readonly>
+                        <input type="text" class="form-control" id="stambuk" name="stambuk" value="<?= isset($data['stambuk']) ? $data['stambuk'] : '' ?>" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_pembayaran" class="form-label">Waktu Pembayaran</label>

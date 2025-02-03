@@ -89,4 +89,20 @@ class Tagihan_model
         $this->db->execute(); // Mengembalikan hasil eksekusi query
         return $this->db->rowCount();
     }
+    public function getStambukByIdTagihan($idtagihan)
+    {
+        // Query untuk mengambil stambuk berdasarkan idtagihan
+        $query = "SELECT stambuk FROM tagihan WHERE idtagihan = :idtagihan";
+
+        $this->db->query($query);
+
+        // Bind parameter idtagihan
+        $this->db->bind(':idtagihan', $idtagihan);
+
+        // Mengambil hasilnya
+        $result = $this->db->single(); // Mengambil satu hasil
+
+        // Mengembalikan stambuk jika ditemukan, atau null jika tidak ada
+        return $result ? $result['stambuk'] : null;
+    }
 }

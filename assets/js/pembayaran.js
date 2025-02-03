@@ -32,12 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
             // Ambil idtagihan dari data atribut tombol yang diklik
             const button = event.target.closest('.add-pembayaran');
             const idTagihan = button.getAttribute('data-idtagihan');
+            const stambuk = button.getAttribute('data-stambuk');
 
             // const id = $(this).data("idtagihan");
             console.log("Tambah pembayaran with ID:", idTagihan);
 
             // Isi field idtagihan pada form modal dengan nilai idTagihan yang sesuai
             document.getElementById('idtagihan').value = idTagihan;
+            document.getElementById('stambuk').value = stambuk; // Set stambuk di form modal
         }
 
     });
