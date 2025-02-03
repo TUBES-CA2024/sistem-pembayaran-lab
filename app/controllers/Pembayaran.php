@@ -14,7 +14,6 @@ class Pembayaran extends Controller
             $this->view('templates/sidebar');
             $this->view('Pembayaran/index', $data);
             $this->view('templates/footersidebar');
-
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");
@@ -40,11 +39,7 @@ class Pembayaran extends Controller
 
     public function tambah()
     {
-        $idpembayaran = $this->model('Pembayaran_model')->tambah($_POST);
-
-        if ($idpembayaran > 0) {
-            $_POST['idpembayaran'] = $idpembayaran;
-
+        if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
             PesanFlash::setFlash('Pembayaran Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;

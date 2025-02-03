@@ -12,7 +12,6 @@ class Tagihan extends Controller
             $this->view('templates/sidebar');
             $this->view('Tagihan/index', $data);
             $this->view('templates/footersidebar');
-
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Beranda");
@@ -35,7 +34,6 @@ class Tagihan extends Controller
                     foreach ($data as $excelData) {
                         $this->model('Tagihan_model')->insertTagihanFromExcel($excelData);
                     }
-
                     // Set pesan sukses dan redirect
                     PesanFlash::setFlash('Tagihan berhasil', 'ditambahkan', 'success');
                     header('Location: ' . BASEURL . '/Tagihan');

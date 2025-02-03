@@ -31,6 +31,25 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
+    // Mengambil data stambuk berdasarkan idtagihan
+    // public function getStambukByIdTagihan($idtagihan)
+    // {
+    //     // Menyiapkan query untuk mengambil stambuk dari tabel tagihan
+    //     $query = "SELECT t.stambuk
+    //               FROM tagihan t
+    //               JOIN pembayaran p ON t.idtagihan = p.idtagihan
+    //               WHERE p.idtagihan = :idtagihan";
+
+    //     // Menyiapkan pernyataan query
+    //     $this->db->query($query);
+
+    //     // Mengikat parameter idtagihan ke query
+    //     $this->db->bind(':idtagihan', $idtagihan);
+
+    //     // Mengeksekusi query dan mengembalikan hasilnya
+    //     return $this->db->single(); // Mengambil satu baris hasil
+    // }
+
     //Digunakan untuk menghapus data pembayaran di Pembayaran
     public function hapus($id)
     {

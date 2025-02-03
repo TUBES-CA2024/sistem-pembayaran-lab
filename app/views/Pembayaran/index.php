@@ -92,11 +92,7 @@
                                         </a>
                                     </div>
                                 </td>
-
                             </tr>
-                            <pre><?php var_dump($pmb); ?></pre>
-
-
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </tbody>
@@ -114,16 +110,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Pembayaran/tambah" method="post">
-                    <input type="hidden" id="hidden-idpembayaran" name="idpembayaran">
-                    <input type="hidden" id="hidden-idtagihan" name="idtagihan">
-                    <!-- <input type="hidden" name="iduser" value="<?= $_SESSION['iduser'] ?>"> -->
 
+                <form action="<?= BASEURL; ?>/Pembayaran/tambah" method="POST">
+                    <input type="hidden" id="idpembayaran" name="idpembayaran">
+                    <input type="hidden" id="idtagihan" name="idtagihan">
                     <div class="mb-3">
-                        <label for="idtagihan" class="form-label">idtagihan</label>
-                        <input type="text" class="form-control" id="idtagihan" name="idtagihan" required>
+                        <label for="stambuk" class="form-label">Stambuk</label>
+                        <input type="text" class="form-control" id="stambuk" name="stambuk" value="<?= $pmb['stambuk']  ?>" readonly>
                     </div>
-
                     <div class="mb-3">
                         <label for="tanggal_pembayaran" class="form-label">Waktu Pembayaran</label>
                         <input type="date" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" required>
@@ -131,7 +125,7 @@
 
                     <div class="mb-3">
                         <label for="jumlah_pembayaran" class="form-label">Nominal</label>
-                        <input type="text" id="jumlah_pembayaran" class="form-control" name="jumlah_pembayaran" value="" required>
+                        <input type="text" id="jumlah_pembayaran" class="form-control" name="jumlah_pembayaran" placeholder="Masukkan Jumlah Bayar" required>
                     </div>
 
                     <div class="mb-3">
@@ -151,27 +145,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const buttons = document.querySelectorAll(".add-pembayaran");
-
-        buttons.forEach(button => {
-            button.addEventListener("click", function() {
-                const idtagihan = this.getAttribute("data-idtagihan");
-
-                console.log("ID Tagihan yang diklik:", idtagihan); // Debugging di Console
-
-                if (idtagihan) {
-                    document.getElementById("hidden-idtagihan").value = idtagihan;
-                    document.getElementById("idtagihan").value = idtagihan;
-                } else {
-                    console.error("data-idtagihan tidak ditemukan!");
-                }
-            });
-        });
-    });
-</script>
 
 <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
