@@ -157,8 +157,9 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
                         <th class="text-center">Nama</th>
-                        <th class="text-center">Waktu Pembayaran</th>
-                        <th class="text-center">Nominal</th>
+                        <th class="text-center">Matakuliah</th>
+                        <th class="text-center">Tanggal Bayar</th>
+                        <th class="text-center">Jumlah Bayar</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">
                             <input

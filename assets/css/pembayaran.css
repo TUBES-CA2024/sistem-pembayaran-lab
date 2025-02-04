@@ -68,7 +68,7 @@ input::-webkit-inner-spin-button {
 
 /* CSS untuk warna tombol Edit dan Delete */
 .btn-edit {
-  background-color: #34a7ae;
+  /* background-color: #34a7ae; */
   /* Warna latar belakang tombol Edit */
   color: #fff;
   /* Warna teks tombol Edit */

@@ -51,7 +51,7 @@
                             <td><?= $matkul['namamatakuliah']; ?></td>
                             <td><?= $matkul['sks']; ?></td>
                             <td>
-                                <a class="col btn-edit edit-matkul me-2"
+                                <a class="btn btn-success col btn-edit edit-matkul me-2"
                                     role="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#formUser"

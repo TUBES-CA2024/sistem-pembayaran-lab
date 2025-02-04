@@ -74,7 +74,7 @@
                                         <!-- Tombol Tambah Pembayaran (Menambahkan kondisi jika sudah ada pembayaran) -->
                                         <?php if (empty($pembayaran_terkait && $pembayaran['status'] != 'Belum Bayar')): ?>
                                             <button
-                                                class="btn btn-success opacity-75 add-pembayaran me-2"
+                                                class="btn btn-success add-pembayaran me-2"
                                                 type="button"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#formPembayaran"
@@ -87,7 +87,7 @@
                                         <?php else: ?>
                                             <!-- Tombol Tambah Pembayaran dinonaktifkan jika sudah ada pembayaran -->
                                             <button
-                                                class="btn btn-warning opacity-75 add-pembayaran me-2"
+                                                class="btn btn-warning add-pembayaran me-2"
                                                 type="button"
                                                 disabled>
                                                 <img src="<?= BASEURL ?>/assets/img/add.png" alt="icon-add">
@@ -97,7 +97,7 @@
                                         <!-- Cek jika ada pembayaran, jika tidak maka tombol edit dinonaktifkan -->
                                         <?php if (!empty($pembayaran_terkait) && $pembayaran['status'] != 'Belum Bayar'): ?>
                                             <button
-                                                class="btn btn-success opacity-75 btn-edit me-2"
+                                                class="btn btn-success btn-edit me-2"
                                                 type="button"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editPembayaran"
@@ -111,7 +111,7 @@
                                             </button>
                                         <?php else: ?>
                                             <button
-                                                class="btn btn-warning opacity-75 btn-edit me-2"
+                                                class="btn btn-warning btn-edit me-2"
                                                 type="button"
                                                 disabled>
                                                 <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">

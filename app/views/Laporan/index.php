@@ -8,6 +8,11 @@
                     alt="foto-card4"
                     width="85px">
             </div>
+            <div class="col-md-11 card-body">
+                <h5 class="card-title">Tagihan</h5>
+                <!-- <h2 class="card-subtitle mb-2"><?= $data['countpembayaran']['jumlahPembayaran'] ?></h2> -->
+                <p class="card-text">Jumlah Tagihan</p>
+            </div>
         </div>
     </div>
 </div>

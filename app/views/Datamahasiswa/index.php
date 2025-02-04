@@ -52,7 +52,7 @@
                             <td><?= $mhs['telepon']; ?></td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a class="btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
+                                    <a class="btn btn-success btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
                                         <img
                                             src="<?= BASEURL ?>/assets/img/edit.png"
                                             alt="icon-edit">

@@ -38,31 +38,24 @@
                 <span class="ms-1 d-none d-sm-inline">Kelas</span>
               </a>
             </li>
-            <li>
-              <a class="nav-link px-2 align-middle">
-                <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/pembayaran-icon.png" alt="logo-sipemla" /></i>
+            <li class="nav-item">
+              <a href="#registrasiSubMenu" data-bs-toggle="collapse" class="nav-link px-2 align-middle dropdown-toggle" id="registrasiMenu">
+                <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/pembayaran-icon.png" alt="registrasi-icon" /></i>
                 <span class="ms-1 d-none d-sm-inline">Registrasi</span>
               </a>
-            </li>
-            <li>
-              <a href="<?= BASEURL ?>/Tagihan" class="nav-link px-2 align-middle">
-                <i class="fs-4"></i>
-                <span class="ms-1 d-done d-sm-inline p-5">Tagihan</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= BASEURL ?>/Pembayaran" class="nav-link px-2 align-middle">
-                <i class="fs-4"></i>
-                <span class="ms-1 d-done d-sm-inline p-5">Pembayaran</span>
-              </a>
+              <div class="collapse ps-3" id="registrasiSubMenu">
+                <ul class="list-unstyled">
+                  <li><a href="<?= BASEURL ?>/Tagihan" class="nav-link px-2">Tagihan</a></li>
+                  <li><a href="<?= BASEURL ?>/Pembayaran" class="nav-link px-2">Pembayaran</a></li>
+                </ul>
+              </div>
             </li>
             <li>
               <a href="<?= BASEURL ?>/Laporan" class="nav-link px-2 align-middle">
-                <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/matkul-icon.png" alt="logo-sipemla" /></i>
+                <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/laporan-icon.png" alt="laporan-icon" /></i>
                 <span class="ms-1 d-none d-sm-inline">Laporan</span>
               </a>
             </li>
-
           </ul>
           <hr />
           <div class="pb-4" id="menu">
