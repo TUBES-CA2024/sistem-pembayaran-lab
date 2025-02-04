@@ -8,13 +8,11 @@
                     alt="foto-card4"
                     width="85px">
             </div>
-            <div class="col-md-11 card-body">
-                <h5 class="card-title">Laporan</h5>
-            </div>
         </div>
     </div>
 </div>
 
+<!-- Button Filter Laporan -->
 <div class="container-user col-12 mx-auto">
     <div class="overflow-y-auto p-4" style="max-height: 75vh;">
         <div class="row">
@@ -23,8 +21,9 @@
             </div>
         </div>
         <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 860px;">
-            <div class="text-start mb-3">
-                <button class="btn btn-success opacity-75" type="submit" data-bs-toggle="modal" data-bs-target="#formLaporan">Filter Laporan</button>
+            <div class="col-md-11 card-body">
+                <!-- Button untuk membuka modal filter laporan -->
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#formLaporan">Filter Laporan</button>
             </div>
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
@@ -47,12 +46,10 @@
                 </thead>
                 <tbody>
                     <?php
-                    if (!isset($data['laporan'])) {
-                        return;
-                    } else {
+                    // Menampilkan data laporan setelah filter diterapkan
+                    if (isset($data['laporan'])) {
                         foreach ($data['laporan'] as $index => $pmb):
                     ?>
-
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td class="text-center"><?= $pmb['stambuk'] ?></td>
@@ -62,8 +59,7 @@
                                 <td class="text-center"><?= $pmb['jumlah_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['status'] ?></td>
                                 <td>
-                                    <input
-                                        <input class="form-check-input" type="checkbox" value="<?= $pmb['stambuk']; ?>" id="checkedOne" name="stambuk[]">
+                                    <input class="form-check-input" type="checkbox" value="<?= $pmb['stambuk']; ?>" id="checkedOne" name="stambuk[]">
                                 </td>
                             </tr>
                     <?php endforeach;
@@ -83,6 +79,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <!-- Form untuk filter laporan -->
                 <form method="POST" action="<?= BASEURL ?>/Laporan/filter" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="start_date" class="form-label">Tanggal Awal</label>
