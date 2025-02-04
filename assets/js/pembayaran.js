@@ -16,20 +16,21 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('idtagihan').value = idTagihan;
             document.getElementById('stambuk').value = stambuk; // Set stambuk di form modal
         }
-
     });
 
-    // Script untuk tombol edit
-    document.querySelectorAll('.btn-edit').forEach(button => {
-        button.addEventListener('click', function () {
-            const idPembayaran = this.getAttribute('data-idpembayaran');
-            const idTagihan = this.getAttribute('data-idtagihan');
-            const stambuk = this.getAttribute('data-stambuk');
-            const tanggalPembayaran = this.getAttribute('data-tanggalpembayaran');
-            const jumlahPembayaran = this.getAttribute('data-jumlahpembayaran');
-            const status = this.getAttribute('data-status');
+    // Menunggu DOM siap
+    $(document).ready(function () {
+        // Delegasi event untuk tombol edit
+        $(document).on('click', '.btn-edit', function () {
+            // Ambil data yang terkait dengan tombol yang diklik
+            const idPembayaran = $(this).data('idpembayaran');
+            const idTagihan = $(this).data('idtagihan');
+            const stambuk = $(this).data('stambuk');
+            const tanggalPembayaran = $(this).data('tanggalpembayaran');
+            const jumlahPembayaran = $(this).data('jumlahpembayaran');
+            const status = $(this).data('status');
 
-            // Debugging: log to check if values are correct
+            // Debugging: log untuk memastikan data yang diambil benar
             console.log({
                 idPembayaran,
                 idTagihan,
@@ -39,13 +40,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 status
             });
 
-            // Set modal values
-            document.getElementById('editIdPembayaran').value = idPembayaran;
-            document.getElementById('editIdTagihan').value = idTagihan;
-            document.getElementById('editStambuk').value = stambuk;
-            document.getElementById('editTanggalPembayaran').value = tanggalPembayaran;
-            document.getElementById('editJumlahPembayaran').value = jumlahPembayaran;
-            document.getElementById('editStatus').value = status;
+            // Isi data pada form modal edit
+            $('#editIdPembayaran').val(idPembayaran);
+            $('#editIdTagihan').val(idTagihan);
+            $('#editStambuk').val(stambuk);
+            $('#editTanggalPembayaran').val(tanggalPembayaran);
+            $('#editJumlahPembayaran').val(jumlahPembayaran);
+            $('#editStatus').val(status);
+
+            // Menampilkan modal edit
+            const modal = new bootstrap.Modal($('#editPembayaran'));
+            modal.show();
+
+            // Event untuk menghapus backdrop dan modal saat modal tertutup
+            $('#editPembayaran').on('hidden.bs.modal', function () {
+                // Reset form saat modal ditutup
+                $(this).find('form')[0].reset();
+                // Pastikan backdrop dihapus jika ada
+                $('.modal-backdrop').remove();
+            });
         });
     });
 });

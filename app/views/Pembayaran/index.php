@@ -172,6 +172,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal Edit Pembayaran-->
 <div class="modal fade" id="editPembayaran" tabindex="-1" aria-labelledby="editPembayaranLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -181,7 +182,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL; ?>/Pembayaran/edit" method="POST">
+                <form action="<?= BASEURL; ?>/Pembayaran/edit" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="editIdPembayaran" name="idpembayaran">
                     <input type="hidden" id="editIdTagihan" name="idtagihan">
                     <div class="mb-3">
@@ -215,63 +216,3 @@
         </div>
     </div>
 </div>
-
-
-
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const buttons = document.querySelectorAll(".add-pembayaran");
-        buttons.forEach(button => {
-            button.addEventListener("click", function() {
-                const idtagihan = this.getAttribute("data-idtagihan");
-                console.log("ID Tagihan yang diklik:", idtagihan); // Debugging
-                document.getElementById("hidden-idtagihan").value = idtagihan;
-                document.getElementById("idtagihan").value = idtagihan;
-            });
-        });
-    });
-</script> -->
-
-<!-- Modal Delete -->
-<!-- <div class="modal fade" id="modalDelete<?= $pmb['idpembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="w-100">
-                                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Hapus Data</h1>
-                                        </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h6 class="text-center">Anda Yakin Ingin Hapus Data ini?</h6>
-                                    </div>
-                                    <div class="modal-footer align-self-center border-top-0">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                                        <a href="<?= BASEURL; ?>/Pembayaran/hapus/<?= $pmb['idpembayaran'] ?>" role="button" class="btn btn-primary">Yes</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var checkboxes = document.querySelectorAll('.form-check-input');
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                updateNominal();
-            });
-        });
-
-        function updateNominal() {
-            var checkedBoxCount = 0;
-
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    checkedBoxCount++;
-                }
-            });
-            var nominalInput = document.getElementById('nominalInput');
-            nominalInput.value = checkedBoxCount * 55000;
-        }
-    });
-</script> -->
