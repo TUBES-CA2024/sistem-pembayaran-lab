@@ -216,37 +216,6 @@
     </div>
 </div>
 
-<script>
-    document.querySelectorAll('.btn-edit').forEach(button => {
-        button.addEventListener('click', function() {
-            const idPembayaran = this.getAttribute('data-idpembayaran');
-            const idTagihan = this.getAttribute('data-idtagihan');
-            const stambuk = this.getAttribute('data-stambuk');
-            const tanggalPembayaran = this.getAttribute('data-tanggalpembayaran');
-            const jumlahPembayaran = this.getAttribute('data-jumlahpembayaran');
-            const status = this.getAttribute('data-status');
-
-            // Debugging: log to check if values are correct
-            console.log({
-                idPembayaran,
-                idTagihan,
-                stambuk,
-                tanggalPembayaran,
-                jumlahPembayaran,
-                status
-            });
-
-            // Set modal values
-            document.getElementById('editIdPembayaran').value = idPembayaran;
-            document.getElementById('editIdTagihan').value = idTagihan;
-            document.getElementById('editStambuk').value = stambuk;
-            document.getElementById('editTanggalPembayaran').value = tanggalPembayaran;
-            document.getElementById('editJumlahPembayaran').value = jumlahPembayaran;
-            document.getElementById('editStatus').value = status;
-        });
-    });
-</script>
-
 
 
 <!-- <script>
