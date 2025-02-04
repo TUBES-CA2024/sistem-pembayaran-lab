@@ -38,15 +38,29 @@
                 <span class="ms-1 d-none d-sm-inline">Kelas</span>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link px-2 align-middle dropdown-toggle" id="registrasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li>
+              <a class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/pembayaran-icon.png" alt="logo-sipemla" /></i>
                 <span class="ms-1 d-none d-sm-inline">Registrasi</span>
               </a>
-              <ul class="dropdown-menu" aria-labelledby="registrasiDropdown">
-                <li><a class="dropdown-item" href="<?= BASEURL ?>/Tagihan">Tagihan</a></li>
-                <li><a class="dropdown-item" href="<?= BASEURL ?>/Pembayaran">Pembayaran</a></li>
-              </ul>
+            </li>
+            <li>
+              <a href="<?= BASEURL ?>/Tagihan" class="nav-link px-2 align-middle">
+                <i class="fs-4"></i>
+                <span class="ms-1 d-done d-sm-inline p-5">Tagihan</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= BASEURL ?>/Pembayaran" class="nav-link px-2 align-middle">
+                <i class="fs-4"></i>
+                <span class="ms-1 d-done d-sm-inline p-5">Pembayaran</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= BASEURL ?>/Laporan" class="nav-link px-2 align-middle">
+                <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/matkul-icon.png" alt="logo-sipemla" /></i>
+                <span class="ms-1 d-none d-sm-inline">Laporan</span>
+              </a>
             </li>
 
           </ul>

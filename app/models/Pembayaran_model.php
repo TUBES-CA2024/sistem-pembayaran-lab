@@ -33,35 +33,45 @@ class Pembayaran_model
 
     public function edit($data)
     {
-        try {
-            $query = "UPDATE pembayaran 
+        $query = "UPDATE pembayaran 
                       SET tanggal_pembayaran = :tanggal_pembayaran,
                           jumlah_pembayaran = :jumlah_pembayaran,
                           status = :status
                       WHERE idpembayaran = :idpembayaran";
 
-            // Log data yang dikirim untuk debugging
-            error_log("Data untuk update: " . print_r($data, true));
+        $this->db->query($query);
+        $this->db->bind('tanggal_pembayaran', $data['tanggal_pembayaran']);
+        $this->db->bind('jumlah_pembayaran', $data['jumlah_pembayaran']);
+        $this->db->bind('status', $data['status']);
+        $this->db->bind('idpembayaran', $data['idpembayaran']);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 
-            $this->db->query($query);
-            $this->db->bind('tanggal_pembayaran', $data['tanggal_pembayaran']);
-            $this->db->bind('jumlah_pembayaran', $data['jumlah_pembayaran']);
-            $this->db->bind('status', $data['status']);
-            $this->db->bind('idpembayaran', $data['idpembayaran']);
+    // Method untuk mengambil laporan berdasarkan rentang tanggal
+    public function getLaporanByDateRange($startDate, $endDate)
+    {
+        // Query untuk mengambil data pembayaran berdasarkan tanggal
+        $query = "SELECT 
+                mahasiswa.stambuk,
+                mahasiswa.nama,
+                tagihan.matakuliah,
+                pembayaran.tanggal_pembayaran,
+                pembayaran.jumlah_pembayaran,
+                pembayaran.status
+              FROM pembayaran
+              JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
+              JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+              WHERE pembayaran.tanggal_pembayaran BETWEEN :start_date AND :end_date
+              ORDER BY pembayaran.tanggal_pembayaran DESC";
 
-            $this->db->execute();
+        // Menjalankan query
+        $this->db->query($query);
+        $this->db->bind(':start_date', $startDate);
+        $this->db->bind(':end_date', $endDate);
 
-            if ($this->db->rowCount() > 0) {
-                error_log("Update berhasil, baris yang terpengaruh: " . $this->db->rowCount());
-            } else {
-                error_log("Tidak ada baris yang terpengaruh.");
-            }
-
-            return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh
-        } catch (Exception $e) {
-            error_log("Terjadi kesalahan saat mengupdate: " . $e->getMessage());  // Log error jika terjadi exception
-            return 0; // Mengembalikan 0 jika ada error
-        }
+        // Mengembalikan hasil query
+        return $this->db->resultSet();
     }
 
 
@@ -87,35 +97,35 @@ class Pembayaran_model
     // }
 
     //Digunakan untuk menghapus data pembayaran di Pembayaran
-    public function hapus($id)
-    {
-        $query = "DELETE FROM pembayaran WHERE idpembayaran = :idpembayaran";
-        $this->db->query($query);
-        $this->db->bind('idpembayaran', $id);
+    // public function hapus($id)
+    // {
+    //     $query = "DELETE FROM pembayaran WHERE idpembayaran = :idpembayaran";
+    //     $this->db->query($query);
+    //     $this->db->bind('idpembayaran', $id);
 
-        $this->db->execute();
+    //     $this->db->execute();
 
-        return $this->db->rowCount();
-    }
-    //Digunakan untuk menghapus data pembayaran berdasarkan stambuk di Datamahasiswa
-    public function hapusByStambuk($id)
-    {
-        $query = "DELETE FROM pembayaran WHERE stambuk = :stambuk";
-        $this->db->query($query);
-        $this->db->bind('stambuk', $id);
+    //     return $this->db->rowCount();
+    // }
+    // //Digunakan untuk menghapus data pembayaran berdasarkan stambuk di Datamahasiswa
+    // public function hapusByStambuk($id)
+    // {
+    //     $query = "DELETE FROM pembayaran WHERE stambuk = :stambuk";
+    //     $this->db->query($query);
+    //     $this->db->bind('stambuk', $id);
 
-        $this->db->execute();
+    //     $this->db->execute();
 
-        return $this->db->rowCount();
-    }
+    //     return $this->db->rowCount();
+    // }
 
-    //Digunakan untuk menampilkan data pembayaran berdasarkan idpembayaran di Pembayaran
-    public function tampilById($id)
-    {
-        $this->db->query("SELECT * FROM pembayaran WHERE idpembayaran= :idpembayaran");
-        $this->db->bind('idpembayaran', $id);
-        return $this->db->single();
-    }
+    // //Digunakan untuk menampilkan data pembayaran berdasarkan idpembayaran di Pembayaran
+    // public function tampilById($id)
+    // {
+    //     $this->db->query("SELECT * FROM pembayaran WHERE idpembayaran= :idpembayaran");
+    //     $this->db->bind('idpembayaran', $id);
+    //     return $this->db->single();
+    // }
 
     //Digunakan untuk mengedit data pembayaran di Pemabayaran
     // public function edit($data)

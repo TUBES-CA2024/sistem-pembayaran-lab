@@ -21,22 +21,6 @@ class Pembayaran extends Controller
         }
     }
 
-    public function editTampil($id)
-    {
-        $data['title'] = 'Edit Pembayaran Mahasiswa';
-        $data['pembayaran'] = $this->model('Pembayaran_model')->tampilById($id);
-        $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($data['pembayaran']['stambuk']);
-        $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
-        $data['matkul'] = $this->model('Matkul_model')->tampil();
-
-
-        $this->view('templates/header', $data);
-        $this->view('templates/sidebar');
-        $this->view('Pembayaran/edit', $data);
-        $this->view('templates/footersidebar');
-        $this->view('templates/footer');
-    }
-
     public function tambah()
     {
         if ($this->model('Pembayaran_model')->tambah($_POST) > 0) {
@@ -45,21 +29,6 @@ class Pembayaran extends Controller
             exit;
         } else {
             PesanFlash::setFlash('Pembayaran Gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/Pembayaran');
-            exit;
-        }
-    }
-
-    public function hapus($id)
-    {
-        $this->model('Select_matkul_model')->hapus($id);
-        $this->model('Mahasiswa_model')->hapus($id);
-        if ($this->model('Pembayaran_model')->hapus($id) > 0) {
-            PesanFlash::setFlash('Pembayaran Berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/Pembayaran');
-            exit;
-        } else {
-            PesanFlash::setFlash('Pembayaran Gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/Pembayaran');
             exit;
         }
@@ -90,6 +59,37 @@ class Pembayaran extends Controller
             echo 'Error: ' . $e->getMessage();
         }
     }
+
+    // public function hapus($id)
+    // {
+    //     $this->model('Select_matkul_model')->hapus($id);
+    //     $this->model('Mahasiswa_model')->hapus($id);
+    //     if ($this->model('Pembayaran_model')->hapus($id) > 0) {
+    //         PesanFlash::setFlash('Pembayaran Berhasil', 'dihapus', 'success');
+    //         header('Location: ' . BASEURL . '/Pembayaran');
+    //         exit;
+    //     } else {
+    //         PesanFlash::setFlash('Pembayaran Gagal', 'dihapus', 'danger');
+    //         header('Location: ' . BASEURL . '/Pembayaran');
+    //         exit;
+    //     }
+    // }
+
+    // public function editTampil($id)
+    // {
+    //     $data['title'] = 'Edit Pembayaran Mahasiswa';
+    //     $data['pembayaran'] = $this->model('Pembayaran_model')->tampilById($id);
+    //     $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($data['pembayaran']['stambuk']);
+    //     $data['matkul_select'] = $this->model('Select_matkul_model')->tampilById($id);
+    //     $data['matkul'] = $this->model('Matkul_model')->tampil();
+
+
+    //     $this->view('templates/header', $data);
+    //     $this->view('templates/sidebar');
+    //     $this->view('Pembayaran/edit', $data);
+    //     $this->view('templates/footersidebar');
+    //     $this->view('templates/footer');
+    // }
 
 
     // public function editPembayaran()
