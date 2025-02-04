@@ -71,26 +71,52 @@
                                 <td class="text-center"><?= $pembayaran['status'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button
-                                            class="btn btn-success opacity-75 add-pembayaran me-2"
-                                            type="button"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#formPembayaran"
-                                            data-idtagihan="<?= $pmb['idtagihan'] ?>"
-                                            data-stambuk="<?= $pmb['stambuk'] ?>">
-                                            <img
-                                                src="<?= BASEURL ?>/assets/img/add.png"
-                                                alt="icon-edit">
-                                        </button>
-                                        <a
-                                            class="btn-edit"
-                                            href="<?= BASEURL; ?>/Tagiahan/editTampil/<?= $pmb['idtagihan'] ?>"
-                                            role="button"
-                                            method="POST">
-                                            <img
-                                                src="<?= BASEURL ?>/assets/img/edit.png"
-                                                alt="icon-edit">
-                                        </a>
+                                        <!-- Tombol Tambah Pembayaran (Menambahkan kondisi jika sudah ada pembayaran) -->
+                                        <?php if (empty($pembayaran_terkait && $pembayaran['status'] != 'Belum Bayar')): ?>
+                                            <button
+                                                class="btn btn-success opacity-75 add-pembayaran me-2"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#formPembayaran"
+                                                data-idtagihan="<?= $pmb['idtagihan'] ?>"
+                                                data-stambuk="<?= $pmb['stambuk'] ?>">
+                                                <img
+                                                    src="<?= BASEURL ?>/assets/img/add.png"
+                                                    alt="icon-edit">
+                                            </button>
+                                        <?php else: ?>
+                                            <!-- Tombol Tambah Pembayaran dinonaktifkan jika sudah ada pembayaran -->
+                                            <button
+                                                class="btn btn-warning opacity-75 add-pembayaran me-2"
+                                                type="button"
+                                                disabled>
+                                                <img src="<?= BASEURL ?>/assets/img/add.png" alt="icon-add">
+                                            </button>
+                                        <?php endif; ?>
+
+                                        <!-- Cek jika ada pembayaran, jika tidak maka tombol edit dinonaktifkan -->
+                                        <?php if (!empty($pembayaran_terkait) && $pembayaran['status'] != 'Belum Bayar'): ?>
+                                            <button
+                                                class="btn btn-success opacity-75 btn-edit me-2"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPembayaran"
+                                                data-stambuk="<?= $pmb['stambuk'] ?>"
+                                                data-idtagihan="<?= $pmb['idtagihan'] ?>"
+                                                data-idpembayaran="<?= $pembayaran['idpembayaran'] ?>"
+                                                data-tanggalpembayaran="<?= $pembayaran['tanggal_pembayaran'] ?>"
+                                                data-jumlahpembayaran="<?= $pembayaran['jumlah_pembayaran'] ?>"
+                                                data-status="<?= $pembayaran['status'] ?>">
+                                                <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                            </button>
+                                        <?php else: ?>
+                                            <button
+                                                class="btn btn-warning opacity-75 btn-edit me-2"
+                                                type="button"
+                                                disabled>
+                                                <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                            </button>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
@@ -146,6 +172,82 @@
         </div>
     </div>
 </div>
+<!-- Modal Edit Pembayaran-->
+<div class="modal fade" id="editPembayaran" tabindex="-1" aria-labelledby="editPembayaranLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPembayaranLabel">Edit Pembayaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= BASEURL; ?>/Pembayaran/edit" method="POST">
+                    <input type="hidden" id="editIdPembayaran" name="idpembayaran">
+                    <input type="hidden" id="editIdTagihan" name="idtagihan">
+                    <div class="mb-3">
+                        <label for="editStambuk" class="form-label">Stambuk</label>
+                        <input type="text" class="form-control" id="editStambuk" name="stambuk" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTanggalPembayaran" class="form-label">Waktu Pembayaran</label>
+                        <input type="date" class="form-control" id="editTanggalPembayaran" name="tanggal_pembayaran" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editJumlahPembayaran" class="form-label">Nominal</label>
+                        <input type="text" id="editJumlahPembayaran" class="form-control" name="jumlah_pembayaran" placeholder="Masukkan Jumlah Bayar" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editStatus" class="form-label">Status</label>
+                        <select class="form-select" id="editStatus" name="status" required>
+                            <option selected disabled>Pilih Status</option>
+                            <option value="Lunas">Lunas</option>
+                            <option value="Belum Lunas">Belum Lunas</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function() {
+            const idPembayaran = this.getAttribute('data-idpembayaran');
+            const idTagihan = this.getAttribute('data-idtagihan');
+            const stambuk = this.getAttribute('data-stambuk');
+            const tanggalPembayaran = this.getAttribute('data-tanggalpembayaran');
+            const jumlahPembayaran = this.getAttribute('data-jumlahpembayaran');
+            const status = this.getAttribute('data-status');
+
+            // Debugging: log to check if values are correct
+            console.log({
+                idPembayaran,
+                idTagihan,
+                stambuk,
+                tanggalPembayaran,
+                jumlahPembayaran,
+                status
+            });
+
+            // Set modal values
+            document.getElementById('editIdPembayaran').value = idPembayaran;
+            document.getElementById('editIdTagihan').value = idTagihan;
+            document.getElementById('editStambuk').value = stambuk;
+            document.getElementById('editTanggalPembayaran').value = tanggalPembayaran;
+            document.getElementById('editJumlahPembayaran').value = jumlahPembayaran;
+            document.getElementById('editStatus').value = status;
+        });
+    });
+</script>
+
+
 
 <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -52,15 +52,18 @@
                             <td class="text-center"><?= $tgh['semester'] ?></td>
                             <td class="text-center"><?= $tgh['matakuliah'] ?></td>
                             <td>
-                                <a
+                                <button
                                     class="btn-edit me-2"
-                                    href="<?= BASEURL; ?>/Tagihan/editTampil/<?= $tgh['idtagihan'] ?>"
-                                    role="button"
-                                    method="POST">
-                                    <img
-                                        src="<?= BASEURL ?>/assets/img/edit.png"
-                                        alt="icon-edit">
-                                </a>
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalEditTagihan<?= $tgh['idtagihan']; ?>"
+                                    data-stambuk="<?= $tgh['stambuk']; ?>"
+                                    data-jumlah_tagihan="<?= $tgh['jumlah_tagihan']; ?>"
+                                    data-angkatan="<?= $tgh['angkatan']; ?>"
+                                    data-tahun_akademik="<?= $tgh['tahun_akademik']; ?>"
+                                    data-semester="<?= $tgh['semester']; ?>"
+                                    data-matakuliah="<?= $tgh['matakuliah']; ?>">
+                                    <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                </button>
                                 <button
                                     class="btn-delete"
                                     type="button"
@@ -72,6 +75,48 @@
                                 </button>
                             </td>
                         </tr>
+                        <!-- Modal Edit Tagihan -->
+                        <div class="modal fade" id="modalEditTagihan<?= $tgh['idtagihan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Tagihan</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="<?= BASEURL; ?>/Tagihan/edit/<?= $tgh['idtagihan']; ?>" method="post">
+                                            <div class="form-group mb-3">
+                                                <label for="stambuk">Stambuk</label>
+                                                <input type="text" name="stambuk" id="stambuk" class="form-control" value="<?= $tgh['stambuk']; ?>" readonly>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="jumlah_tagihan">Jumlah Tagihan</label>
+                                                <input type="text" name="jumlah_tagihan" id="jumlah_tagihan" class="form-control" value="<?= $tgh['jumlah_tagihan']; ?>" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="angkatan">Angkatan</label>
+                                                <input type="text" name="angkatan" id="angkatan" class="form-control" value="<?= $tgh['angkatan']; ?>" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="tahun_akademik">Tahun Akademik</label>
+                                                <input type="text" name="tahun_akademik" id="tahun_akademik" class="form-control" value="<?= $tgh['tahun_akademik']; ?>" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="semester">Semester</label>
+                                                <input type="text" name="semester" id="semester" class="form-control" value="<?= $tgh['semester']; ?>" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="matakuliah">Matakuliah</label>
+                                                <input type="text" name="matakuliah" id="matakuliah" class="form-control" value="<?= $tgh['matakuliah']; ?>" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <!-- Modal Delete -->
                         <div class="modal fade" id="modalDelete<?= $tgh['idtagihan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">

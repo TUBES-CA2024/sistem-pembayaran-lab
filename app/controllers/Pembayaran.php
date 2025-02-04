@@ -65,24 +65,51 @@ class Pembayaran extends Controller
         }
     }
 
-    public function editPembayaran()
+    public function edit()
     {
-        $idpembayaran = $_POST['idpembayaran'];
+        try {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $data = [
+                    'idpembayaran' => $_POST['idpembayaran'],
+                    'idtagihan' => $_POST['idtagihan'],
+                    'tanggal_pembayaran' => $_POST['tanggal_pembayaran'],
+                    'jumlah_pembayaran' => $_POST['jumlah_pembayaran'],
+                    'status' => $_POST['status']
+                ];
 
-        // Hapus data mata kuliah lama terkait pembayaran ini
-        $this->model('Select_matkul_model')->hapusByIdPembayaran($idpembayaran);
-
-        // Tambahkan mata kuliah baru
-        $this->model('Select_matkul_model')->tambah($_POST);
-
-        // Edit data pembayaran
-        if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
-            PesanFlash::setFlash('Pembayaran Berhasil', 'diubah', 'success');
-        } else {
-            PesanFlash::setFlash('Pembayaran Gagal', 'diubah', 'danger');
+                if ($this->model('Pembayaran_model')->edit($data) > 0) {
+                    PesanFlash::setFlash('Pembayaran Berhasil', 'diperbarui', 'success');
+                } else {
+                    PesanFlash::setFlash('Pembayaran Gagal', 'diperbarui', 'danger');
+                }
+                header('Location: ' . BASEURL . '/Pembayaran');
+                exit;
+            }
+        } catch (Exception $e) {
+            // Menampilkan error di halaman saat pengembangan
+            echo 'Error: ' . $e->getMessage();
         }
-
-        header('Location: ' . BASEURL . '/Pembayaran');
-        exit;
     }
+
+
+    // public function editPembayaran()
+    // {
+    //     $idpembayaran = $_POST['idpembayaran'];
+
+    //     // Hapus data mata kuliah lama terkait pembayaran ini
+    //     $this->model('Select_matkul_model')->hapusByIdPembayaran($idpembayaran);
+
+    //     // Tambahkan mata kuliah baru
+    //     $this->model('Select_matkul_model')->tambah($_POST);
+
+    //     // Edit data pembayaran
+    //     if ($this->model('Pembayaran_model')->edit($_POST) > 0) {
+    //         PesanFlash::setFlash('Pembayaran Berhasil', 'diubah', 'success');
+    //     } else {
+    //         PesanFlash::setFlash('Pembayaran Gagal', 'diubah', 'danger');
+    //     }
+
+    //     header('Location: ' . BASEURL . '/Pembayaran');
+    //     exit;
+    // }
 }

@@ -31,6 +31,42 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
+    public function edit($data)
+    {
+        try {
+            $query = "UPDATE pembayaran 
+                      SET tanggal_pembayaran = :tanggal_pembayaran,
+                          jumlah_pembayaran = :jumlah_pembayaran,
+                          status = :status
+                      WHERE idpembayaran = :idpembayaran";
+
+            // Log data yang dikirim untuk debugging
+            error_log("Data untuk update: " . print_r($data, true));
+
+            $this->db->query($query);
+            $this->db->bind('tanggal_pembayaran', $data['tanggal_pembayaran']);
+            $this->db->bind('jumlah_pembayaran', $data['jumlah_pembayaran']);
+            $this->db->bind('status', $data['status']);
+            $this->db->bind('idpembayaran', $data['idpembayaran']);
+
+            $this->db->execute();
+
+            if ($this->db->rowCount() > 0) {
+                error_log("Update berhasil, baris yang terpengaruh: " . $this->db->rowCount());
+            } else {
+                error_log("Tidak ada baris yang terpengaruh.");
+            }
+
+            return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh
+        } catch (Exception $e) {
+            error_log("Terjadi kesalahan saat mengupdate: " . $e->getMessage());  // Log error jika terjadi exception
+            return 0; // Mengembalikan 0 jika ada error
+        }
+    }
+
+
+
+
     // Mengambil data stambuk berdasarkan idtagihan
     // public function getStambukByIdTagihan($idtagihan)
     // {
@@ -82,20 +118,20 @@ class Pembayaran_model
     }
 
     //Digunakan untuk mengedit data pembayaran di Pemabayaran
-    public function edit($data)
-    {
-        $query = "UPDATE pembayaran SET stambuk= :stambuk, waktupembayaran= :waktupembayaran, nominal= :nominal, status= :status WHERE idpembayaran= :idpembayaran";
-        $this->db->query($query);
-        $this->db->bind('stambuk', $data['stambuk']);
-        $this->db->bind('waktupembayaran', $data['waktupembayaran']);
-        $this->db->bind('nominal', $data['nominal']);
-        $this->db->bind('status', $data['status']);
-        $this->db->bind('idpembayaran', $data['idpembayaran']);
+    // public function edit($data)
+    // {
+    //     $query = "UPDATE pembayaran SET stambuk= :stambuk, waktupembayaran= :waktupembayaran, nominal= :nominal, status= :status WHERE idpembayaran= :idpembayaran";
+    //     $this->db->query($query);
+    //     $this->db->bind('stambuk', $data['stambuk']);
+    //     $this->db->bind('waktupembayaran', $data['waktupembayaran']);
+    //     $this->db->bind('nominal', $data['nominal']);
+    //     $this->db->bind('status', $data['status']);
+    //     $this->db->bind('idpembayaran', $data['idpembayaran']);
 
-        $this->db->execute();
+    //     $this->db->execute();
 
-        return $this->db->rowCount();
-    }
+    //     return $this->db->rowCount();
+    // }
 
     //Digunakan Di Beranda
     public function countPembayaran()

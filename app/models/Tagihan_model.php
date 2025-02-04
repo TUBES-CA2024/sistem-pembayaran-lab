@@ -81,6 +81,13 @@ class Tagihan_model
         $this->db->query($query);
         return $this->db->resultSet(); // Mengembalikan data dalam bentuk array
     }
+    // public function tampilById($id)
+    // {
+    //     $query = "SELECT * FROM tagihan WHERE idtagihan = :idtagihan"; // Query untuk mengambil semua data tagihan
+    //     $this->db->query($query);
+    //     $this->db->bind('idtagihan', $id);
+    //     return $this->db->single(); // Mengembalikan data dalam bentuk array
+    // }
     public function hapus($id)
     {
         $query = "DELETE FROM tagihan WHERE idtagihan = :idtagihan"; // Query untuk menghapus tagihan berdasarkan id
@@ -89,20 +96,28 @@ class Tagihan_model
         $this->db->execute(); // Mengembalikan hasil eksekusi query
         return $this->db->rowCount();
     }
-    public function getStambukByIdTagihan($idtagihan)
+    public function updateTagihan($id, $data)
     {
-        // Query untuk mengambil stambuk berdasarkan idtagihan
-        $query = "SELECT stambuk FROM tagihan WHERE idtagihan = :idtagihan";
+        $query = "UPDATE tagihan SET 
+                stambuk = :stambuk, 
+                jumlah_tagihan = :jumlah_tagihan, 
+                angkatan = :angkatan, 
+                tahun_akademik = :tahun_akademik, 
+                semester = :semester, 
+                matakuliah = :matakuliah 
+              WHERE idtagihan = :idtagihan";
 
         $this->db->query($query);
+        $this->db->bind('stambuk', $data['stambuk']);
+        $this->db->bind('jumlah_tagihan', $data['jumlah_tagihan']);
+        $this->db->bind('angkatan', $data['angkatan']);
+        $this->db->bind('tahun_akademik', $data['tahun_akademik']);
+        $this->db->bind('semester', $data['semester']);
+        $this->db->bind('matakuliah', $data['matakuliah']);
+        $this->db->bind('idtagihan', $id);
 
-        // Bind parameter idtagihan
-        $this->db->bind(':idtagihan', $idtagihan);
+        $this->db->execute();
 
-        // Mengambil hasilnya
-        $result = $this->db->single(); // Mengambil satu hasil
-
-        // Mengembalikan stambuk jika ditemukan, atau null jika tidak ada
-        return $result ? $result['stambuk'] : null;
+        return $this->db->rowCount();
     }
 }

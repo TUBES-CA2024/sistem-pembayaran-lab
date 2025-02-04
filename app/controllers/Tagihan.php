@@ -59,4 +59,25 @@ class Tagihan extends Controller
             exit;
         }
     }
+    public function edit($id)
+    {
+        if (isset($_POST['stambuk'])) {
+            $data = [
+                'stambuk' => $_POST['stambuk'],
+                'jumlah_tagihan' => $_POST['jumlah_tagihan'],
+                'angkatan' => $_POST['angkatan'],
+                'tahun_akademik' => $_POST['tahun_akademik'],
+                'semester' => $_POST['semester'],
+                'matakuliah' => $_POST['matakuliah']
+            ];
+
+            if ($this->model('Tagihan_model')->updateTagihan($id, $data)) {
+                PesanFlash::setFlash('Tagihan berhasil', 'diupdate', 'success');
+            } else {
+                PesanFlash::setFlash('Tagihan gagal', 'diupdate', 'danger');
+            }
+            header('Location: ' . BASEURL . '/Tagihan');
+            exit;
+        }
+    }
 }
