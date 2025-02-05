@@ -146,11 +146,11 @@
                         <button
                             type="submit"
                             class="btn btn-info me-2 text-white priode1"
-                            id="priode1"><i class="fa-solid fa-print" style="color: #f5f5f5;"></i>Priode 1</button>
+                            id="periode1"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>Periode 1</button>
                         <button
                             type="submit"
                             class="btn btn-info text-white priode2"
-                            id="priode2"><i class="fa-solid fa-print" style="color: #f5f5f5;"></i>Priode 2</button>
+                            id="periode2"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>Periode 2</button>
                 </div>
                 <div class="col-4">
                     <select class="form-select w-50" id="sortSelect">
@@ -180,6 +180,7 @@
                         <th class="text-center">Stambuk</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Matakuliah</th>
+                        <th class="text-center">Semester</th>
                         <th class="text-center">Tanggal Bayar</th>
                         <th class="text-center">Jumlah Bayar</th>
                         <th class="text-center">Status</th>
@@ -203,6 +204,7 @@
                                 <td class="text-center"><?= $pmb['stambuk'] ?></td>
                                 <td class="text-center"><?= $pmb['nama'] ?></td>
                                 <td class="text-center"><?= $pmb['matakuliah'] ?></td>
+                                <td class="text-center"><?= $pmb['semester'] ?></td>
                                 <td class="text-center"><?= $pmb['tanggal_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['jumlah_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['status'] ?></td>

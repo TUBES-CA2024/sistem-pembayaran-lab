@@ -14,7 +14,6 @@ class Beranda extends Controller
                 $data['kelas'] = $this->model('Kelas_model')->countKelas();
                 $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
                 $data['pembayaran'] = $this->model('Pembayaran_model')->getLaporan();
-                // $data['laporan'] = $this->model('Pembayaran_model')->getLaporanByDateRange();
 
 
                 $this->view('templates/header', $data);
@@ -38,18 +37,11 @@ class Beranda extends Controller
     public function printPriode1()
     {
         if ($_SESSION['role'] == 'Admin') {
-            $data['title'] = 'Print Priode 1';
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            foreach ($_POST['stambuk'] as $print) :
-                $data['print'][] = $this->model('Pembayaran_model')->printLaporan($print);
-                $data['matkul'][] = $this->model('Select_matkul_model')->printMatkul($print);
-            endforeach;
-            // var_dump($data['matkul']);
-            $this->view('templates/header', $data);
-            // $this->view('templates/sidebar');
-            $this->view('Beranda/priode1', $data);
+            $data['title'] = 'Print Periode 1';
+            $data['pembayaran'] = $this->model('Pembayaran_model')->getPeriode();
 
-            // $this->view('templates/footersidebar');
+            $this->view('templates/header', $data);
+            $this->view('Beranda/priode1', $data);
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Berandakp");
@@ -60,17 +52,11 @@ class Beranda extends Controller
     public function printPriode2()
     {
         if ($_SESSION['role'] == 'Admin') {
-            $data['title'] = 'Print Priode 2';
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            foreach ($_POST['stambuk'] as $print) :
-                $data['print'][] = $this->model('Pembayaran_model')->printLaporan($print);
-                $data['matkul'][] = $this->model('Select_matkul_model')->printMatkul($print);
-            endforeach;
-            // var_dump($data['matkul']);
+            $data['title'] = 'Print Periode 2';
+            $data['pembayaran'] = $this->model('Pembayaran_model')->getPeriode();
+
             $this->view('templates/header', $data);
-            // $this->view('templates/sidebar');
             $this->view('Beranda/priode2', $data);
-            // $this->view('templates/footersidebar');
             $this->view('templates/footer');
         } else {
             header("Location:" . BASEURL . "/Berandakp");

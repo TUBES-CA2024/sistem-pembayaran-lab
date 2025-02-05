@@ -81,6 +81,7 @@ class Pembayaran_model
                 mahasiswa.stambuk,
                 mahasiswa.nama,
                 tagihan.matakuliah,
+                tagihan.semester,
                 pembayaran.tanggal_pembayaran,
                 pembayaran.jumlah_pembayaran,
                 pembayaran.status
@@ -96,6 +97,38 @@ class Pembayaran_model
         // Mengembalikan hasil query
         return $this->db->resultSet();
     }
+    public function getPeriode()
+    {
+        $query = "SELECT 
+                mahasiswa.stambuk,
+                mahasiswa.nama,
+                tagihan.angkatan,
+                tagihan.semester,
+                tagihan.matakuliah,
+                tagihan.jumlah_tagihan,
+                pembayaran.tanggal_pembayaran,
+                pembayaran.jumlah_pembayaran,
+                pembayaran.status
+              FROM pembayaran
+              JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
+              JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+              WHERE pembayaran.tanggal_pembayaran 
+              ORDER BY pembayaran.tanggal_pembayaran DESC";
+
+        // Menjalankan query
+        $this->db->query($query);
+
+        // Mengembalikan hasil query
+        return $this->db->resultSet();
+    }
+
+    // SELECT mahasiswa.stambuk, mahasiswa.nama, tagihan.angkatan, tagihan.semester, tagihan.matakuliah, 
+    // tagihan.jumlah_tagihan, pembayaran.tanggal_pembayaran, pembayaran.jumlah_pembayaran, 
+    // pembayaran.status FROM pembayaran JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan 
+    // JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk 
+    // WHERE pembayaran.tanggal_pembayaran 
+    // ORDER BY pembayaran.tanggal_pembayaran DESC;
+
     // public function getLaporanByDate($start_date, $end_date)
     // {
     //     $this->db->query("SELECT * FROM pembayaran WHERE tanggal_pembayaran BETWEEN :start_date AND :end_date");
