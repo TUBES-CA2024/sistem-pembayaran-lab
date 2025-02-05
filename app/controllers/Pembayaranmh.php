@@ -7,13 +7,13 @@ class Pembayaranmh extends Controller
         if ($_SESSION['role'] == 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
             $data['title'] = 'Pembayaran';
-            $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
-            $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
-            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk);
-            $data['matkul'] = $this->model('Matkul_model')->tampil();
-            $data['prodi'] = $mahasiswa['prodi'];
+            // $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
+            // $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
+            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
+            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+            // $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk);
+            // $data['matkul'] = $this->model('Matkul_model')->tampil();
+            // $data['prodi'] = $mahasiswa['prodi'];
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -35,7 +35,7 @@ class Pembayaranmh extends Controller
             $data['title'] = 'Riwayat Pembayaran';
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['prodi'] = $mahasiswa['prodi'];   // Ambil prodi dari data mahasiswa
-            $data['pembayaran'] = $this->model('Pembayaran_model')->getPembayaranByStambuk($stambuk);
+            // $data['pembayaran'] = $this->model('Pembayaran_model')->getPembayaranByStambuk($stambuk);
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');

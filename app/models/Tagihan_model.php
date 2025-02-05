@@ -120,4 +120,10 @@ class Tagihan_model
 
         return $this->db->rowCount();
     }
+    //Digunakan Di Beranda
+    public function countTagihan()
+    {
+        $this->db->query("SELECT COUNT(idtagihan) AS jumlahTagihan FROM tagihan");
+        return $this->db->single();
+    }
 }

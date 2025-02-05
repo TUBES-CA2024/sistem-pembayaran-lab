@@ -7,6 +7,7 @@ class Laporan extends Controller
             $data['title'] = 'Laporan';
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
             $data['tagihan'] = $this->model('Tagihan_model')->tampil();
+            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
             $data['laporan'] = [];
 
             $this->view('templates/header', $data);
@@ -29,6 +30,7 @@ class Laporan extends Controller
             // Panggil model untuk mendapatkan laporan harian berdasarkan rentang tanggal
             $data['title'] = 'Laporan Harian';
             $data['laporan'] = $this->model('Pembayaran_model')->getLaporanByDateRange($startDate, $endDate);
+            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             // Simpan tanggal agar tetap tampil di form filter
             $data['startDate'] = $startDate;

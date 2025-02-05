@@ -8,11 +8,12 @@ class Beranda extends Controller
         if (isset($_SESSION['masuk'])) {
             if ($_SESSION['role'] == 'Admin') {
                 $data['title'] = 'Beranda';
-                $data['mahasiswa'] = $this->model('Mahasiswa_model')->countMahasiswa();
                 $data['user'] = $this->model('User_model')->countUser();
+                $data['mahasiswa'] = $this->model('Mahasiswa_model')->countMahasiswa();
                 $data['matkul'] = $this->model('Matkul_model')->countMatkul();
                 $data['kelas'] = $this->model('Kelas_model')->countKelas();
                 $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+                $data['counttagihan'] = $this->model('Tagihan_model')->countTagihan();
                 $data['pembayaran'] = $this->model('Pembayaran_model')->getLaporan();
 
 

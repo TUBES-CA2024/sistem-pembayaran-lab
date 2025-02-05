@@ -5,7 +5,7 @@ class Tagihan extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Tagihan';
-            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+            $data['counttagihan'] = $this->model('Tagihan_model')->countTagihan();
             $data['tagihan'] = $this->model('Tagihan_model')->tampil();
 
             $this->view('templates/header', $data);
