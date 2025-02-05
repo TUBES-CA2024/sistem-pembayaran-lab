@@ -105,13 +105,35 @@ class Mahasiswa_model
         return $this->db->rowCount();
     }
     //Digunakan pada Datamahasiswa.php
-    public function tampilById($id)
+    public function tampilById($stambuk)
     {
-        $this->db->query("SELECT mahasiswa.stambuk, mahasiswa.nama, mahasiswa.prodi, kelas.idkelas, kelas.namekelas, mahasiswa.namaagama, mahasiswa.email, mahasiswa.telepon, mahasiswa.jeniskelamin, mahasiswa.alamat, mahasiswa.foto, mahasiswa.isCompleted FROM mahasiswa JOIN kelas ON mahasiswa.idkelas = kelas.idkelas WHERE mahasiswa.stambuk = :stambuk;");
+        $this->db->query("SELECT 
+            mahasiswa.stambuk, 
+            mahasiswa.nama, 
+            mahasiswa.prodi, 
+            kelas.idkelas, 
+            kelas.namekelas,
+            mahasiswa.namaagama, 
+            mahasiswa.email, 
+            mahasiswa.telepon, 
+            mahasiswa.jeniskelamin, 
+            mahasiswa.alamat, 
+            mahasiswa.foto, 
+            mahasiswa.isCompleted 
+        FROM 
+            mahasiswa 
+        JOIN 
+            kelas ON mahasiswa.idkelas = kelas.idkelas  
+        WHERE 
+            mahasiswa.stambuk = :stambuk");  // Menambahkan kondisi WHERE berdasarkan stambuk
 
-        $this->db->bind('stambuk', $id);
+        // Bind parameter stambuk ke query
+        $this->db->bind(':stambuk', $stambuk);
+
+        // Mengembalikan hasil query yang sesuai dengan stambuk tertentu
         return $this->db->single();
     }
+
 
     // Digunakan pada Pembyaranmh.php
     public function tampilByNim($stambuk)
@@ -213,6 +235,12 @@ class Mahasiswa_model
     {
         $this->db->query("SELECT COUNT(stambuk) AS jumlahMahasiswa FROM mahasiswa");
         return $this->db->single();
+    }
+    public function getmatkul()
+    {
+        $query = "SELECT mahasiswa.stambuk, tagihan.matakuliah FROM mahasiswa JOIN tagihan ON mahasiswa.stambuk = tagihan.stambuk";
+        $this->db->query($query);
+        return $this->db->resultSet();
     }
 
     // Digunakan pada Datamahasiswamh.php

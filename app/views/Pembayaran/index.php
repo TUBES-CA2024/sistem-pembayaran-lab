@@ -61,13 +61,13 @@
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td class="text-center"><?= $pmb['stambuk'] ?></td>
-                                <td class="text-center"><?= $pmb['jumlah_tagihan'] ?></td>
+                                <td class="text-center">Rp. <?= $pmb['jumlah_tagihan'] ?></td>
                                 <td class="text-center"><?= $pmb['angkatan'] ?></td>
                                 <td class="text-center"><?= $pmb['tahun_akademik'] ?></td>
                                 <td class="text-center"><?= $pmb['semester'] ?></td>
                                 <td class="text-center"><?= $pmb['matakuliah'] ?></td>
                                 <td class="text-center"><?= $pembayaran['tanggal_pembayaran'] ?></td>
-                                <td class="text-center"><?= $pembayaran['jumlah_pembayaran'] ?></td>
+                                <td class="text-center">Rp. <?= $pembayaran['jumlah_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pembayaran['status'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">

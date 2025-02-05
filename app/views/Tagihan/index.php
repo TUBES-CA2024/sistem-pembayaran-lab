@@ -46,7 +46,7 @@
                         <tr>
                             <td class="text-center"><?= $index + 1 ?></td>
                             <td class="text-center"><?= $tgh['stambuk'] ?></td>
-                            <td class="text-center"><?= $tgh['jumlah_tagihan'] ?></td>
+                            <td class="text-center">Rp. <?= $tgh['jumlah_tagihan'] ?></td>
                             <td class="text-center"><?= $tgh['angkatan'] ?></td>
                             <td class="text-center"><?= $tgh['tahun_akademik'] ?></td>
                             <td class="text-center"><?= $tgh['semester'] ?></td>

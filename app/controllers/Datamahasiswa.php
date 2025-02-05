@@ -23,12 +23,12 @@ class Datamahasiswa extends Controller
     }
 
 
-    public function detail($id)
+    public function detail($stambuk)
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Detail Data Mahasiswa';
-            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($id);
-            $data['matkul_select'] = $this->model('Select_matkul_model')->tampilMatkul($id);
+            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilById($stambuk);
+            // $data['matkul_select'] = $this->model('Select_matkul_model')->tampilMatkul($id);
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');

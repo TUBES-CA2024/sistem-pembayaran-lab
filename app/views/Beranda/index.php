@@ -206,7 +206,7 @@
                                 <td class="text-center"><?= $pmb['matakuliah'] ?></td>
                                 <td class="text-center"><?= $pmb['semester'] ?></td>
                                 <td class="text-center"><?= $pmb['tanggal_pembayaran'] ?></td>
-                                <td class="text-center"><?= $pmb['jumlah_pembayaran'] ?></td>
+                                <td class="text-center">Rp. <?= $pmb['jumlah_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['status'] ?></td>
                                 <td class="text-center">
                                     <input class="form-check-input" type="checkbox" value="<?= $pmb['stambuk']; ?>" id="checkedOne" name="stambuk[]">

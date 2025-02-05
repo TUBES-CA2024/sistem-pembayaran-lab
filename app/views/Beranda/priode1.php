@@ -63,9 +63,9 @@
                                 <td class="text-center"><?= $cetak['angkatan'] ?></td>
                                 <td class="text-center"><?= $cetak['semester'] ?></td>
                                 <td class="text-center"><?= $cetak['matakuliah'] ?></td>
-                                <td class="text-center"><?= $cetak['jumlah_tagihan'] ?></td>
-                                <td class="text-center"><?= $cetak['jumlah_pembayaran']  ?></td>
-                                <td class="text-center"><?= $sisaBayar ?></td>
+                                <td class="text-center">Rp. <?= $cetak['jumlah_tagihan'] ?></td>
+                                <td class="text-center">Rp. <?= $cetak['jumlah_pembayaran']  ?></td>
+                                <td class="text-center">Rp. <?= $sisaBayar ?></td>
                                 <td class="text-center"><?= $cetak['status'] ?></td>
 
                             </tr>
