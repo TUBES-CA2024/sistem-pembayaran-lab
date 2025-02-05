@@ -13,7 +13,8 @@ class Beranda extends Controller
                 $data['matkul'] = $this->model('Matkul_model')->countMatkul();
                 $data['kelas'] = $this->model('Kelas_model')->countKelas();
                 $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-                // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+                $data['pembayaran'] = $this->model('Pembayaran_model')->getLaporan();
+                // $data['laporan'] = $this->model('Pembayaran_model')->getLaporanByDateRange();
 
 
                 $this->view('templates/header', $data);

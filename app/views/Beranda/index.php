@@ -110,6 +110,28 @@
                     </div>
                 </a>
             </div>
+            <div class="col-lg-3 p-3">
+                <a
+                    href="<?= BASEURL ?>/Pembayaran"
+                    class="nav-link">
+                    <div class="card p-3 bg-light shadow-lg text-body-secondary">
+                        <div class="row">
+                            <div class="col-7 card-body">
+                                <h6 class="card-subtitle mb-2">Tagihan</h6>
+                                <h2 class="card-title"><?= $data['countpembayaran']['jumlahPembayaran'] ?></h2>
+                                <p class="card-text">Jumlah</p>
+                            </div>
+                            <div class="col-5 align-self-center">
+                                <img
+                                    src="<?= BASEURL ?>/assets/img/pembayaran.png"
+                                    alt="foto-card4"
+                                    width="80px">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </div>
 </div>
@@ -172,34 +194,24 @@
                 </thead>
                 <tbody id="tableBody">
                     <?php
-                    $no = 0;
-                    foreach ($data['pembayaran'] as $pmb) :
-                        $no++;
-                        $waktuPembayaran = $pmb['waktupembayaran'];
-
-                        if ($waktuPembayaran != '0000-00-00' && $waktuPembayaran != '') {
-                            $formattedDate = date('d-m-Y', strtotime($waktuPembayaran));
-                        } else {
-                            $formattedDate = '-';
-                        }
+                    // Menampilkan data laporan setelah filter diterapkan
+                    if (isset($data['pembayaran'])) {
+                        foreach ($data['pembayaran'] as $index => $pmb):
                     ?>
-                        <tr>
-                            <td class="text-center"><?= $no; ?></td>
-                            <td class="text-center"><?= $pmb['stambuk']; ?></td>
-                            <td class="text-center"><?= $pmb['nama']; ?></td>
-                            <td class="text-center"><?= $formattedDate; ?></td>
-                            <td class="text-center">Rp. <?= $pmb['nominal']; ?></td>
-                            <td class="text-center"><?= $pmb['status']; ?></td>
-                            <td class="text-center">
-                                <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value="<?= $pmb['stambuk']; ?>"
-                                    id="checkedOne" onkeydown="return event.key !== 'Enter';"
-                                    name="stambuk[]">
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                            <tr>
+                                <td><?= $index + 1 ?></td>
+                                <td class="text-center"><?= $pmb['stambuk'] ?></td>
+                                <td class="text-center"><?= $pmb['nama'] ?></td>
+                                <td class="text-center"><?= $pmb['matakuliah'] ?></td>
+                                <td class="text-center"><?= $pmb['tanggal_pembayaran'] ?></td>
+                                <td class="text-center"><?= $pmb['jumlah_pembayaran'] ?></td>
+                                <td class="text-center"><?= $pmb['status'] ?></td>
+                                <td class="text-center">
+                                    <input class="form-check-input" type="checkbox" value="<?= $pmb['stambuk']; ?>" id="checkedOne" name="stambuk[]">
+                                </td>
+                            </tr>
+                    <?php endforeach;
+                    } ?>
                     </form>
                 </tbody>
             </table>

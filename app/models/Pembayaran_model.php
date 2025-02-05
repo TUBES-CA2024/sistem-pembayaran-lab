@@ -74,6 +74,60 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
+    public function getLaporan()
+    {
+        // Query untuk mengambil data pembayaran berdasarkan tanggal
+        $query = "SELECT 
+                mahasiswa.stambuk,
+                mahasiswa.nama,
+                tagihan.matakuliah,
+                pembayaran.tanggal_pembayaran,
+                pembayaran.jumlah_pembayaran,
+                pembayaran.status
+              FROM pembayaran
+              JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
+              JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+              WHERE pembayaran.tanggal_pembayaran 
+              ORDER BY pembayaran.tanggal_pembayaran DESC";
+
+        // Menjalankan query
+        $this->db->query($query);
+
+        // Mengembalikan hasil query
+        return $this->db->resultSet();
+    }
+    // public function getLaporanByDate($start_date, $end_date)
+    // {
+    //     $this->db->query("SELECT * FROM pembayaran WHERE tanggal_pembayaran BETWEEN :start_date AND :end_date");
+    //     $this->db->bind(':start_date', $start_date);
+    //     $this->db->bind(':end_date', $end_date);
+    //     return $this->db->resultSet();
+    // }
+    // public function filterLaporan()
+    // {
+    //    
+
+    //     // Query the database to get data between the selected dates
+    //     $query = "SELECT * FROM pembayaran WHERE tanggal_pembayaran BETWEEN '$startDate' AND '$endDate'";
+    //     $this->db->query($query);
+    //     return $this->db->resultSet();
+
+    // }
+    // public function printPembayaran()
+    // {
+    //     // Get the selected start and end dates from the form submission
+    //     $startDate = $_POST['start_date'];
+    //     $endDate = $_POST['end_date'];
+
+    //     // Query to get the data within the selected date range
+    //     $query = "SELECT * FROM pembayaran WHERE tanggal_pembayaran BETWEEN '$startDate' AND '$endDate'";
+    //     $this->db->query($query);
+    //     // $this->db->bind(':start_date', $startDate);
+    //     // $this->db->bind(':end_date', $endDate);
+    //     return $this->db->resultSet();
+    // }
+
+
 
 
 

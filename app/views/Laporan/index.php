@@ -40,13 +40,7 @@
                         <th class="text-center">Tanggal Bayar</th>
                         <th class="text-center">Jumlah Bayar</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="checkedAll"
-                                onkeydown="return event.key !== 'Enter';">
-                        </th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,8 +57,19 @@
                                 <td class="text-center"><?= $pmb['tanggal_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['jumlah_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['status'] ?></td>
-                                <td>
-                                    <input class="form-check-input" type="checkbox" value="<?= $pmb['stambuk']; ?>" id="checkedOne" name="stambuk[]">
+                                <td class="text-center">
+                                    <!-- Form cetak untuk setiap mahasiswa -->
+                                    <form action="<?= BASEURL; ?>/Laporan/print" method="POST">
+                                        <input type="hidden" name="stambuk" value="<?= $pmb['stambuk']; ?>">
+                                        <input type="hidden" name="nama" value="<?= $pmb['nama']; ?>">
+                                        <input type="hidden" name="matakuliah" value="<?= $pmb['matakuliah']; ?>">
+                                        <input type="hidden" name="tanggal_pembayaran" value="<?= $pmb['tanggal_pembayaran']; ?>">
+                                        <input type="hidden" name="jumlah_pembayaran" value="<?= $pmb['jumlah_pembayaran']; ?>">
+                                        <input type="hidden" name="status" value="<?= $pmb['status']; ?>">
+                                        <button class="btn btn-info text-white" type="submit">
+                                            <i class="fa-solid fa-print"></i> Cetak
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                     <?php endforeach;
@@ -72,6 +77,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
 
