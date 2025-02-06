@@ -12,93 +12,83 @@
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th colspan="5">Semester Regular</th>
-                        <th colspan="2">
+                        <th colspan="6">Tagihan</th>
+                        <th>
                             <div class="row align-items-center">
                                 <div class="col">
                                     <label for="tahun-akademik">Tahun Akademik</label>
                                     <select id="tahun-akademik" class="form-select">
-                                        <option>2024/2025</option>
+                                        <?php foreach ($data['pembayaran'] as $index => $pmb): ?>
+                                            <option><?= $pmb['tahun_akademik']; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-
-                                <!-- <div class="col-auto">
-                                    <form action="<?= BASEURL; ?>/Pembayaranmh/registrasi" method="POST" class="mt-4">
-                                        <button class="btn btn-success opacity-75" type="submit"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Register Mahasiswa</button>
-                                    </form>
-                                </div> -->
-
                             </div>
                         </th>
                     </tr>
 
+                    <!-- <div class="col-auto">
+                        <form action="<?= BASEURL; ?>/Pembayaranmh/registrasi" method="POST" class="mt-4">
+                            <button class="btn btn-success opacity-75" type="submit"><img src="<?= BASEURL ?>/assets/img/add.png" alt="">Register Mahasiswa</button>
+                        </form>
+                    </div> -->
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
-                        <th class="text-center">Nama</th>
-                        <th class="text-center">Waktu Pembayaran</th>
-                        <th class="text-center">Nominal</th>
-                        <th class="text-center">Status</th>
+                        <th class="text-center">Jumlah Tagihan</th>
+                        <th class="text-center">Angkatan</th>
+                        <th class="text-center">Tahun Akademik</th>
+                        <th class="text-center">Semester</th>
+                        <th class="text-center">Matkul</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    $inv = 0;
                     if (!empty($data['pembayaran'])) {
-                        $no = 1;
-                        foreach ($data['pembayaran'] as $pmb) :
+                        foreach ($data['pembayaran'] as $index => $pmb):
                             if ($pmb['stambuk'] == $_SESSION['stambuk']) {
-                                $waktuPembayaran = $pmb['waktupembayaran'];
-
-                                $formattedDate = ($waktuPembayaran != '0000-00-00' && $waktuPembayaran != '')
-                                    ? date('d-m-Y', strtotime($waktuPembayaran))
-                                    : '-';
-
-                                $formattedNominal = number_format($pmb['nominal'], 0, ',', '.');
+                                $inv++;
                     ?>
                                 <tr>
-                                    <td><?= $no++; ?></td>
+                                    <td><?= $index + 1 ?></td>
                                     <td><?= $pmb['stambuk']; ?></td>
-                                    <td><?= $pmb['nama']; ?></td>
-                                    <td><?= $formattedDate; ?></td>
-                                    <td>Rp. <?= $formattedNominal; ?></td>
-                                    <td>
-                                        <span class="<?= $pmb['status'] == 'Lunas' ? 'badge bg-success' : 'badge bg-danger'; ?>">
-                                            <?= $pmb['status']; ?>
-                                        </span>
-                                    </td>
-
+                                    <td><?= $pmb['jumlah_tagihan']; ?></td>
+                                    <td><?= $pmb['angkatan']; ?></td>
+                                    <td><?= $pmb['tahun_akademik']; ?></td>
+                                    <td><?= $pmb['semester']; ?></td>
+                                    <td><?= $pmb['matakuliah']; ?></td>
                                 </tr>
                     <?php
                             }
                         endforeach;
-                    } else {
-                        echo '<tr><td colspan="6" class="text-center">Data tidak ditemukan</td></tr>';
-                    }
-                    ?>
+                    } ?>
                 </tbody>
             </table>
         </div>
 
         <div class="overflow-x-auto rounded-4 shadow-lg p-4 mt-5" style="min-width: 860px;">
             <h4>History Pembayaran</h4>
-            <table class="table table-bordered table-striped" style="width:100%">
+            <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">Tanggal</th>
-                        <th class="text-center">Tagihan</th>
+                        <th class="text-center">Stambuk</th>
+                        <th class="text-center">Matkul</th>
+                        <th class="text-center">Tanggal Bayar</th>
+                        <th class="text-center">Jumlah Bayar</th>
                         <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($data['history'])): ?>
-                        <?php
+                    <?php
+                    if (!empty($data['history'])) {
                         $no = 1;
                         foreach ($data['history'] as $history):
                             $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
                             $formattedTagihan = number_format($history['tagihan'], 0, ',', '.');
                             $matkul = $history['matkul'] ?? 'Tidak diketahui';
-                        ?>
+                    ?>
                             <tr>
                                 <td><?= $no++; ?></td>
                                 <td><?= $formattedDate; ?></td>
@@ -109,21 +99,18 @@
                                     </span>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="4" class="text-center">Belum ada history pembayaran</td>
-                        </tr>
-                    <?php endif; ?>
+                    <?php
+                        endforeach;
+                    } else {
+                        // echo 'colspan="4" class="text-center">Data tidak ditemukan';
+                    } ?>
                 </tbody>
             </table>
-
-
-        </div>
-        <div class="text-center mt-3">
-            <form action="<?= BASEURL; ?>/Pembayaranmh/history" method="POST">
-                <button class="btn btn-info me-2 text-white" type="submit"><i class="fa-solid fa-print"></i> Cetak Pembayaran</button>
-            </form>
         </div>
     </div>
 </div>
+<!-- <div class="text-center mt-3">
+    <form action="<?= BASEURL; ?>/Pembayaranmh/history" method="POST">
+        <button class="btn btn-info me-2 text-white" type="submit"><i class="fa-solid fa-print"></i> Cetak Pembayaran</button>
+    </form>
+</div> -->

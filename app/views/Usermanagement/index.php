@@ -47,7 +47,7 @@
                             <td><?= $user['username']; ?></td>
                             <td><?= $user['role']; ?></td>
                             <td>
-                                <button class="btn-edit edit-user me-1" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
+                                <button class="btn btn-success btn-edit edit-user me-1" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt=" ">
                                 </button>
                                 <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser']; ?>">
@@ -106,7 +106,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="email" class="form-control" id="input-username" name="username" placeholder="Masukkan Username">
+                        <input type="text" class="form-control" id="input-username" name="username" placeholder="Masukkan Username">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>

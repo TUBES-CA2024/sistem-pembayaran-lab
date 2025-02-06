@@ -11,13 +11,12 @@ class User_model
     //Digunakan untuk menambahkan data user di User
     public function tambah($data)
     {
-        $query = "INSERT INTO user VALUES('', :username, :password, :role)";
+        $query = "INSERT INTO user VALUES('', :username, :password, :stambuk, :role)";
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
+        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
         $this->db->bind('role', $data['role']);
-
-        // $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
 
         $this->db->execute();
 
@@ -50,14 +49,14 @@ class User_model
     //Digunakan untuk mengedit data user di User
     public function edit($data)
     {
-        $query = "UPDATE user SET username= :username, password= :password, role= :role, WHERE iduser= :iduser";
+        $query = "UPDATE user SET username= :username, password= :password, stambuk= :stambuk, role= :role WHERE iduser= :iduser";
         $this->db->query($query);
         $this->db->bind('iduser', $data['iduser']);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
-        $this->db->bind('role', $data['role']);
         // Jika role adalah Mahasiswa, gunakan nilai stambuk, jika bukan, gunakan NULL
-        // $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
+        $this->db->bind('stambuk', $data['role'] === 'Mahasiswa' ? $data['stambuk'] : null);
+        $this->db->bind('role', $data['role']);
 
         $this->db->execute();
 
