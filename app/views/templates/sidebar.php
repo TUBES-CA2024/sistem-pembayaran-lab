@@ -53,7 +53,7 @@
             <li>
               <a href="<?= BASEURL ?>/Laporan" class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/laporan-icon.png" alt="laporan-icon" /></i>
-                <span class="ms-1 d-none d-sm-inline">Laporan</span>
+                <span class="ms-1 d-none d-sm-inline">Cetak Pembayaran</span>
               </a>
             </li>
           </ul>

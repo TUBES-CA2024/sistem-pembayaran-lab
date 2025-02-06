@@ -9,8 +9,8 @@
                     width="85px">
             </div>
             <div class="col-md-11 card-body">
-                <h5 class="card-title">Laporan</h5>
-                <h2 class="card-subtitle mb-2">Total <?= $data['countpembayaran']['jumlahPembayaran'] ?></h2>
+                <h5 class="card-title">Cetak Pembayaran</h5>
+                <h3 class="card-subtitle mb-2"><?= $data['countpembayaran']['jumlahPembayaran'] ?></h3>
                 <h6 class="card-subtitle mb-2">Pembayaran</h6>
 
             </div>

@@ -18,7 +18,7 @@
                                 <div class="col">
                                     <label for="tahun-akademik">Tahun Akademik</label>
                                     <select id="tahun-akademik" class="form-select">
-                                        <?php foreach ($data['pembayaran'] as $index => $pmb): ?>
+                                        <?php foreach ($data['tagihan'] as $index => $pmb): ?>
                                             <option><?= $pmb['tahun_akademik']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
@@ -45,15 +45,15 @@
                 <tbody>
                     <?php
                     $inv = 0;
-                    if (!empty($data['pembayaran'])) {
-                        foreach ($data['pembayaran'] as $index => $pmb):
+                    if (!empty($data['tagihan'])) {
+                        foreach ($data['tagihan'] as $index => $pmb):
                             if ($pmb['stambuk'] == $_SESSION['stambuk']) {
                                 $inv++;
                     ?>
                                 <tr>
                                     <td><?= $index + 1 ?></td>
                                     <td><?= $pmb['stambuk']; ?></td>
-                                    <td><?= $pmb['jumlah_tagihan']; ?></td>
+                                    <td>Rp. <?= $pmb['jumlah_tagihan']; ?></td>
                                     <td><?= $pmb['angkatan']; ?></td>
                                     <td><?= $pmb['tahun_akademik']; ?></td>
                                     <td><?= $pmb['semester']; ?></td>
@@ -82,27 +82,23 @@
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($data['history'])) {
-                        $no = 1;
-                        foreach ($data['history'] as $history):
-                            $formattedDate = date('d-m-Y', strtotime($history['tanggal']));
-                            $formattedTagihan = number_format($history['tagihan'], 0, ',', '.');
-                            $matkul = $history['matkul'] ?? 'Tidak diketahui';
+                    $inv = 0;
+                    if (!empty($data['tagihan'])) {
+                        foreach ($data['tagihan'] as $index => $pmb):
+                            if ($pmb['stambuk'] == $_SESSION['stambuk']) {
+                                $inv++;
                     ?>
-                            <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= $formattedDate; ?></td>
-                                <td>Rp. <?= $formattedTagihan; ?></td>
-                                <td>
-                                    <span class="<?= $history['status'] == 'Lunas' ? 'badge bg-success' : 'badge bg-danger'; ?>">
-                                        <?= $history['status']; ?>
-                                    </span>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><?= $index + 1 ?></td>
+                                    <td><?= $pmb['stambuk']; ?></td>
+                                    <td><?= $pmb['matakuliah']; ?></td>
+                                    <td><?= $pmb['tanggal_pembayaran']; ?></td>
+                                    <td>Rp. <?= $pmb['jumlah_pembayaran']; ?></td>
+                                    <td><?= $pmb['status']; ?></td>
+                                </tr>
                     <?php
+                            }
                         endforeach;
-                    } else {
-                        // echo 'colspan="4" class="text-center">Data tidak ditemukan';
                     } ?>
                 </tbody>
             </table>

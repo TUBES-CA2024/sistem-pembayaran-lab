@@ -6,21 +6,10 @@ class Pembayaranmh extends Controller
     {
         if ($_SESSION['role'] == 'Mahasiswa') {
             $stambuk = $_SESSION['stambuk'];
-            // Debugging: Cek apakah stambuk ada nilainya
-            // var_dump($stambuk);
-            // die();
             $data['title'] = 'Pembayaran';
             $data['nama'] = $this->model('Mahasiswa_model')->getNamaByStambuk($stambuk);
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
-            $data['pembayaran'] = $this->model('Pembayaran_model')->getPembayaranStambuk($stambuk);
-            // Debugging untuk memastikan data diambil
-            // if (empty($data['pembayaran'])) {
-            //     echo "Data pembayaran kosong!";
-            //     die();
-            // } else {
-            //     var_dump($data['pembayaran']); // ✅ Debugging sementara
-            //     die();
-            // }
+            $data['tagihan'] = $this->model('Tagihan_model')->getPembayaranStambuk($stambuk);
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebarmh');
@@ -29,15 +18,10 @@ class Pembayaranmh extends Controller
             $this->view('templates/footersidebar');
             $this->view('templates/footer');
         } else {
-            header("Location:" . BASEURL . "/Beranda");
+            header("Location:" . BASEURL . "/Pembayaranmh");
             exit();
         }
     }
-    // $mahasiswa = $this->model('Mahasiswa_model')->tampilByNim($stambuk);
-    // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-    // $data['history'] = $this->model('Pembayaran_model')->tampilHistory($stambuk);
-    // $data['matkul'] = $this->model('Matkul_model')->tampil();
-    // $data['prodi'] = $mahasiswa['prodi'];
 
     public function history()
     {

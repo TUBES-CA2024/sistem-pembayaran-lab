@@ -122,30 +122,6 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    public function getPembayaranStambuk($stambuk)
-    {
-        $this->db->query("
-        SELECT 
-            mahasiswa.stambuk,
-            mahasiswa.nama,
-            tagihan.angkatan,
-            tagihan.semester,
-            tagihan.matakuliah,
-            tagihan.jumlah_tagihan,
-            tagihan.tahun_akademik,
-            pembayaran.tanggal_pembayaran,
-            pembayaran.jumlah_pembayaran,
-            pembayaran.status
-        FROM pembayaran
-        JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
-        JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
-        WHERE mahasiswa.stambuk = tagihan.stambuk
-        ORDER BY pembayaran.tanggal_pembayaran DESC");
-
-        // $this->db->bind('stambuk', $stambuk);
-        return $this->db->resultSet();
-    }
-
     // SELECT mahasiswa.stambuk, mahasiswa.nama, tagihan.angkatan, tagihan.semester, tagihan.matakuliah, 
     // tagihan.jumlah_tagihan, pembayaran.tanggal_pembayaran, pembayaran.jumlah_pembayaran, 
     // pembayaran.status FROM pembayaran JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan 

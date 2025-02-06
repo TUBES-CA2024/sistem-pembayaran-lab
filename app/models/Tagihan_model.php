@@ -126,4 +126,28 @@ class Tagihan_model
         $this->db->query("SELECT COUNT(idtagihan) AS jumlahTagihan FROM tagihan");
         return $this->db->single();
     }
+    public function getPembayaranStambuk($stambuk)
+    {
+        $this->db->query("
+        SELECT 
+            mahasiswa.stambuk,
+            mahasiswa.nama,
+            tagihan.angkatan,
+            tagihan.semester,
+            tagihan.matakuliah,
+            tagihan.jumlah_tagihan,
+            tagihan.tahun_akademik,
+            pembayaran.tanggal_pembayaran,
+            pembayaran.jumlah_pembayaran,
+            pembayaran.status
+        FROM pembayaran
+        JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
+        JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+        WHERE mahasiswa.stambuk = :stambuk
+        ORDER BY pembayaran.tanggal_pembayaran DESC");
+
+        $this->db->bind(':stambuk', $stambuk);
+        // $this->db->bind(':angkatan', $angkatan);
+        return $this->db->resultSet();
+    }
 }
