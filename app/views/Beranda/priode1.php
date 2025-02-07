@@ -38,38 +38,44 @@
                 </thead>
                 <tbody>
                     <?php
+                    $no = 0;
                     $inv = 0;
-                    if (isset($data['pembayaran'])) {
-                        foreach ($data['pembayaran'] as $index => $cetak):
 
-                            if ($cetak['semester'] !== 'Ganjil') {
-                                continue; // Jika bukan semester Ganjil, skip iterasi ini
-                            }
-                            $inv++;
-                            // Use str_pad to add leading zeros to $inv
-                            $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
-                            // Menghitung Sisa Bayar
-                            $jumlahTagihan = $cetak['jumlah_tagihan'];
-                            $jumlahBayar = $cetak['jumlah_pembayaran'];
-                            $sisaBayar = $jumlahTagihan - $jumlahBayar; // Hitung sisa bayar
+                    $arrayLength = count($data['print']);
+                    // foreach ($combinedData as $cetak => $matkul) :
+
+                    for ($i = 0; $i < $arrayLength; $i++) {
+                        $cetak = $data['print'][$i];
+                        if ($cetak['semester'] !== 'Ganjil') {
+                            continue; // Jika bukan semester Genap, skip iterasi ini
+                        }
+                        $no++;
+                        $inv++;
+                        // Use str_pad to add leading zeros to $inv
+                        $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
+                        // Menghitung Sisa Bayar
+                        $jumlahTagihan = $cetak['jumlah_tagihan'];
+                        $jumlahBayar = $cetak['jumlah_pembayaran'];
+                        $sisaBayar = $jumlahTagihan - $jumlahBayar; // Hitung sisa bayar
 
                     ?>
-                            <tr>
-                                <td class="text-center"><?= $index + 1 ?></td>
-                                <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/022022</td>
-                                <td class="text-center"><?= $cetak['tanggal_pembayaran'] ?></td>
-                                <td class="text-center"><?= $cetak['stambuk'] ?></td>
-                                <td class="text-center"><?= $cetak['nama'] ?></td>
-                                <td class="text-center"><?= $cetak['angkatan'] ?></td>
-                                <td class="text-center"><?= $cetak['semester'] ?></td>
-                                <td class="text-center"><?= $cetak['matakuliah'] ?></td>
-                                <td class="text-center">Rp. <?= $cetak['jumlah_tagihan'] ?></td>
-                                <td class="text-center">Rp. <?= $cetak['jumlah_pembayaran']  ?></td>
-                                <td class="text-center">Rp. <?= $sisaBayar ?></td>
-                                <td class="text-center"><?= $cetak['status'] ?></td>
+                        <tr>
+                            <td class="text-center"><?= $no ?></td>
+                            <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/022022</td>
+                            <td class="text-center"><?= $cetak['tanggal_pembayaran'] ?></td>
+                            <td class="text-center"><?= $cetak['stambuk'] ?></td>
+                            <td class="text-center"><?= $cetak['nama'] ?></td>
+                            <td class="text-center"><?= $cetak['angkatan'] ?></td>
+                            <td class="text-center"><?= $cetak['semester'] ?></td>
+                            <td class="text-center"><?= $cetak['matakuliah'] ?></td>
+                            <td class="text-center">Rp. <?= $cetak['jumlah_tagihan'] ?></td>
+                            <td class="text-center">Rp. <?= $cetak['jumlah_pembayaran']  ?></td>
+                            <td class="text-center">Rp. <?= $sisaBayar ?></td>
+                            <td class="text-center"><?= $cetak['status'] ?></td>
 
-                            </tr>
-                    <?php endforeach;
+                        </tr>
+                    <?php
+                        // endforeach;
                     } ?>
 
                 </tbody>

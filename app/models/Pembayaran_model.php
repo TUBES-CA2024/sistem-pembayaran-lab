@@ -56,6 +56,8 @@ class Pembayaran_model
                 mahasiswa.stambuk,
                 mahasiswa.nama,
                 tagihan.matakuliah,
+                tagihan.tahun_akademik,
+                tagihan.semester,
                 pembayaran.tanggal_pembayaran,
                 pembayaran.jumlah_pembayaran,
                 pembayaran.status
@@ -74,32 +76,32 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    public function getLaporan()
-    {
-        // Query untuk mengambil data pembayaran berdasarkan tanggal
-        $query = "SELECT 
-                mahasiswa.stambuk,
-                mahasiswa.nama,
-                tagihan.matakuliah,
-                tagihan.semester,
-                pembayaran.tanggal_pembayaran,
-                pembayaran.jumlah_pembayaran,
-                pembayaran.status
-              FROM pembayaran
-              JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
-              JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
-              WHERE pembayaran.tanggal_pembayaran 
-              ORDER BY pembayaran.tanggal_pembayaran DESC";
+    // public function getLaporan()
+    // {
+    //     // Query untuk mengambil data pembayaran berdasarkan tanggal
+    //     $query = "SELECT 
+    //             mahasiswa.stambuk,
+    //             mahasiswa.nama,
+    //             tagihan.matakuliah,
+    //             tagihan.semester,
+    //             pembayaran.tanggal_pembayaran,
+    //             pembayaran.jumlah_pembayaran,
+    //             pembayaran.status
+    //           FROM pembayaran
+    //           JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
+    //           JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+    //           WHERE pembayaran.tanggal_pembayaran 
+    //           ORDER BY pembayaran.tanggal_pembayaran DESC";
 
-        // Menjalankan query
-        $this->db->query($query);
+    //     // Menjalankan query
+    //     $this->db->query($query);
 
-        // Mengembalikan hasil query
-        return $this->db->resultSet();
-    }
-    public function getPeriode()
+    //     // Mengembalikan hasil query
+    //     return $this->db->resultSet();
+    // }
+    public function getPeriode($stambuk)
     {
-        $query = "SELECT 
+        $this->db->query("SELECT 
                 mahasiswa.stambuk,
                 mahasiswa.nama,
                 tagihan.angkatan,
@@ -112,14 +114,13 @@ class Pembayaran_model
               FROM pembayaran
               JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
               JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
-              WHERE pembayaran.tanggal_pembayaran 
-              ORDER BY pembayaran.tanggal_pembayaran DESC";
+              WHERE mahasiswa.stambuk = :stambuk 
+              ORDER BY pembayaran.tanggal_pembayaran ASC");
 
         // Menjalankan query
-        $this->db->query($query);
+        $this->db->bind('stambuk', $stambuk);
 
-        // Mengembalikan hasil query
-        return $this->db->resultSet();
+        return $this->db->single();
     }
 
     // SELECT mahasiswa.stambuk, mahasiswa.nama, tagihan.angkatan, tagihan.semester, tagihan.matakuliah, 
