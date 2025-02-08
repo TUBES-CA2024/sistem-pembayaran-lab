@@ -33,6 +33,12 @@ class Login extends Controller
         $data['login'] = $this->model('Login_model')->getUser();
         $user = $this->model('Login_model')->getUserByUsername($username);
         // var_dump($data);
+        // Email domain validation
+        if (strpos($username, '@umi.ac.id') === false && strpos($username, '@student.umi.ac.id') === false) {
+            PesanFlash::setFlash('Email tidak valid', 'Gunakan email dengan domain umi.ac.id atau student.umi.ac.id', 'danger');
+            header('Location: ' . BASEURL . '/Login');
+            exit;
+        }
         $konfirm = "";
         foreach ($data['login'] as $masuk):
             if ($masuk['username'] == $username && $masuk['password'] == $password) {
