@@ -6,7 +6,7 @@ class Pembayarankp extends Controller
     {
         if ($_SESSION['role'] == 'Kepala Lab') {
             $data['title'] = 'Pembayaran';
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+            $data['pembayaran'] = $this->model('Pembayaran_model')->tampilkp();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
 
             $this->view('templates/header', $data);

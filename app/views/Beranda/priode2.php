@@ -41,11 +41,8 @@
                     $no = 0;
                     $inv = 0;
 
-                    $arrayLength = count($data['print']);
-                    // foreach ($combinedData as $cetak => $matkul) :
+                    foreach ($data['print'] as $cetak) {
 
-                    for ($i = 0; $i < $arrayLength; $i++) {
-                        $cetak = $data['print'][$i];
                         if ($cetak['semester'] !== 'Genap') {
                             continue; // Jika bukan semester Genap, skip iterasi ini
                         }

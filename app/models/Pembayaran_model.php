@@ -76,29 +76,31 @@ class Pembayaran_model
         return $this->db->resultSet();
     }
 
-    // public function getLaporan()
-    // {
-    //     // Query untuk mengambil data pembayaran berdasarkan tanggal
-    //     $query = "SELECT 
-    //             mahasiswa.stambuk,
-    //             mahasiswa.nama,
-    //             tagihan.matakuliah,
-    //             tagihan.semester,
-    //             pembayaran.tanggal_pembayaran,
-    //             pembayaran.jumlah_pembayaran,
-    //             pembayaran.status
-    //           FROM pembayaran
-    //           JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
-    //           JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
-    //           WHERE pembayaran.tanggal_pembayaran 
-    //           ORDER BY pembayaran.tanggal_pembayaran DESC";
+    public function tampilkp()
+    {
+        // Query untuk mengambil data pembayaran berdasarkan tanggal
+        $query = "SELECT 
+                mahasiswa.stambuk,
+                mahasiswa.nama,
+                tagihan.matakuliah,
+                tagihan.angkatan,
+                tagihan.semester,
+                tagihan.jumlah_tagihan,
+                pembayaran.tanggal_pembayaran,
+                pembayaran.jumlah_pembayaran,
+                pembayaran.status
+              FROM pembayaran
+              JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
+              JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+              WHERE pembayaran.tanggal_pembayaran 
+              ORDER BY pembayaran.tanggal_pembayaran DESC";
 
-    //     // Menjalankan query
-    //     $this->db->query($query);
+        // Menjalankan query
+        $this->db->query($query);
 
-    //     // Mengembalikan hasil query
-    //     return $this->db->resultSet();
-    // }
+        // Mengembalikan hasil query
+        return $this->db->resultSet();
+    }
     public function getPeriode($stambuk)
     {
         $this->db->query("SELECT 
@@ -107,6 +109,7 @@ class Pembayaran_model
                 tagihan.angkatan,
                 tagihan.semester,
                 tagihan.matakuliah,
+                tagihan.tahun_akademik,
                 tagihan.jumlah_tagihan,
                 pembayaran.tanggal_pembayaran,
                 pembayaran.jumlah_pembayaran,
@@ -120,7 +123,7 @@ class Pembayaran_model
         // Menjalankan query
         $this->db->bind('stambuk', $stambuk);
 
-        return $this->db->single();
+        return $this->db->resultSet();
     }
 
     // SELECT mahasiswa.stambuk, mahasiswa.nama, tagihan.angkatan, tagihan.semester, tagihan.matakuliah, 

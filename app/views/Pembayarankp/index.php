@@ -22,26 +22,40 @@
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Stambuk</th>
-                        <th>Nama</th>
-                        <th>Waktu Pembayaran</th>
-                        <th>Nominal</th>
-                        <th>Status</th>
+                        <th class="text-center">NO</th>
+                        <th class="text-center">STAMBUK</th>
+                        <th class="text-center">NAMA MAHASISWA</th>
+                        <th class="text-center">ANGKATAN</th>
+                        <th class="text-center">SEMESTER</th>
+                        <th class="text-center">MATAKULIAH</th>
+                        <th class="text-center">TANGGAL BAYAR</th>
+                        <th class="text-center">JUMLAH TAGIHAN</th>
+                        <th class="text-center">JUMLAH BAYAR</th>
+                        <th class="text-center">SISA BAYAR</th>
+                        <th class="text-center">KET</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $no = 0;
-                    foreach ($data['pembayaran'] as $pmb) :
-                        $no++;
+
+                    <?php foreach ($data['pembayaran'] as $index => $pmb):
+
+                        $jumlahTagihan = $pmb['jumlah_tagihan'];
+                        $jumlahBayar = $pmb['jumlah_pembayaran'];
+                        $sisaBayar = $jumlahTagihan - $jumlahBayar; // Hitung sisa bayar
+
                     ?>
+
                         <tr>
-                            <td><?= $no; ?></td>
+                            <td><?= $index + 1 ?></td>
                             <td><?= $pmb['stambuk']; ?></td>
                             <td><?= $pmb['nama']; ?></td>
-                            <td><?= $pmb['waktupembayaran']; ?></td>
-                            <td>Rp. <?= $pmb['nominal']; ?></td>
+                            <td><?= $pmb['angkatan']; ?></td>
+                            <td><?= $pmb['semester']; ?></td>
+                            <td><?= $pmb['matakuliah']; ?></td>
+                            <td><?= $pmb['tanggal_pembayaran']; ?></td>
+                            <td class="text-center">Rp. <?= number_format($pmb['jumlah_tagihan'], 0, ',', '.') ?></td>
+                            <td class="text-center">Rp. <?= number_format($pmb['jumlah_pembayaran'], 0, ',', '.')  ?></td>
+                            <td class="text-center">Rp. <?= number_format($sisaBayar, 0, ',', '.') ?></td>
                             <td><?= $pmb['status']; ?></td>
                         </tr>
 

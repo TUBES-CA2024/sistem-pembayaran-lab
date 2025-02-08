@@ -73,10 +73,16 @@ class Beranda extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Print Periode 1';
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            foreach ($_POST['stambuk'] as $print) :
-                $data['print'][] = $this->model('Pembayaran_model')->getPeriode($print);
-            endforeach;
+            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+
+            $data['print'] = []; // Pastikan array kosong di awal
+            foreach ($_POST['stambuk'] as $print) {
+                $datamahasiswa = $this->model('Pembayaran_model')->getPeriode($print);
+                if ($datamahasiswa) {
+                    $data['print'] = array_merge($data['print'], $datamahasiswa);
+                }
+            }
+
             $this->view('templates/header', $data);
             $this->view('Beranda/priode1', $data);
             $this->view('templates/footer');
@@ -90,12 +96,14 @@ class Beranda extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Print Periode 2';
-
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
-            foreach ($_POST['stambuk'] as $print) :
-                $data['print'][] = $this->model('Pembayaran_model')->getPeriode($print);
-            endforeach;
-
+            $data['print'] = [];
+            foreach ($_POST['stambuk'] as $print) {
+                $datamahasiswa = $this->model('Pembayaran_model')->getPeriode($print);
+                if ($datamahasiswa) {
+                    $data['print'] = array_merge($data['print'], $datamahasiswa);
+                }
+            }
             $this->view('templates/header', $data);
             $this->view('Beranda/priode2', $data);
             $this->view('templates/footer');

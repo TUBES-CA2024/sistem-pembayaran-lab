@@ -29,6 +29,7 @@
                         <th class="text-center">NAMA MAHASISWA</th>
                         <th class="text-center">ANGKATAN</th>
                         <th class="text-center">SEMESTER</th>
+                        <th class="text-center">TAHUN AKADEMIK</th>
                         <th class="text-center">MATAKULIAH</th>
                         <th class="text-center">JUMLAH TAGIHAN</th>
                         <th class="text-center">JUMLAH BAYAR</th>
@@ -37,15 +38,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- <?php
+                            // Debugging: tampilkan data untuk memastikan apakah sudah ada duplikasi
+                            echo '<pre>';
+                            print_r($data['print']);
+                            echo '</pre>';
+                            ?> -->
                     <?php
                     $no = 0;
                     $inv = 0;
 
-                    $arrayLength = count($data['print']);
-                    // foreach ($combinedData as $cetak => $matkul) :
+                    foreach ($data['print'] as $cetak) {
 
-                    for ($i = 0; $i < $arrayLength; $i++) {
-                        $cetak = $data['print'][$i];
                         if ($cetak['semester'] !== 'Ganjil') {
                             continue; // Jika bukan semester Genap, skip iterasi ini
                         }
@@ -67,10 +71,11 @@
                             <td class="text-center"><?= $cetak['nama'] ?></td>
                             <td class="text-center"><?= $cetak['angkatan'] ?></td>
                             <td class="text-center"><?= $cetak['semester'] ?></td>
+                            <td class="text-center"><?= $cetak['tahun_akademik'] ?></td>
                             <td class="text-center"><?= $cetak['matakuliah'] ?></td>
-                            <td class="text-center">Rp. <?= $cetak['jumlah_tagihan'] ?></td>
-                            <td class="text-center">Rp. <?= $cetak['jumlah_pembayaran']  ?></td>
-                            <td class="text-center">Rp. <?= $sisaBayar ?></td>
+                            <td class="text-center">Rp. <?= number_format($cetak['jumlah_tagihan'], 0, ',', '.') ?></td>
+                            <td class="text-center">Rp. <?= number_format($cetak['jumlah_pembayaran'], 0, ',', '.')  ?></td>
+                            <td class="text-center">Rp. <?= number_format($sisaBayar, 0, ',', '.') ?></td>
                             <td class="text-center"><?= $cetak['status'] ?></td>
 
                         </tr>

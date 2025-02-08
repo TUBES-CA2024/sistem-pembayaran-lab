@@ -29,7 +29,7 @@
         <div class="overflow-x-auto rounded-4 shadow-lg p-4" style="min-width: 860px;">
             <div class="col-md-11 card-body">
                 <!-- Button untuk membuka modal filter laporan -->
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#formLaporan">Filter Laporan</button>
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#formLaporan">Pilih Tanggal</button>
             </div>
             <table id="myTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
@@ -37,6 +37,7 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
                         <th class="text-center">Nama</th>
+                        <th class="text-center">Semester</th>
                         <th class="text-center">Matakuliah</th>
                         <th class="text-center">Tanggal Bayar</th>
                         <th class="text-center">Jumlah Bayar</th>
@@ -54,6 +55,7 @@
                                 <td><?= $index + 1 ?></td>
                                 <td class="text-center"><?= $pmb['stambuk'] ?></td>
                                 <td class="text-center"><?= $pmb['nama'] ?></td>
+                                <td class="text-center"><?= $pmb['semester'] ?></td>
                                 <td class="text-center"><?= $pmb['matakuliah'] ?></td>
                                 <td class="text-center"><?= $pmb['tanggal_pembayaran'] ?></td>
                                 <td class="text-center"><?= $pmb['jumlah_pembayaran'] ?></td>
@@ -63,6 +65,7 @@
                                     <form action="<?= BASEURL; ?>/Laporan/print" method="POST">
                                         <input type="hidden" name="stambuk" value="<?= $pmb['stambuk']; ?>">
                                         <input type="hidden" name="nama" value="<?= $pmb['nama']; ?>">
+                                        <input type="hidden" name="semester" value="<?= $pmb['semester']; ?>">
                                         <input type="hidden" name="matakuliah" value="<?= $pmb['matakuliah']; ?>">
                                         <input type="hidden" name="tanggal_pembayaran" value="<?= $pmb['tanggal_pembayaran']; ?>">
                                         <input type="hidden" name="jumlah_pembayaran" value="<?= $pmb['jumlah_pembayaran']; ?>">

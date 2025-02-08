@@ -57,6 +57,7 @@ class Laporan extends Controller
             $data['title'] = 'Bukti Pembayaran';
             $data['stambuk'] = $_POST['stambuk'];
             $data['nama'] = $_POST['nama'];
+            $data['semester'] = $_POST['semester'];
             $data['matakuliah'] = $_POST['matakuliah'];
             $data['tanggal_pembayaran'] = $_POST['tanggal_pembayaran'];
             $data['jumlah_pembayaran'] = $_POST['jumlah_pembayaran'];
