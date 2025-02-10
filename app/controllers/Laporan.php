@@ -8,38 +8,10 @@ class Laporan extends Controller
             $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
             $data['tagihan'] = $this->model('Tagihan_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-            $data['laporan'] = [];
-
+            $data['laporan'] = $this->model('Pembayaran_model')->tampilkp();
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
             $this->view('Laporan/index', $data);
-            $this->view('templates/footersidebar');
-            $this->view('templates/footer');
-        } else {
-            header("Location:" . BASEURL . "/Laporan");
-            exit();
-        }
-    }
-    public function filter()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Ambil tanggal dari form
-            $startDate = $_POST['start_date'];
-            $endDate = $_POST['end_date'];
-
-            // Panggil model untuk mendapatkan laporan harian berdasarkan rentang tanggal
-            $data['title'] = 'Laporan Harian';
-            $data['laporan'] = $this->model('Pembayaran_model')->getLaporanByDateRange($startDate, $endDate);
-            $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-
-            // Simpan tanggal agar tetap tampil di form filter
-            $data['startDate'] = $startDate;
-            $data['endDate'] = $endDate;
-
-            // Menampilkan laporan dengan data yang sesuai
-            $this->view('templates/header', $data);
-            $this->view('templates/sidebar');
-            $this->view('Laporan/index', $data);  // Pastikan view yang sama digunakan
             $this->view('templates/footersidebar');
             $this->view('templates/footer');
         } else {
