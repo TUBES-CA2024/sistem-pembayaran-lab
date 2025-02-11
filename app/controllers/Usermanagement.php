@@ -8,6 +8,7 @@ class Usermanagement extends Controller
             $data['title'] = 'User Management';
             $data['user'] = $this->model('User_model')->tampil();
             $data['countuser'] = $this->model('User_model')->countUser();
+            $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');

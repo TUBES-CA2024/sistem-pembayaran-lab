@@ -187,17 +187,17 @@ class Pembayaran_model
     //     return $this->db->single(); // Mengambil satu baris hasil
     // }
 
-    //Digunakan untuk menghapus data pembayaran di Pembayaran
-    // public function hapus($id)
-    // {
-    //     $query = "DELETE FROM pembayaran WHERE idpembayaran = :idpembayaran";
-    //     $this->db->query($query);
-    //     $this->db->bind('idpembayaran', $id);
+    // Digunakan untuk menghapus data pembayaran di Pembayaran
+    public function hapus($id)
+    {
+        $query = "DELETE FROM pembayaran WHERE idpembayaran = :idpembayaran";
+        $this->db->query($query);
+        $this->db->bind('idpembayaran', $id);
 
-    //     $this->db->execute();
+        $this->db->execute();
 
-    //     return $this->db->rowCount();
-    // }
+        return $this->db->rowCount();
+    }
     // //Digunakan untuk menghapus data pembayaran berdasarkan stambuk di Datamahasiswa
     // public function hapusByStambuk($id)
     // {

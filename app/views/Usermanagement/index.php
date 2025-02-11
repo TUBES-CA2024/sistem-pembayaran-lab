@@ -100,9 +100,20 @@
                             <option value="Mahasiswa">Mahasiswa</option>
                         </select>
                     </div>
-                    <div class="mb-3" id="stambuk-field" style="display: none;">
+                    <!-- <div class="mb-3" id="stambuk-field" style="display: none;">
                         <label for="stambuk" class="form-label">Stambuk</label>
                         <input type="text" class="form-control" id="stambuk" name="stambuk" placeholder="Masukkan Stambuk">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="stambuk" class="form-label">Stambuk</label>
+                        <select class="form-select" id="stambuk" name="stambuk" required>
+                            <option value="1" id="stambuk" name="stambuk" selected disabled>Pilih Stambuk</option>
+                            <?php
+                            foreach ($data['mahasiswa'] as $mhs) :
+                            ?>
+                                <option value="<?= $mhs['stambuk']; ?>"><?= $mhs['stambuk']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>

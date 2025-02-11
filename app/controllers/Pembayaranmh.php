@@ -75,7 +75,7 @@ class Pembayaranmh extends Controller
             $idpembayaran = $this->model('Pembayaran_model')->tambah($_POST);
             if ($idpembayaran > 0) {
                 $_POST['idpembayaran'] = $idpembayaran;
-                $this->model('Select_matkul_model')->tambah($_POST);
+                // $this->model('Select_matkul_model')->tambah($_POST);
                 PesanFlash::setFlash('Pembayaran Berhasil', 'ditambahkan', 'success');
                 header('Location: ' . BASEURL . '/Pembayaranmh');
                 exit;
