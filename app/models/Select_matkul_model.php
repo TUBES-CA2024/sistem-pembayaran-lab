@@ -81,14 +81,14 @@ class Select_matkul_model
         $this->db->bind('idpembayaran', $idpembayaran);
         return $this->db->resultSet();  // Mengembalikan semua mata kuliah yang dipilih oleh mahasiswa
     }
-    //Digunakan Digunakan untuk menampilkan data matkul_select di Beranda
-    public function printMatkul($id)
-    {
-        $this->db->query("SELECT matkul_select.kodematakuliah FROM matkul_select LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah WHERE matkul_select.stambuk = :stambuk;");
-        $this->db->bind('stambuk', $id);
-        return $this->db->resultSet();
-    }
 }
+    //Digunakan Digunakan untuk menampilkan data matkul_select di Beranda
+    // public function printMatkul($id)
+    // {
+    //     $this->db->query("SELECT matkul_select.kodematakuliah FROM matkul_select LEFT JOIN matakuliah ON matkul_select.kodematakuliah = matakuliah.kodematakuliah WHERE matkul_select.stambuk = :stambuk;");
+    //     $this->db->bind('stambuk', $id);
+    //     return $this->db->resultSet();
+    // }
 
     // public function tampil()
     // {
