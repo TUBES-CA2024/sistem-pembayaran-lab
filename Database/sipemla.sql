@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2025 at 08:49 AM
+-- Generation Time: Feb 13, 2025 at 07:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -81,8 +81,12 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`stambuk`, `nama`, `prodi`, `idkelas`, `namaagama`, `email`, `telepon`, `jeniskelamin`, `alamat`, `foto`, `isCompleted`) VALUES
+('120', 'agus', 'Teknik Informatika', 1, 'Islam', 'agus@umi.ac.id', '0822', 'Laki-Laki', 'uaua', 'assets/img/profil/67a4702281923.JPG', 1),
 ('1302021', 'alif', 'Teknik Informatika', 1, 'Islam', 'alif@gmail.com', '132', 'Laki-Laki', 'afe', 'assets/img/profil/679de3e1e5596.jpg', 1),
-('1302022', 'daf', 'Teknik Informatika', 1, 'Islam', 'dawd@gmail.com', 'efsf', 'Laki-Laki', 'daw', 'assets/img/profil/679d1ae4bbbd1.jpg', 1);
+('1302022', 'daf', 'Teknik Informatika', 1, 'Islam', 'dawd@gmail.com', 'efsf', 'Laki-Laki', 'daw', 'assets/img/profil/679d1ae4bbbd1.jpg', 1),
+('13020220223', 'Akbar ', 'Teknik Informatika', 1, 'Islam', 'akbar@umi.ac.id', '0822', 'Laki-Laki', 'sudiang', 'assets/img/profil/67a476492b6d0.jpg', 1),
+('1302031', 'ahmad', 'Teknik Informatika', 2, 'Islam', 'ahmad@umi.ac.id', '0822', 'Laki-Laki', 'maros', 'assets/img/profil/67a01ebd2f229.jpg', 1),
+('1332022', 'ilham', 'Teknik Informatika', 1, 'Islam', 'ilham@umi.ac.id', '0822', 'Laki-Laki', 'pramuka', 'assets/img/profil/67a4252d16aa6.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -115,7 +119,7 @@ INSERT INTO `matakuliah` (`kodematakuliah`, `namamatakuliah`, `sks`) VALUES
 ('012', 'Sistem Operasi', 3),
 ('013', 'Akuntansi', 3),
 ('014', 'Design Grafis', 3),
-('123', 'eqe2', 2);
+('0ke', 'Sastra Mesin', 3);
 
 -- --------------------------------------------------------
 
@@ -144,6 +148,18 @@ CREATE TABLE `pembayaran` (
   `status` enum('Lunas','Belum Lunas') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`idpembayaran`, `idtagihan`, `tanggal_pembayaran`, `jumlah_pembayaran`, `status`) VALUES
+(54, 124, '2025-02-08', 55000, 'Lunas'),
+(55, 125, '2025-02-09', 55000, 'Lunas'),
+(56, 126, '2025-02-10', 55000, 'Lunas'),
+(57, 127, '2025-02-11', 55000, 'Lunas'),
+(58, 128, '2025-02-12', 55000, 'Lunas'),
+(60, 123, '2025-02-10', 55000, 'Lunas');
+
 -- --------------------------------------------------------
 
 --
@@ -165,14 +181,12 @@ CREATE TABLE `tagihan` (
 --
 
 INSERT INTO `tagihan` (`idtagihan`, `stambuk`, `jumlah_tagihan`, `angkatan`, `tahun_akademik`, `semester`, `matakuliah`) VALUES
-(35, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
-(36, '1302022', 110000, '2022', '2024/2025', 'Genap', 'Algoritma, Jaringan'),
-(37, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
-(38, '1302021', 50000, '2022', '2024/2025', 'Genap', 'Struktur Data'),
-(47, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
-(48, '1302022', 110000, '2022', '2024/2025', 'Genap', 'Algoritma, Jaringan'),
-(49, '1302022', 50000, '2022', '2024/2025', 'Genap', 'Basis Data 1'),
-(50, '1302021', 50000, '2022', '2024/2025', 'Genap', 'Struktur Data');
+(123, '13020220223', 55000, '2022', '2024/2025', 'Ganjil', 'PBO'),
+(124, '120', 55000, '2022', '2024/2025', 'Genap', 'WEB'),
+(125, '1302021', 55000, '2022', '2024/2025', 'Genap', 'ALPRO'),
+(126, '1302022', 55000, '2021', '2024/2025', 'Ganjil', 'BASIS DATA'),
+(127, '1302031', 55000, '2021', '2024/2025', 'Ganjil', 'JARINGAN '),
+(128, '1332022', 55000, '2023', '2024/2025', 'Ganjil', 'DESAIN');
 
 -- --------------------------------------------------------
 
@@ -184,6 +198,7 @@ CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `stambuk` varchar(15) DEFAULT NULL,
   `role` enum('Admin','Kepala Lab','Mahasiswa') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -191,12 +206,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`iduser`, `username`, `password`, `role`) VALUES
-(1, 'Admin', 'Admin', 'Admin'),
-(2, 'KepalaLab1', 'kepalalab1', 'Kepala Lab'),
-(62, '1302022', '123', 'Mahasiswa'),
-(63, '130', '123', 'Mahasiswa'),
-(64, 'admin@gmail.com', '123', 'Admin');
+INSERT INTO `user` (`iduser`, `username`, `password`, `stambuk`, `role`) VALUES
+(65, 'admin@umi.ac.id', 'admin', NULL, 'Admin'),
+(78, 'kepalalab@umi.ac.id', 'kepalalab', NULL, 'Kepala Lab'),
+(81, 'ayu@student.umi.ac.id', '123', '120', 'Mahasiswa'),
+(82, 'alif@student.umi.ac.id', 'alif', '13020220223', 'Mahasiswa');
 
 --
 -- Indexes for dumped tables
@@ -248,7 +262,8 @@ ALTER TABLE `tagihan`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`iduser`);
+  ADD PRIMARY KEY (`iduser`),
+  ADD KEY `fk_stambuk` (`stambuk`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -270,19 +285,19 @@ ALTER TABLE `matkul_select`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `idtagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `idtagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- Constraints for dumped tables
@@ -313,6 +328,12 @@ ALTER TABLE `pembayaran`
 --
 ALTER TABLE `tagihan`
   ADD CONSTRAINT `stambuk` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk_stambuk` FOREIGN KEY (`stambuk`) REFERENCES `mahasiswa` (`stambuk`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
