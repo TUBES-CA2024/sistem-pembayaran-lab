@@ -1,45 +1,59 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/print.css">
 <div class="container-fluid">
-    <div class="overflow-y-auto p-1" style="max-height: 99vh;">
+    <div class="container overflow-y-auto p-1" style="max-height: 99vh;">
 
-        <div id="print-area" class="border p-4" style="width: 7.6cm; height: 13cm; margin: auto; font-family: Arial, sans-serif; border: 1px solid black;">
-            <div style="display: flex; align-items: center;">
-                <img src="<?= BASEURL ?>/assets/img/iclabs-logo.png" width="50px" alt="Logo" style="margin-right: 10px;">
-                <div style="text-align: left;">
-                    <h4 style="margin: 0; font-size: 10px;"><strong>LABORATORIUM TERPADU</strong></h4>
-                    <p style="margin: 0; font-size: 10px;"><strong>FAKULTAS ILMU KOMPUTER UMI</strong></p>
-                    <p style="margin: 0; font-size: 9px;">Email: fikom.iclabs@umi.ac.id</p>
-                    <p style="margin: 0; font-size: 9px;">Website: iclabs.fikom.umi.ac.id</p>
+        <div id="print-area" class="card border p-4">
+            <div class="container2">
+
+                <div class="box1">
+
+                    <div class="img">
+                        <img src="<?= BASEURL ?>/assets/img/iclabs-logo.png" alt="Logo" class="logo logo-cetak">
+                    </div>
+
+                    <div class="header-container">
+                        <div class="kata">
+                            <div class="header-text" style="margin-top: 0;">
+                                <h4 class="text-center"><strong>LABORATORIUM TERPADU</strong></h4>
+                                <h4 class="text-center"><strong>FAKULTAS ILMU KOMPUTER UMI</strong></h4>
+                                <p class="text-center" style="margin-bottom: 0;">Email: fikom.iclabs@umi.ac.id</p>
+                                <p class="text-center">Website: iclabs.fikom.umi.ac.id</p>
+                                <h6 class="text-center"><strong>BUKTI PEMBAYARAN PRAKTIKUM</strong></h6>
+                                <p class="text-center"><strong>Invoice No:</strong> LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/043</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="box2">
+                    <hr>
+                    <p><strong>Stambuk:</strong> <?= $data['stambuk'] ?></p>
+                    <p><strong>Nama:</strong> <?= $data['nama'] ?></p>
+                    <p><strong>Mata Kuliah:</strong> <?= $data['matakuliah'] ?></p>
+                    <p><strong>Jumlah Bayar:</strong> Rp <?= number_format($data['jumlah_pembayaran'], 0, ',', '.') ?></p>
+                    <p><strong>Terbilang:</strong> <?= ucwords(terbilang($data['jumlah_pembayaran'])) ?> Rupiah</p>
+                    <hr>
+                    <p style="text-align: right;">Makassar, <?= date('d-M-Y') ?></p>
+                    <div style="text-align: right; margin-top: 50px;">
+                        <p><strong><u>Fatimah A.R Tuasamu, S.Kom., MTA., MOS</u></strong></p>
+                    </div>
                 </div>
             </div>
-            <h5 class="text-center" style="font-size: 9px; margin-top: 10px;"><strong>BUKTI PEMBAYARAN PRAKTIKUM</strong></h5>
-            <p class="text-center" style="font-size: 9px; margin: 0;"><strong>Invoice No:</strong> LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/043</p>
-            <hr>
-            <p style="font-size: 10px;"><strong>Stambuk:</strong> <?= $data['stambuk'] ?></p>
-            <p style="font-size: 10px;"><strong>Nama:</strong> <?= $data['nama'] ?></p>
-            <p style="font-size: 10px;"><strong>Mata Kuliah:</strong> <?= $data['matakuliah'] ?></p>
-            <p style="font-size: 10px;"><strong>Jumlah Bayar:</strong> Rp <?= number_format($data['jumlah_pembayaran'], 0, ',', '.') ?></p>
-            <p style="font-size: 10px;"><strong>Terbilang:</strong> <?= ucwords(terbilang($data['jumlah_pembayaran'])) ?> Rupiah</p>
-            <hr>
-            <?php
-            setlocale(LC_TIME, 'id_ID.utf8', 'id_ID', 'Indonesian_indonesia.1252');
-            ?>
-            <p style="text-align: right; font-size: 10px;">Makassar, <?= date('d-M-Y') ?></p>
-            <div style="text-align: right; margin-top: 50px;">
-                <p style="font-size: 10px;"><strong><u>Fatimah A.R Tuasamu, S.Kom., MTA., MOS</u></strong></p>
+        </div>
+
+        <div class="box3">
+            <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-primary btn-sm" onclick="printPembayaran()"> Cetak</button>
+            </div>
+
+            <div class="d-flex justify-content-center mt-2">
+                <a href="<?= BASEURL; ?>/Laporan" class="btn btn-danger btn-sm">Kembali</a>
             </div>
         </div>
 
-        <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-primary btn-sm" onclick="printPembayaran()"> Cetak</button>
-        </div>
-
-        <div class="d-flex justify-content-center mt-2">
-            <a href="<?= BASEURL; ?>/Laporan" class="btn btn-danger btn-sm">Kembali</a>
-        </div>
     </div>
 </div>
-
 
 
 <?php
