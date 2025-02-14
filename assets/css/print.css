@@ -1,35 +1,199 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
-/* style.css */
-/* Mengatur ukuran halaman saat diprint */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+/* Styling Umum */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.border {
+    width: 7.6cm;
+    height: 13cm;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    border: 1px solid black;
+}
+
+.container {
+    width: 100%;
+    height: max-content;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    flex-direction: column;
+    /* background-color: #99666b; */
+    margin: 5px;
+}
+
+.card {
+    width: 100%;
+    height: max-content;
+    /* background-color: #dc3545; */
+}
+
+.container2 {
+    width: 100%;
+    height: max-content;
+    /* background-color: aqua; */
+}
+
+.box1 {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.img {
+    width: 30%;
+    height: auto;
+    /* background-color: #dc3545; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.header-container {
+    width: 65%;
+    /* height: 230px; */
+    /* background-color: #007bff; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: left;
+
+}
+
+.kata {
+    width: 100%;
+    height: 180px;
+    /* background-color: #dc3545; */
+}
+
+.header-text {
+    width: 100%;
+    height: 180px;
+    /* background-color: #17365f; */
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Container Cetak */
+.print-container {
+    max-width: 100%;
+    width: 21cm;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+}
+
+.logo {
+    width: 50%;
+    /*Sesuaikan ukuran logo */
+    height: auto;
+}
+
+
+
+/* Tanda Tangan */
+.signature {
+    text-align: right;
+    margin-top: 50px;
+}
+
+/* Tombol */
+.btn {
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: #007bff;
+}
+
+.btn-danger {
+    background: #dc3545;
+}
+
+
+
 @media print {
-    @page {
-        size: 21cm 29.7cm;
-        /* Menetapkan ukuran kertas */
-        margin: 2cm;
-        /* Menghilangkan margin */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 12px;
     }
 
-    /* Mengatur elemen dengan ID #print-area */
-    #print-area {
-        width: 300%;
+    .container2 {
+        /* display: flex;
+        flex-direction: row; */
+        /* Pastikan gambar dan teks berdampingan */
+        /* justify-content: space-between; */
+        width: 100%;
+    }
+
+    .box1 {
+        width: 100%;
+        height: max-content;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .img {
+        width: 20%;
+        /* Lebar gambar */
         height: auto;
-        margin: 0;
-        font-family: Arial, sans-serif;
-        border: 1px solid black;
-        padding: 20px;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
     }
 
-    /* Menyesuaikan ukuran font */
-    #print-area h4,
-    #print-area p {
-        font-size: 8px;
-        /* Menyesuaikan ukuran font untuk mencetak */
+    .header-container {
+        width: 65%;
+        /* Beri ruang lebih untuk teks */
+        text-align: left;
     }
 
-    /* Memastikan tidak ada margin dan padding berlebih pada body */
-    body,
-    html {
+    .header-text h4,
+    .header-text h6,
+    .header-text p {
         margin: 0;
-        padding: 0;
+        line-height: 1.2;
+    }
+
+    .box2 {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* .box2 p {
+        margin: 5px 0;
+    } */
+
+    .signature {
+        text-align: right;
+        margin-top: 50px;
+        margin-right: 20px;
+    }
+
+    /* Menghilangkan tombol pada saat print */
+    .box3,
+    button,
+    a {
+        display: none;
     }
 }
