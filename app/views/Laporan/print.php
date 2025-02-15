@@ -1,59 +1,71 @@
 <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/print.css">
-<div class="container-fluid">
-    <div class="container overflow-y-auto p-1" style="max-height: 99vh;">
+<div class="container">
+    <div id="print-area" class="invoice-box" style="padding: 10px;">
 
-        <div id="print-area" class="card border p-4">
-            <div class="container2">
-
-                <div class="box1">
-
-                    <div class="img">
-                        <img src="<?= BASEURL ?>/assets/img/iclabs-logo.png" alt="Logo" class="logo logo-cetak">
-                    </div>
-
-                    <div class="header-container">
-                        <div class="kata">
-                            <div class="header-text" style="margin-top: 0;">
-                                <h4 class="text-center"><strong>LABORATORIUM TERPADU</strong></h4>
-                                <h4 class="text-center"><strong>FAKULTAS ILMU KOMPUTER UMI</strong></h4>
-                                <p class="text-center" style="margin-bottom: 0;">Email: fikom.iclabs@umi.ac.id</p>
-                                <p class="text-center">Website: iclabs.fikom.umi.ac.id</p>
-                                <h6 class="text-center"><strong>BUKTI PEMBAYARAN PRAKTIKUM</strong></h6>
-                                <p class="text-center"><strong>Invoice No:</strong> LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/043</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="box2">
-                    <hr>
-                    <p><strong>Stambuk:</strong> <?= $data['stambuk'] ?></p>
-                    <p><strong>Nama:</strong> <?= $data['nama'] ?></p>
-                    <p><strong>Mata Kuliah:</strong> <?= $data['matakuliah'] ?></p>
-                    <p><strong>Jumlah Bayar:</strong> Rp <?= number_format($data['jumlah_pembayaran'], 0, ',', '.') ?></p>
-                    <p><strong>Terbilang:</strong> <?= ucwords(terbilang($data['jumlah_pembayaran'])) ?> Rupiah</p>
-                    <hr>
-                    <p style="text-align: right;">Makassar, <?= date('d-M-Y') ?></p>
-                    <div style="text-align: right; margin-top: 50px;">
-                        <p><strong><u>Fatimah A.R Tuasamu, S.Kom., MTA., MOS</u></strong></p>
-                    </div>
-                </div>
+        <header class="d-flex justify-content-between align-items-center">
+            <div class="img">
+                <img src="<?= BASEURL ?>/assets/img/iclabs-logo.png" alt="Logo" class="logo logo-cetak" style="width: 100%;">
             </div>
+
+            <div class="logo">
+                <h2>LABORATORIUM TERPADU</h2>
+                <h2>FAKULTAS ILMU KOMPUTER UMI</h2>
+                <h6>Email: fikom.iclabs@umi.ac.id</h6>
+                <h6>Website: iclabs.fikom.umi.ac.id</h6>
+            </div>
+        </header>
+
+        <div class="text-center" style="margin-top: 20px;">
+            <h4>BUKTI PEMBAYARAN PRAKTIKUM</h4>
+            <h4>Invoice No. LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/043</h4>
+        </div>
+        <hr style="border: 2px solid #000000; margin-left: 50px; margin-right: 50px;">
+
+        <div style="margin-top: 30px; margin-left: 80px; margin-right: 50px; margin-bottom: 10px;">
+            <div class="d-flex justify-content-start mb-3">
+                <div>Stambuk</div>
+                <div style="margin-left: 63px;">:</div>
+                <div style="margin-left: 70px;"><?= $data['stambuk'] ?></div>
+            </div>
+            <div class="d-flex justify-content-start mb-3">
+                <div>Nama</div>
+                <div style="margin-left: 84px;">:</div>
+                <div style="margin-left: 70px;"><?= $data['nama'] ?></div>
+            </div>
+            <div class="d-flex justify-content-start mb-3">
+                <div>Mata Kuliah</div>
+                <div style="margin-left: 40px;">:</div>
+                <div style="margin-left: 70px;"><?= $data['matakuliah'] ?></div>
+            </div>
+
         </div>
 
-        <div class="box3">
-            <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-primary btn-sm" onclick="printPembayaran()"> Cetak</button>
+        <div style="margin-top: 40px; margin-left: 70px; margin-right: 50px; margin-bottom: 10px;">
+            <div class="d-flex justify-content-start">
+                <div>Jumlah Bayar</div>
+                <div style="margin-left: 35px;">: </div>
+                <div class="mb-3" style="margin-left: 70px;">Rp. <?= number_format($data['jumlah_pembayaran'], 0, ',', '.') ?></div>
             </div>
-
-            <div class="d-flex justify-content-center mt-2">
-                <a href="<?= BASEURL; ?>/Laporan" class="btn btn-danger btn-sm">Kembali</a>
-            </div>
+            <i><?= ucwords(terbilang($data['jumlah_pembayaran'])) ?> Rupiah</i>
+        </div>
+        <hr style="border: 2px solid #000000; margin-left: 50px; margin-right: 50px; margin-top: 30px">
+        <p style="text-align: right; margin-right: 50px; margin-top: 60px;">Makassar, <?= date('d-M-Y') ?></p>
+        <div style="text-align: right; margin-top: 100px;">
+            <p><u>Fatimah A.R Tuasamu, S.Kom., MTA., MOS</u></p>
+        </div>
+    </div>
+    <div class="box3">
+        <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-primary btn-sm" onclick="printPembayaran()"> Cetak</button>
         </div>
 
+        <div class="d-flex justify-content-center mt-2">
+            <a href="<?= BASEURL; ?>/Laporan" class="btn btn-danger btn-sm">Kembali</a>
+        </div>
     </div>
 </div>
+
+
 
 
 <?php
