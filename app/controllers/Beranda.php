@@ -13,9 +13,10 @@ class Beranda extends Controller
                 $data['matkul'] = $this->model('Matkul_model')->countMatkul();
                 $data['kelas'] = $this->model('Kelas_model')->countKelas();
                 $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+                $data['countLunas'] = $this->model('Pembayaran_model')->countLunas();
+                $data['countBelumLunas'] = $this->model('Pembayaran_model')->countBelumLunas();
                 $data['counttagihan'] = $this->model('Tagihan_model')->countTagihan();
                 $data['pembayaran'] = [];
-
 
                 $this->view('templates/header', $data);
                 $this->view('templates/sidebar');
@@ -49,9 +50,9 @@ class Beranda extends Controller
             $data['matkul'] = $this->model('Matkul_model')->countMatkul();
             $data['kelas'] = $this->model('Kelas_model')->countKelas();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
+            $data['countLunas'] = $this->model('Pembayaran_model')->countLunas();
+            $data['countBelumLunas'] = $this->model('Pembayaran_model')->countBelumLunas();
             $data['counttagihan'] = $this->model('Tagihan_model')->countTagihan();
-
-
 
             // Simpan tanggal agar tetap tampil di form filter
             $data['startDate'] = $startDate;

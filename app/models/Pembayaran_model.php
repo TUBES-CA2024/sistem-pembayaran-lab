@@ -240,6 +240,16 @@ class Pembayaran_model
         $this->db->query("SELECT COUNT(idpembayaran) AS jumlahPembayaran FROM pembayaran");
         return $this->db->single();
     }
+    public function countLunas()
+    {
+        $this->db->query("SELECT COUNT(idpembayaran) AS jumlahLunas FROM pembayaran WHERE status = 'Lunas' ");
+        return $this->db->single();
+    }
+    public function countBelumLunas()
+    {
+        $this->db->query("SELECT COUNT(idpembayaran) AS jumlahBelumLunas FROM pembayaran WHERE status = 'Belum Lunas'");
+        return $this->db->single();
+    }
 
     //Digunakan Di Beranda
     public function printLaporan($stambuk)
