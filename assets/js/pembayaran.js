@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    console.log({ baseurl });
+
     // Menunggu DOM siap
     $(document).ready(function () {
         // Delegasi event untuk tombol edit

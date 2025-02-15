@@ -10,7 +10,8 @@ $(function () {
     // Jika ada checkbox yang dipilih, ubah action form
     $(".col-4 form").attr(
       "action",
-      "http://localhost/SIPEMLA/Beranda/printPriode1"
+      baseurl + "/Beranda/printPriode1"
+      // "http://localhost/SIPEMLA/Beranda/printPriode1"
     );
   });
 
@@ -25,7 +26,8 @@ $(function () {
     // Jika ada checkbox yang dipilih, ubah action form
     $(".col-4 form").attr(
       "action",
-      "http://localhost/SIPEMLA/Beranda/printPriode2"
+      baseurl + "Beranda/printPeriode2"
+      // "http://localhost/SIPEMLA/Beranda/printPriode2"
     );
   });
 

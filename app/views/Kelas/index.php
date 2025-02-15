@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-1 align-self-center">
                 <img
-                    src="<?= BASEURL ?>/assets/img/matakuliah.png"
+                    src="<?= BASEURL ?>/assets/img/kelas.png"
                     alt="foto-card4"
                     width="85px">
             </div>

@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-5 align-self-center">
                                 <img
-                                    src="<?= BASEURL ?>/assets/img/matakuliah.png"
+                                    src="<?= BASEURL ?>/assets/img/kelas.png"
                                     alt="foto-card4"
                                     width="80px">
                             </div>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-5 align-self-center">
                                 <img
-                                    src="<?= BASEURL ?>/assets/img/pembayaran.png"
+                                    src="<?= BASEURL ?>/assets/img/tagihan.png"
                                     alt="foto-card4"
                                     width="80px">
                             </div>
@@ -117,8 +117,8 @@
                         <div class="row">
                             <div class="col-7 card-body">
                                 <h6 class="card-subtitle mb-2">Pembayaran</h6>
-                                <h2 class="card-title"><?= $data['countpembayaran']['jumlahPembayaran'] ?></h2>
-                                <p class="card-text">Jumlah</p>
+                                <h2 class="card-title"></h2>
+                                <p class="card-text">Jumlah <?= $data['countpembayaran']['jumlahPembayaran'] ?></p>
                             </div>
                             <div class="col-5 align-self-center">
                                 <img

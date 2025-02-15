@@ -1,5 +1,6 @@
 $(function () {
     // Event for adding Mata Kuliah
+    // const baseurl = "http://yourdomain.com/SIPEMLA"; 
     $(".add-matkul").on("click", function () {
         // Change modal title and submit button text
         $("#judulModalLabel").html("Tambah Mata Kuliah");
@@ -8,7 +9,8 @@ $(function () {
         // Set action URL for adding 
         $(".modal-body form").attr(
             "action",
-            "http://localhost/SIPEMLA/Matakuliah/tambah"
+            `${baseurl}/Matakuliah/tambah`
+            // "http://localhost/SIPEMLA/Matakuliah/tambah"
         );
 
         // Clear the input fields
@@ -26,16 +28,16 @@ $(function () {
         // Set action URL for editing
         $(".modal-body form").attr(
             "action",
-            "http://localhost/SIPEMLA/Matakuliah/editMatkul"
+            `${baseurl}/Matakuliah/editMatkul`
         );
-
         // Get the ID from data-id attribute
         const id = $(this).data("id");
         console.log("Editing Mata Kuliah with ID:", id);
 
         // AJAX request to get the data for the selected Mata Kuliah
         $.ajax({
-            url: "http://localhost/SIPEMLA/Matakuliah/editTampil",  // Ensure this URL is correct
+            url: `${baseurl}/Matakuliah/editTampil`,
+            // url: "http://localhost/SIPEMLA/Matakuliah/editTampil",
             method: "POST",
             data: { id: id },
             dataType: "json",

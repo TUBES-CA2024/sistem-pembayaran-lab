@@ -5,7 +5,8 @@ $(function () {
     $(".modal-user button[type=submit]").html("Tambah User");
     $(".modal-body form").attr(
       "action",
-      "http://localhost/SIPEMLA/Usermanagement/tambah"
+      `${baseurl}/Usermanagement/tambah`
+      // "http://localhost/SIPEMLA/Usermanagement/tambah"
     );
 
     // Reset semua input di modal
@@ -25,7 +26,8 @@ $(function () {
 
     $(".modal-body form").attr(
       "action",
-      "http://localhost/SIPEMLA/Usermanagement/editUser"
+      `${baseurl}/Usermanagement/editUser`
+      // "http://localhost/SIPEMLA/Usermanagement/editUser"
     );
 
     const id = $(this).data("id");
@@ -33,7 +35,8 @@ $(function () {
 
     // Ambil data user melalui AJAX
     $.ajax({
-      url: "http://localhost/SIPEMLA/Usermanagement/editTampil",
+      // url: "http://localhost/SIPEMLA/Usermanagement/editTampil",
+      url: `${baseurl}/Usermanagement/editTampil`,
       method: "POST",
       data: { id: id },
       dataType: "json",
