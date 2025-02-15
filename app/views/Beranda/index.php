@@ -97,7 +97,7 @@
                             <div class="col-7 card-body">
                                 <h6 class="card-subtitle mb-4">Tagihan</h6>
                                 <h2 class="card-title"><?= $data['counttagihan']['jumlahTagihan'] ?></h2>
-                                <p class="card-text mb-1">Jumlah</p>
+                                <p class="card-text">Jumlah</p>
                             </div>
                             <div class="col-5 align-self-center">
                                 <img
@@ -119,7 +119,7 @@
                                 <h6 class="card-subtitle mb-2">Pembayaran</h6>
                                 <p class="card-title">Lunas <?= $data['countLunas']['jumlahLunas'] ?></p>
                                 <p class="card-title">Belum Lunas <?= $data['countBelumLunas']['jumlahBelumLunas'] ?></p>
-                                <p class="card-text">Jumlah <?= $data['countpembayaran']['jumlahPembayaran'] ?></p>
+                                <h6 class="card-text">Jumlah <?= $data['countpembayaran']['jumlahPembayaran'] ?></h6>
                             </div>
                             <div class="col-5 align-self-center">
                                 <img

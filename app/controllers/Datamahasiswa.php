@@ -62,16 +62,24 @@ class Datamahasiswa extends Controller
 
     public function hapus($id)
     {
-        // $this->model('Select_matkul_model')->hapusByStambuk($id);
-        // $this->model('Pembayaran_model')->hapusByStambuk($id);
-        if ($this->model('Mahasiswa_model')->hapus($id) > 0) {
-            PesanFlash::setFlash('Data Berhasil', 'dihapus', 'success');
+        // Cek apakah tagihan terkait dengan pembayaran
+        $tagihan = $this->model('Tagihan_model')->cekTagihan($id); // Cek apakah ada pembayaran terkait dengan tagihan
+
+        if ($tagihan > 0) {
+            // Jika ada pembayaran, tampilkan pesan error bahwa tagihan gagal dihapus
+            PesanFlash::setFlash('Mahasiswa gagal', 'dihapus karena sudah ada tagihan terkait.', 'danger');
             header('Location: ' . BASEURL . '/Datamahasiswa');
             exit;
         } else {
-            PesanFlash::setFlash('Data Gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/Datamahasiswa');
-            exit;
+            if ($this->model('Mahasiswa_model')->hapus($id) > 0) {
+                PesanFlash::setFlash('Data Berhasil', 'dihapus', 'success');
+                header('Location: ' . BASEURL . '/Datamahasiswa');
+                exit;
+            } else {
+                PesanFlash::setFlash('Data Gagal', 'dihapus', 'danger');
+                header('Location: ' . BASEURL . '/Datamahasiswa');
+                exit;
+            }
         }
     }
 

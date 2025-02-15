@@ -74,6 +74,13 @@ class Tagihan_model
             return false;
         }
     }
+    public function cekTagihan($id)
+    {
+        $this->db->query("SELECT COUNT(idtagihan) AS jumlah FROM tagihan WHERE stambuk = :id");
+        $this->db->bind(':id', $id);
+        $result = $this->db->single();
+        return isset($result['jumlah']) ? $result['jumlah'] : 0;
+    }
 
     public function tampil()
     {

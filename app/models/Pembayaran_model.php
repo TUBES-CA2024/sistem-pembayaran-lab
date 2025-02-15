@@ -233,6 +233,13 @@ class Pembayaran_model
 
     //     return $this->db->rowCount();
     // }
+    public function cekPembayaran($id)
+    {
+        $this->db->query("SELECT COUNT(idpembayaran) AS jumlah FROM pembayaran WHERE idtagihan = :id");
+        $this->db->bind(':id', $id);
+        $result = $this->db->single();
+        return isset($result['jumlah']) ? $result['jumlah'] : 0;
+    }
 
     //Digunakan Di Beranda
     public function countPembayaran()

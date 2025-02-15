@@ -49,16 +49,29 @@ class Tagihan extends Controller
     }
     public function hapus($id)
     {
-        if ($this->model('Tagihan_model')->hapus($id) > 0) {
-            PesanFlash::setFlash('Tagihan berhasil', 'dihapus', 'success');
+        // Cek apakah tagihan terkait dengan pembayaran
+        $pembayaran = $this->model('Pembayaran_model')->cekPembayaran($id); // Cek apakah ada pembayaran terkait dengan tagihan
+
+        if ($pembayaran > 0) {
+            // Jika ada pembayaran, tampilkan pesan error bahwa tagihan gagal dihapus
+            PesanFlash::setFlash('Tagihan gagal', 'dihapus karena sudah ada pembayaran terkait.', 'danger');
             header('Location: ' . BASEURL . '/Tagihan');
             exit;
         } else {
-            PesanFlash::setFlash('Tagihan gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/Tagihan');
-            exit;
+            // Jika tidak ada pembayaran, lanjutkan untuk menghapus tagihan
+            if ($this->model('Tagihan_model')->hapus($id) > 0) {
+                PesanFlash::setFlash('Tagihan berhasil', 'dihapus', 'success');
+                header('Location: ' . BASEURL . '/Tagihan');
+                exit;
+            } else {
+                // Jika penghapusan tagihan gagal
+                PesanFlash::setFlash('Tagihan gagal', 'dihapus', 'danger');
+                header('Location: ' . BASEURL . '/Tagihan');
+                exit;
+            }
         }
     }
+
     public function edit($id)
     {
         if (isset($_POST['stambuk'])) {
