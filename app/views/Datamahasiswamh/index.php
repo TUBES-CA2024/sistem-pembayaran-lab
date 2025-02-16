@@ -135,10 +135,10 @@
                         <textarea id="input-alamat" class="form-control" name="alamat" rows="3"
                             <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'readonly' : '' ?>><?= $data['mahasiswa']['alamat'] ?? '' ?></textarea>
                     </div>
-                    <div class="d-flex justify-content-between">
+                    <!-- <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary" <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'disabled' : '' ?>>Simpan</button>
                         <button type="reset" class="btn btn-secondary" <?= isset($data['mahasiswa']['isCompleted']) && $data['mahasiswa']['isCompleted'] == 1 ? 'disabled' : '' ?>>Reset</button>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
