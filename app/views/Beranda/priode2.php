@@ -19,7 +19,6 @@
         </div>
     </div>
 </div>
-
 <div class="container-user col-12 mx-auto">
     <div class="overflow-y-auto p-4" style="max-height: 81vh;">
         <div class="overflow-x-auto rounded-4 shadow-lg p-4">
@@ -36,6 +35,7 @@
                         <th class="text-center">NAMA MAHASISWA</th>
                         <th class="text-center">ANGKATAN</th>
                         <th class="text-center">SEMESTER</th>
+                        <th class="text-center">TAHUN AKADEMIK</th>
                         <th class="text-center">MATAKULIAH</th>
                         <th class="text-center">JUMLAH TAGIHAN</th>
                         <th class="text-center">JUMLAH BAYAR</th>
@@ -71,22 +71,21 @@
                         $jumlahTagihan = $cetak['jumlah_tagihan'];
                         $jumlahBayar = $cetak['jumlah_pembayaran'];
                         $sisaBayar = $jumlahTagihan - $jumlahBayar; // Hitung sisa bayar
-
                     ?>
                         <tr>
                             <td class="text-center"><?= $no ?></td>
-                            <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/022022</td>
+                            <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/<?= date('dmy') ?></td>
                             <td class="text-center"><?= $cetak['tanggal_pembayaran'] ?></td>
                             <td class="text-center"><?= $cetak['stambuk'] ?></td>
                             <td class="text-center"><?= $cetak['nama'] ?></td>
                             <td class="text-center"><?= $cetak['angkatan'] ?></td>
                             <td class="text-center"><?= $cetak['semester'] ?></td>
+                            <td class="text-center"><?= $cetak['tahun_akademik'] ?></td>
                             <td class="text-center"><?= $cetak['matakuliah'] ?></td>
-                            <td class="text-center">Rp. <?= $cetak['jumlah_tagihan'] ?></td>
-                            <td class="text-center">Rp. <?= $cetak['jumlah_pembayaran']  ?></td>
-                            <td class="text-center">Rp. <?= $sisaBayar ?></td>
+                            <td class="text-center">Rp. <?= number_format($cetak['jumlah_tagihan'], 0, ',', '.') ?></td>
+                            <td class="text-center">Rp. <?= number_format($cetak['jumlah_pembayaran'], 0, ',', '.')  ?></td>
+                            <td class="text-center">Rp. <?= number_format($sisaBayar, 0, ',', '.') ?></td>
                             <td class="text-center"><?= $cetak['status'] ?></td>
-
                         </tr>
                     <?php
                     } ?>
