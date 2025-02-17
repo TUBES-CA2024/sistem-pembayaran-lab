@@ -22,6 +22,9 @@ class Usermanagement extends Controller
     }
     public function tambah()
     {
+        // Pastikan password di-hash sebelum disimpan
+        $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT); // Meng-hash password
+
         if ($this->model('User_model')->tambah($_POST) > 0) {
             PesanFlash::setFlash('User Berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/Usermanagement');

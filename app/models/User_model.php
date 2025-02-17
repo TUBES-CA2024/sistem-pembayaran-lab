@@ -11,6 +11,7 @@ class User_model
     //Digunakan untuk menambahkan data user di User
     public function tambah($data)
     {
+
         $query = "INSERT INTO user VALUES('', :username, :password, :stambuk, :role)";
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
