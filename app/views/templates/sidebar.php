@@ -16,30 +16,30 @@
               </a>
             </li>
             <li>
-              <a href="<?= BASEURL ?>/Usermanagement" class="nav-link px-2 align-middle">
+              <a href="<?= BASEURL ?>/Usermanagement" class="nav-link px-2 mt-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/user-icon.png" alt="logo-sipemla" /></i>
                 <span class="ms-1 d-none d-sm-inline text-light">User Management</span>
               </a>
             </li>
             <li>
-              <a href="<?= BASEURL ?>/Datamahasiswa" class="nav-link px-2 align-middle">
+              <a href="<?= BASEURL ?>/Datamahasiswa" class="nav-link px-2 mt-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/mahasiswa-icon.png" alt="logo-sipemla" /></i>
                 <span class="ms-1 d-none d-sm-inline text-light">Data Mahasiswa</span></a>
             </li>
             <li>
-              <a href="<?= BASEURL ?>/Matakuliah" class="nav-link px-2 align-middle">
+              <a href="<?= BASEURL ?>/Matakuliah" class="nav-link px-2 mt-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/matkul-icon.png" alt="logo-sipemla" /></i>
                 <span class="ms-1 d-none d-sm-inline text-light">Mata Kuliah</span>
               </a>
             </li>
             <li>
-              <a href="<?= BASEURL ?>/Kelas" class="nav-link px-2 align-middle">
+              <a href="<?= BASEURL ?>/Kelas" class="nav-link px-2 mt-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/matkul-icon.png" alt="logo-sipemla" /></i>
                 <span class="ms-1 d-none d-sm-inline text-light">Kelas</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#registrasiSubMenu" data-bs-toggle="collapse" class="nav-link px-2 align-middle dropdown-toggle" id="registrasiMenu">
+              <a href="#registrasiSubMenu" data-bs-toggle="collapse" class="nav-link px-2 mt-2 align-middle dropdown-toggle" id="registrasiMenu">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/pembayaran-icon.png" alt="registrasi-icon" /></i>
                 <span class="ms-1 d-none d-sm-inline text-light">Registrasi</span>
               </a>
@@ -51,7 +51,7 @@
               </div>
             </li>
             <li>
-              <a href="<?= BASEURL ?>/Laporan" class="nav-link px-2 align-middle">
+              <a href="<?= BASEURL ?>/Laporan" class="nav-link px-2 mt-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/laporan-icon.png" alt="laporan-icon" /></i>
                 <span class="ms-1 d-none d-sm-inline text-light">Cetak Pembayaran</span>
               </a>
