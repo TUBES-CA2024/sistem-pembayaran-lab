@@ -54,6 +54,9 @@ class Usermanagement extends Controller
 
     public function editUser()
     {
+        // Pastikan password di-hash sebelum disimpan
+        $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT); // Meng-hash password
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
             if ($this->model('User_model')->edit($_POST) > 0) {

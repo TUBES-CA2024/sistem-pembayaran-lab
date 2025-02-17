@@ -33,14 +33,24 @@ class Kelas extends Controller
     }
     public function hapusKelas($id)
     {
-        if ($this->model('Kelas_model')->hapuskls($id) > 0) {
-            PesanFlash::setFlash('Kelas Berhasil', 'dihapus', 'success');
+        // Cek apakah tagihan terkait dengan pembayaran
+        $mahasiswa = $this->model('Mahasiswa_model')->cekMahasiswa($id); // Cek apakah ada pembayaran terkait dengan tagihan
+
+        if ($mahasiswa > 0) {
+            // Jika ada pembayaran, tampilkan pesan error bahwa tagihan gagal dihapus
+            PesanFlash::setFlash('Kelas gagal', 'dihapus karena ada kelas terkait.', 'danger');
             header('Location: ' . BASEURL . '/Kelas');
             exit;
         } else {
-            PesanFlash::setFlash('Kelas Gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/Kelas');
-            exit;
+            if ($this->model('Kelas_model')->hapuskls($id) > 0) {
+                PesanFlash::setFlash('Kelas Berhasil', 'dihapus', 'success');
+                header('Location: ' . BASEURL . '/Kelas');
+                exit;
+            } else {
+                PesanFlash::setFlash('Kelas Gagal', 'dihapus', 'danger');
+                header('Location: ' . BASEURL . '/Kelas');
+                exit;
+            }
         }
     }
 }

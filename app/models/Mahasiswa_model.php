@@ -309,4 +309,11 @@ class Mahasiswa_model
 
         return $this->db->rowCount(); // Mengembalikan jumlah baris yang terpengaruh (1 jika berhasil)
     }
+    public function cekMahasiswa($id)
+    {
+        $this->db->query("SELECT COUNT(stambuk) AS jumlah FROM mahasiswa WHERE idkelas = :id");
+        $this->db->bind(':id', $id);
+        $result = $this->db->single();
+        return isset($result['jumlah']) ? $result['jumlah'] : 0;
+    }
 }
