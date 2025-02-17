@@ -53,7 +53,7 @@
                             <td class="text-center"><?= $tgh['matakuliah'] ?></td>
                             <td>
                                 <button
-                                    class="btn btn-success btn-edit me-2"
+                                    class="btn btn-success btn-edit opacity-75  me-2"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalEditTagihan<?= $tgh['idtagihan']; ?>"
                                     data-stambuk="<?= $tgh['stambuk']; ?>"
@@ -65,7 +65,7 @@
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
                                 </button>
                                 <button
-                                    class="btn-delete"
+                                    class="btn-delete opacity-55 "
                                     type="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalDelete<?= $tgh['idtagihan']; ?>">

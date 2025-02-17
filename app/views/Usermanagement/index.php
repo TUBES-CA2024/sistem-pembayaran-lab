@@ -47,10 +47,10 @@
                             <td><?= $user['username']; ?></td>
                             <td><?= $user['role']; ?></td>
                             <td>
-                                <button class="btn btn-success btn-edit edit-user me-1" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
+                                <button class="btn btn-success opacity-75  btn-edit edit-user me-1" type="button" href="<?= BASEURL; ?>/Usermanagement/editUser/<?= $user['iduser'] ?>" data-bs-toggle="modal" data-bs-target="#formUser" data-id="<?= $user['iduser']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt=" ">
                                 </button>
-                                <button class="btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser']; ?>">
+                                <button class="btn-delete opacity-55 " type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $user['iduser']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/delete.png" alt="Delete Icon">
                                 </button>
                             </td>
@@ -104,10 +104,10 @@
                         <label for="stambuk" class="form-label">Stambuk</label>
                         <input type="text" class="form-control" id="stambuk" name="stambuk" placeholder="Masukkan Stambuk">
                     </div> -->
-                    <div class="mb-3">
+                    <div class="mb-3" id="stambuk-field" style="display: none;">
                         <label for="stambuk" class="form-label">Stambuk</label>
-                        <select class="form-select" id="stambuk" name="stambuk" required>
-                            <option value="1" id="stambuk" name="stambuk" selected disabled>Pilih Stambuk</option>
+                        <select class="form-select" id="stambuk-select" name="stambuk" required>
+                            <option value="1" id="stambuk-option" name="stambuk" selected disabled>Pilih Stambuk</option>
                             <?php
                             foreach ($data['mahasiswa'] as $mhs) :
                             ?>
@@ -134,7 +134,7 @@
 
 <script>
     function toggleStambukField() {
-        const role = document.getElementById('role').value;
+        const role = document.getElementById('option-role').value;
         const stambukField = document.getElementById('stambuk-field');
         stambukField.style.display = role === "Mahasiswa" ? "block" : "none";
     }

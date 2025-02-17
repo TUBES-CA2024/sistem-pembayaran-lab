@@ -51,14 +51,14 @@
                             <td><?= $matkul['namamatakuliah']; ?></td>
                             <td><?= $matkul['sks']; ?></td>
                             <td>
-                                <a class="btn btn-success col btn-edit edit-matkul me-2"
+                                <a class="btn btn-success opacity-75  col btn-edit edit-matkul me-2"
                                     role="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#formUser"
                                     data-id="<?= $matkul['kodematakuliah']; ?>">
                                     <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
                                 </a>
-                                <button class="col btn-delete delete-matkul" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $matkul['kodematakuliah']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
+                                <button class="col btn-delete opacity-55 delete-matkul" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $matkul['kodematakuliah']; ?>"><img src="<?= BASEURL ?>/assets/img/delete.png" alt="icon-delete"></button>
                             </td>
                         </tr>
                         <!-- Modal Delete -->

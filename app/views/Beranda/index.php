@@ -165,7 +165,7 @@
             <div class="row">
 
                 <div class="col-4">
-                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#formBeranda">Filter Laporan</button>
+                    <button class="btn btn-info text-white mb-3" data-bs-toggle="modal" data-bs-target="#formBeranda">Filter Laporan</button>
                 </div>
 
                 <div class="col-4 ">

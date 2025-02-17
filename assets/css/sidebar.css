@@ -5,6 +5,10 @@ body {
   overflow-y: auto;
 }
 
+.sidebar:hover {
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
 .bg {
   background-color: #51a8b1;
 }
@@ -16,4 +20,9 @@ body {
 #menu .nav-link:hover {
   background-color: #c4c4c4;
   color: rgb(45, 45, 45);
+}
+
+.logo-color {
+  fill: #ff0000;
+  /* Mengganti warna logo SVG */
 }

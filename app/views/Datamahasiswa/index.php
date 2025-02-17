@@ -52,17 +52,17 @@
                             <td><?= $mhs['telepon']; ?></td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a class="btn btn-success btn-edit" role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
+                                    <a class="btn btn-success btn-edit opacity-75 " role="button" href="<?= BASEURL; ?>/Datamahasiswa/editTampil/<?= $mhs['stambuk'] ?>">
                                         <img
                                             src="<?= BASEURL ?>/assets/img/edit.png"
                                             alt="icon-edit">
                                     </a>
-                                    <a class="btn-delete" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>">
+                                    <a class="btn-delete opacity-55" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $mhs['stambuk']; ?>">
                                         <img
                                             src="<?= BASEURL ?>/assets/img/delete.png"
                                             alt="icon-delete">
                                     </a>
-                                    <a class="btn-detail" role="button" href="<?= BASEURL; ?>/Datamahasiswa/detail/<?= $mhs['stambuk'] ?>">
+                                    <a class="btn-detail opacity-55" role="button" href="<?= BASEURL; ?>/Datamahasiswa/detail/<?= $mhs['stambuk'] ?>">
                                         <img
                                             src="<?= BASEURL ?>/assets/img/detail.png"
                                             alt="icon-detail">
