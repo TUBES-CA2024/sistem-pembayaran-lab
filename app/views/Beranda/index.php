@@ -8,7 +8,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-2">Akun User</h6>
+                                <h6 class="card-subtitle mb-2"><b>Akun User</b></h6>
                                 <h2 class="card-title"><?= $data['user']['jumlahUser'] ?></h2>
                                 <p class="card-text">Jumlah</p>
                             </div>
@@ -30,7 +30,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-2">Mahasiswa</h6>
+                                <h6 class="card-subtitle mb-2"><b>Mahasiswa</b></h6>
                                 <h2 class="card-title"><?= $data['mahasiswa']['jumlahMahasiswa'] ?></h2>
                                 <p class="card-text">Jumlah</p>
                             </div>
@@ -52,7 +52,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-2">Mata Kuliah</h6>
+                                <h6 class="card-subtitle mb-2"><b>Mata Kuliah</b> </h6>
                                 <h2 class="card-title"><?= $data['matkul']['jumlahMatkul'] ?></h2>
                                 <p class="card-text">Jumlah</p>
                             </div>
@@ -74,7 +74,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-2">Kelas</h6>
+                                <h6 class="card-subtitle mb-2"><b>Kelas</b> </h6>
                                 <h2 class="card-title"><?= $data['kelas']['jumlahKelas'] ?></h2>
                                 <p class="card-text">Jumlah</p>
                             </div>
@@ -95,7 +95,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-4">Tagihan</h6>
+                                <h6 class="card-subtitle mb-4"><b>Tagihan</b> </h6>
                                 <h2 class="card-title"><?= $data['counttagihan']['jumlahTagihan'] ?></h2>
                                 <p class="card-text">Jumlah</p>
                             </div>
@@ -116,7 +116,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class="row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-2">Pembayaran</h6>
+                                <h6 class="card-subtitle mb-2"><b>Pembayaran</b></h6>
                                 <p class="card-title">Lunas <?= $data['countLunas']['jumlahLunas'] ?></p>
                                 <p class="card-title">Belum Lunas <?= $data['countBelumLunas']['jumlahBelumLunas'] ?></p>
                                 <h6 class="card-text">Jumlah <?= $data['countpembayaran']['jumlahPembayaran'] ?></h6>
@@ -138,7 +138,7 @@
                     <div class="card p-3 bg-light shadow-lg text-body-secondary">
                         <div class=" row">
                             <div class="col-7 card-body">
-                                <h6 class="card-subtitle mb-4">Cetak Pembayaran</h6>
+                                <h6 class="card-subtitle mb-4"><b>Cetak Pembayaran</b></h6>
                                 <h2 class="card-title"><?= $data['countpembayaran']['jumlahPembayaran'] ?></h2>
                                 <p class="card-text">Pembayaran</p>
                             </div>
