@@ -1,3 +1,10 @@
+<div class="row p-3 ms-3">
+    <?php if (isset($data['message'])): ?>
+        <div class="alert alert-warning">
+            <?= $data['message'] ?>
+        </div>
+    <?php endif; ?>
+</div>
 <div class="row p-2 ms-3 me-3">
     <div class="col-12 card text-body-secondary shadow-lg bg-light">
         <div class="row">
@@ -41,6 +48,10 @@
                     $no = 0;
                     $inv = 0;
 
+                    $totalTagihan = 0;
+                    $totalBayar = 0;
+                    $totalSisaBayar = 0;
+
                     foreach ($data['print'] as $cetak) {
 
                         if ($cetak['semester'] !== 'Genap') {
@@ -50,6 +61,12 @@
                         $inv++;
                         // Use str_pad to add leading zeros to $inv
                         $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
+
+                        // Menambahkan nilai ke total
+                        $totalTagihan = $totalTagihan + $jumlahTagihan;
+                        $totalBayar += $jumlahBayar;
+                        $totalSisaBayar += $sisaBayar;
+
                         // Menghitung Sisa Bayar
                         $jumlahTagihan = $cetak['jumlah_tagihan'];
                         $jumlahBayar = $cetak['jumlah_pembayaran'];
@@ -72,10 +89,18 @@
 
                         </tr>
                     <?php
-                        // endforeach;
                     } ?>
-
                 </tbody>
+                <!-- Baris Total -->
+                <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center"><strong>Total</strong></td>
+                        <td class="text-center"><strong>Rp. <?= number_format($totalTagihan, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"><strong>Rp. <?= number_format($totalBayar, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"><strong>Rp. <?= number_format($totalSisaBayar, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"></td> <!-- Kosongkan kolom terakhir -->
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

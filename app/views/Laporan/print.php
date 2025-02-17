@@ -16,8 +16,13 @@
         </header>
 
         <div class="text-center" style="margin-top: 20px;">
+            <?php
+            $inv = 1;
+            $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
+            // $inv++;
+            ?>
             <h4>BUKTI PEMBAYARAN PRAKTIKUM</h4>
-            <h4>Invoice No. LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/043</h4>
+            <h4>Invoice No. LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/<?= $invWithLeadingZeros ?></h4>
         </div>
         <hr style="border: 2px solid #000000; margin-left: 50px; margin-right: 50px;">
 

@@ -77,11 +77,17 @@ class Beranda extends Controller
             // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
 
             $data['print'] = []; // Pastikan array kosong di awal
-            foreach ($_POST['stambuk'] as $print) {
-                $datamahasiswa = $this->model('Pembayaran_model')->getPeriode($print);
-                if ($datamahasiswa) {
-                    $data['print'] = array_merge($data['print'], $datamahasiswa);
+            // Pastikan 'stambuk' ada di dalam $_POST dan merupakan array
+            if (isset($_POST['stambuk']) && is_array($_POST['stambuk'])) {
+                foreach ($_POST['stambuk'] as $print) {
+                    $datamahasiswa = $this->model('Pembayaran_model')->getPeriode($print);
+                    if ($datamahasiswa) {
+                        $data['print'] = array_merge($data['print'], $datamahasiswa);
+                    }
                 }
+            } else {
+                // Jika tidak ada checkbox yang dipilih
+                $data['message'] = 'Tidak ada mahasiswa yang dipilih!';
             }
 
             $this->view('templates/header', $data);
@@ -99,11 +105,17 @@ class Beranda extends Controller
             $data['title'] = 'Print Periode 2';
             $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
             $data['print'] = [];
-            foreach ($_POST['stambuk'] as $print) {
-                $datamahasiswa = $this->model('Pembayaran_model')->getPeriode($print);
-                if ($datamahasiswa) {
-                    $data['print'] = array_merge($data['print'], $datamahasiswa);
+            // Pastikan 'stambuk' ada di dalam $_POST dan merupakan array
+            if (isset($_POST['stambuk']) && is_array($_POST['stambuk'])) {
+                foreach ($_POST['stambuk'] as $print) {
+                    $datamahasiswa = $this->model('Pembayaran_model')->getPeriode($print);
+                    if ($datamahasiswa) {
+                        $data['print'] = array_merge($data['print'], $datamahasiswa);
+                    }
                 }
+            } else {
+                // Jika tidak ada checkbox yang dipilih
+                $data['message'] = 'Tidak ada mahasiswa yang dipilih!';
             }
             $this->view('templates/header', $data);
             $this->view('Beranda/priode2', $data);

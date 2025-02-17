@@ -1,3 +1,10 @@
+<div class="row p-3 ms-3">
+    <?php if (isset($data['message'])): ?>
+        <div class="alert alert-warning">
+            <?= $data['message'] ?>
+        </div>
+    <?php endif; ?>
+</div>
 <div class="row p-2 ms-3 me-3">
     <div class="col-12 card text-body-secondary shadow-lg bg-light">
         <div class="row">
@@ -12,7 +19,6 @@
         </div>
     </div>
 </div>
-
 <div class="container-user col-12 mx-auto">
     <div class="overflow-y-auto p-4" style="max-height: 81vh;">
         <div class="overflow-x-auto rounded-4 shadow-lg p-4">
@@ -38,15 +44,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <?php
-                            // Debugging: tampilkan data untuk memastikan apakah sudah ada duplikasi
-                            echo '<pre>';
-                            print_r($data['print']);
-                            echo '</pre>';
-                            ?> -->
                     <?php
                     $no = 0;
                     $inv = 0;
+                    // Inisialisasi total untuk jumlah tagihan, jumlah bayar, dan sisa bayar
+                    $totalTagihan = 0;
+                    $totalBayar = 0;
+                    $totalSisaBayar = 0;
 
                     foreach ($data['print'] as $cetak) {
 
@@ -57,15 +61,20 @@
                         $inv++;
                         // Use str_pad to add leading zeros to $inv
                         $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
+
                         // Menghitung Sisa Bayar
                         $jumlahTagihan = $cetak['jumlah_tagihan'];
                         $jumlahBayar = $cetak['jumlah_pembayaran'];
                         $sisaBayar = $jumlahTagihan - $jumlahBayar; // Hitung sisa bayar
 
+                        // Menambahkan nilai ke total
+                        $totalTagihan = $totalTagihan + $jumlahTagihan;
+                        $totalBayar += $jumlahBayar;
+                        $totalSisaBayar += $sisaBayar;
                     ?>
                         <tr>
                             <td class="text-center"><?= $no ?></td>
-                            <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/022022</td>
+                            <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/<?= date('dmy') ?></td>
                             <td class="text-center"><?= $cetak['tanggal_pembayaran'] ?></td>
                             <td class="text-center"><?= $cetak['stambuk'] ?></td>
                             <td class="text-center"><?= $cetak['nama'] ?></td>
@@ -77,12 +86,19 @@
                             <td class="text-center">Rp. <?= number_format($cetak['jumlah_pembayaran'], 0, ',', '.')  ?></td>
                             <td class="text-center">Rp. <?= number_format($sisaBayar, 0, ',', '.') ?></td>
                             <td class="text-center"><?= $cetak['status'] ?></td>
-
                         </tr>
                     <?php
-                        // endforeach;
                     } ?>
-
+                    <!-- Baris Total -->
+                <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center"><strong>Total</strong></td>
+                        <td class="text-center"><strong>Rp. <?= number_format($totalTagihan, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"><strong>Rp. <?= number_format($totalBayar, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"><strong>Rp. <?= number_format($totalSisaBayar, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"></td> <!-- Kosongkan kolom terakhir -->
+                    </tr>
+                </tfoot>
                 </tbody>
             </table>
         </div>

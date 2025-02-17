@@ -12,36 +12,36 @@
             <li class="nav-item">
               <a href="<?= BASEURL ?>/Beranda" class="nav-link align-middle px-2">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/Beranda-icons.png" alt="logo-sipemla" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>Dashboard</b></span>
+                <span class="ms-1 d-none d-sm-inline text-dark">Dashboard</span>
               </a>
             </li>
             <li>
               <a href="<?= BASEURL ?>/Usermanagement" class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/user-icons.png" alt="logo-sipemla" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>User Management</b></span>
+                <span class="ms-1 d-none d-sm-inline text-dark">User Management</span>
               </a>
             </li>
             <li>
               <a href="<?= BASEURL ?>/Datamahasiswa" class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/mahasiswa-icons.png" alt="logo-sipemla" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>Data Mahasiswa</b></span></a>
+                <span class="ms-1 d-none d-sm-inline text-dark">Data Mahasiswa</span></a>
             </li>
             <li>
               <a href="<?= BASEURL ?>/Matakuliah" class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/matkul-icons.png" alt="logo-sipemla" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>Mata Kuliah</b></span>
+                <span class="ms-1 d-none d-sm-inline text-dark">Mata Kuliah</span>
               </a>
             </li>
             <li>
               <a href="<?= BASEURL ?>/Kelas" class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/matkul-icons.png" alt="logo-sipemla" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>Kelas</b></span>
+                <span class="ms-1 d-none d-sm-inline text-dark">Kelas</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#registrasiSubMenu" data-bs-toggle="collapse" class="nav-link px-2 align-middle dropdown-toggle" id="registrasiMenu">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/pembayaran-icons.png" alt="registrasi-icon" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>Registrasi</b></span>
+                <span class="ms-1 d-none d-sm-inline text-dark">Registrasi</span>
               </a>
               <div class="collapse ps-3" id="registrasiSubMenu">
                 <ul class="list-unstyled">
@@ -53,7 +53,7 @@
             <li>
               <a href="<?= BASEURL ?>/Laporan" class="nav-link px-2 align-middle">
                 <i class="fs-4"><img style="width: 23px; height: auto" src="<?= BASEURL ?>/assets/img/laporan-icons.png" alt="laporan-icon" /></i>
-                <span class="ms-1 d-none d-sm-inline text-dark"><b>Cetak Pembayaran</b></span>
+                <span class="ms-1 d-none d-sm-inline text-dark">Cetak Pembayaran</span>
               </a>
             </li>
           </ul>
