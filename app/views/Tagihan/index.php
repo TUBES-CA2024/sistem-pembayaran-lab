@@ -33,12 +33,14 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
+                        <!-- <th class="text-center">Nama</th> -->
                         <th class="text-center">Jumlah Tagihan</th>
                         <th class="text-center">Angkatan</th>
                         <th class="text-center">Tahun Akademik</th>
                         <th class="text-center">Semester</th>
                         <th class="text-center">Matkul</th>
                         <th class="text-center">Action</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +48,7 @@
                         <tr>
                             <td class="text-center"><?= $index + 1 ?></td>
                             <td class="text-center"><?= $tgh['stambuk'] ?></td>
+                            <!-- <td class="text-center"><?= $tgh['nama'] ?></td> -->
                             <td class="text-center">Rp. <?= $tgh['jumlah_tagihan'] ?></td>
                             <td class="text-center"><?= $tgh['angkatan'] ?></td>
                             <td class="text-center"><?= $tgh['tahun_akademik'] ?></td>

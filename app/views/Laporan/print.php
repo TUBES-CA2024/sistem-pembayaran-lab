@@ -50,7 +50,8 @@
         </div>
         <hr style="border: 2px solid #000000; margin-left: 50px; margin-right: 50px; margin-top: 30px">
         <p style="text-align: right; margin-right: 50px; margin-top: 60px;">Makassar, <?= date('d-M-Y') ?></p>
-        <div style="text-align: right; margin-top: 100px;">
+        <div style="text-align: right; margin-top:60px;">
+        <img src="<?= BASEURL ?>/assets/img/ttd.jpg" alt="Tanda Tangan" style="width: 150px; height:auto; margin-bottom: 10px;">
             <p><u>Fatimah A.R Tuasamu, S.Kom., MTA., MOS</u></p>
         </div>
     </div>
