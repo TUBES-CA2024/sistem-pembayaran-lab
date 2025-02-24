@@ -117,11 +117,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="input-username" name="username" placeholder="Masukkan Username">
+                        <input type="text" class="form-control" id="input-username" name="username" placeholder="Masukkan Username" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="input-password" name="password" placeholder="Masukkan Password">
+                        <input type="password" class="form-control" id="input-password" name="password" placeholder="Masukkan Password" required>
                     </div>
                     <div class="modal-footer modal-user">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

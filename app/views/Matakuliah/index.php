@@ -103,15 +103,15 @@
                     <input type="hidden" class="id" name="old_kodematakuliah" id="hidden-kodematkul">
                     <div class="mb-3">
                         <label for="kode-mata-kuliah" class="form-label">Kode Mata Kuliah</label>
-                        <input type="text" class="form-control input-kodematkul" id="input-kodematkul" name="kodematakuliah" placeholder="Masukkan Kode Mata Kuliah">
+                        <input type="text" class="form-control input-kodematkul" id="input-kodematkul" name="kodematakuliah" placeholder="Masukkan Kode Mata Kuliah" required>
                     </div>
                     <div class="mb-3">
                         <label for="M" class="form-label">Nama Mata Kuliah</label>
-                        <input type="text" class="form-control input-matkul" id="input-matkul" name="namamatakuliah" placeholder="Masukkan Nama Mata Kuliah">
+                        <input type="text" class="form-control input-matkul" id="input-matkul" name="namamatakuliah" placeholder="Masukkan Nama Mata Kuliah" required>
                     </div>
                     <div class="mb-3">
                         <label for="sks" class="form-label">SKS</label>
-                        <input type="number" class="form-control input-sks" id="input-sks" name="sks" placeholder="Masukkan SKS">
+                        <input type="number" class="form-control input-sks" id="input-sks" name="sks" placeholder="Masukkan SKS" required>
                     </div>
             </div>
             <div class="modal-footer modal-matkul">
