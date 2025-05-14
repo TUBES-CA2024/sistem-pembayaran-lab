@@ -84,8 +84,11 @@ class Pembayaran_model
                 mahasiswa.nama,
                 tagihan.matakuliah,
                 tagihan.angkatan,
+                tagihan.tahun_akademik,
                 tagihan.semester,
                 tagihan.jumlah_tagihan,
+                pembayaran.idtagihan,
+                pembayaran.idpembayaran,
                 pembayaran.tanggal_pembayaran,
                 pembayaran.jumlah_pembayaran,
                 pembayaran.status

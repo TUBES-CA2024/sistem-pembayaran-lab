@@ -29,6 +29,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
+                        <th class="text-center">Nama</th>
                         <th class="text-center">Jumlah Tagihan</th>
                         <th class="text-center">Angkatan</th>
                         <th class="text-center">Tahun Akademik</th>
@@ -41,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($data['tagihan'] as $index => $pmb): ?>
+                    <?php foreach ($data['pembayaran'] as $index => $pmb): ?>
                         <?php
                         // Cari pembayaran yang sesuai dengan idtagihan saat ini
                         $pembayaran_terkait = array_filter($data['pembayaran'], function ($pembayaran) use ($pmb) {
@@ -61,6 +62,7 @@
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td class="text-center"><?= $pmb['stambuk'] ?></td>
+                                <td class="text-center"><?= $pmb['nama'] ?></td>
                                 <td class="text-center">Rp. <?= $pmb['jumlah_tagihan'] ?></td>
                                 <td class="text-center"><?= $pmb['angkatan'] ?></td>
                                 <td class="text-center"><?= $pmb['tahun_akademik'] ?></td>
