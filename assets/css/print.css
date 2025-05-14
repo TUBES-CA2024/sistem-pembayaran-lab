@@ -3,6 +3,7 @@
 body {
     background-color: #f8f9fa;
     font-family: "Poppins", sans-serif;
+    font-size: 11px;
 }
 
 .container {
@@ -15,7 +16,6 @@ body {
 
 .invoice-box {
     border: 1px solid #dee2e6;
-
 }
 
 
@@ -52,6 +52,12 @@ footer {
 }
 
 @media print {
+    @page {
+        size: 80mm auto;
+        /* Lebar 80mm, tinggi menyesuaikan isi */
+        margin: 5mm;
+        /* Margin kecil */
+    }
 
     body,
     html {
@@ -61,8 +67,9 @@ footer {
 
     .container {
         width: 100%;
-        max-width: 210mm;
-        padding: 10mm;
+        max-width: 80mm;
+        padding: 5mm;
+        margin: 0 auto;
     }
 
     .invoice-box {
@@ -70,7 +77,23 @@ footer {
         box-shadow: none;
     }
 
-    .print-button {
+    .print-button,
+    .box3 {
         display: none;
+    }
+
+    h2,
+    h4,
+    h6,
+    p,
+    div {
+        font-size: 10pt !important;
+        /* Ukuran font kecil untuk nota */
+    }
+
+    img.logo-cetak {
+        width: 60px !important;
+        /* Logo lebih kecil */
+        height: auto;
     }
 }

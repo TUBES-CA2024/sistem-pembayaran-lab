@@ -41,7 +41,7 @@
             </div>
             <div class="d-flex justify-content-start mb-3">
                 <div>Mata Kuliah</div>
-                <div style="margin-left: 40px;">:</div>
+                <div style="margin-left: 60px;">:</div>
                 <div style="margin-left: 70px;"><?= $data['matakuliah'] ?></div>
             </div>
 
