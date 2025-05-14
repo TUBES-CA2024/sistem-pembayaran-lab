@@ -60,7 +60,9 @@
                         $no++;
                         $inv++;
                         // Use str_pad to add leading zeros to $inv
-                        $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
+                        $invWithLeadingZeros = isset($cetak['idpembayaran']) ? str_pad($cetak['idpembayaran'], 3, '0', STR_PAD_LEFT) : '000';
+
+                        // $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
 
                         // Menghitung Sisa Bayar
                         $jumlahTagihan = $cetak['jumlah_tagihan'];

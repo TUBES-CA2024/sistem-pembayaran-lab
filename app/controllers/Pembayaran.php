@@ -6,11 +6,9 @@ class Pembayaran extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Pembayaran';
-            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
-            $data['pembayaran'] = $this->model('Pembayaran_model')->tampilkp();
-            // $data['pembayaran'] = $this->model('Pembayaran_model')->tampil();
+            $data['pembayaran'] = $this->model('Pembayaran_model')->tampilpm();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
-            $data['tagihan'] = $this->model('Tagihan_model')->tampil();
+            // $data['tagihan'] = $this->model('Tagihan_model')->tampil();
 
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');

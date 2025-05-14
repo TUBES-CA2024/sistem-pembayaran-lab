@@ -17,10 +17,12 @@
 
         <div class="text-center" style="margin-top: 20px;">
             <?php
-            $inv = 1;
-            $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
+            $invWithLeadingZeros = isset($data['idpembayaran']) ? str_pad($data['idpembayaran'], 3, '0', STR_PAD_LEFT) : '000';
+            // $inv = 1;
+            // $invWithLeadingZeros = str_pad($inv, 3, '0', STR_PAD_LEFT);
             // $inv++;
             ?>
+            <!-- <h4>Invoice No. LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/<?= $invWithLeadingZeros ?></h4> -->
             <h4>BUKTI PEMBAYARAN PRAKTIKUM</h4>
             <h4>Invoice No. LAB/<?= $data['semester'] ?>/<?= date('Y') ?>/<?= $invWithLeadingZeros ?></h4>
         </div>

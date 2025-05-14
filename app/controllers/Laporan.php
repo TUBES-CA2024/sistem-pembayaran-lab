@@ -5,8 +5,6 @@ class Laporan extends Controller
     {
         if ($_SESSION['role'] == 'Admin') {
             $data['title'] = 'Laporan';
-            // $data['mahasiswa'] = $this->model('Mahasiswa_model')->tampil();
-            // $data['tagihan'] = $this->model('Tagihan_model')->tampil();
             $data['countpembayaran'] = $this->model('Pembayaran_model')->countPembayaran();
             $data['laporan'] = $this->model('Pembayaran_model')->tampilkp();
             $this->view('templates/header', $data);
@@ -27,6 +25,7 @@ class Laporan extends Controller
             $data['title'] = 'Riwayat Pembayaran';
             // Ambil data untuk rentang tanggal jika ada
             $data['title'] = 'Bukti Pembayaran';
+            $data['idpembayaran'] = $_POST['idpembayaran'];
             $data['stambuk'] = $_POST['stambuk'];
             $data['nama'] = $_POST['nama'];
             $data['semester'] = $_POST['semester'];
