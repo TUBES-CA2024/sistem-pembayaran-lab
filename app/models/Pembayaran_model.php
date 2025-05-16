@@ -104,6 +104,35 @@ class Pembayaran_model
         // Mengembalikan hasil query
         return $this->db->resultSet();
     }
+
+    public function tampilpm()
+    {
+        // Query untuk mengambil data pembayaran berdasarkan tanggal
+        $query = "SELECT 
+                tagihan.idtagihan,
+                tagihan.stambuk,
+                mahasiswa.nama,
+                tagihan.jumlah_tagihan,
+                tagihan.angkatan,
+                tagihan.tahun_akademik,
+                tagihan.semester,
+                tagihan.matakuliah,
+                pembayaran.idpembayaran,
+                pembayaran.tanggal_pembayaran,
+                pembayaran.jumlah_pembayaran,
+                pembayaran.status
+              FROM tagihan
+              JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
+              LEFT JOIN pembayaran ON pembayaran.idtagihan = tagihan.idtagihan
+              ORDER BY tagihan.stambuk DESC";
+
+        // Menjalankan query
+        $this->db->query($query);
+
+        // Mengembalikan hasil query
+        return $this->db->resultSet();
+    }
+
     public function getPeriode($stambuk)
     {
         $this->db->query("SELECT 
@@ -114,6 +143,7 @@ class Pembayaran_model
                 tagihan.matakuliah,
                 tagihan.tahun_akademik,
                 tagihan.jumlah_tagihan,
+                pembayaran.idpembayaran,
                 pembayaran.tanggal_pembayaran,
                 pembayaran.jumlah_pembayaran,
                 pembayaran.status

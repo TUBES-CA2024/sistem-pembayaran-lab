@@ -59,6 +59,7 @@
                                 <td class="text-center">
                                     <!-- Form cetak untuk setiap mahasiswa -->
                                     <form action="<?= BASEURL; ?>/Laporan/print" method="POST">
+                                        <input type="hidden" name="idpembayaran" value="<?= $pmb['idpembayaran']; ?>">
                                         <input type="hidden" name="stambuk" value="<?= $pmb['stambuk']; ?>">
                                         <input type="hidden" name="nama" value="<?= $pmb['nama']; ?>">
                                         <input type="hidden" name="semester" value="<?= $pmb['semester']; ?>">

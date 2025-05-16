@@ -43,86 +43,60 @@
                 </thead>
                 <tbody>
                     <?php foreach ($data['pembayaran'] as $index => $pmb): ?>
-                        <?php
-                        // Cari pembayaran yang sesuai dengan idtagihan saat ini
-                        $pembayaran_terkait = array_filter($data['pembayaran'], function ($pembayaran) use ($pmb) {
-                            return $pembayaran['idtagihan'] == $pmb['idtagihan'];
-                        });
+                        <tr>
+                            <td><?= $index + 1 ?></td>
+                            <td class="text-center"><?= $pmb['stambuk'] ?></td>
+                            <td class="text-center"><?= $pmb['nama'] ?></td>
+                            <td class="text-center">Rp. <?= number_format($pmb['jumlah_tagihan'], 0, ',', '.') ?></td>
+                            <td class="text-center"><?= $pmb['angkatan'] ?></td>
+                            <td class="text-center"><?= $pmb['tahun_akademik'] ?></td>
+                            <td class="text-center"><?= $pmb['semester'] ?></td>
+                            <td class="text-center"><?= $pmb['matakuliah'] ?></td>
+                            <td class="text-center"><?= $pmb['tanggal_pembayaran'] ?? '-' ?></td>
+                            <td class="text-center">Rp. <?= $pmb['jumlah_pembayaran'] ? number_format($pmb['jumlah_pembayaran'], 0, ',', '.') : '-' ?></td>
+                            <td class="text-center"><?= $pmb['status'] ?? 'Belum Bayar' ?></td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <!-- Tombol Tambah Pembayaran -->
+                                    <?php if (empty($pmb['idpembayaran'])): ?>
+                                        <button
+                                            class="btn btn-success opacity-75 add-pembayaran me-2"
+                                            type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#formPembayaran"
+                                            data-idtagihan="<?= $pmb['idtagihan'] ?>"
+                                            data-stambuk="<?= $pmb['stambuk'] ?>">
+                                            <img src="<?= BASEURL ?>/assets/img/add.png" alt="icon-add">
+                                        </button>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary me-2" type="button" disabled>
+                                            <img src="<?= BASEURL ?>/assets/img/add.png" alt="icon-disabled">
+                                        </button>
+                                    <?php endif; ?>
 
-                        // Jika tidak ada pembayaran terkait, buat array kosong
-                        if (empty($pembayaran_terkait)) {
-                            $pembayaran_terkait = [[
-                                'tanggal_pembayaran' => '-',
-                                'jumlah_pembayaran' => '-',
-                                'status' => 'Belum Bayar'
-                            ]];
-                        }
-                        ?>
-                        <?php foreach ($pembayaran_terkait as $pembayaran): ?>
-                            <tr>
-                                <td><?= $index + 1 ?></td>
-                                <td class="text-center"><?= $pmb['stambuk'] ?></td>
-                                <td class="text-center"><?= $pmb['nama'] ?></td>
-                                <td class="text-center">Rp. <?= $pmb['jumlah_tagihan'] ?></td>
-                                <td class="text-center"><?= $pmb['angkatan'] ?></td>
-                                <td class="text-center"><?= $pmb['tahun_akademik'] ?></td>
-                                <td class="text-center"><?= $pmb['semester'] ?></td>
-                                <td class="text-center"><?= $pmb['matakuliah'] ?></td>
-                                <td class="text-center"><?= $pembayaran['tanggal_pembayaran'] ?></td>
-                                <td class="text-center">Rp. <?= $pembayaran['jumlah_pembayaran'] ?></td>
-                                <td class="text-center"><?= $pembayaran['status'] ?></td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <!-- Tombol Tambah Pembayaran (Menambahkan kondisi jika sudah ada pembayaran) -->
-                                        <?php if (empty($pembayaran_terkait && $pembayaran['status'] != 'Belum Bayar')): ?>
-                                            <button
-                                                class="btn btn-success opacity-75 add-pembayaran me-2"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#formPembayaran"
-                                                data-idtagihan="<?= $pmb['idtagihan'] ?>"
-                                                data-stambuk="<?= $pmb['stambuk'] ?>">
-                                                <img
-                                                    src="<?= BASEURL ?>/assets/img/add.png"
-                                                    alt="icon-edit">
-                                            </button>
-                                        <?php else: ?>
-                                            <!-- Tombol Tambah Pembayaran dinonaktifkan jika sudah ada pembayaran -->
-                                            <button
-                                                class="btn btn-secondary add-pembayaran me-2"
-                                                type="button"
-                                                disabled>
-                                                <img src="<?= BASEURL ?>/assets/img/add.png" alt="icon-add">
-                                            </button>
-                                        <?php endif; ?>
-
-                                        <!-- Cek jika ada pembayaran, jika tidak maka tombol edit dinonaktifkan -->
-                                        <?php if (!empty($pembayaran_terkait) && $pembayaran['status'] != 'Belum Bayar'): ?>
-                                            <button
-                                                class="btn btn-success btn-edit opacity-75 me-2"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editPembayaran"
-                                                data-stambuk="<?= $pmb['stambuk'] ?>"
-                                                data-idtagihan="<?= $pmb['idtagihan'] ?>"
-                                                data-idpembayaran="<?= $pembayaran['idpembayaran'] ?>"
-                                                data-tanggalpembayaran="<?= $pembayaran['tanggal_pembayaran'] ?>"
-                                                data-jumlahpembayaran="<?= $pembayaran['jumlah_pembayaran'] ?>"
-                                                data-status="<?= $pembayaran['status'] ?>">
-                                                <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
-                                            </button>
-                                        <?php else: ?>
-                                            <button
-                                                class="btn btn-secondary btn-edit me-2"
-                                                type="button"
-                                                disabled>
-                                                <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
-                                            </button>
-                                        <?php endif; ?>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                                    <!-- Tombol Edit Pembayaran -->
+                                    <?php if (!empty($pmb['idpembayaran'])): ?>
+                                        <button
+                                            class="btn btn-success btn-edit opacity-75 me-2"
+                                            type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editPembayaran"
+                                            data-stambuk="<?= $pmb['stambuk'] ?>"
+                                            data-idtagihan="<?= $pmb['idtagihan'] ?>"
+                                            data-idpembayaran="<?= $pmb['idpembayaran'] ?>"
+                                            data-tanggalpembayaran="<?= $pmb['tanggal_pembayaran'] ?>"
+                                            data-jumlahpembayaran="<?= $pmb['jumlah_pembayaran'] ?>"
+                                            data-status="<?= $pmb['status'] ?>">
+                                            <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-edit">
+                                        </button>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary btn-edit me-2" type="button" disabled>
+                                            <img src="<?= BASEURL ?>/assets/img/edit.png" alt="icon-disabled">
+                                        </button>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
