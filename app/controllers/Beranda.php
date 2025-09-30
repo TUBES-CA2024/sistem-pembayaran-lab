@@ -140,6 +140,12 @@ class Beranda extends Controller
                         $data['print'] = array_merge($data['print'], $datamahasiswa);
                     }
                 }
+                // Tambahkan tahun akademik dari data print (ambil baris pertama saja)
+                if (!empty($data['print']) && isset($data['print'][0]['tahun_akademik'])) {
+                    $data['tahun_akademik'] = $data['print'][0]['tahun_akademik'];
+                } else {
+                    $data['tahun_akademik'] = '-';
+                }
             } else {
                 // Jika tidak ada checkbox yang dipilih
                 $data['message'] = 'Tidak ada mahasiswa yang dipilih!';
