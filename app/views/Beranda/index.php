@@ -186,11 +186,15 @@
                         <button
                             type="submit"
                             class="btn btn-info me-2 text-white periode1"
-                            id="periode1"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>Periode 1</button>
+                            id="periode1"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>Ganjil</button>
                         <button
                             type="submit"
                             class="btn btn-info text-white periode2"
-                            id="periode2"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>Periode 2</button>
+                            id="periode2"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>Genap</button>
+                        <button
+                            type="submit"
+                            class="btn btn-info text-white periode3"
+                            id="periode3"><i class="fa-solid fa-print me-2" style="color: #f5f5f5;"></i>PPI</button>
                 </div>
 
 

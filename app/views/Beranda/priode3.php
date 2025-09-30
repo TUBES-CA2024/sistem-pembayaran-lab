@@ -12,8 +12,8 @@
                 <img src="<?= BASEURL ?>/assets/img/pembayaran.png" alt="foto-card4" width="85px">
             </div>
             <div class="col-md-11 card-body">
-                <h5 class="card-title">Semester</h5>
-                <h2 class="card-subtitle mb-2">Genap</h2>
+                <h5 class="card-title">Periode</h5>
+                <h2 class="card-subtitle mb-2">PPI Tahun Akademik <?php echo $data['tahun_akademik']; ?> </h2>
                 <p class="card-text">Print Laporan Pembayaran</p>
             </div>
         </div>
@@ -54,9 +54,9 @@
 
                     foreach ($data['print'] as $cetak) {
 
-                        if ($cetak['semester'] !== 'Genap') {
-                            continue; // Jika bukan semester Genap, skip iterasi ini
-                        } 
+                        if ($cetak['semester'] !== 'PPI') {
+                            continue; // Jika bukan semester pendek, skip iterasi ini
+                        }
                         $no++;
                         $inv++;
                         // Use str_pad to add leading zeros to $inv
@@ -93,13 +93,13 @@
                     } ?>
                     <!-- Baris Total -->
                 <tfoot>
-                   <tr>
+                    <tr>
                         <td colspan="9" class="text-center"><strong>Total</strong></td>
                         <td class="text-center"><strong><?= number_format($totalTagihan) ?></strong></td>
                         <td class="text-center"><strong><?= number_format($totalBayar) ?></strong></td>
                         <td class="text-center"><strong><?= number_format($totalSisaBayar) ?></strong></td>
                         <td class="text-center"></td> <!-- Kosongkan kolom terakhir -->
-                    </tr> 
+                    </tr>
                 </tfoot>
                 </tbody>
             </table>

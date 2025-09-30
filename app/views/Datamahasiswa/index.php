@@ -31,7 +31,6 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Stambuk</th>
                         <th class="text-center">Nama</th>
-                        <th class="text-center">Kelas</th>
                         <th class="text-center">Email</th>
                         <th class="text-center">Telepon</th>
                         <th class="text-center">Action</th>
@@ -47,7 +46,6 @@
                             <td><?= $no; ?></td>
                             <td><?= $mhs['stambuk']; ?></td>
                             <td><?= $mhs['nama']; ?></td>
-                            <td><?= $mhs['namekelas']; ?></td>
                             <td><?= $mhs['email']; ?></td>
                             <td><?= $mhs['telepon']; ?></td>
                             <td>

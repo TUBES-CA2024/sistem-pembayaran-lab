@@ -31,6 +31,22 @@ $(function () {
     );
   });
 
+   $(".periode3").on("click", function (e) {
+    // Cek apakah ada checkbox yang dipilih
+    if ($('input[type="checkbox"]:checked').length === 0) {
+      e.preventDefault(); // Hentikan aksi klik
+      // alert("Silakan pilih minimal satu checkbox sebelum mencetak!");
+      return false;
+    }
+
+    // Jika ada checkbox yang dipilih, ubah action form
+    $(".col-4 form").attr(
+      "action",
+      baseurl + "/Beranda/printPriode3"
+      // "http://localhost/SIPEMLA/Beranda/printPriode2"
+    );
+  });
+
 });
 
 $(document).ready(function () {

@@ -12,8 +12,8 @@
                 <img src="<?= BASEURL ?>/assets/img/pembayaran.png" alt="foto-card4" width="85px">
             </div>
             <div class="col-md-11 card-body">
-                <h5 class="card-title">Periode</h5>
-                <h2 class="card-subtitle mb-2">1</h2>
+                <h5 class="card-title">Semester</h5>
+                <h2 class="card-subtitle mb-2">Ganjil</h2>
                 <p class="card-text">Print Laporan Pembayaran</p>
             </div>
         </div>
@@ -55,7 +55,7 @@
                     foreach ($data['print'] as $cetak) {
 
                         if ($cetak['semester'] !== 'Ganjil') {
-                            continue; // Jika bukan semester Genap, skip iterasi ini
+                            continue; // Jika bukan semester Ganjil, skip iterasi ini
                         }
                         $no++;
                         $inv++;
@@ -74,9 +74,9 @@
                         $totalBayar += $jumlahBayar;
                         $totalSisaBayar += $sisaBayar;
                     ?>
-                        <tr>
+                       <tr>
                             <td class="text-center"><?= $no ?></td>
-                            <td class="text-center">INV/LAB/<?= $invWithLeadingZeros ?>/<?= date('dmy') ?></td>
+                            <td class="text-center">INV/LAB/<?= $cetak['semester'] ?>/<?= $invWithLeadingZeros ?></td>
                             <td class="text-center"><?= $cetak['tanggal_pembayaran'] ?></td>
                             <td class="text-center"><?= $cetak['stambuk'] ?></td>
                             <td class="text-center"><?= $cetak['nama'] ?></td>
@@ -84,9 +84,9 @@
                             <td class="text-center"><?= $cetak['semester'] ?></td>
                             <td class="text-center"><?= $cetak['tahun_akademik'] ?></td>
                             <td class="text-center"><?= $cetak['matakuliah'] ?></td>
-                            <td class="text-center">Rp. <?= number_format($cetak['jumlah_tagihan'], 0, ',', '.') ?></td>
-                            <td class="text-center">Rp. <?= number_format($cetak['jumlah_pembayaran'], 0, ',', '.')  ?></td>
-                            <td class="text-center">Rp. <?= number_format($sisaBayar, 0, ',', '.') ?></td>
+                            <td class="text-center"><?= number_format($cetak['jumlah_tagihan']) ?></td>
+                            <td class="text-center"><?= number_format($cetak['jumlah_pembayaran'])  ?></td>
+                            <td class="text-center"><?= number_format($sisaBayar) ?></td>
                             <td class="text-center"><?= $cetak['status'] ?></td>
                         </tr>
                     <?php
@@ -95,9 +95,9 @@
                 <tfoot>
                     <tr>
                         <td colspan="9" class="text-center"><strong>Total</strong></td>
-                        <td class="text-center"><strong>Rp. <?= number_format($totalTagihan, 0, ',', '.') ?></strong></td>
-                        <td class="text-center"><strong>Rp. <?= number_format($totalBayar, 0, ',', '.') ?></strong></td>
-                        <td class="text-center"><strong>Rp. <?= number_format($totalSisaBayar, 0, ',', '.') ?></strong></td>
+                        <td class="text-center"><strong><?= number_format($totalTagihan) ?></strong></td>
+                        <td class="text-center"><strong><?= number_format($totalBayar) ?></strong></td>
+                        <td class="text-center"><strong><?= number_format($totalSisaBayar) ?></strong></td>
                         <td class="text-center"></td> <!-- Kosongkan kolom terakhir -->
                     </tr>
                 </tfoot>

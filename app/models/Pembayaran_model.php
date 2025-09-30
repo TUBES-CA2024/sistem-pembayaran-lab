@@ -65,7 +65,7 @@ class Pembayaran_model
               JOIN tagihan ON tagihan.idtagihan = pembayaran.idtagihan
               JOIN mahasiswa ON mahasiswa.stambuk = tagihan.stambuk
               WHERE pembayaran.tanggal_pembayaran BETWEEN :start_date AND :end_date
-              ORDER BY pembayaran.tanggal_pembayaran DESC";
+              ORDER BY pembayaran.idpembayaran ASC";
 
         // Menjalankan query
         $this->db->query($query);

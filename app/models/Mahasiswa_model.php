@@ -48,7 +48,6 @@ class Mahasiswa_model
         $this->db->query($query);
         $this->db->bind('stambuk', $data['stambuk']);
         $this->db->bind('nama', $data['nama']);
-        $this->db->bind('idkelas', $data['idkelas']);
         $this->db->bind('prodi', $data['prodi']);
         $this->db->bind('namaagama', $data['namaagama']);
         $this->db->bind('email', $data['email']);
@@ -64,7 +63,7 @@ class Mahasiswa_model
     //Digunakan pada Datamahasiswa.php
     public function tampil()
     {
-        $this->db->query("SELECT mahasiswa.stambuk, mahasiswa.nama, mahasiswa.prodi, kelas.namekelas, mahasiswa.namaagama, mahasiswa.email, mahasiswa.telepon, mahasiswa.jeniskelamin, mahasiswa.alamat, mahasiswa.foto, mahasiswa.isCompleted FROM mahasiswa JOIN kelas ON mahasiswa.idkelas = kelas.idkelas");
+        $this->db->query("SELECT mahasiswa.stambuk, mahasiswa.nama, mahasiswa.prodi, mahasiswa.namaagama, mahasiswa.email, mahasiswa.telepon, mahasiswa.jeniskelamin, mahasiswa.alamat, mahasiswa.foto, mahasiswa.isCompleted FROM mahasiswa");
         return $this->db->resultSet();
     }
     //Digunakan pada Datamahasiswa.php
