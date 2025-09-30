@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-11 card-body">
                 <h5 class="card-title">Periode</h5>
-                <h2 class="card-subtitle mb-2">PPI Tahun Akademik <?php echo $data['tahun_akademik']; ?> </h2>
+                <h2 class="card-subtitle mb-2">PPI Tahun Akademik <?php echo $data['tahun_akademik'] ?? '-' ?> </h2>
                 <p class="card-text">Print Laporan Pembayaran</p>
             </div>
         </div>
