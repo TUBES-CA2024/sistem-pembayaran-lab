@@ -40,7 +40,8 @@ class Beranda extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Ambil tanggal dari form
             $startDate = $_POST['start_date'];
-            $endDate = $_POST['end_date'];
+            $endDate   = $_POST['end_date'];
+
 
             // Panggil model untuk mendapatkan laporan harian berdasarkan rentang tanggal
             $data['title'] = 'Laporan Harian';

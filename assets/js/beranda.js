@@ -31,7 +31,7 @@ $(function () {
     );
   });
 
-   $(".periode3").on("click", function (e) {
+  $(".periode3").on("click", function (e) {
     // Cek apakah ada checkbox yang dipilih
     if ($('input[type="checkbox"]:checked').length === 0) {
       e.preventDefault(); // Hentikan aksi klik
